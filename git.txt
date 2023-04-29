@@ -1,0 +1,165 @@
+FERRAMENTA DE CONTROLE DE VERSÕES GIT
+ GERENCIAMENTO DOS ARQUIVOS DOS PROJETOS
+
+
+
+NOMENCLATURAS----------------------------------
+
+DIRETÓRIOTRABALHO	INDEX(STAGING AREA)	.GIT DIR(REPO)HEAD
+arquivos		área antes do commit	commit atual
+<----------------checkout------------------------
+----stage fix---------->
+                        --------commit--------->
+
+
+master 		É o nome padrão da branch principal do seu repositório (renomeável).
+		pode haver N branches derivados deste. d'ana d'joao
+
+origin		É o nome padrão do repositório remoto,  (renomeável). 
+
+fork		Obtenção de um projeto em paralelo ao original para modificações próprias.
+
+----------------------------------------------
+
+UNTRACKED	UNMODIFIED	MODIFIED	STAGED
+--------------------add------------------------>
+                ----edit------->
+                                ---stage------->
+<---remove------
+                <-----------commit--------------
+
+PARA MAIS DETALHES LEIA O MANUAL MAN CORRESPONDENTE.
+A DOCUMENTAÇÃO  ON-LINE É A  MESMA  DAS PÁGINAS MAN
+EM TUA DISTRO LINUX.
+
+CONFIGURAÇÃO
+
+	git
+		rastreador de conteúdo.
+	
+	git help
+		mostra informação de ajuda sobre o git.
+
+	git config
+		obter e definir repositório ou configurar opções globais.
+
+OBTENDO E CRIANDO PROJETOS
+	git init
+		criar repositório.
+
+	git clone
+		clonar repositório remoto ou outro.
+
+BASIC
+	git status
+		mostrar o status da árvore de trabalho.
+
+	git add
+		adicionar_arquivo/atualizar_alterações para o repositório antes do commit.
+
+	git commit -m "text"
+		confirmar as mudanças definitivamente para HEAD.
+	
+	git rm
+		remove arquivos do diretório de trabalho e do index.
+
+	git mv
+		move ou renomeia um arquivo, um diretório, ou um link simbólico.
+	
+	git reset [opção]
+		redefine o HEAD atual para o estado especificado
+	
+	git restore [arquivo]
+		restaura arquivos da árvore de diretórios
+	
+	git notes	
+		adicionar ou inspecionar notas dos objetos
+
+RAMIFICAÇÃO E MESCLAGEM
+
+
+	git branch
+		listar, criar, renomear ou deletar branches, pode ser pricipal ou derivadas.
+	
+	git checkout
+		mover-se entre ramificações ou restaurar árvore de diretórios de trabalho.
+
+	git switch
+		mover-se entre ramificações
+
+	git merge
+		mesclar duas ou mais branches
+	
+	git mergetool
+		executar a ferramenta solucionadora de conflito de mescla (após merge geralmente)
+
+	git log
+		mostrar log dos commits.
+
+	git stash
+		Guarde as alterações em um diretório de trabalho sujo.
+
+	git tag 
+		Crie, liste, exclua ou verifique um objeto de tag assinado com GPG
+		(útil em versionamento)
+	
+	git worktree
+		Gerenciar multiplas árvores de diretórios
+
+COMPARTILHAMENTO E ATUALIZAÇÃO DOS PROJETOS
+
+	git fetch
+		Baixar objetos e referências de outros repositórios.
+		merges e commits do repositório remoto.
+
+	git pull
+		puxar do remoto (Remoto é o mesmo projeto)
+
+	git push
+		empurrar para remoto
+		git push <nome_do_remote_salvo> <nome_da_branch>
+		será solicitado nome de usuário e token de acesso ao repositório.
+
+	git remote
+		coisas referentes ao repositório remoto, como renomear, listar, adicionar ...
+
+		git remote add <nome> https://github.com/LPLA-br/repositório
+		git remote				#para mostrar nome do remoto
+		git remote rename origin <novo_nome>	#renomeando
+	
+	git submodule
+		Inicializar, atualizar ou inspecionar submodulos
+
+
+INSPEÇÃO E COMPARAÇÃO
+
+	git show
+		mostrar todas as mudaças e objetos no git (commited).
+
+	git diff
+		mostra as mudanças entre commits, commit e a árvore de trabalho. Diferença
+	
+	git difftool
+		mostar mudanças usando ferramentas diff comuns.
+	
+	git range-dif
+		compara dois limites de commit (e.g. duas versões de uma branch)
+	
+	git shortlog
+		resumir a saída de git log.
+	
+	git describe
+		 Dê a um objeto um nome legível por humanos com base em uma referência disponível.
+
+
+T R A B A L H O------C O L A B O R A T I V O
+
+Repositório Compartilhado
+	Todos os participantes tem permissão para alterar
+	(add, push, commit, pull, branch , ...)
+	Adequado: projetos com poucos colaboradores.
+
+Fork & Pull
+	Todos os colaboradores trabalham em forks do projeto principal.
+	para incorporar trabalho é necessário enviar um pull request para
+	os mantenedores do projeto.

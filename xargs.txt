@@ -1,0 +1,30 @@
+xargs [opções] [comando[ argumentos iniciais]]
+E usado para construir e executar linhas de comando no linux
+
+É comum temos que passar uma lista enorme de argumentos para
+um comando que é maior que o shell pode trabalhar.xargs pode
+ser usado para efetuar uma divisão desta lista em  sublistas
+menores, e passar os argumentos ao  comando  requisitado  em
+partes.
+Opções mais comuns:
+	-n MAXARGS limita o número de argumentos  para  cada
+		   chamada de comando.
+	-p	   modo interativo pergunta ao usuário  para
+		   confirmar cada execução de comando.
+	-a ARQUIVO le itens de um arquivo ao invés da entrad
+		   a padrão.
+	-lMAXLINES número máximo de linhas na entrada recom-
+		   dado 1 
+Exemplos:
+texto.txt________
+|a.txt		|	cat texto.txt | xargs touch
+|b.txt		|	retorno em	...vai ser o
+|c.txt		|	lista, cada	arg do comando pass-
+|_______________|	linha...	ado para xargs repe-
+					tindo até fim da li-
+					sta.
+Exemplos práticos no terminal:
+ls -1 /bin | xargs -l1 whatis | less
+find . -type f -name "*.jpg" | xargs ls -l
+find . -type f -name "*.txt" | xargs cat
+ls -1 *.txt | xargs rm

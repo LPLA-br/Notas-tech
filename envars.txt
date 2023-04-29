@@ -1,0 +1,24 @@
+Variáveis de ambiente (muda de acordo com o usuário logado)
+
+Criar variável de shell local a sessão do shell atual:
+VAR=teste
+
+env - visualizar todas as variáveis de ambiente.
+echo $[NOME_DA_ENV_VAR] - mostra a variável de ambiente especificada.
+export - exporta, temporariamente, a variável passada em seus argumentos.
+Isso a torna global para todos as sessões shell.
+	$ export EDITOR=vim
+
+Para criar uma variável de ambiente permantente edite o arquivo de
+inicialização do bash. O .bashrc
+
+Incrementar variável pré-existente:
+PATH=$PATH:$HOME/Documentos/scriptsPessoais:$HOME/ProgramasC
+
+Exemplo de variáveis gerais de ambiente.
+$USER	usuário corrente.
+$HOME	path para a home do usuário corrente.
+$SHELL	shell corrente.
+$PWD	diretório corrente.
+$PATH 	diretório onde se econtra os scripts e programas executáveis.
+$PS1	formatação do prompt do shell exemplo:[\u@\h \w]$ 

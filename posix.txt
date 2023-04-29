@@ -1,0 +1,169 @@
+<aio.h> 		Asynchronous input and output 		
+<arpa/inet.h> 		Functions for manipulating numeric IP addresses (part of Berkeley sockets) 		
+<assert.h> 		Verify assumptions 		
+<complex.h> 		Complex Arithmetic, see C mathematical functions 		
+<cpio.h> 		Magic numbers for the cpio archive format 		
+<ctype.h> 		Character types 		
+<dirent.h> 		Allows the opening and listing of directories 		
+<dlfcn.h> 		Dynamic linking 		
+<errno.h> 		Retrieving Error Number 		
+<fcntl.h> 		File opening, locking and other operations 		
+<fenv.h> 		Floating-Point Environment (FPE), see C mathematical functions 		
+<float.h> 		Floating-point types, see C data types 		
+<fmtmsg.h> 		Message display structures 		
+<fnmatch.h> 		Filename matching 		
+<ftw.h> 		File tree traversal 		
+<glob.h> 		Pathname "globbing" (pattern-matching) 		
+<grp.h> 		User group information and control 		
+<iconv.h> 		Codeset conversion facility 		
+<inttypes.h> 		Fixed sized integer types, see C data types 		
+<iso646.h> 		Alternative spellings, see C alternative tokens 		
+<langinfo.h> 		Language information constants – builds on C localization functions 		
+<libgen.h> 		Pathname manipulation 		
+<limits.h> 		Implementation-defined constants, see C data types 		
+<locale.h> 		Category macros, see C localization functions 		
+<math.h> 		Mathematical declarations, see C mathematical functions 		
+<monetary.h> 		String formatting of monetary units 		
+<mqueue.h> 		Message queue 		
+<ndbm.h> 		NDBM database operations 		
+<net/if.h> 		Listing of local network interfaces 		
+<netdb.h> 		Translating protocol and host names into numeric addresses (part of Berkeley sockets) 		
+<netinet/in.h> 		Defines Internet protocol and address family (part of Berkeley sockets) 		
+<netinet/tcp.h>		Additional TCP control options (part of Berkeley sockets) 		
+<nl_types.h> 		Localization message catalog functions 		
+<poll.h> 		Asynchronous file descriptor multiplexing 		
+<pthread.h> 		Defines an API for creating and manipulating POSIX threads 		
+<pwd.h> 		passwd (user information) access and control 		
+<regex.h> 		Regular expression matching 		
+<sched.h> 		Execution scheduling 		
+<search.h> 		Search tables 		
+<semaphore.h> 		POSIX semaphores 		
+<setjmp.h> 		Stack environment declarations 		
+<signal.h> 		Signals, see C signal handling 		
+<spawn.h> 		Process spawning 		
+<stdarg.h> 		Handle Variable Argument List 		
+<stdbool.h> 		Boolean type and values, see C data types 		
+<stddef.h> 		Standard type definitions, see C data types 		
+<stdint.h> 		Integer types, see C data types 		
+<stdio.h> 		Standard buffered input/output, see C file input/output 		
+<stdlib.h> 		Standard library definitions, see C standard library 		
+<string.h> 		Several String Operations, see C string handling 		
+<strings.h> 		Case-insensitive string comparisons 		
+<stropts.h> 		Stream manipulation, including ioctl 		
+<sys/ipc.h> 		Inter-process communication (IPC) 		
+<sys/mman.h> 		Memory management, including POSIX shared memory and memory mapped files 		
+<sys/msg.h> 		POSIX message queues 		
+<sys/resource.h>	Resource usage, priorities, and limiting 		
+<sys/select.h> 		Synchronous I/O multiplexing 		
+<sys/sem.h> 		XSI (SysV style) semaphores 		
+<sys/shm.h> 		XSI (SysV style) shared memory 		
+<sys/socket.h> 		Main Berkeley sockets header 		
+<sys/stat.h> 		File information (stat et al.) 		
+<sys/statvfs.h> 	File System information 		
+<sys/time.h> 		Time and date functions and structures 		
+<sys/times.h> 		File access and modification times 		
+<sys/types.h> 		Various data types used elsewhere 		
+<sys/uio.h> 		Vectored I/O operations 		
+<sys/un.h> 		Unix domain sockets 		
+<sys/utsname.h> 	Operating system information, including uname 		
+<sys/wait.h> 		Status of terminated child processes (see wait) 		
+<syslog.h> 		System error logging 		
+<tar.h> 		Magic numbers for the tar archive format 		
+<termios.h> 		Allows terminal I/O interfaces 		
+<tgmath.h> 		Type-Generic Macros, see C mathematical functions 		
+<time.h> 		Type-Generic Macros, see C date and time functions 		
+<trace.h> 		Tracing of runtime behavior (DEPRECATED) 		
+<ulimit.h> 		Resource limiting (DEPRECATED in favor of <sys/resource.h>) 		
+<unistd.h> 		Various essential POSIX functions and constants 		
+<utime.h> 		inode access and modification times 		
+<utmpx.h> 		User accounting database functions 		
+<wchar.h> 		Wide-Character Handling, see C string handling 		
+<wctype.h> 		Wide-Character Classification and Mapping Utilities, see C character classification 		
+<wordexp.h> 		Word-expansion like the shell would perform
+
+---google tradutor---
+
+<aio.h> 	Entrada e saída assíncronas
+<arpa/inet.h> 	Funções para manipular endereços IP numéricos (parte dos soquetes Berkeley)
+<assert.h> 	Verifique as suposições
+<complex.h> 	Aritmética complexa, veja funções matemáticas C
+<cpio.h> 	Números mágicos para o formato de arquivo cpio
+<ctype.h> 	Tipos de caracteres
+<dirent.h> 	Permite a abertura e listagem de diretórios
+<dlfcn.h> 	Vinculação dinâmica
+<errno.h> 	Recuperando Número do Erro
+<fcntl.h> 	Abertura, bloqueio e outras operações de arquivo
+<fenv.h> 	Ambiente de ponto flutuante (FPE), consulte funções matemáticas C
+<float.h> 	Tipos de ponto flutuante, consulte tipos de dados C
+<fmtmsg.h> 	Estruturas de exibição de mensagens
+<fnmatch.h> 	Correspondência de nome de arquivo
+<ftw.h> 	Travessia da árvore de arquivos
+<glob.h> 	Nome do caminho "globbing" (correspondência de padrões)
+<grp.h> 	Informações e controle do grupo de usuários
+<iconv.h> 	Instalação de conversão de conjunto de códigos
+<inttypes.h> 	Tipos inteiros de tamanho fixo, consulte tipos de dados C
+<iso646.h> 	Soletrações alternativas, veja C tokens alternativos
+<langinfo.h> 	Constantes de informações de idioma - baseia-se nas funções de localização C
+<libgen.h> 	Manipulação do nome do caminho
+<limites.h> 	Constantes definidas pela implementação, consulte tipos de dados C
+<locale.h> 	Macros de categoria, consulte funções de localização C
+<math.h> 	Declarações matemáticas, consulte funções matemáticas C
+<monetária.h> 	Formatação de string de unidades monetárias
+<mqueue.h> 	Fila de mensagens
+<ndbm.h> 	Operações de banco de dados NDBM
+<net/if.h> 	Lista de interfaces de rede local
+<netdb.h> 	Traduzindo nomes de protocolo e host em endereços numéricos (parte dos soquetes Berkeley)
+<netinet/in.h> 	Define o protocolo da Internet e a família de endereços (parte dos soquetes Berkeley)
+<netinet/tcp.h> Opções de controle TCP adicionais (parte dos soquetes Berkeley)
+<nl_types.h> 	Funções de catálogo de mensagens de localização
+<poll.h> 	Multiplexação do descritor de arquivo assíncrono
+<pthread.h> 	Define uma API para criar e manipular threads POSIX
+<pwd.h> 	passwd (informações do usuário) acesso e controle
+<regex.h> 	Correspondência de expressão regular
+<sched.h> 	Agendamento de execução
+<search.h> 	Pesquisar tabelas
+<semaphore.h> 	semáforos POSIX
+<setjmp.h> 	Declarações do ambiente de pilha
+<signal.h> 	Sinais, consulte tratamento de sinal C
+<spawn.h> 	Processo de desova
+<stdarg.h> 	Lista de Argumentos da Variável de Tratamento
+<stdbool.h> 	Tipo e valores booleanos, consulte tipos de dados C
+<stddef.h> 	Definições de tipo padrão, consulte tipos de dados C
+<stdint.h> 	Tipos inteiros, consulte tipos de dados C
+<stdio.h> 	Entrada/saída padrão em buffer, consulte entrada/saída de arquivo C
+<stdlib.h> 	Definições de biblioteca padrão, consulte a biblioteca padrão C
+<string.h> 	Várias operações de string, consulte manipulação de string C
+<strings.h> 	Comparações de strings que não diferenciam maiúsculas de minúsculas
+<stropts.h> 	Manipulação de fluxo, incluindo ioctl
+<sys/ipc.h> 	Comunicação entre processos (IPC)
+<sys/mman.h> 	Gerenciamento de memória, incluindo memória compartilhada POSIX e arquivos mapeados de memória
+<sys/msg.h> 	filas de mensagens POSIX
+<sys/resource.h>	Uso de recursos, prioridades e limitação
+<sys/select.h>  	Multiplexação de E/S síncrona
+Semáforos <sys/sem.h>	XSI (estilo SysV)
+<sys/shm.h> 	Memória compartilhada XSI (estilo SysV)
+<sys/socket.h> 	Cabeçalho de soquetes principal de Berkeley
+<sys/stat.h> 	Informações do arquivo (stat et al.)
+<sys/statvfs.h> Informações do sistema de arquivos
+<sys/time.h> 	Funções e estruturas de data e hora
+<sys/times.h> 	Horário de acesso e modificação do arquivo
+<sys/types.h> 	Vários tipos de dados usados ​​em outros lugares
+<sys/uio.h> 	Operações de E/S vetorizadas
+<sys/un.h> 	Soquetes de domínio Unix
+<sys/utsname.h> Informações do sistema operacional, incluindo uname
+<sys/wait.h> 	Status de processos filho encerrados (ver espera)
+<syslog.h> 	Registro de erros do sistema
+<tar.h> 	Números mágicos para o formato de arquivo tar
+<termios.h> 	Permite interfaces de E/S de terminal
+<tgmath.h> 	Macros genéricos de tipo, consulte funções matemáticas C
+<time.h> 	Macros genéricos de tipo, consulte funções C de data e hora
+<trace.h> 	Rastreamento do comportamento do tempo de execução (DESCONTINUADO)
+<ulimit.h> 	Limitação de recursos (DESCONTINUADO em favor de <sys/resource.h>)
+<unistd.h> 	Várias funções e constantes POSIX essenciais
+<utime.h> 	tempo de modificação e acesso ao inode
+<utmpx.h> 	Funções de banco de dados de contabilidade do usuário
+<wchar.h> 	Tratamento de caracteres amplos, consulte tratamento de strings C
+<wctype.h> 	Utilitários de classificação e mapeamento de caracteres amplos, consulte a classificação de caracteres C
+<wordexp.h> 	Expansão de palavras como o shell faria
+
+fonte: https://en.wikipedia.org/wiki/C_POSIX_library

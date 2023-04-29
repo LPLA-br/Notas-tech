@@ -1,0 +1,32 @@
+Módulos do kernel linux - fonte: www.bosontreinamentos.com.br
+
+São arquivos-objeto, parte do kernel, que são vinculados a ele em tempo de
+execução Um módulo no linux é um código, geralmente DRIVERS DE DISPOSITIVO
+s que podem ser carregados e descarregados sem a necessidade de reiniciar o 
+sistema.
+
+Os módulos podem ser inseridos e removidos em um kernel em execução a
+qualquer tempo, exceto quando em uso.
+
+Os drivers de dispositivos podem ser inseridos na forma de módulos do Kernel.
+
+Os arquivos de drivers geralmente terminam com a extenção .ko (ou .o) e são
+armazenados em subdiretórios dentro de /lib/modules.
+
+Ferramentas para gerenciamento de Módulos
+depmod		Trabalha com dependências dos módulos
+insmod		Carrega módulos em um kernel em execução
+lsmod		Lista informações sobre módulos carregados
+modinfo		Lista informações sobre um módulo
+modprobe	Carrega, decarrega e gera relatórios em módulos, e
+		trata de suas depedências
+rmmod		Descarrega módulos de um kernel em execução
+
+
+extra:
+lsdev		Exibe informações sobre o hardware do sistema, como portas
+		de entrada e saída e endereços IRQ (parte do pacote procinfo)
+lspci		Exibir informações sobre dispositivos PCI do sistema
+
+carregar na inicialização
+/etc/modules

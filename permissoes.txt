@@ -1,0 +1,162 @@
+PERMISSÃO DE ACESSO
+
+fonte: https://guialinux.uniriotec.br/permissao-de-acesso/
+
+Descrição
+Cada arquivo do sistema está associado a um usuário (dono) e a um grupo.
+O dono de um arquivo pode definir quem tem acesso ao arquivo e qual tipo
+de acesso é permitido(leitura, gravação e ou execução). Isto é chamado de
+permissão de acesso ou modo do arquivo.
+
+Níveis de acesso
+As permissões dos arquivos linux são definidas por quatro dígitos que
+representam:
+1.permissões especiais
+2.permissões da pessoa que criou o arquivo ou o diretório (dono ou user)
+3.permissões dos usuários membros do mesmo grupo do dono do arquivo ou do
+diretório (grupo)
+4.permissões do resto dos usuários do sistema (outros)
+
+Permissões comuns
+As permissões comuns para o dono, o grupo e os outros são de 3 tipos:
+1.leitura  read(r)	-permite ler o conteúdo de um arquivo/diretório
+2.escrita  write(w)	-permite alterar um arquivo/diretório
+3.execução execute(x)	-permite executar um arquivo ou acessar um diretório e
+			 executar comandos.
+A tabela abaixo mostra as combinações possíveis para se definir uma
+Permissão.
+VALOR OCTAL	VALOR BINÁRIO	CARACTERES
+0		000		---
+1		001		--x
+2		010		-w-
+3		011		-wx
+4		100		r--
+5		101		r-x
+6		110		rw-
+7		111		rwx
+
+Por exemplo, suponha que a resposta ao comando “ls -l teste” seja a
+seguinte:
+
+-rw-rw-r−− 1 aluno curso 1024 Fev 13 10:55 teste
+
+A primeira coluna mostra as permissões de acesso dos subdiretórios e
+arquivos.
+
+	-	rw-	rw-	r−−
+	0664 (octal)
+
+    *O primeiro caractere diz qual é o tipo do objeto:
+        – para arquivo comum;
+        b para dispositivos de bloco (oferecem grandes quantidades de
+	  dados de cada vez).
+        c para dispositivo de caracteres (oferecem dados de um caractere
+	  de cada vez);
+        d para diretório;
+        l para link simbólico;
+        p para FIFO ou Named Pipe;
+        s para socket mapeado em arquivo;
+
+    *Os três caracteres seguintes mostram as permissões do dono (permissão
+    de leitura e escrita).
+    *O quinto, o sexto e o sétimo caracteres dizem quais as permissões do
+    grupo (permissão de leitura e escrita).
+    *Os três últimos caracteres especificam as permissões dos outros
+    (permissão de leitura).
+
+Como não há qualquer permissão especial definida no exemplo, é possível
+dizer que o arquivo teste tem permissão (octal) 0664.
+
+Permissões especiais________________________________________________________
+
+SUID – com esta permissão, o usuário executa o arquivo como se fosse o dono
+(não funciona em diretório). Isto significa que será usado o UID do dono do
+arquivo ao invés do UID do usuário que executa o programa.
+
+SGID – com esta permissão, o usuário executa o arquivo ou acessa o diretório
+como membro do grupo ao qual pertence o arquivo/diretório. Isto significa que
+o usuário assume o GID do grupo (ele é membro desse grupo, mas é outro o seu
+grupo padrão).
+
+sticky bit – o usuário pode criar/alterar/deletar (apenas) os seus próprios
+arquivos no diretório que possui esta permissão, mesmo que não seja o dono
+do diretório e nem membro do grupo ao qual o diretório pertence. Quando o
+sticky bit é usado em um arquivo, significa que este arquivo é compartilhado
+por vários usuários.
+
+VALOR OCTAL	VALOR BINÁRIO	SIGNIFICADO
+0		000		nenhuma permissão especial
+1		001		sticky bit
+2		010		SGID
+3		011		SGID e sticky bit
+4		100		SUID
+5		101		SUID e sticky bit
+6		110		SUID e DGID
+7		111		SUID, SGID e sticky bit
+
+Por exemplo, suponha que a resposta ao comando "ls -l teste" seja a
+seginte:
+
+	-rwSrwSr−− 1 aluno curso 1024 Fev 13 10:55 teste
+
+	-	rwS	rwS	r--
+
+	*é um arquivo comum, primeiro "-"
+	*rwS	define permissão de leitura, escrita e SUID(quem executar
+	usará o UID do aluno)
+	*rwS	define permissão de leitura, escrita e SGID(quem executar
+	usará o UID do do curso)
+	*r--	define permissão de leitura para os outros.
+
+Para esse exemplo é possível dizer que o arquivo teste tem permissão 6664.
+A tabela abaixo mostra o significado das letras quando existem permissões
+especiais. Note que a permissão especial só informa como a execução irá ser
+feita, não autoriza a execução. Portanto, no exemplo acima com permissões
+"-rwSrwSr--", niguém conseguirá executar o arquivo teste, pois ninguém tem
+permissão para isto.
+
+PERMISSÃO	NÍVEL	SIGNIFICADO
+S		dono	SUID
+s		dono	SUID+permissão de execução para o dono
+S		grupo	SGID
+s		grupo	SGID+permissão de execução para o grupo
+T		outros	sticky bit
+t		outros	sticky bit+permissão de execução para outros
+
+---------------------------------------------------------------------------
+RH124 - Red Hat©
+
+Permissão	Efeitos_em_aquivos	Efeitos_em_diretórios
+r		O conteúdo pode ser	O conteúdo do dir pode
+		lido.			ser listado(apenas nome dos dirs)
+
+w		O conteúdo pode ser	Qualquer arquivo do dir pode ser
+		alterado.		criado ou apagado.
+
+x		Os arquivos podem ser	O dir pode ser tornar diretório
+		executados como		de trabalho atual.(exige permissão
+		comandos		read para listar os arquivos)
+
+---------------------------------------------------------------------------
+Permissão_especial	Efeitos_em_aquivos	Efeitos_em_diretórios
+Quarto_dígito
+
+u+s (suid)		O arquivo é executado	Sem efeito.
+4			como o usuário propri-
+			etário do arquivo,não
+			como o que o executou.
+
+g+s (sgid)		O arquivo é executado	Arquivos novos criados no dir terão
+2			como o grupo propri-	seu proprietário de grupo definido
+			etário do arquivo.	de maneira a corresponder ao propi-
+						etário do grupo do dir.
+
+o+t (sticky)		Sem efeito.		Os usuários com acesso de gravação
+1						no diretório só podem apagar os
+						arquivos que pertercem a si próprios.
+						Não podem, eles, apagar ou forçar
+						salvamento de arquivos de outros
+						usuários.
+
+
+---------------------------------------------------------------------------

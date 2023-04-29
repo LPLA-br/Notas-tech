@@ -1,0 +1,118 @@
+MANTENHA SEU DISPOSITIVO DE ARMAZENAMENTO MÓVEL SICRONIZADO COM OS DIRETÓRIOS
+DO SEU SISTEMA OPERACIONAL USANDO O RSYNC.
+fonte: www.bosontreinamentos.com.br
+
+rsync ORIGEM DESTINO
+
+OPÇÕES DO rsync
+
+
+ATENÇÃO:
+ rsync -a -v -h /home/fabio
+	Se for acresentado uma barra ao diretório de ORIGEM ~/Documentos/
+	seu conteúdo será copiado para o destino sem no entanto criar o dir
+	de nome Documentos
+
+	Se não for acresentado uma barra ao diretório de ORIGEM ~/Documentos
+	seu conteúdo será copiado para o destino criando também o dir
+	de nome Documentos
+
+	Diretório de ORIGEM e não de destino.
+
+-a
+Modo archive (arquivamento). Copia os arquivos e diretórios recursivamente
+(como -r) e preserva links simbólicos, permissões de arquivos, propriedades
+de usuário e grupo (ownership) e timestamps.
+
+-h
+Números são representados em formato legível por humanos
+
+-r
+Copia dados recursivamente, sem preservar timestamps e permissões ao
+transferir os dados
+
+-z
+Comprimir os dados dos arquivos antes de enviá-los
+
+–progress
+Mostrar o progresso da cópia de arquivos ao transferir os dados
+
+-e
+Especificar o shell remoto a ser usado (rsh, ssh)
+
+-c, –checksum
+Calcula os checksums dos arquivos para verificar se eles são
+iguais ao transferi-los.
+Utilizada para verificar a integridade dos dados copiados.
+
+–exclude
+Permite especificar arquivos ou diretórios que não devem ser copiados
+para o destino
+
+–include
+Permite especificar arquivos ou diretórios que devem ser
+copiados para o destino
+
+--delete
+Exclui um arquivo ou diretório no DESTINO caso ele não exista na ORIGEM		<-IMPORTANTE
+
+–max-size=TAMk|M|G 
+Permite especificar o tamanho TAM máximo dos arquivos transferidos.
+Por exemplo, –max-size=50k significa que somente serão copiados arquivos
+com no máximo 50kB.
+
+–bwlimit=LIMITE 
+Permite especificar um LIMITE de largura de banda em kbps ao transferir
+dados de uma máquina para outra, de modo a não impactar a performance da rede.
+
+-b, –backup
+Não sobrescreve arquivos que já existam no destino da transferência,
+mas os renomeia adicionando um sufixo ~ aos seus nomes, antes de executar
+a transferência de novos arquivos.
+
+-u, –update
+Não sobrescreve nenhum arquivo no destino da transferência que possua uma
+data posterior (mais recente) à data do arquivo correspondente, na origem.
+
+–remove-source-files
+Exclui (apaga) os arquivos no diretório de origem após o término da
+transferência de dados.
+
+-n
+Modo “dry run” – executa uma tentativa de copiar dados sem realmente copiar	<-IMPORTANTE
+qualquer arquivo.
+
+-v
+Modo verboso, que mostra detalhes sobre a transferência de arquivos. 		<-IMPORTANTE
+
+-H
+perservar links físicos
+
+-A
+Perservar as ACLs
+
+-X
+Preservar os contextos do SELinux
+
+-a --archive equivale a:
+	-r --recusive
+	-l --links	#sincronizar links simbólicos
+	-p --perms
+	-t --times
+	-g --group
+	-o --owner
+	-D --devices	#sicronizar arquivo do dispositivo
+
+[remoteuser@]host:/path		#especificação de host remoto.
+
+EXEMPLOS:
+
+Primeiro backup (cópia):
+  rsync -a -v -h Diretório /mnt/user
+
+ Demais (sicroniza):
+  rsync -a -v -h --delete Diretório /mnt/user
+
+ Fazendo backups-sicronização dos dados dos usuários deste computador com root.
+  cd /home/USUARIO
+  rsync -a -v -h Desktop Documentos Downloads Imagens Modelos Música Público Vídeos /mnt/USUARIO

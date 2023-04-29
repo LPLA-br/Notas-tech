@@ -1,0 +1,115 @@
+GERENCIAMENTO DE PACOTES NO FEDORA E RED HAT ENTERPRISE LINUX
+
+subscription-manager(8)	RHEL8 gerenciador de subscrições redhat.
+	registros, subscrições, ativação de repositórios, revisão de
+	direitos.
+rct(8)	inspecionador de certificados.
+Certificados: /etc/pki/{product,consumer,entitlement}
+
+GERENCIAMENTO DE PACOTES
+rpm(8)	gerenciador de pacotes do RHEL + Fedora e derivados.
+	ferramenta de baixo nível ou seja, assim como dpkg do Debian, ele
+	não resolve dependências nem trabalha diretamente com repositórios.
+
+	Nomeclatura dos pacotes:
+		nome-versão-lançamento.arquitetura.rpm
+
+		onde:
+		  ·versão do software, script, arquivo ...
+		  ·lançamento (numero de lançamento) pelo empacotador.
+
+	Um pacote contém:
+		Arquivos a serem instalados em seus respectivos lugares.
+		Metadados(nome,versão,lançamento,arquitetura,sumário,descrição)
+		Scripts de tempo de instalação, remoção ou atualização.
+
+	O gerenciador de pacotes verifica a integridade dos pacotes antes da instalação.
+	Vide o manual do rpm(8)
+	OPÇÔES COMUNS:
+		-q --query
+		-p --package
+		-i --install
+
+	rpm2cpio(8)
+	cpio(1)
+	rpmkeys(8)
+
+yum(8) gerenciador de pacotes de alto nível do RHEL + Fedora e derivados
+/var/log/dnf.rmp.log	log de todas as transações.
+	yum
+		help
+		list 'padrão'
+		search PALAVRACHAVE
+		info PACOTENOME
+		provides PATHNOME
+		install PACOTENOME
+		remove PACOTENOME
+		update PACOTENOME
+		{update|list} kernel
+		history [undo]
+	    GRUPOS DE SOFTWARE YUM
+	    coleções de software relacionados e instalados em conjunto para uma
+	    finalidade especifica. Grupos regulares: coleções de pacotes.
+	    Grupos de ambiente: coleções de grupos regulares.
+	    	group
+			list
+			info
+			install
+	    ATIVAÇÃO DE REPOSITÓRIOS DE SOFTWARE DA RED HAT
+	    	repolist all
+
+	yum-config-manager(8) ativar ou desativar repositórios dentre outras tarefas.
+		fontes não red hat podem ser: site, servidor ftp ou repositório local.
+
+	Para ativar suporte a um novo repositório de terceiros
+	, crie um arquivo terminado em .repo no dir /etc/yum.repos.d
+	lá deve conter: URL,nome,GPG(sim|não),
+
+	EPEL Extra Packages for Enterprise Linux
+	rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
+	yum install http://dl.fedoraproject.org/pub/epel/8/x86_64/e/epel-release-9-2.noarch.rpm
+	/etc/yum.repos.d/epel.repo
+
+GERENCIAMENTO DE FLUXOS DE MÓDULOS DE PACOTE
+	Módulos permitem a instalação de versões específicas do software.
+	Saber listar, ativar e alterar os fuxos de módulos.
+	Instalar e atualizar pacotes a partir de um módulo.
+
+	Antes versões alternativas do pacote significava repósitório diferente para
+	cada vesão. RHEL8 usa a Modularidade permitindo que um só repositório hospede
+	diversas versões de pacote de um aplicativo e suas depedências.
+	BaseOS - conteúdo do principal do sistema operacional.
+	AppStream (Fluxo de Aplicativos)- softwares, programas, partes do sistema.
+		AppStream possui:
+			Pacotes RPM tradicionais
+			Módulos @PACOTE
+				Conjunto de pacotes RPM em torno de versões específicas.
+				Perfil - lista de determinados pacotes a serem instalados
+					 juntos.
+	
+	NOMESOFTWARE:fluxo/perfil
+	python36:3.6/common	#por exemplo.
+
+	yum module
+		list
+		list NOMESOFTWARE
+			NOMESOFTWARE 1.3 ←fluxo
+			NOMESOFTWARE 1.4 ←fluxo
+		info NOMESOFTWARE
+		info NOMESOFTWARE:FLUXO
+			info perl:5.54 #por exemplo
+	ATIVAÇÃO DE FLUXOS DE MÓDULOS E INSTALAÇÃO DE MÓDULOS.
+		install NOMESOFTWARE
+		enable
+		list NOMESOFTWARE  #verificação do status do módulo.
+	REMOÇÃO DE MÓDULOS E DESATIVAÇÃO DE FLUXOS DE MÓDULOS.
+		disable
+		remove NOMESOFTWARE
+		reset NOMESOFTWARE
+TROCA DE FLUXOS DE MÓDULOS
+	Liste os pacotes instalados com o módulo.
+	Remova os listados anteriormente.
+	Reinicie o fluxo do módulo: reset.
+	Ativar fluxo diferente: yum module install nome:5
+
+profile='perfil'

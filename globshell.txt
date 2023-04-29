@@ -1,0 +1,60 @@
+Correspondência de nomes de arquivos com expansões de shell (bash)
+
+-------------------------------------------------------------------
+padrão		Correspondência
+*		Qualquer string com zero ou mais caracteres.
+?		Qualquer caractere único.
+[abc..]		Qualquer caractere na classe entre colchetes.
+[!abc..]	Qualquer caractere que não esteja entre colchetes.
+[^abc..]	Qualquer caractere que não esteja entre colchetes.
+[[:alpha:]]	Qualquer caractere alfabético
+[[:lower:]]	Qualquer caractere minusculo
+[[:upper:]]	Qualquer caractere maiusculo
+[[:alnum:]]	Qualquer caractere alfabético ou númerico.
+[[:punct:]]	Qualquer caractere imprimível que não seja alfabético ou númerico
+[[:digit:]]	Qualquer dígito único de 0 até 9
+[[:space:]]	Qualquer caractere de espaço único. Recúos, new lines, returns, avanços, espaços etc.
+
+~ indica o diretório home do usuário atual.
+~ também substitui nome de usuário ex: ls ~root ; ls ~fulano ; ls ~eu/Música
+
+
+Expansão de chave--------------------------------------------------
+É usada para gerar strings de caracteres distintas.
+teste os seguinte exemplos com o comando echo:
+echo {segunta, terça, quarta, quinta, sexta, sabado}.txt
+echo arquivo{1..6}.txt
+echo teste{a..z}.txt
+echo teste{A,B}{1,2}.txt
+echo teste{A{1,2},B,C}.txt
+Seu uso prático é criar vários arquivos ou diretórios rápidamente.
+mkdir projeto{1,2,3}
+PS: não pode haver espaços na expansão.
+-------------------------------------------------------------------
+
+Expansão variável (vide envars.txt)
+USERNAME=fulano
+echo $USERNAME	#note aqui que $ indica o valor da variável.
+fulano
+
+Para evitar erros devido a outras expansões de shell, você pode
+colocar o nome da variável entre chaves
+echo eu sou o ${USERNAME}
+eu sou o fulano
+
+Substituição de comandos
+echo Hoje é o dia $(date +%A).		#vide guia.bash
+os $() são aninhavéis.
+`comando` é uma forma antiga não aninhavel.
+
+Proteção de argumentos de espansão com escape \ ou ""
+echo you is $USERNAME
+you is fulano
+
+echo you is \$USERNAME
+you is $USERNAME
+
+'' aspas simples param param toda a expansão do shell.
+"" aspas duplas param param toda a expansão do shell com exeção da Substituição.
+
+

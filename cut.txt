@@ -1,0 +1,36 @@
+Comando cut
+Imprima partes especificadas das linhas de um arquivo de texto.
+
+cut opções... [arquivo]...
+
+-d --delimiter	Delimitador de separação
+-f --fields	Seleciona o campo N
+
+Em um arquivo organizado chamado teste.txt temos:
+-------------------------------------------------
+verba,volat,ostium
+caelum,fenestra,domus
+femina,vir,puella
+agricola,agri,filius
+campo1,campo2,campo3
+-------------------------------------------------
+
+Campo 3 Delimitador vírgula
+$cut -d ',' -f '3' teste.txt
+
+Mostrar delimitador # na Impressão.
+$cut -d ',' -f '3' --output-delimiter='#' teste.txt 
+
+Campos 1 e 2.
+$cut -d ',' -f '1,2' --output-delimiter='#' teste.txt 
+
+Do campo 1 até o último.
+$cut -d ',' -f '1-' --output-delimiter='#' teste.txt 
+ 
+Lendo campos de 1 até 8.
+$cut -d ':' -f '1,8' teste.txt
+
+Lendo campos do arqivo passwd de 1 até 5.
+$cat /etc/passwd | cut -d ':' -f '1,5'
+
+FIM Luiz Paulo de Lima Araújo

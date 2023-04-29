@@ -1,0 +1,110 @@
+IPTABLES - FRONT-END DO NETFILTER
+Aplicada na terceira camada OSI (rede)
+
+tables do iptables:
+filter
+	Tabela padrão para manipular pacotes de rede, usada para
+	configurar politicas para o tráfego que entra, atravessa
+	ou sai do computador.
+nat
+	Tabela usada para alterar pacotes que criam uma nova
+	conexão, e para redirecionar conexões para nat..
+mangle
+	Tabela usada para tipos específicos de alteração de pacotes,
+	que não devemser manipulados pelo sistema de rastreamento de
+	conexões.
+raw
+	Marca pacotes que não devem ser manipulados pelo sistema de
+	rastreamento de conexões.
+
+EXEMPLO VISUAL:
+table1---------------------------
+	chain1
+		rule1, rule2, rule3 ,ruleN
+	chain2
+		rule1, rule2, rule3 ,ruleN
+
+table2---------------------------
+	chain1
+		rule1, rule2, rule3 ,ruleN
+	chain2
+		rule1, rule2, rule3 ,ruleN
+
+
+
+FILTER Regras normais de entrada/saída de dados serão aplicadas na table padrão filter.
+	chain:
+	INPUT - Regras para pacotes que estão entrando no nosso servidor.
+	OUTPUT -Regras para pacotes que estão saindo do nosso servidor.
+	FORWARD - aplica rules aos pacotes de rede roteados através do
+						servidor(para outro servidor ou outra interface de rede do mesmo servidor)
+
+	ações possíveis em cada chain de FILTER:
+	ACCEPT - O pacote pode ser aceito no nosso servidor
+	DROP - O pacote será dropado, isso é,descartado.
+	REGECT - O pacote será rejeitado, isso é, será enviado um
+					 sinal para o cliente de que o pacote foi rejeitado.
+
+NAT é usada para fazer network address translation(basicamente converter
+IP privado em IP público).
+	chain:
+	PREROUTING
+	OUTPUT
+	POSTROUTING
+
+	ações possíveis em cada chain de NAT:
+
+MANGLE
+	chain:
+	PREROUTING
+	OUTPUT
+	POSTROUTING
+
+	ações possíveis em cada chain de MANGLE:
+
+RAW
+	chain:
+	PREROUTING
+	OUTPUT
+
+	ações possíveis em cada chain de RAW:
+
+SECURITY
+	-
+
+Estrutura geral de uma rule
+iptables subcomando chain parâmetro1 valor1 parâmetroN valorN ação
+
+SUBCOMANDOS
+-A anexa a rule no final da chain especificada
+-F apaga todas as rules na chain especificada
+-L lista todas as rules da chain
+-N cria uma nova chain com o nome desejado
+-P configura a rule padrão da cadeia
+-D apaga uma rule em uma posição na cadeia
+-X exclui uma cadeia vazia
+-I insere uma rule em uma posição na cadeia
+
+AÇÕES (TARGETS)
+ACCEPT o pacote é permitido
+DROP descartar pacote
+QEUE enviar o pacote ao userspace (código fora do kernel)
+RETURN descotinuar o processamento do pacote e aplicar a rule padrão a ele.
+ações adicionais:
+REJECT descarta o pacote e envia o feedback ao remetente
+DNAT reescreve o endereço de destino NAT
+SNAT reescreve o endereço de origem NAT
+LOG coloca no log informações sobre o pacote
+
+PARÂMETRO
+-t table      especificar a tabela (filter é a padrão)
+-j ação       realiza a ação especificada
+-p protocolo  especifica o protocolo (icmp, tcp, udp, all)
+-s IP         IP de origem do pacote
+-d IP         IP de destino do pacote
+-I interface  nome da interface de rede de entrada do pacote
+-o interface  nome da interface de rede de saída do pacote
+-sport portas portas de origem
+-dport portas portas de destino
+-syn          identifica nova requisição de conexão
+-icmp-type    tipo de mensagem ICMP

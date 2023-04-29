@@ -1,0 +1,142 @@
+--atributos de um arquivo tradução do manual man chattr(1) dia 4 de Novembro de 2021--
+
+a
+Um arquivo com o atributo 'a' definido só pode ser aberto no modo anexar para gravação.
+Apenas o superusuário ou um processo que possui a capacidade CAP_LINUX_IMMUTABLE pode
+definir ou limpar este atributo.
+
+A
+Quando um arquivo com o conjunto de atributos 'A' é acessado, seu registro atime não é
+modificado. Isso evita um certa quantidade de E / S de disco para sistemas de laptop.
+
+c
+Um arquivo com o atributo 'c' definido é compactado automaticamente no disco pelo kernel.
+Uma leitura deste arquivo retorna dados descompactados. Uma gravação neste arquivo compacta
+os dados antes de armazená-los no disco. Nota: certifique-se de ler a seção de bugs e
+limitações no final deste documento. (Observação: para btrfs, se o sinalizador 'c' estiver
+definido, o sinalizador 'C' não poderá ser definido. Também há conflitos
+com a opção de montagem btrfs 'nodatasum')
+
+C
+Um arquivo com o atributo 'C' definido não estará sujeito a atualizações de cópia na
+gravação. Esta bandeira é apenas suportado em sistemas de arquivos que executam cópia na gravação.
+(Observação: para btrfs, o sinalizador 'C' deve ser definido em arquivos novos ou vazios.
+Se for definido em um arquivo que já possui blocos de dados, é indefinido quando os blocos
+atribuídos ao arquivo serão totalmente estáveis. Se o sinalizador 'C' estiver definido em um
+diretório, não terá efeito no diretório, mas os novos arquivos criados nesse diretório terão o No_COW
+conjunto de atributos. Se o sinalizador 'C' estiver definido, o sinalizador 'c' não poderá
+ser definido.)
+
+d
+Um arquivo com o atributo 'd' definido não é um candidato para backup quando o programa
+dump (8) é executado.
+
+D
+Quando um diretório com o atributo 'D' definido é modificado, as alterações são gravadas de
+forma síncrona para O disco; isso é equivalente à opção de montagem 'dirsync' aplicada a um
+subconjunto dos arquivos.
+
+e
+O atributo 'e' indica que o arquivo está usando extensões para mapear os blocos no disco.
+não pode ser removido usando chattr (1).
+
+E
+Um arquivo, diretório ou link simbólico com o conjunto de atributos 'E' é criptografado pelo
+sistema de arquivos. Isso em tributo não pode ser definido ou apagado usando chattr (1), embora
+possa ser exibido por lsattr (1).
+
+F
+Um diretório com o atributo 'F' definido indica que todas as pesquisas de caminho dentro
+desse diretório são feito de uma forma que não diferencia maiúsculas de minúsculas. Este
+atributo só pode ser alterado em diretórios vazios sistema de arquivo com o recurso casefold ativado.
+
+i
+Um arquivo com o atributo 'i' não pode ser modificado: ele não pode ser excluído ou renomeado, nenhum
+link pode ser criado para este arquivo, a maioria dos metadados do arquivo não podem ser modificados,
+e o arquivo não pode ser aberto no modo de gravação. Apenas o superusuário ou um processo que possui
+a capacidade CAP_LINUX_IMMUTABLE pode definir ou limpar este atributo.
+
+I
+O atributo 'I' é usado pelo código htree para indicar que um diretório está sendo indexado usando
+árvores hashed. Não pode ser definido ou limpo usando chattr (1), embora possa ser exibido por
+lsattr (1).
+
+j
+Um arquivo com o atributo 'j' tem todos os seus dados gravados no diário ext3 ou ext4 antes de ser
+escrito no próprio arquivo, se o sistema de arquivos for montado com o "data = encomendado" ou "data = write‐
+back "opções e o sistema de arquivos tem um diário. Quando o sistema de arquivos é montado com o
+Opção "data = journal" todos os dados do arquivo já estão registrados e este atributo não tem efeito. Somente
+o superusuário ou um processo que possui a capacidade CAP_SYS_RESOURCE pode definir ou limpar este atributo.
+
+m
+Um arquivo com o atributo 'm' é excluído da compactação em sistemas de arquivos que suportam por arquivo
+compressão.
+
+N
+Um arquivo com o atributo 'N' definido indica que o arquivo possui dados armazenados em linha, dentro do inode
+em si. Não pode ser definido ou limpo usando chattr (1), embora possa ser exibido por lsattr (1).
+
+P
+Um diretório com o atributo 'P' definido reforçará uma estrutura hierárquica para os IDs do projeto.
+Isso significa que os arquivos e diretórios criados no diretório herdarão o ID do projeto do diretório,
+as operações de renomeação são restritas de forma que, quando um arquivo ou diretório é movido para outro
+diretório, os IDs do projeto devem corresponder. Além disso, um link físico para o arquivo só pode ser
+criado quando o ID do projeto para o arquivo e o diretório de destino correspondem.
+
+s
+Quando um arquivo com o conjunto de atributos 's' é excluído, seus blocos são zerados e gravados de volta
+no disco. Nota: certifique-se de ler a seção de bugs e limitações no final deste documento.
+
+S
+Quando um arquivo com o atributo 'S' definido é modificado, as alterações são gravadas de forma síncrona
+no disco; isso é equivalente à opção de montagem 'sync' aplicada a um subconjunto dos arquivos.
+
+t
+Um arquivo com o atributo 't' não terá um fragmento de bloco parcial no final do arquivo mesclado com
+outros arquivos (para aqueles sistemas de arquivos que suportam mesclagem final). Isso é necessário
+para aplicativos como o LILO, que lêem o sistema de arquivos diretamente e não entendem arquivos mesclados
+na cauda. Nota: No momento em que este livro foi escrito, os sistemas de arquivos ext2, ext3 e ext4 não
+suportam mesclagem final.
+
+T
+Um diretório com o atributo 'T' será considerado o topo das hierarquias de diretório para fins de
+alocador de bloco Orlov. Esta é uma dica para o alocador de bloco usado pelo ext3 e ext4 de que os
+subdiretórios neste diretório não estão relacionados e, portanto, devem ser separados para fins de
+alocação. Por exemplo, é uma boa idéia definir o atributo 'T' no diretório / home, de forma que
+/home/john e /home/mary sejam colocados em grupos de blocos separados.
+Para diretórios onde este atributo não é definido, o alocador de bloco Orlov tentará agrupar
+subdiretórios mais próximos, sempre que possível.
+
+u
+Quando um arquivo com o conjunto de atributos 'u' é excluído, seu conteúdo é salvo.
+Isso permite que o usuário solicite sua remoção. Nota: certifique-se de ler a seção de bugs
+e limitações no final deste documento.
+
+x
+O atributo 'x' pode ser definido em um diretório ou arquivo. Se o atributo for definido em um
+diretório existente, ele será herdado por todos os arquivos e subdiretórios criados subsequentemente
+no diretório. Se um diretório existente contiver alguns arquivos e subdiretórios, modificar o atributo
+no diretório pai não altera os atributos nesses arquivos e subdiretórios.
+
+V
+Um arquivo com o atributo 'V' definido tem o fs-verity habilitado. Ele não pode ser gravado e o
+sistema de arquivos verificará automaticamente todos os dados lidos dele em relação a um hash
+criptográfico que cobre todo o conteúdo do arquivo, por exemplo, através de uma árvore Merkle.
+Isso torna possível autenticar o arquivo de forma eficiente. Este atributo não pode ser definido
+ou limpo usando chattr (1), embora possa ser exibido por lsattr (1).
+
+BUGS E LIMITAÇÕES
+
+ * Os atributos 'c', 's' e 'u' não são respeitados pelos sistemas de arquivos ext2, ext3 e ext4
+ implementados em os kernels Linux da linha principal atual. Definir os atributos 'a' e 'i' não
+ afetará a capacidade de escrever para descritores de arquivo já existentes.
+ * A opção 'j' só é útil para sistemas de arquivos ext3 e ext4.
+ * A opção 'D' só é útil no kernel Linux 2.5.19 e posterior.
+
+DESTAQUES
+ a - Somente escrita anexativa, nada de deleção ou sobrescrita.
+ c - Compactação automática do arquivo no disco pelo kernel.
+ i - Arquivo não pode ser: alterado, excluído, renomeado, linkado por niguém (root).
+ s - Os blocos do arquivo são zerados e gravados (deleção segura do disco).
+ S - Modificações são imediatamente gravadas no disco.
+ u - Quando excluído, o arquivo tem seu conteúdo salvo.

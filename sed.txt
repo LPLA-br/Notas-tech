@@ -1,0 +1,36 @@
+
+NOME
+	sed - stream editor para filtragem e transformação de texto
+
+SINOPSE
+	sed [opção] {script-apenas-se-não-outro} [arquivo-de-entrada]
+
+OPÇÕES
+	-n, --quiet, --silent
+		suprime impressão automática no espaço de padrão.
+	
+	-e script, --expression='espressão-regular'
+
+	-f script-file, --file=script-file
+
+COMANDOS E REGEX
+	Substituição s
+		'[NUMERO]s/regex/replacement/flags'
+		NUMERO indica LINHA em que o sed irá atuar.
+	
+	separando por ponto e vírgula
+		's///g; //p; s///gc;'
+	
+	Busca:
+		'/padrão/p'
+
+    Deleção:
+        '/padrão/d'
+
+	Comandos:
+		s substituir
+        d deletar
+
+	flags:
+		g	substiui os encontrados por replacement.
+		p	imprime o espaço de 

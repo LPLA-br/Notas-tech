@@ -1,0 +1,68 @@
+Formatação de dispositivos de armazenamento não volátil.
+
+lsblk(1)lists information about all available or the specified block devices.
+        "listar informação sobre todos dispositivos de blocos disponíveis"
+        para saber qual o dispositivo de armazenamento que vai ser formatado.
+        AVISO as partições a serem formatadas não podem estar montadas.
+
+Exemplo de saída do lsblk:
+	NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+	sda      8:0    0 119,2G  0 disk 
+	├─sda1   8:1    0   100M  0 part 
+	├─sda2   8:2    0   118G  0 part /
+	└─sda3   8:3    0   1,1G  0 part [SWAP]
+	sdb      8:16   1  14,5G  0 disk 
+	└─sdb1   8:17   1  14,5G  0 part
+
+APENAS FORMATAR PARTIÇÕES PRE-EXISTENTES NO DISPOSITIVO
+
+	EXEMPLO DE CASO:
+	O dispositivo sdb tem duas partições velhas sendo sdb1 ext4
+	e sdb2 fat32 então para formatar:
+	mkfs.ext4 /dev/sdb1
+	mkfs.fat -F32 /dev/sdb2
+	Pronto!
+
+RE-PARTICIONANDO DISPOSITIVO E FORMATANDO PARTIÇÃO
+
+	fdisk /dev/sdX
+	Particione o dispositivo de armazenamento.
+
+	ATENÇÃO sdb refere-se a o dispositivo, sdb1 a uma partição dele.
+
+	Além do fdisk temos cfdisk que é mais amigável e o parted.
+	o programa de particionamento quer o dipositivo, não a sua partição:
+	cfdisk /dev/sdb
+
+	Formate cada partição criada com seu respectivo sistema de arquivo.
+	mkfs.SISTEMA_DE_ARQUIVOS  /dev/sdbX
+
+	Exemplo: O dispositivo sdb tem partição sdb1, sdb2.
+	Durante o particionamento você disse que tipo era cada partição;
+	sdb1 e sdb2 é LINUX FILESYSTEM.
+	Após particionamento, formata !
+	mkfs.ext4 /dev/sdb1
+	mkfs.ext4 /dev/sdb2
+	pronto!
+
+SITEMA DE ARQUIVOS:
+  mkfs
+  mkfs.bfs
+  mkfs.cramfs
+  mkfs.exfat
+  mkfs.ext2  |
+  mkfs.ext3  | sistemas de arquivos linux
+  mkfs.ext4  |
+  mkfs.fat
+  mkfs.minix
+  mkfs.msdos
+  mkfs.ntfs
+  mkfs.vfat	
+
+EXTRA
+	wipefs --all /dev/sdX
+	"apaga" todos sistemas de arquivos, RAID ou assinatura de tabelas
+	de partição do DISPOSITIVO especificado.
+	--all    Apaga todas assinaturas disponíveis.
+
+Escrito por Luiz Paulo de Lima Araújo 2020 -2021

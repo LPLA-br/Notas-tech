@@ -1,0 +1,167 @@
+ANÁLISE E ARMAZENAMENTO DE LOGS
+ Todo evento no sistema operarcional é anotado em arquivos de log
+ existentes no diretório /var/log . Lá há log de serviços, do kernel
+ dentre outros.
+
+ O protocolo syslog e comum em várias distros. Programas o utilizam
+ para registrar eventos, systemd-journald e rsyslog controlam
+ mensagens do syslog no RHEL8
+
+ O serviço systemd-journald está no centro da
+ arquitetura de logs de eventos do sistema, os coletando e formatando
+ em uma forma padronizada, que por padrão não é persistente.
+ 
+ O serviço rsyslog lê classifica e grava as mensagens advindas
+ do syslog nos arquivos de log que persistem a reinicializações.
+ Ele classifica e grava as messagens em seus devidos logs.
+
+ Daemons de serviço podem gravar logs diretamente em /var/log
+ como, por exemplo o apache.
+
+Arquivos de log do sistema relacionados
+ /var/log/messages	maioria das mensagens syslog
+ /var/log/secure	eventos segurança e autenticação
+ /var/log/maillog	servidor de email
+ /var/log/cron		tarefas programadas
+ /var/log/boot.log	inicialização do sistema
+
+Análise dos arquivos do syslog
+interprete eventos nos arquivos do syslog para solucionar problemas
+
+Toda mensagen tem um tipo e uma gravidade/prioridade
+prioridades padrões do syslog:
+
+CODIGO	PRIORIDADE	GRAVIDADE
+0	emerg		Sistema inutilizável 	fu**eu :-(
+1	alert		realizar ação imediata!
+2	crit		Condição crítica!
+3	err		erro não crítico
+4	warning		aviso
+5	notice		evento normal significativo
+6	info		informação
+7	debug		mensagen de depuração
+
+A prioridade e usada por rsyslog para determinar como lidar com as
+mensagens. journalctl também vé estas prioridades padrões.
+
+/etc/rsyslog.conf	-regras padrões (configuração principal)
+/etc/rsyslog.d		-extensões das regras padrões (aplicações podem usar)
+
+Regra → Definição de classificação de mensagens em uma linha nos arquivos
+	de configuração do rsyslog. EXEMPLO:
+RECURSO.GRAVIDADE		/var/log/ALVO
+authpriv.*			/var/log/secure
+
+mensagens podem ser impressas em todos os terminais:
+kern.*				/dev/console
+
+
+logrotate - ferramenta de rodízio dos arquivos de log
+	    controla o tamanho dos arquivos de log.
+	    Os mais velhos vão sendo descartados.
+
+ANÁLISE DE UMA ENTRADA DO RSYSLOG
+Mensagens antigas → topo
+Mensagens novas   → fim
+
+ANATOMIA DE UMA MENSAGEM:
+DATA E HORA	 HOST	    PROGRAMA_OU_PROCESSO[PID]: MENSAGEM
+Feb 11 20:11:48  localhost  sshd[1433]: 4Failed password for student from 172.25.0.10 port 59344 ssh2
+
+Monitorar arquivos de log é importante para:
+·reproduzir problemas e questões
+
+ENVIO MANUAL DE MENSAGENS DO SYSLOG
+O comando logger pode enviar mensagens para o serviço rsyslog.
+Por padrão a msg vai para o recurso user.notice a menos que tu
+especifique outro com -p (Util para testar as alterações na
+configuração do serviço rsyslog).
+
+Exemplo de envio para /var/log/boot.log :
+logger -p local7.notice "Log entry created on host"
+
+
+Para mais detalhes vide os manuais do rsyslog.
+
+ANÁLISE DAS ENTRADAS DO DIÁRIO DO SISTEMA
+
+O serviço systemd-journald armazena dados de registro em um
+arquivo binário estruturado e indexado chamado diário.(polêmico)
+
+No RHEL8 /run/log/journal armazena o diário do sistema por padrão (temporário).
+No Arch linux: /var/log/journal (persistente).
+
+journalctl
+ -n N		N entradas de log recentes.
+ -f		como o tail -f exibe dinâmicamente os appends fim do log.
+ -p		filtragem por prioridade (vide manual para detalhes)
+ -b N		mostra as informações do boot N.
+ 		sem N → boot atual. -N boot anterior ao atual.
+ --since	filtragem desde tal data no formato 'AAAA-MM-DD hh:mm:ss'
+ --until	filtragem até   tal data no formato 'AAAA-MM-DD hh:mm:ss'
+ 		As duas opções acima utilizam:
+			yesterday, today, tomorrow? como argumentos válidos.
+			ontem    , hoje , amanhã?
+		Tempo relativo ao presente, exemplo:
+		journalctl --since "-1 hour"
+			vide systemd.time(7) para detalhes de como usar
+			since e until
+-o verbose	D E T A L H E S (use filtragem para não aparecer bilhões de linhas)
+		_COMM nome do comando
+		_EXE caminho para o executável do processo
+		_PID process identity do processo
+		_UID user identity O usuário que executou o processo
+		_SYSTEMD_UNIT é a unidade do systemd que iniciou o processo
+
+EXEMPLO de filtragem por campo
+	journalctl _SYSTEMD_UNIT=sshd.service
+
+ARMAZENAMENTO PERSISTENTE DO DIÁRIO DO SISTEMA
+NO RHEL os diários do sistema são armazenados em /run/log/journal
+ou seja, a cada reinicialização, o diário e perdido.
+
+/etc/systemd/journald.conf 	contém as configurações do journald
+
+Storage		É o parâmetro que define se os diários devem ser voláteis
+		ou não nas reinicializações do sistema.
+
+		persitent → /var/log/journal
+		volatile  → /run/log/journal
+		auto      → rsyslog determina se será usado o
+			    armazenamento persistente ou volátil de
+			    acordo com a existência de /var/log/journal
+
+O diário, mesmo persistente, não mantém para sempre todos os dados.
+Ele tem um mecanismo de rodízio de logs acionado mensalmente.
+Além disso, por padrão ele não ocupa mais que 10% do filesystem
+em que reside nem deixa menos de 15% do filesystem livre (configurável).
+
+MANUTENÇÃO DE HORA PRECISA
+Verifique seus relógios !
+
+O Network Time Protocol NTP é o meio de obenção da hora
+correta pela internet. há serviços públicos e privados de
+fornecimento da hora correta.
+
+Nomes de fusos horários são baseados no banco de dados da IANA.
+Seus nomes são: Continente|oceano/cidadeGrandeNaArea ex:
+America/Fortaleza
+
+tzselect(1) - Descobrir sua timezone de forma interativa .
+
+timedatectl(1) - visão geral das configurações de data e hora.
+vide manual para detalhes.
+
+UTC (Coordinated Universal Time) - Pode, opcionalmente, ser definido.
+
+Configuração e monitoramento do cronyd (serviço)
+Relógio de hardware local normalmente é impreciso, podendo ser
+corrigo pelo serviço chronyd, que sicroniza com os servidores NTP
+configurados. Na Ausência de rede, ele calculará o desvio de tempo do
+RTC, que é gravado no driftfile especificado no arquivo de configuração
+
+/etc/chronyd.conf
+
+chronyc(1) - cliente do serviço
+
+leia os manuais para mais detalhes.

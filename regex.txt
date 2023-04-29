@@ -1,0 +1,137 @@
+Expressões regulares
+veja sed(1) grep(1)
+
+Busca por padrões de texto.
+Treine no site: https://regexr.com/
+
+globbing do shell não é igual a Expressões Regulares.
+Exemplos de globbing:  *.txt relatorio.{doc,txt} guia-??.html
+
+____________________________________________________________________________
+Metacaracteres:
+--Representates--
+.	ponto			Um caractere qualquer.
+[]	lista			Lista de caracteres individuais.
+[^]	lista negada		Lista de caracteres individuais proibidos.
+
+--Quatificadores--
+?	opcional		Nenhum ou um.
+*	asterisco		Nenhum, um ou mais.
++	mais			Um ou mais.
+{}	chaves			{n,m} de n até m.
+
+--Âncoras--
+^	circunflexo		Início da linha.
+$	cifrão			Fim da linha.
+\b	borda			Início ou fim de palavra.
+
+--Outros--
+\	caractere de escape	
+|	ou			Ou um ou outro (ou exclusivo).
+()	grupo			delimita um grupo.
+\1	retrovisor		texto casado nos grupos 1..9.
+
+--CLASSES POSIX--
+Geralmente colocado dentro de uma lista [] ficando assim → [[:alpha:]]
+[:alnum:]	Qualquer caractere alfabético ou númerico.
+[:alpha:]	Qualquer caractere alfabético maiúsculo e minúsculo.
+[:blank:]	Espaço e tabulação.
+[:cntrl:]	Caracteres de controle.
+[:digit:]	Qualquer número.
+[:graph:]	Caracteres imprimíveis [^  \t\n\r\f\v].
+[:lower:]	Qualquer letra minúscula.
+[:print:]	imprimíveis e o espaço [^\t\n\r\f\v].
+[:punct:]	Sinais de pontuação ,!?:.
+[:space:]	Caracteres não visíveis [\t\n\r\f\v].
+[:upper:]	Qualquer letra maiúscula.
+[:xdigit:]	Qualquer número hexadecimal.
+____________________________________________________________________________
+
+. Ponto
+	.ato	Pode ser	 gato rato fato ...
+	p..a	Pode ser	 puta pula pila ...
+	t.a	Pode ser	 tia tua ...
+	t....	Pode ser	 texto tinha tinta ...
+	12.34	Pode ser	 12:34 12 34 12.34 12e34 12_34 ...
+	<.>	Pode ser	 <i> <b> <a>
+
+	fuciona como o ? do globbing do shell.
+
+[...] Lista
+	n[aã]o
+	[Cc]asa
+	[a-zA-Z]libabá
+	arquivo[0-9][0-9].txt	arquivo00.txt arquivo99.txt
+	[012][0-9]:[0-5][0-9]	Ainda pega 25 até 29 horas :-(
+	file[0-9A-Za-z]		filea fileb ... fileA fileZ file9 file0
+ 
+	Intervalos de - respeitam a ordem estabelecida na tabela ASCII de caracteres.
+	[0-9A-Za-z] é a ordem indicada.
+
+[^] Lista Negada
+	n[^aã]o
+	consol[^a^]	Inclui o caractere ^ após a
+
+? Opcional
+	au?tor		ator autor
+	fala[r!]?	fala falar fala! falar!
+	</?[BIPbib]>	tag de abertura, fechamento. Maiúscula ou minúscula.
+
+* N quantidade opcional
+	6*0		0 60 660 6660  pode ter N seis.
+	[ar]*		ar arara ararara
+
+.* Qualquer coisa ( . mais o * )
+   inclui TODOS os carateres entre A e B.
+	o.*logista	otorrinolarigologista ontologista
+
++ N quantidade obrigatória
+  necessário pelo menos uma ocorrência.
+  	6+0	60 660 ...
+	bi+p	bip biip biiip ...
+	b[ip]+	bip biipp bipip bpipi biiiip bppppi
+
+{M,N} quantidade explicitamente definida onde: alvo{Mínimo,Máximo}
+	(ti){1,2}
+		ti
+		titi
+
+	car{1,2}o
+		carro
+		caro
+
+	ca[rs]{1,2}o
+		carro
+		caro
+		caso
+		casso
+
+| ou exlusivo (muito útil dentro de grupos)
+	gato|pato|rato
+	[gr]ato|[r]alos?	gato rato ralo ralos
+
+(...) grupo
+é um grupo isoládo que pode conter mais expressões dentro dele
+	(k)+				k kk kkk ...
+	boa-(tarde|noite)		boa-tarde boa-noite
+	au?tor[a]?(es)?			autor ator autora autores autoraes
+	procrasti(nar|nand[ao]r?)	procrastinar procrastinando procrastinandor ...
+	((hiper|super|mega|ultra)(mercados?|mulher(es)?))
+
+\ escape (espacos também devem ser escapados)
+Qualquer caracere especial precedido por este cara deixa de ser especial.
+	tu\ sab(e|ia)[\?\!]*
+		tu sabe?
+		tu sabe!
+		tu sabe??
+		tu sabe!!
+		tu sabe????
+		tu sabia?
+		tu sabia???
+		tu sabia!
+		tu sabia!!!
+
+Mais comuns:
+\n newline
+\t tabulação
+\  espaço

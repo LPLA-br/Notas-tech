@@ -1,0 +1,294 @@
+Processo é um intância de um programa executável iniciado.
+O processo consiste em:
+	-Um espaço de endereço de memória alocada.
+	-Propriedades de segurança, incluindo credenciais
+	do proprietário e privilégios.
+	-Um ou mais threads de execução do código do programa.
+	-Estado do processo.
+O ambiente de um processo inclui:
+	-Variáveis locais e globais
+	-Um contexto de agendamento atual
+	-Recursos alocados do sistema, como descritores de arquivo
+	e portas de rede.
+Um processo existente (pai) duplica seu prório espaço em endereços(fork)
+para criar uma nova estrutura de processo (filho). Cada novo proceso
+recebe um único PID para rastreamento e segurança.
+A PID ea id do processo pai (PPID) são elementos do novo ambiente de
+processo. Qualquer processo pode criar um processo filho. Todos os
+processos no linux são descedentes do PID 1
+(systemd [init system] na maioria das distros linux)
+
+Diagrama do ciclo de vida de um processo:
+
+process (fork)→ parent_process (wait)→ parent_process → process → ...
+      ↓						      ^
+      child_process (exec)→ child_process (exit)→     | → zombie
+
+ESTADOS DO PROCESSO
+
+coluna S do ps(1) ou STAT ps(1)
+Estados de processos____________________________________
+NOME 		SINALIZADOR	NOME_DE_ESTADO          |
+Em_execução	R		TASK_RUNNING            |
+Suspenso	S		TASK_INTERRUPTIBLE      |
+		D		TASK_UNINTERRUPTIBLE    |
+		K		TASK_KILLABLE           |
+		I		TASR_REPORT_IDLE        |
+Interrompido	T		TASK_STOPPED            |
+		T		TASK_TRACED             |
+Zumbi		Z		EXIT_ZOMBIE             |
+		X		EXIT_DEAD               |
+________________________________________________________|
+
+TASK_RUNNIG: o processo está em execução em uma cpu ou aguardando
+para ser executado. O processo pode estar executando
+rotinas de usuário ou do kernel(syscall) ou estar em
+uma fila e pronto quando no estado Em execução(ou e
+xecutável).
+TASK_INTERRUPTIBLE: O processo está esperando por alguma condição,
+como uma solicitação de hardware, um acesso a recursos do sistema
+ou um sinal. Quando um evento ou um sinal atende à condição, o
+processo retorna ao estado Em execução. 
+TASK_UNINTERRUPTIBLE: Este processo também está Suspenso, mas, 
+diferente daqueles em estado S, não responde aos sinais.
+Usado somente quando o processo de interrupção pode causar
+um estado de dispositivo imprevisível.
+TASK_KILLABLE: Idêntico ao estado ininterruptível D, mas modificado
+de maneira a permitir que uma tarefa em espera responda ao sinal
+de término (é possível sair dela completamente). Utilitários
+frequentemente exibem processos Termináveis com um estado D. 
+TASK_REPORT_IDLE: Um subconjunto do estado D. O kernel não conta
+esses processos ao calcular a média de carga. Usado para threads do
+kernel. Os sinalizadores TASK_UNINTERRUPTABLE e TASK_NOLOAD estão
+definidos. Semelhante a TASK_KILLABLE, também é um subconjunto do
+estado D. Aceita sinais fatais.
+TASK_STOPPED: O processo foi Interrompido (suspenso), geralmente
+por ser sinalizado por um usuário ou outro processo. O processo
+pode ser continuado por outro sinal para retornar ao estado Em
+execução.
+TASK_TRACED: Um processo que em depuração também está,
+temporariamente, Interrompido e compartilha o mesmo sinalizador
+de estado T.A
+EXIT_ZOMBIE: Um processo filho sinaliza para seu pai quando é
+concluído. Todos os recursos, exceto aqueles para a identidade do
+processo (PID), são liberados.
+EXIT_DEAD: Quando o pai limpa (extrai) a estrutura de processo remanescente
+do filho, o processo é liberado integralmente. Esse estado jamais
+será observado em utilitários de listagem de processos. 
+
+processo ←→ comunicação ←→ processoB
+kernel ←→ comunicação ←→ processo
+
+Todo processo criado recebe um estado do sistema.
+Um processo pode ser suspenso, interrompido, retomado,
+finalizado.
+
+ps(1)UID - User IDentity do processo (previlégios)
+PID - Process IDentity. Um valor único que identifica a entidade
+      processo.
+A CPU e o tempo real já utilizado.
+O quanto de memória o processo já alocou em vários locais.
+O local da saída do processo stdout, conhecido como "terminal de 
+controle".
+O estado atual do processo.
+
+O ps(1) linux suporta formato unix,BSD,GNU
+ps -aux != ps aux
+
+-Processos entre parênteses são threads do kernel agendadas.
+-Zumbis são listados como de saída ou extintos.
+-ps é estático, top é dinâmico.
+-ps em modo árvore é possível.
+
+--TAREFAS_E_SESSÕES_BASH--
+"Controle de tarefas" é um recurso do shell.
+Uma única instância do shell pode executar e gerenciar vários comandos.
+
+Uma "Tarefa" é associada a cada pipeline inserido em um prompt de shell.
+Todos os processos em um pipeline são membros do mesmo "grupo de proce
+ssos". Se apenas um comando for inserido em um prompt shell, poderá ser
+considerado um pipeline mínimo de um comando, criando uma tarefa de um
+membro só.
+
+Somente uma tarefa por vez pode ler a entrada e os sinais gerados pelo
+teclado em uma janela de terminal. Os processos que fazem parte dessa
+tarefa são processos de "primeiro plano" do "terminal de controle"
+
+Um processo em "segundo plano" no terminal de controle é membro de
+qualquer outra tarefa associada ao terminal. Processos em segundo plano
+de um terminal não podem ser gravados no terminal. Uma tarefa em segundo
+plano pode estar interrompida(suspensa) ou estar em execução.Se uma
+tarefa executada em segundo plano tentar ler a partir do terminal,será
+suspensa automaticamente.
+
+Cada terminal é sua própria "sessão",e pode ter um processo em primeiro
+plano e qualquer número de processos em segundo plano independentes. Uma
+tarefa faz parte de exatamente um sessão, que pertence ao seu terminal
+de controle.
+
+O comando ps implicito mostra o nome de dispositivo do terminal(tty) de
+controle de um processo na coluna TTY. Alguns processos, como "daemons
+do sistema", são inicados pelo sistema, e não a partir de um prompt de
+shell. Esses processos não têm um terminal de controle, não são membros
+de uma tarefa e não podem ser colocados em PRIMEIRO PLANO. O comando
+ps exibe um ponto de interrogação ? na coluna tty para esses processos.
+
+--EXECUÇÃO DE TAREFA EM SEGUNDO PLANO--
+
+Use & no fim do comando ou pipeline para executa-lo em segundo plano.
+O shell bash exibe um "número de tarefa"(único para sessão) e a PID
+do novo processo filho. O shell não aguarda o processo filho ser
+concluído; em vez disso, ele exibe o prompt do shell.
+
+NOTA: Em um pipeline de segundo plano & o pid do último comando segundo
+sera exibido.
+
+Use o comando jobs para listar as tarefas em segundo plano
+
+Traga a tarefa do segundo para o primeiro plano com fg NUMERO
+
+Suspenda com ctrl+z ou encerre com ctrl+c
+
+Para retornar da suspenção user bg NUMERO
+
+$ ps j	#exibe informações relativas às tarefas.
+	PPID - pid do "processo pai" deste processo(o processo que o
+		iniciou/ramificou.)
+	PGID - pid do "líder do grupo de processo" (o primeiro processo
+		no pipeline.)
+	SID - pid do "líder da sessão" (o que para uma tarefa é um shell
+		interativo em execução no terminal de controle).
+
+O shell avisa se tu tentar fechar um terminal com jobs suspensas.
+
+NOTA
+Observe o sinal de + após o [1] nos exemplos acima. O sinal + indica
+que essa tarefa é o trabalho padrão atual. Ou seja, se for usado um
+comando que espera um argumento %job number e um número de trabalho
+não for fornecido, a ação é executada na tarefa com o indicador +.
+
+--CONTROLE DE PROCESSOS COM O USO DE SINAIS--
+Um sinal é uma interrrupção de software entregue a um processo.
+Os sinais relatam eventos a um programa em execução. Os eventos
+que geram um sinal podem ser de um erro, um evento externo 
+(uma solicitação de E/S ou um temporizador expirado) ou um uso
+explicito de um comando de envio de sinal ou de uma sequência de
+teclado.
+
+
+SINAL	NOME_ABREVIADO	DEFINIÇÃO
+1	HUP		Hangup(Desligar)
+2	INT		keyboard_interrupt
+3	QUIT		keyboard_quit
+9	KILL		matar,Unblockable	* interessantes
+15	TERM		Terminar (padrão)	*
+18	CONT		continuação		*
+19	STOP		Stop,Unblockable	*
+20	TSTP		keyboard_stop
+
+1  Usado para comunicar a finalização do processo de controle de um terminal.
+   Também é usado para solicitar a reinicialização do processo (recarregamento
+   da configuração) sem terminá-lo. 
+2  Faz com que o programa termine. Pode ser bloqueado ou manipulado. Enviado
+   pressionando a combinação de teclas (Ctrl+c). 
+3  Semelhante a SIGINT, adiciona um despejo do processo ao terminar.
+   Enviado pressionando a combinação de teclas QUIT (Ctrl+\). 
+9  Faz com que o programa termine abruptamente. Não pode ser bloqueado,
+   ignorado nem manipulado. É sempre fatal. 
+15 Faz com que o programa termine. Diferente de SIGKILL, pode ser bloqueado,
+   ignorado ou manipulado. A forma “elegante” de encerrar um programa.
+   Permite a autolimpeza.
+18 Enviado a um processo para que ele seja retomado se estiver parado.
+   Não pode ser bloqueado. Mesmo se for manipulado, sempre fará o processo continuar.
+19 Suspende o processo. Não pode ser bloqueado nem manipulado. 
+20 Diferente de SIGSTOP, pode ser bloqueado, ignorado ou manipulado.
+   Enviado pressionando a combinação de teclas SUSP (Ctrl+z).
+
+NOTA os números de sinais variam em diferentes arquiteturas de hardware,
+mas os nomes de sinalização e siginificados são padronizados. Para o comandos
+use o nome em vez do código numérico.
+
+Cada sinal tem uma "ação padrão", geralmente uma das seguintes:
+
+Term - faz com que um programa seja encerrado (saia) de imediato.
+Core - faz com que um programa slaver uma imagem na memória(despejo de memória)
+	e em seguida, seja encerrado.
+Stop - faz com que um programa pare de ser executado (seja suspenso) e espere
+	para ser continuado. (retomando)
+
+COMANDO PARA ENVIAR SINAIS POR SOLICITAÇÃO EXPLÍCITA
+
+Em sua sessão shell atual:
+suspender ctrl+z
+encerrar  ctrl+c
+despejar  ctrl+\
+
+-Para processos em segundo plano e ou de outra sessão, use kill(1):
+kill -NOME PID
+kill -l		#lista de sinais
+
+-Para vários processos com base no nome use killall(1)
+
+-Para vários processos que correspondam a um critério use pkill(1)
+Critérios seguidos por pkill(1).
+ Command - Processos com um nome de comando correspondente ao padrão.
+ UID - Processos de propriedade de uma conta de usuário Linux, efetiva ou real.
+ GID - Processos de propriedade de uma conta de grupo Linux, efetiva ou real.
+ Parent - Processos filhos de um determinado processo pai.
+ Terminal - Processos em execução em um terminal de controle específico. 
+
+pgrep(1)
+ Semelhante ao pkill(1) só que apenas para filtragem
+ de processos por padrões seguido de exibição.
+
+IMPORTANTE
+Antes de um SIGKILL, siga nesta linha de tentativa:
+SIGTERM → SIGINT → SIGKILL
+
+MONITORAMENTO DE ATIVIDADE DE PROCESSO 
+
+MÉDIA DE CARGA
+A média de carga é uma medida fornecida pelo kernel do Linux
+que é uma maneira simples de representar a carga do sistema 
+percebida ao longo do tempo. Ela pode ser usada como um indicador 
+aproximado de quantas solicitações de recursos do sistema estão 
+pendentes e para determinar se a carga do sistema está aumentando 
+ou diminuindo com o tempo. 
+
+A cada cinco segundos, o kernel coleta o número de carga atual, com 
+base no número de processos em estados executáveis e ininterruptos. 
+Esse número é acumulado e informado como uma média móvel exponencial 
+nos últimos 1, 5 e 15 minutos.
+
+Determine se o sistema está está ou não efrentando esperas significativas:
+lscpu(1) lhe mostrará o número de cpus. Divida os válores médios de carga
+exibidos por uptime pelo número de cpus do sistema. Valor abaixo de um
+indica uso satisfatório de recursos e tempos de espera mínimos, acima de 1
+indica saturação de recursos e certo atraso de processamento.
+
+...
+
+MONITORAMENTO DE PROCESSOS EM TEMPO REAL
+top(1) ao contrário de ps(1), que é estático, temos top(1)
+como um mostrador de processos dinâmico, configurável e personalizável.
+Colunas:
+PID - id de processo
+USER - proprietário do processo
+VIRT - A memória virtual (VIRT) é toda a memória que o processo está
+       usando, incluindo as definições residentes, as bibliotecas compartilhadas
+       e as páginas de memória mapeadas ou trocadas.
+       (Chamados de VSZ no comando ps).
+RES - A memória residente (RES) é a memória física usada pelo processo incluindo
+      objetos residentes compartilhados (RSS em ps(1))
+S - Estado de processo:
+	D=Hibernação ininterruptível
+	R=Em execução ou Executável
+	S=Em hibernação
+	T=Interrompido ou Rastreável
+	Z=Zumbi
+TIME - Tempo de cpu é o total de tempo de processamento desde que o processo
+foi iniciado. Pode ser cumutado para incluir o tempo cumulativo de todos os filhos
+anteriores.
+COMMAND - O nome do comando que criou o processo.
+
+

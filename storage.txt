@@ -1,0 +1,48 @@
+Dispositivos
+	Dispositivos de Blocos
+	    O dispositivo como um todo. /dev/
+		sda sdb sdc ... sdz	SATA/PATA, SAS, SCSI USB
+		vda vdb vdc ... vdz	virtio-blk Armazenamento paravirtualizado.
+		nvme0 nvme1 ...		Armazenamento conectado a NVMe (mui SSDs)
+		mmcblk0 mmcblk1 ...	SD/MMC/MMC (cartões SD)
+
+LVM - Logic Level Management
+	Um ou N dispositivos de blocos podem ser agregados em um pool de
+	armazenamento chamado de grupo de volumes. O espaço em disco no grupo
+	de volumes é dividido entre um ou mais volumes lógicos, que são
+	o equivalente funcional de uma partição que reside em um disco
+	físico.
+	O sistema de LVM atribui nomes a grupos de volumes e volumes
+	lógicos na criação. O LVM cria um diretório em /dev que corresponde
+	ao nome do grupo e, em seguida, cria um link simbólico nesse novo
+	diretório com o mesmo nome do volume lógico. Esse arquivo de volume
+	lógico fica disponível para montagem. Por exemplo, se um grupo de
+	volumes for chamado de myvg e o volume lógico dentro dele for
+	chamado de mylv, o nome do caminho completo para o arquivo do
+	dispositivo de volume lógico será /dev/myvg/mylv.(redhat, 2022)
+
+Partições	
+	Representada com números após o nome de dispositivo:
+		sda1 sda2 sda3 ...
+	Diferentes sistema de arquivos em cada partição.
+	Cada partição com uma ou N finalidades.
+
+	Dispositivo inteiro com um sistema de arquivos sem tabelas de
+	partições é incomun, mas é possível.
+	
+Sistema de arquivos (link físico)
+	Identificado pela UUID ou pela partição ocupada
+	pelo filesystem. Exemplo de caso:
+	/dev/sdb2	23ea8803-a396-494a-8e95-1538a53b821c
+
+	Pontos de montagem (montagem em dir vazio)
+		Automático (tempo de boot) fstab(5)
+		Manual mount(8) umount(8) eject(8)
+
+	df(1) - Uso do espaço, filesys mountpoints, filesys (locais & remotos).
+	
+	tmpfs, devtmpfs - sistemas de arquivos na memória do sistema(volátil).
+
+	du(1) - mostra uso de disco de forma recursiva.
+	
+Árvore de diretórios

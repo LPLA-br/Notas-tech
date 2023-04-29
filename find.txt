@@ -1,0 +1,48 @@
+BUSCA PRECISA E CRITERIOSA POR UM ARQUIVO COM FIND(1)
+
+find DIR_ALVO [OPÇÔES]
+
+curingas para nome são aceitos: '*.txt' '*pass*'
+
+NOME
+	-name NOME	difere maiúsculo de minúsculo.
+	-iname NOME	a negação do de cima.
+
+PROPRIEDADE
+	-user NOME
+	-group NOME
+
+	-uid NÚMERO
+	-gid NÚMERO
+
+
+PERMISSÃO
+	-perm
+		 764 rwxrw-r--	tem
+		-324 -wx-w-r--	tem pelo menos
+		/442 r--r---w-	U tem pelo menos ou G pelo menos ou O pelo menos
+
+TAMANHO*
+  Kilo Mega Giga
+
+	-size 10M
+	-size +10M	maior que
+	-size -10M	menor que
+
+HORÁRIO DE MODIFICAÇÃO*
+	-mmin 120	minutos atrás (+|-)
+
+TIPO
+	-type
+		f arquivo normal
+		d diretório
+		l softlink (link simbólico)
+		b dispositivos de bloco
+
+	-links NUMERO	(+|-)
+
+* pode ser dois para criar um campo de menor para maior
+Exemplo:
+-size +50M -size 100M
+
+VIDE find(1) para mais detalhes.

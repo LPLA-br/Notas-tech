@@ -1,0 +1,52 @@
+Este tutorial pode ser desnecessário se você está em um ambiente gráfico
+popular, pois ele monta automaticamente em /run/media/LOGNAME/LABEL
+
+1-Conecte dispositivo de armazenamento
+
+2-abra o terminal e entre como root (cuidado)
+
+4-descubra o nome do dispositivo.
+No meu exemplo abaixo sdb é o DISPOSITIVO e sdb1 é PARTIÇÃO de sdb
+MOUNTPOINT me diz que sdb1 não está montado em lugar algum.
+	luiz@lpladebian:~/$ lsblk
+	NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+	sda      8:0    0 119,2G  0 disk 
+	├─sda1   8:1    0 118,3G  0 part /
+	├─sda2   8:2    0     1K  0 part 
+	└─sda5   8:5    0   976M  0 part [SWAP]
+	sdb      8:16   1  14,5G  0 disk 
+	└─sdb1   8:17   1  14,5G  0 part
+
+5-Montando a partição sdb1 em /mnt
+	mount /dev/sdb1 /mnt
+
+6-Pronto! o conteúdo do dispositivo removível está em /mnt
+
+7-Após o uso, para remover o dispositivo com segurança desmonte-o:
+	umount /mnt
+
+FIM
+____________________________________________________________________
+RH-124 red hat®
+Montagem por UUID de disco.
+
+$lsblk -f
+	NAME   FSTYPE FSVER LABEL UUID                                 
+	sda                                                            
+	├─sda1                                                         
+	├─sda2 ext4   1.0         d0b55207-2555-52d7-2f2f-dd316c2ad533 
+	└─sda3 swap   1           6ed50cfd-2660-5a22-6f36-fe53da7a3ba2 
+	sdb
+	└─sdb1 ext4   1.0	  46f543fd-78c9-4526-a857-244811be2d88
+
+mount UUID='uuid' /alvo
+	#mount UUID="46f543fd-78c9-4526-a857-244811be2d88" /mnt
+
+#umount /alvo
+	#umount /mnt
+
+ Não remova um dispositivo de armazenamento sem desmonta-lo.
+ Os dados do sistema de arquivo costumam ser armazenados na memória
+ principal (ram) como cache.
+
+escrito por Luiz Paulo 2020 - 2022.

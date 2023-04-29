@@ -1,0 +1,14 @@
+tar
+-c --create
+-x --extract
+-t --list
+
+-v --verbose
+-f --file=
+-p --preserve-permissions	#not(umask)
+
+-z --gzip
+-j --bzip2
+-J --xz
+
+--xattrs

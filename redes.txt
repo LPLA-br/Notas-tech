@@ -1,0 +1,754 @@
+
+REDE
+Conjuto de computadores e dispositivos utilitários
+interligados capazes de trocar informações entre si.
+Os integrantes de uma rede são conhecidos como hosts.
+É capaz de se subdividir. Pode ser representado
+graficamente como uma árvore.
+
+HOST
+Máquina individual capaz de comunicar-se na rede.
+
+SWITCH
+liga dispositivos entre si.
+
+ROTEADOR
+conecta diferentes redes e ou liga dispositivos
+entre si.
+
+E S C O P O S    D E    R E D E
+
+
+LAN - Local Area Network
+    -Privada
+    -Rede local
+    -Dentro de uma empresa
+    escritório, edifício, campus
+    e até mesmo TUA casa.
+    -Alta taxa de transferência de dados.
+    Tecnologias comuns:
+        Ethernet
+        IEEE 802.11 wlan - rede wireless local (wifi)
+
+MAN - Metropolitan Area Network
+    -Intermediário entre LAN e WAN
+    -Bem Delimitado Geograficamente
+     como a área de um município
+     ou região metropolitana.
+
+WAN - Wide Area Network
+    -Rede aberta
+    geograficamente grande
+    podendo incluir países.
+    -INTERNET é uma WAN
+
+PAN - Personal Area Network
+    -Equipamentos conectados a um
+    computador (host)
+    Cabos USB
+    Bluetooth
+    IR (Infravermelho)
+    NFC (Near Field Communication)
+    -Dispositivos:
+    Celular,Headset,teclado,mouse,impressora e etc ...
+
+Outros:
+CAN - Campus Area Network
+GAN - Global Area Network
+HAN - Home Area Network
+SAN - Storage Area Network
+etcetera.
+
+T O P O L O G I A S
+
+BARRAMENTO
+    terminador → host → host → host → terminador
+    -Todos os dispositivos são ligados no mesmo
+    cabo que precisa de uma terminação em cada uma
+    das pontas.
+ANEL
+    Desenho circular. Os dados trafegam apenas em uma direção
+    passando por todos os dispositivos. Usado na fibra óptica.
+        /host\
+    host      host
+        \host/
+
+ESTRELA (mais comum)
+    Os dispositivos são conectados através de um dispositivo
+    "concetrador", normalmente um switch ou roteador.   
+    Exemplos: N hosts conectados entre si por intermédio de
+    um roteador ou switch.
+    Estrela por causa de:
+    "todos os caminhos levam a roma"
+    roma neste caso é o switch ou roteador.
+
+MALHA
+    Os nós possuem mais de uma conexão. Comuns em redes
+    grandes. C o m p l e x o
+
+HÍRBRIDA
+    Uso de mais de uma topologia.
+    Exemplo:
+    Barramento-estrela
+    Topologia BARRAMENTO onde há vários switchs com N hosts
+    conectados nestes.
+
+_____________
+|           |
+| 10hosts   |
+|         roteador---->
+|rede local |
+|___________|
+
+
+------------------------------------------------
+O MODELO OSI (modelo de referência)
+Descreve as regras que padronizam os diversos
+componentes em uma rede para que os dispositivos
+consigam se comunicar não importando a arquitetura
+deles.
+
+
+O P E N    S Y S T E M   I N T E R C O N N E C T I O N
+___________________________________________________________
+7 Aplicação
+    Descrição Genêrica: Interface com aplicativos.
+    Grupo:superior
+
+    Protocolos associados:
+    HTTP(S) RTP SMTP FTP SSH Telnet SIP RDP IRC SNMP NNTP
+    POP3 IMAP BitTorrent DNS ...
+___________________________________________________________
+6 Apresentação
+    Descrição Genêrica: Formatos/Criptografia
+    Grupo:superior
+
+    XDR TLS ...
+___________________________________________________________
+5 Sessão
+    Descrição Genêrica: Controle de Sessões entre
+    aplicativos.
+    Grupo:superior
+
+    NetBios ...
+___________________________________________________________
+4 Transporte
+    Descrição Genêrica: Conexão entre hosts/Portas
+    Grupo:inferior
+
+    Aqui se localiza as tais PORTAS
+
+    TCP    Transmission control protocol.
+    UDP    User datagram Protocol.
+
+    NetBEUI SCTP DCCP RIP ...
+    
+    hostA
+    7654321
+    12321
+    12321
+    12321
+    1234567
+    hostB
+___________________________________________________________
+3 Rede
+    Descrição Genêrica: Endereço lógico/Roteamento
+    Grupo:inferior
+
+    IP
+        IPv4 255.255.255.255 4bytes
+        IPv6 ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff 16bytes
+    
+    IPsec ICMP NAT
+___________________________________________________________
+2 Enlace
+    Descrição Genêrica: Endereço físico MAC/Verificação de erro.
+    Grupo:inferior
+
+    Ethernet
+    IEEE 802.1Q
+    HDLC Token_ring FDDI PPP Switch
+    Frame_relay ATM ARP RARP
+___________________________________________________________
+1 Física
+    Descrição Genêrica: Hardware/Sinais Elétricos/bits
+    Sinais analógicos e digitais/ Meios físicos de transmissão
+    Grupo:inferior
+
+
+    Modem 802.11 Wi-Fi RDIS
+    RS-232 EIA-422
+    S-449 Bluetooth
+    USB 10BASE-T
+    100BASE-TX ISDN
+    SONET DSL ...
+___________________________________________________________
+
+M O D E L O  TCP/IP (modelo de protocolo)
+Conjunto de abstrações simplificado em quatro camadas
+que descreve como diferentes protocolos interagem para
+que os computadores enviem tráfego de uma máquina para
+a outra pela internet.
+
+Como especificado na RFC 1122:
+REQUISITOS PARA HOSTS DE INTERNET-CAMADAS DE COMUNICAÇÃO
+
+	·Aplicativo
+		Cada Aplicativo tem especificações de comunicação.
+		Clientes e servidor se comunicam idepedêntemente de arquitetura.
+		Protocolos comuns:
+		SSH		login remoto
+		HTTPS		web segura
+		NFS ou CIFS	compartilhamento de arquivos
+		SMTP		distribuição de e-mail
+
+	·Transporte
+		TCP Transmission Control Protocol comunicação confiável orientada a conexões.
+			Falhas são tratadas.
+			não tão rápido.
+			garantia de integridade.
+
+		UDP User Datagram Protocol	datagrama sem correção.
+			Falhas não são tratadas.
+			rápido>>
+			integridade duvidosa.
+
+		/etc/services	- lista de portas conhecidas e registradas.
+
+	·Internet (camada de rede)
+		Carrega os dados do host de origem para o host de destino.
+		Cada host tem um endereço IP e um prefixo usado para determinar
+		os endereços de rede.
+		Protocolos:
+			IPv4
+			IPv6 (mais endereços)
+		Roteadores são utilizados para conectar as redes.
+
+	·Link (ou acesso a mídias)
+		fornece a conexão a mídias físicas. Exemplos:
+		ethernet cabeada 802.3
+		WLAN sem fio     802.11
+		Cada dispositivo físico tem um endereço de hardware MAC que é usado para
+		identificar o destino dos pacotes no segmento da rede local.
+
+
+I N T E R F A C E    D E    R E D E
+placa de rede que permite
+a comunicação da máquina.
+
+Intefaces de rede no LINUX moderno
+
+	Nomeclatura antiga:
+		eth0 eth1 eth2 ethN ...
+		havia problemas com a ordem das conexões.
+	
+	Nomeclatura atual:
+	   Primeira parte:
+		ETHERNET: 	en
+		WLAN:		wl
+		WWAN:		ww
+
+	   Segunda parte:
+	   É baseada nas informações fornecidas pelo firmware do servidor ou determinado
+	   pela localização do dispositivo na topologia PCI (Peripheral Component Interconnect)
+
+		oN - Dispositivo inicial e o número de índice
+             fornecido pelo firmware do servidor é N
+		     eno1 é o dispositivo 1 inicial de ethernet.
+             Muitos servidores não fornecem essas informações.
+
+		sN - Indica que esse dispositivo está no slot hotplug PCI N.
+		     ens3 é uma placa de ethernet no slot hotplug PCI 3.
+
+		pMsN -  Indica que esse [e um dispositivo PCI no barramento M no slot N.
+			    wlp4s0 é uma placa WLAN no barramento PCI 4 no slot 0.
+			
+			Se a placa for um dispositivo multifuncional (possível com uma 
+			placa de ethernet com várias portas, ou dispositivos que tenham
+			ethernet mais algum outro recurso), você poderá ver fN adicionado
+			ao nome do dispositivo.
+			enp0s1f0 é a função 0 da placa de ethernet no barramento 0 no slot 1.
+			Também pode haver uma segunda interface chamada enp0s1f1,
+			a função 1 desse mesmo dispositivo.
+
+R E D E S    I P v 4
+
+Não refere-se ao host, mas sim a interface de rede
+(tanebaum p.277 ptbr)
+
+Um endereço IPv4 é um número de 32bits
+4bytes   2words    1doubleWord
+
+Cada byte é unsigned (sem o primeiro bit indicador, 
+ou não, de negatividade) cada um indo de 0 até 255.
+
+O maior e menor endereço possível representados
+em decimal:
+0.0.0.0         255.255.255.255
+
+O endereço ip é divido em duas partes:
+A que identifica a REDE e a que identifica o HOST.
+
+L E I S:
+    ·Endereço de rede é único para a sub-rede.
+     Todos os hosts na mesma sub-rede que podem
+     comunicar-se diretamente sem um roteador têm a
+     mesma parte de rede.
+    ·Não comessa em 127 (loopback).
+    ·Todos os bits de rede não podem ser 1 (broadcast=transmissão).
+    ·Todos os bits de rede não podem ser 0 (host não roteado).
+    .A parte de host deve ser única para cada máquina na rede (host).
+    .Combinações binárias (2^Ndebits - 2) 2 remove idRede e broadcast.
+
+
+_________________________________________________________
+CLASSES DE ENDEREÇO IP - RFC-791
+
+    ·Máscara de sub-rede é implicita para cada classe.
+
+	24bits para a parte da rede.
+    Em outras palavras: três bytes para a parte da rede.
+	255.255.255.0
+    11111111 11111111 11111111 00000000
+
+	A B C D E substituido por CIDR em 1993 (ainda é utilizado [Velho. Mas não obsoleto])
+
+    CLASSE IP           IDREDE       HOST
+    A      10.2.68.12   10           2.68.12
+    B      130.45.32.67 130.45       32.67
+    C      192.168.0.10 192.168.0    10
+
+    D      ENDEREÇOS MULTICAST
+    E      EXPERIMENTAIS, USO FUTURO.
+
+    CLASSE ENDEREÇO PRIMEIROCT REDES   HOSTS
+    A      RHHH     1-126      128     16777214 (127 loopback)
+    B      RRHH     128-191    16384   65534
+    C      RRRH     192-223    2097152 254
+
+    D               224-239
+    E               240-255
+
+    R=rede(bits mútaveis) H=host
+    CLASSE IP_BINÁRIO                            BITS_REDES BITS_HOSTS
+    A      0RRRRRRR.HHHHHHHH.HHHHHHHH.HHHHHHHH   7          24
+    B      10RRRRRR.RRRRRRRR.HHHHHHHH.HHHHHHHH   14         16
+    C      110RRRRR.RRRRRRRR.RRRRRRRR.HHHHHHHH   21         8
+    D      1110MMMM.MMMMMMMM.MMMMMMMM.MMMMMMMM
+    E      1111RRRR.RRRRRRRR.RRRRRRRR.RRRRRRRR
+
+_________________________________________________________
+NOTAÇÃO CIDR CLASSLESS INTER-DOMAIN ROUTING
+
+Máscara de sub-rede é explicita e representada como um
+número de 1 até 32 no fim do ip. formato CIDR
+
+/1 /2 /3 /4 /5 /6 /7
+/8 /9 /10 /11 /12 /13 /14 /15 /16
+/17 /18 /19 /20 /21 /22 /23 /24 /25
+/26 /27 /28 /29 /30 /31 /32
+
+A máscara de sub rede pode ser representada da seguinte
+forma (exemplo):
+
+255.255.128.0
+11111111.11111111.10000000.00000000
+
+_________________________________________________________
+
+ENDEREÇO DE REDE
+O menor endereço possível em uma sub-rede é usado como o
+endereço identificador da rede. Isto ocorre porque o lado
+do host está zerado deixando em destaque o lado do ip
+correspodente ao da rede. por exemplo:
+
+    192.168.1.0/24
+
+
+ENDEREÇO DE TRANSMISSÃO
+o maior endereço possível do lado do host em uma
+sub-rede é usado para transmissão (broadcast em inglês)
+para todos os hosts. por exemplo:
+
+    192.168.1.255/24
+
+MÁSCARA DE REDE
+indica quantos bits do lado esquerdo serão utilizado
+para identificar esta sub-rede.
+Quanto mais bits estiverem disponíveis para a parte do
+host, maior será o número de hosts possíveis na sub-rede. 
+por exemplo:
+
+    255.255.255.0
+
+GATEWAY
+IP do host responsável por ligar a rede local para outras redes.
+Pode ser: roteador, molden, servidor ...
+    ·Encaminha pacote de uma rede para outra rede.
+    ·Geralmente gateway pode ser o primeiro ou último ip válido.
+     Exemplos: 192.168.0.1/24     192.168.0.254/24
+
+___________________________________________________________
+IPADDRESS
+
+    172.17.5.3
+    10101100 00010001 00000101 00000011
+
+NETMASK
+    prefix/16
+    255.255.0.0
+    11111111 11111111 00000000 00000000
+
+___________________________________________________________
+
+IPADDRESS
+    192.168.5.3
+    11000000 10101000 00000101 00000011
+
+NETMASK		
+    prefix/24
+    255.255.255.0
+    11111111 11111111 11111111 00000011
+
+___________________________________________________________
+
+
+
+CÁLCULO DO ENDEREÇO DE REDE
+
+Para endereço de rede e transmissão mantenha a parte
+de rede intacta e modifique a parte de host.
+-----------------------------------------------------------
+Endereço host:
+    192.168.1.107
+    11000000 10101000 00000001 01101011
+
+Prefixo Rede:
+    /24 (255.255.255.0)
+    11111111 11111111 11111111 00000000
+
+Endereço da Rede
+    192.168.1.0
+    11000000 10101000 00000001 00000000
+
+Endereço de Trasmissão
+    192.168.1.255
+    11000000 10101000 00000001 11111111
+
+----------------------------------------------------------
+Endereço host:
+    10.1.1.18
+    00001010.00000001.00000001.00010010
+
+Prefixo rede:
+    /8 (255.0.0.0)
+    11111111.00000000.00000000.00000000
+
+Endereço rede:
+    10.0.0.0
+    00001010.00000000.00000000.00000000
+
+Endereço transmissão:
+    10.255.255.255
+    00001010.11111111.11111111.11111111
+
+----------------------------------------------------------
+Endereço Host:
+    172.16.181.23
+    10101100.10101000.10110101.00010111
+
+Prefixo de rede:
+    /19 (255.255.224.0)
+    11111111.11111111.11100000.00000000
+
+Endereço de rede:
+    172.16.80.0
+    10101100.10101000.1010000.000000000
+
+Endereço de transmissão:
+    172.16.191.255
+    10101100.10101000.1011111.111111111
+
+----------------------------------------------------------
+
+É o endereço especial "localhost" Sua própria máquina.
+127.0.0.1 
+
+Pertence ao sistema local.
+Comunicação do host com ele mesmo usado protocolos de rede.
+127.0.0.0/8
+
+R O T E A M E N T O    I P v 4
+
+TRÁFEGO DE REDE
+O tráfego da rede precisa se mover de host para
+host de rede para rede.
+
+TABELA DE ROTEAMENTO
+cada host tem uma tabela de roteamento que diz
+a ele como rotear o tráfego de redes específicas.
+
+Entrada da tabela de roteamento:
+Uma entrada da tabela de roteamento mostra uma rede de destino,
+qual interface deve ser usada ao enviar o tráfego e o endereço
+IP de qualquer roteador intermediário necessário para
+retransmitir a mensagem a seu destino final.
+
+EXEMPLO DE TABELA DE ROTEAMENTO
+Destino             Interface   Roteador (se necessário)
+192.0.2.0/24        wlo1	 
+192.168.5.0/24      enp3s0	 
+0.0.0.0/0 (padrão)  enp3s0      192.168.5.254
+
+servidor DHCP
+	daemon de cliente que consulta o link das configurações
+	de um servidor e da rede e obtém uma concessão para usar
+	essas configurações por um período especifico.
+É possível configurar um servidor para usar a configuração
+de rede estática. As configurações de rede são, neste caso,
+lidas nos arquivos de configuração locais.
+
+
+
+R E D E S       I P v 6
+
+O substituto do IPv4
+
+Número de endereços possíveis
+IPv4	4.294.967.296 	endereços
+IPv6	340.282.366.920.938.463.463.374.607.431.768.211.456 endereços
+
+Consiste em um número de 128bits, é normalmente expresso como um grupo
+de quatro nibbles (totalizando 16bits) separados por : e representados
+em Hexadecimal.
+__-- __-- __-- __-- __-- __-- __-- __--
+2001:0db8:0000:0010:0000:0000:0000:0001
+
+REGRAS DE ESCRITA------------------------
+
+Normal:
+2001:0db8:0000:0010:0000:0000:0000:0001
+
+Omitindo zeros à esquerda de cada grupo:
+2001:db8:0:10:0:0:0:1
+
+Cadeias longas de zeros são comuns devido ao número enorme
+de endereços. Um ou mais grupos consecutivos de zeros podem
+ser combinados com exatamente um bloco ::
+2001:db8:0:10::1
+
+Elimine zeros à esquerda de um grupo.
+Use :: para ocultar grupos zero.
+
+_____________________________
+INDICAR PORTA UDP OU TCP
+DEPOIS DE UM ENDEREÇO IPV6:
+
+    [endereçoIPv6]:porta
+    [2001:db8:0:10::1]:80
+_____________________________
+
+NETMASK PADRÃO = /64
+
+2001:0db8:0000:0010:0000:0000:0000:0001
+AAAA AAAA AAAA SSSS IIII IIII IIII IIII
+
+A+S=NetworkPart
+I=InterfaceID
+S=/16 for local subnets
+A=/48 allocations
+
+::1/128	localhost o equivalente a 127.0.0.1/8 na interface loopback
+::	 não especificado equivalente a 0.0.0.0
+::/0	 rota padrão equivalente a 0.0.0.0/0
+2000::/3 Endereços unicast globais
+fd00::/8 Endereços locais exclusivos(RFC 4193)
+fe80::/10 Endereços link-local
+ff00::/8  Multicast
+
+Um endereço link-local no IPv6 é não roteável usado somente
+para comunicar com os hosts em um link de rede específico.
+Cada interface de rede do sistema é configurada automaticamente
+com um endereço link-local na rede fe80::/64
+Para garantir exclusividade a ID de interface do endereço link-local
+é construída a partir do end. de hardware da Eternet da interface de
+rede. O procedimento comum para converter o endereço MAC de 48 bits
+em uma id de interface de 64bits é inverter o bit7 do ender.
+MAC e inserir ff:fe entre seus dois bytes intermediarios.
+
+Prefixo de rede: fe80::/64
+Endereço MAC:	 00:11:22:aa:bb:cc
+Endereço link-local: fe80::211:22ff:feaa:bbcc/64
+
+Os endereços link-local de outras máquinas podem ser usados como
+endereços normais por outros hosts no mesmo link. Como cada link
+tem uma rede fe80::/64 nele, a tabela de roteamento não pode
+ser usada para selecionar a interface de saida corretamente.
+O link para usar ao falar com um endereço link-local dever ser
+espeficicado com um identificador de escopo %
+
+ping6 fe80::211:22ff:feaa:bbcc%ens3
+
+Multicast __NO__
+
+IPv4 pode ser configurado:
+	Em interface manualmente pelo admin.
+	ou dinâmicamente a partir da rede usando DHCP.
+IPv6:
+	Manual e a dois métodos dinâmicos, um dos quais: DHCPv6
+
+NOMES DE HOST E ENDEREÇOS IP___________________________________
+Mapeiamento de nome de host e seu IP
+
+DOMAIN NAME SYSTEM
+
+/etc/hosts
+
+Pode colocar o IPv(4|6) com um nome para servir de
+alias para tal IP.
+
+
+DNS (Domain Name System)
+ Domínio identifica o serviço EX: www.SERVIÇO.com
+	Domínio: Nome único, pago anualmente, TLDs(Top-Level Domain(s))
+	Hospedagem: Armazenamento, pago mensalmente, espaço memória, recursos (python, php, etc...)
+
+DNS é uma rede distribuída de servidores que fornece mapeamentos
+de nomes de host a endereços IP. Para que o serviço de nomes
+funcione, o host precisa ser apontado para um nameserver. Esse
+nameserver não precisa estar na mesma sub-rede, mas apenas ser
+alcançado pelo host. Normalmente, isso é configurado por meio
+do DHCP ou de uma configuração estática em um arquivo chamado de
+
+/etc/resolv.conf
+
+
+ANATOMIA DE UMA URL (DNS):
+ 	 Protocolo://Subdomínio.Domínio.tld.tld/caminho
+ 	 https://suap.ifrn.edu.br/accounts/login/
+ 	 https://www.github.com/LPLA-br
+			TLDs: .iuo .gov .com
+			Domínio: github
+			Sub Domínio: www.
+			Caminho: LPLA-br
+
+CONFIGURAÇÃO DE REDE
+
+ COLETA DAS INFORMAÇÕES DA INTERFACE DE REDE
+  ip link show
+   endereço mac da interface listado após: link/ether
+  ip addr show
+   visualizar informações do dispositivo e de endereço:
+    uma interface pode ter vários endereços IPv(6|4)
+    atividade = (UP|DOWN)
+    link/ether MAC
+    inet  endereço IPv4 exteção_de_prefixo_de_rede escopo
+    inet6 endereço IPv6 exteção_de_prefixo_de_rede escopo(normalmente global)
+    inet6 com escopo link → usado apenas para comunicação no link de ethernet local.
+
+ ESTATÍSTICAS DE DESEMPENHO.
+  ip -s link show ens3
+
+ VERIFICAÇÃO DE CONECTIVIDADE ENTRE HOSTS
+  ping -c3 endereçoIPv4
+  ping6 -c3 endereçoIPv6%interface
+
+ SOLUÇÃO DE PROBLEMAS DE ROTEAMENTO
+  ip route
+  ip -6 route
+    
+ RASTREAMENTO DE ROTAS USADAS PELO TRÁFEGO
+  (traceroute|tracepath) URL
+  (traceroute|tracepath) -6 URL
+
+ SOLUÇÃO DE PROBLEMAS DE PORTAS E SERVIÇOS
+  Serviços TCP usam soquetes como pontos finais para comunicação
+  e são compostos de um ende. IP um protocolo e um número de porta.
+  Os serviços ESCUTAM as portas padrão.
+  Os clientes usam uma porta disponível aleatoriamente.
+  	/etc/services <- lista de portas conhecidas e registradas.
+  ss -ta
+  ss(8) estatísticas de soquete (esta ferramenta pretende substituir o netstat do pacote net-tools)
+   -n -t -u -l -a -p -A inet
+
+  CONFIGURAÇÃO DE REDES PELA LINHA DE COMANDO (NetworkManager [daemon])
+
+   config-file = /etc/sysconfig/network-scripts/ifcfg-NOME
+
+   device → interface de rede
+   connection → conjunto de configurações definiveis para um dispositivo.
+   Somente uma connection ativa por vez por interface.
+   Cada conexão tem um id que a identifica.
+
+   nmcli dev status		#status
+   nmcli con show		#listar todas connections.
+   nmcli con show --active	#apenas as ativas.
+   nmcli con up NOME		#ativar connection.
+   nmcli dev dis DEVICE		#desativar connection.
+   nmcli con show NOME 		#visualizar configurações atuais.
+   nmcli con mod NOME		#alterar configurações de uma conexão nm-settings(5).
+   nmcli con del NOME		#desconecta dispositivo e rm em /etc/../ifcfg-NOME
+
+
+   exemplo de adição de conexão de rede:
+   nmcli con add con-name eno2 type ethernet ifname eno2 \
+   ipv4.address 192.168.0.5/24 ipv4.gateway 192.168.0.254
+
+   outro exemplo:
+   nmcli con add con-name eno2 type ethernet ifname eno2 \
+   ipv6.address 2001:db8:0:1::c000:207/64 ipv6.gateway 2001:db8:0:1::1 \
+   ipv4.address 192.0.2.7/24 ipv4.gateway 192.0.2.1
+
+  Para definir o endereço IPv4 para 192.0.2.2/24 e o gateway padrão para 192.0.2.254
+  da conexão static-ens3:
+	[root@host ~]# nmcli con mod static-ens3 ipv4.address 192.0.2.2/24 \
+	ipv4.gateway 192.0.2.254
+
+	NOTA
+	# O comando esta modificando o arquivo de configuração (diretivas)
+	# em /etc/sysconfig/network-scripts/ifcfg-NOMECONEXCAO
+	# O arquivo também pode ser editado manualmente.
+
+  Para definir o endereço IPv6 para 2001:db8:0:1::a00:1/64 e o gateway padrão para
+  2001:db8:0:1::1 da conexão static-ens3:
+	[root@host ~]# nmcli con mod static-ens3 ipv6.address 2001:db8:0:1::a00:1/64 \
+	ipv6.gateway 2001:db8:0:1::1
+
+EDIÇÂO DOS ARQUIVOS DE CONFIGURAÇÃO
+  Por motivos de compatibilidade retroativa, as diretivas
+  salvas nesse arquivo possuem nomes e sitaxe diferentes
+  dos nomes de configuração para as diretivas ifcfg-*
+  
+  Vide as diretivas em ~/Downloads/redhat/nmConfigDiret
+  Vide as opções de configuração de ipv4 de /etc/sysconfig/network-scripts/ifcfg-NOME
+  ~/Downloads/redhat/nmConfigModf.png
+
+  Após modificar os arquivos de configuração execute 
+  nmcli con reload
+  e re-inicie a interface
+  nmcli con down "static-ens3"
+  nmcli con up "static-ens3"
+
+CONFIGURAÇÃO DE NOMES DE HOST E RESOLUÇÃO DE NOMES
+  /etc/hostname		nome do host corrente.
+  hostnamectl(1)
+  hostname(1)
+  host(1)
+
+  /etc/hosts		arquivo de resolução de nomes IP ←→ hostname
+  /etc/resolv.conf	arquivo com o IPv4 e IPv6 do servidor DNS
+  /etc/nsswitch.conf	The Name Service Switch (NSS) configuration file
+  getent(1)
+
+Ferramentas--------------
+IPROUTE2	NET-TOOLS
+
+ip		ifconfig vconfig
+		route
+ss		net-stat
+arp		ip
+bridge		brctl
+
+dhcp_services		dhcpcd|NetworkManager|dhclient
+managers		systemd-networkd|NetworkManager|netctl|ConnMan
+dns_resolv		systemd-resolved|NetworkManager

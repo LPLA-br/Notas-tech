@@ -1,0 +1,121 @@
+Containers DOCKER
+
+RODANDO CONTAINERS (fragmentos de comandos)
+    Iniciar um container de uma imagem:
+        docker run IMAGE
+
+    Atribui-lhe um nome:
+        docker run --name CONTAINERNAME IMAGE
+
+    Mapear portas:
+        docker run -p HOSTPORT:CONTAINERPORT IMAGE
+
+    Mapear todas as portas:
+        docker run -P IMAGE
+
+    Container em background:
+        docker run -d IMAGE
+
+    Hostname para o container:
+        docker run --hostname HOSTNAME:IP IMAGE
+
+    Adicionar entrada DNS:
+        docker run --add-host HOSTNAME:IP IMAGE
+
+    Mapear diretório local dentro do container:
+        docker run -v HOSTDIR:TARGETDIR IMAGE
+
+    Mudar ponto de entrada:
+        docker run -it --entrypoint /BIN/EXECUTABLE IMAGE
+
+GERENCIAR CONTAINERS
+    Containers rodando:
+        docker ps
+
+    Todos:
+        docker ps -a
+
+    Deletar container:
+        docker rm CONTAINER
+
+    Deletar container rodando:
+        docker rm -f CONTAINER
+
+    Deletar container parado:
+        docker container CONTAINERID
+
+    Parar container rodando:
+        docker stop CONTAINER
+
+    Iniciar container parado:
+        docker start CONTAINER
+
+    Copiar arquivo do container para o host:
+        docker cp CONTAINER:FILE TARGET
+
+    Executar um shell em um container em execução:
+        docker exec -it CONTAINER EXECUTABLE
+
+    Renomear Container:
+        docker rename OLDNAME NEWNAME
+
+    Create an image out of container:
+    docker commit CONTAINER
+
+GERENCIAR IMAGENS
+    
+    baixar imagem:
+        docker pull IMAGE:[TAG]
+
+    subir imagem para o repositório:
+        docker push IMAGE:[TAG]
+
+    deletar uma imagem:
+        docker rmi IMAGE
+
+    Mostrar uma lista de todas as imagens:
+        docker images
+
+    Delete _dangling_ imagens:
+        docker image prune
+
+    Deletar todas as imagens não utilizadas:
+        docker image prune -a
+
+    Construir uma imagem a partir de um dockerfile:
+        docker build DIRECTORY
+
+    Tag uma imagem:
+        docker tag IMAGE NEWIMAGE
+
+    COnstruir e tag uma imagem de um dockerfile:
+        docker build -t IMAGE DIR
+
+    Salvar img para um tar :
+        docker save IMGAE > FILE
+
+    Carregar imager mde um tar:
+        docker load -i TARFILe
+
+ INFORMAÇÕES E STATUS
+    
+    mostrar logs de um container:
+        docker logs CONTAIERS
+
+    status de todos os containers rodando:
+        docker status
+
+    mostrar processor pertecentes a um contaier:
+        docker top CONTAINER
+
+    mostar versãop do docker^p:
+        docker version
+
+    obter info detalhada sobre objeto:]
+        docker inspect NAME
+
+    info detalhadas de arquivos modificados no ocnteiniar:
+        docker diff CONATAINER
+
+    mostar portas mapesadas de um conetinaer:
+        docker port CONTAINER

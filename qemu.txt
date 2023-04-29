@@ -1,0 +1,72 @@
+--GUIA SIMPLIFICADO DO QEMU - VIRTUALIZADOR DE S.O.--
+criar o diretório .virtualização
+para fazer suas virtualizações
+de forma segura e fora do xdg-dirs
+de sua HOME.
+
+fonte: https://wiki.gentoo.org/wiki/QEMU/Options
+
+OPÇÕES MAIS IMPORTANTES DO QEMU-SYSTEM:
+ -m				Quantidade memória RAM em mebibyte.
+ -name				Nome da janela da virtualização.
+ -machine			Tipo de máquina (isapc para velharias)
+ -hda				Disco qcow2 a
+ -hdb				Disco qcow2 b
+ -hdc 				Disco qcow2 c
+ -drive 			Configuração avançada do disco virtual.
+ -drive format=raw,file=/	Para especificar disco no formato .img
+ -bios /usr/share/ovmf/OVMF.fd	Para virtualização com UEFI.
+ -enable-kvm			Desepenho especial se a máquina 
+ 				virtual é da mesma arquitetura
+ 				do host.
+ -display sdl|curses|vnc	Opções de display de exibição
+ 				sdl é gráfico, curses é cli
+				vnc é remoto.
+ -cpu 				Especifique uma cpu suportada pelo qemu.
+ -cpu host			A mesma cpu do host (recomendado).
+ -cdrom				Virtual cdrom drive (iso vem aqui).
+ -boot c			Inicializar primeiro pelo hd virtual.
+ -boot d			Inicializar primeiro virtual cdrom virtual.
+ -boot n			Pela network.
+ -vga cirrus|std|vmware|qxl	Emular placa gráfica suportada pelo qemu.
+ -k				Especificar layout do teclado.
+
+OPÇÕES IMPORTANTES DO QEMU-IMG
+ create				Criar disco virtual.
+ -f qcow2|raw			Especificar formato.
+ NOME.FORMATO			Nome do arquivo de disco
+ 				de acordo com formato es-
+				pecificado.
+ [NUMERO]k|m|g|t		Especificar tamanho.
+
+
+INICIAR UMA MÁQUINA MODO LIVE (x86):
+
+qemu-system-i386 -m 512M -cdrom sistema.iso -boot d
+
+CRIAR ESPAÇO DE ARMAZENAMENTO ESPECÍFICO PARA UMA MÁQUINA
+INSTALAÇÃO E PÓS-INSTALAÇÃO:
+
+Criando disco .img:
+qemu-img create -f raw nome.img 200M
+
+Criando disco .qcow2:
+qemu-img create -f qcow2 nome.qcow2 10G
+
+Instalando no hda virtual (x86):
+qemu-system-i386 -hda nome.qcow2 -cdrom /'diretório da sua imagem' -boot d
+
+Trocando disketes na virtualização:
+ctrl+alt+2 para entrar no cli do qemu.
+Change floppy0 /caminho/até/disketeVirtual
+ctrl+alt+1 para voltar a virtualização.
+
+Iniciando normalmente após instalação (x86):
+qemu-system-i386 -m 1024 -hda nome.qcow2
+
+Digitar combo de teclas conflitantes com o host:
+ctrl+alt+2
+sendkey ctrl-alt-f2
+ctrl+alt+1
+
+Compilado por: Luiz Paulo de Lima Araújo.

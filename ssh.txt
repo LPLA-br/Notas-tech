@@ -1,0 +1,132 @@
+ OpenSSH - Secure SHell Protocol
+ comunicação de sistemas através de uma rede insegura.
+ ssh usuario@ip_da_máquina_remota [comando_para_host_remoto]
+ 
+ criptografia de chave pública:
+ Quando o cliente SSH conecta-se ao servidor SSH
+ O servidor enviará uma chave pública para o cliente
+ antes dele fazer login. A chave serve para estabelecer
+ a criptografia segura do canal de comunicação e para
+ autenticar o servidor para o cliente.
+
+ Diretórios com chave:
+ /etc/ssh/ssh_known_hosts
+ ~/.ssh/know_hosts
+
+ Configuração
+ /etc/ssh/ssh_config
+ ~/.ssh/config
+ 	StrictHostChecking=yes --anula a conecção se a chaves
+				 não se correspodem.
+
+Caso haja alteração da chave pública do servidor
+tu deverás editar os arquivos de know_hosts.
+Cada chave se encontra em uma linha.
+Campos do arquivo:
+nomeDoHost,"IPs_que_compartilham_mesma_chave_pública" \n
+algoritmo_criptográfico utilizado chave_pública
+
+O servidor, por sua vez armazena as chaves públicas dos clientes
+que o acessaram em /etc/ssh/*.key.pub
+
+É uma boa prática adicionar entradas que correspodem aos
+arquivos ssh_host_*key.pub do servidor para seu arquivo
+~/.ssh/know_hosts ou /etc/ssh/ssh_known_hosts
+
+AUTENTICAÇÃO BASEADA EM CHAVES SSH
+
+Baseado no esquema chave pública e privada.
+Arquivo de chave privada - credencial de autenticação secreta e sua.
+Arquivo de chave pública - chave copiada para os sistemas que o
+			   usuário pretende fazer login.
+
+A cópia da sua chave pública fica nas suas contas de usuário remotas.
+Ao tentar login o servidor emite um desafio que só é resolvido por
+sua chave privada.
+
+ssh-keygen(1) - cria chave privada e pública para este tipo de login
+		sem senha, mas, seguro.
+		-f caminho/onde/salvar - para não sobrescrever o padrão.
+
+Suas chaves públicas/privadas são salvas em:
+~/.ssh/id_rsa		privada
+~/.ssh/id_rsa.pub	publica
+
+Se você não especificar uma senha durante ssh-keygen.
+Sua chave privada não será protegida. Nesse caso qualquer
+portador da chave privada poderá usa-la para autenticação.
+Com senha, para utilizar a private key, é necessário inserir
+a senha dela.
+
+ssh-agent(1) poderá ser usado para armazenar temporáriamente em cache
+a sua senha de chave privada para uma verdadeira autenticação sem
+senha.
+
+Quando você executa ssh-agent, ele imprime alguns comandos 
+do shell. Você precisa executar esses comandos para definir 
+variáveis de ambiente usadas por programas como ssh-add para 
+se comunicar com ele. O comando eval $(ssh-agent) inicia 
+ssh-agent e executa esses comandos para definir automaticamente 
+essas variáveis de ambiente para essa sessão do shell. Ele 
+também exibe a PID do processo ssh-agent. RH124 redhat®
+
+ Use ssh-add(1) para adicionar as chaves privadas de
+ /home/user/.ssh/id_rsa
+ e /home/user/.ssh/key-with-pass
+
+As permissões de acesso de suas chaves devem ser:
+privada 0600
+pública 0644
+
+o comando ssh-copy-id(1) copia a chave pública para o sistema
+de destino. EXEMPLVM: ssh-copy-id -i caminho/até/púlica user@host
+
+$eval $(ssh-agent)
+
+O ssh-agent só trabalha no shell corrente (com variáveis locais)
+iniciar outro shell e tentar acessar por private key sem senha falhará
+
+CONFIGURAÇÃO DO SERVIDOR OPENSSH (sshd.service)
+Configuração: /etc/sshd_config
+ BOAS:
+ PROIBIR LOGIN REMOTO DIRETO PARA A CONTA ROOT
+ 	· Auditar quem usou root (responsabilidade) [difícil se login direto root permitido]
+	· Root e o alvo favorito do invasor, lhe basta apenas descobrir a senha.
+	· Root pode tudo.
+
+	PermitRootLogin no
+	PermitRootLogin without-password		permitir apenas com chaves.
+
+	RELOAD do serviço e necessário para confirmar configurações.
+
+ PROIBIR AUTENTICAÇÃO POR SENHA EM FAVOR DA AUTENTICAÇÃO POR CHAVE PUBLICA/PRIVADA.
+	· Invasor não pode usar ataques de adivinhação de senha para invadir conta remota.
+	· Chaves privadas protegidas por senha, o invasor precisa e de uma cópia da chave
+	  privada. Com senha simples, apenas dela, a senha do user alvo.
+	· Chaves privadas protegidas por senha mais ssh-agent. Há uma esposição menor da
+	  senha, e login é mais conveniente ao usuário.
+
+	PasswordAutentication no
+
+ Opções comentadas no arquivo indica: padrão
+
+TRANSFERÊNCIA DE ARQUIVOS ENTRE HOSTS
+   Do local para o remoto
+	scp file1 file2 ... fileN remoteuser@remotehost:/path
+   Do remoto para o local
+   	scp remoteuser@remotehost:/path
+FORMA INTERATIVA
+   sftp remoteuser@remotehost
+   	put - upload
+	get - download
+
+APLICAÇÕES GRÁFICAS X
+/etc/ssh/sshd_config
+
+    AllowAgentForwarding yes
+
+    X11Forwarding yes
+    X11DisplayOffset 10
+    X11UseLocalhost no
+
+    ssh -X user@host

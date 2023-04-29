@@ -1,0 +1,51 @@
+---compilação com gcc & ferramentas de desenvolvimento---
+
+LIGUAGEM C_____________________________________________________________________
+compilação simples:
+        gcc codigo.c -o codigo
+
+compilação gcc link:
+        GTK:
+                gcc "nome".c -o "nome" $(pkg-config --cflags --libs gtk+-3.0)
+	MYSQL:
+		version.c -o "nome"  $(mysql_config --cflags --libs)
+        SDL:
+                gcc "nome".c -o "nome" $(sdl-config --cflags --libs)
+        SDL2:
+                gcc "nome".c -o "nome" $(sdl2-config --cflags --libs)
+        GLUT:
+                gcc "nome".c -o "nome" -lglut -lGL -IGLU -lXi -lXmu
+	MATH:
+		-lm
+	NCURSES:
+
+copilação separada:
+        gcc -c codigoA.c -o codigoA.o
+	gcc -c codigoB.c -o codigoB.o
+	gcc -c codigoC.c -o codigoC.o
+	gcc -o executavel codigoA.o codigoB.o codigoC.o
+
+gerar código assembly:
+	sintaxe  exemplo
+	AT&T	 gcc -S "nome".c -o "nome".asm
+	INTEL	 gcc -S -masm=intel "nome".c -o "nome".asm
+
+Opções interessantes:
+	-Wall		avisos extras, conselhos úteis.
+	-Pedantic	ativa alguns avisos que existem no padrão c mais que
+			são desativados normalmente por extenções do gcc.
+	-Ascii		Compila de acordo com o padrão ASCII.
+
+Otimização (letra O):
+	-OO		Reduz tempo de compilação mais debug certo (padráo)
+	-O1		|Min (demora - para compilar)
+	-O2		|Otimização de velocidade do binário gerado
+	-O3		|Max (demora + para compilar)
+	-Os		Otimização de tamanho do binário gerado para menor.
+	-Ofast		negligencia padrões de compilação.
+	-Og		otimiza experiéncia de debug
+
+EXTRA
+	-o equivale a --output
+	-c equivale a --compile
+______________________________________________________________________________

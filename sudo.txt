@@ -1,0 +1,62 @@
+S U D O
+
+visudo(8) - Editar com segurança sudoers
+export EDITOR="nome_do_teu_editor_cli_favorito"
+
+CONFIGURAÇÃO DO SUDO
+/etc/sudo.conf
+
+ARQUIVO EXCLUSIVO PARA UM USUÁRIO ESPECÍFICO
+CRIADO POR TI, ADMINISTRADOR.
+
+/etc/sudoers.d/USERNAME
+
+ARQUIVO GERAL DE PERMISSÕES
+/etc/sudoers
+
+
+SINTAXE DE CONFIGURAÇÃO. O BASICÃO
+
+Usuario|Grupo Hosts=(exe_como_usuarios:exe_como_grupos) Comandos
+
+#alias para grupos de usuarios
+User_alias  GrupoA = mercio,janio
+User_alias  GrupoB = bina,ledo
+User_alias  GrupoC = ledo,janio
+
+#alias para grupos de comandos
+Cmnd_Alias  ListaA = /sbin/umount, /sbin/mount, /sbin/fsck.ext4
+Cmnd_Alias  ListaB = /sbin/sysctl, /sbin/dmesg
+Cmnd_Alias  Montagem = /sbin/umount, /sbin/mount
+
+#alias para "run as ..." (grupos)
+Runas_Alias     WEB = www-data, apache
+
+#root por padrão
+GrupoA  ALL = /usr/bin/mount
+GrupoB  ALL = ListaA
+GrupoC  ALL = (WEB)
+
+# comando inofensivo que necessita do root (mlocate<-updatedb)
+# pode rodar sem pedir senha.
+mercio ALL = NOPASSWD: /usr/bin/updatedb
+
+# há exeções para ledo no que tange a senha.
+ledo ALL = NOPASSWD: /usr/bin/updatedb, PASSWD: /bin/kill
+
+#evite que um programa execute outro
+ledo ALL = NOEXEC: /usr/bin/less
+
+#fulano pode executar estes dois comandos abaixo como root
+fulano ALL=(root:root) /usr/bin/mount, /usr/bin/umount
+
+#fulano pode listar diretorios como mercio
+fulano ALL=(mercio:mercio) /usr/bin/ls
+
+#grupo amistenis pode executar o seguinte comando como root
+%amistenis ALL=(root) /usr/bin/cat
+
+#merlison pode rodar mount e umount sem pedirsenha
+#Mas todo os outros comando necessitam de senha.
+merlison ALL=(root:root) ALL, NOPASSWD: Montagem
+

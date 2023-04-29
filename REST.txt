@@ -1,0 +1,124 @@
+		REST ABSTRATO
+________________________________
+|EQUIPE A front-end             |
+|       DOCUMENTAÇÃO DO PROJETO  > APLICAÇÃO
+|EQUIPE B back-end              |
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+I Client/Server
+
+Dai ao back o que é do back e dai ao front o que é do front.
+front-> interface, UX, requisitar
+back -> comunicação com o banco de dados, gerenciamento de cache, loging, responder...
+
+II Stateless
+
+Requisições únicas e independentes e Devem ter tudo que o servidor precisa para responder.
+O servidor não guarda estado do cliente.
+Toda informação de estado fica no cliente EX: sessões.
+
+III Cacheable
+
+Muitos clientes requisitando os mesmos recursos, cache neles!
+A solicitou um determinado recurso -> cache!
+B, C e D requisitam as mesmas coisas -> tome cache pré-salvo!
+Desepenho+ processamento_desnecessário-
+
+IIII Uniform interface
+
+Comunicação cliente e servidor.
+Regras para tornar a comunicação cliente e servidor
+mais genêrica possível.
+
+	A.Identificando o resource
+		cada recurso/resource deve ter uma URI específica
+		e coesa para poder ser acessado.
+
+		HTTP/1.1 GET http://demo.com/user/demostration
+
+	B.Representação do resource
+		A forma como o recurso será devolvido ao cliente
+		pode ser em: HTML, XML, JSON, TXT
+
+		Exemplo de acordo com mostrado em A:
+		|{
+		|"name":"demostration",
+		|"job":"Games/Animal'sGame",
+		|"bobbies":["hideByke","selling","astronomy"]
+		|}
+
+
+	C.Resposta auto-explicativa
+		Passagem de metadados na requisição e na resposta
+		EX: código HTTP da resposta, Host, Content-type, etc...
+
+
+		|GET /#!/users/demostration HTTP/1.1
+		|User-Agent: Chrome/37.0.2062.94
+		|Accept: application/json
+		|Host: demo.com
+
+	D.Hypermedia
+		Retornar todas informações necessárias na resposta para que o cliente
+		saiba navegar e ter acesso a todos os recursos da aplicação.
+
+		REQUEST
+		HTTP/1.1 GET http://demo.com/user/demostration/posts
+
+		RESPONSE
+		{
+		    "post": {
+			"id": 42,
+			"title": "Conceitos REST",
+			"decription": "Um pouco sobre conceito da arquitetura REST",
+			"_links": [
+			    {
+				"href": "/demostration/post/42",
+				"method": "GET",
+				"rel": "self"
+			    },
+			    {
+				"href": "/demostration/post/42",
+				"method": "DELETE",
+				"rel": "remove"
+			    },
+			    {
+				"href": "/demostration/post/42/comments",
+				"method": "GET",
+				"rel": "comments"
+			    },
+			    {
+				"href": "/demostration/posts/42/comments",
+				"method": "POST",
+				"rel": "new_comment"
+			    },
+			    {...}
+			]
+		    },
+		    "_links": {
+			"href": "/post",
+			"method": "GET",
+			"rel": "list"
+		    }
+		}
+
+
+V Sistema em camadas/ Layered System
+
+	A aplicação deve ser feita em camadas, e essas
+	camadas deve ser fáceis de alterar, tanto para
+	adicinar quanto para remover.
+
+                                               /-----SERVIDOR C
+                                              /-----SERVIDOR B
+	INTERNET-----BALANCEADOR DE CARGA----------SERVIDOR A
+                                               \------SERVIDOR E
+
+VI Code-On-Demand(opcional)
+	cliente executar código sob demanda, estender parte
+	da lógica do servidor para o cliente. não faz parte
+	da arquitetura, porém pode ser utilizado quando a
+	execução for mais eficiente no client side.
+
+
+

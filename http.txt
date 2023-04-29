@@ -1,0 +1,54 @@
+HTTP e HTTPS
+{
+	"camada":"aplicação",
+	"desde": 1990
+}
+
+O protocolo http define um conjunto de métodos de requisição
+que indicam ação a ser executada para um dado recurso.
+
+GET
+	Solicita a representação de um recurso específico.
+	Requisições get devem retornar apenas dados.
+	Sintaxe:
+		GET /index.html
+
+POST
+	Envia dados ao servidor. O tipo do corpo da solicitação
+	é indicado pelo cabeçalho.
+	Sintaxe:
+		POST /index.html
+
+PUT
+	Cria um novo recurso ou substitui uma representação do
+	recurso de destino com os novos dados. É idempotente:
+	chamá-lo uma ou várias vezes terá o mesmo efeito.
+	Sintaxe:
+		PUT /new.html HTTP/1.1
+
+DELETE
+	Remove o recurso especificado.
+	Sintaxe:
+		DELETE /arquivo.html HTTP/1.1
+
+CONNECT
+HEAD
+OPTIONS
+PATCH
+TRACE
+
+Notas:
+·O Navegador faz a requisição do lado do cliente. requisição REQUEST
+	Cada requisição individual é enviada para um servidor, que irá
+	lidar com isso e forncecer um resultado, chamado de resposta.
+·O servidor responde as requisições de seus clientes. respostas RESPONSE
+
+Buscar documentos de hipertexto.
+Buscar partes de documentos para atualizar páginas da Web sob demanda.
+
+Pode ser controlado pelo HTTP:
+ Cache - A forma como documentos são cacheados.
+ Relaxamento das restrições na origem - Prevenir bisbilhoteiros.
+ Autenticação - Usando o cabeçalho WWW-Autenticate.
+ Proxy e tunelamento.
+ Sessões Usando cookies HTTP ex:carrinhos de compra de e-commerces.

@@ -1,0 +1,77 @@
+A instância de um programa é o processo
+Todo processo tem os seguintes DESCRITORES DE ARQUIVOS:
+
+0	stdin	entrada_padrão
+1	stdout	saída_padrão
+2	stderr	erro_padrão
+3+	outros arquivos...
+
+Redirecionamento de saída para um arquivo--------
+Manda a stdout para um arquivo.
+
+> file	Redireciona stdout para substituir um
+	arquivo e stderr para terminal.
+
+>> file Redireciona stdout para acrescentar a um arquivo.
+
+2> file	Redireciona stderr para substituir um arquivo.
+
+2> /dev/null
+	Descarta mensagens de erro Redirecionando
+	para /dev/null.
+
+> file 2>&1
+&> file
+	Redireciona stdout e stderr para substituir
+	ao mesmo arquivo.
+
+>> file 2>&1
+&>> file
+	Redireciona stdout e stderr para acrescentar
+	ao mesmo arquivo.
+
+-------------------------------------------------
+A ordem dos fatores altera o resultado
+> file 2>&1	stdout e stderr foi para file
+2>&1 > file	stdout foi para file stderr para terminal
+
+Devido a isso,alguns preferem usar os operadores de fusão
+de redirecionamento:
+&>file		em vez de 	>file 2>&1
+&>> file	em vez de	>>file 2>&1 (>BASH4/RHEL6)
+Problema:Quebra de padronização podendo não funcionar em
+outros shells.
+
+Costrução de pipelines----------------------------
+Conecta a stdout do processo A para stdin do
+processo B.
+Pode ser feito N vezes.
+
+Exemplos:
+[smith@machine bin]$ ls -1 . | less
+[smith@machine bin]$ ls -1 [ab]* | xargs -l1 whatis 2> /tmp/whatisErro | less
+[smith@machine bin]$ ls -1 [a]* | wc -l
+[smith@machine bin]$ file [c]* | grep "Bourne" | wc -l
+[smith@machine ~]$ ls -1 -l -t | grep "out"
+
+Problema do fluxo:
+[smith@machine ~]$ ls > /tmp/binlist | less
+
+Acima less não receberá nada pois a stdout de ls
+foi para o arquivo /tmp/binlist
+Para superar esta limitação use tee(1) que permite
+um desvio copiado para um arquivo passado
+na linha de comando ou terminal.
+Experimente:
+
+[smith@machine ~]$ ls -1 /bin | tee /tmp/sample | less
+[smith@machine ~]$ ls -1 /bin | tee | less
+[smith@machine ~]$ ls -1 /bin | tee /tmp/sample
+
+Maneira correta de direcionar tanto stdout como stderr
+através de um pipe:
+[smith@machine ~]$ find /etc -name passwd 2>&1 | less
+
+--------------------------------------------------
+
+vide bash(1) tee(1)

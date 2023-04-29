@@ -1,0 +1,21 @@
+Teclas
+	Modos de visualização
+		1 tree
+		2 sorted
+		3 playlist
+		4 qeue
+		5 browser
+		6 filters
+		7 settings
+
+	b player-next
+	c player-pause
+	x player-play
+	z player-prev
+	v player-stop
+	+ vol +10%
+	= vol -10%
+
+Commandos :
+	Saltar para minuto especificado
+	seek HH:MM:SS

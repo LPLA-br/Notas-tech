@@ -1,0 +1,380 @@
+			DIRETÓRIOS DO GNU/LINUX
+fonte: http://www.bosontreinamentos.com.br/linux/a-estrutura-de-diretorios-do-linux/
+Contém adição de conteúdo de minha parte.
+
+Um arquivo pode ser:
+ESTÁTICO OU VARIÁVEL(Dinâmico)	ps: estático não quer dizer imutável.
+PERSISTENTE OU TEMPORÁRIO (respectivamente: mantém-se após reinicialização,
+é excluido após certo tempo)
+
+
+_Resumo_do_conteúdo____________________________________________________
+/bin	Binários executáveis do sistema.
+/boot	Arquivos estáticos do gerenciador de inicialização do sistema.
+/dev	Arquivos de Dispositivos do sistema.
+/etc	Arquivos de texto de configuração do sistema. estático e persistente
+/home	Dirétorio com subdiretórios de cada usuário comum, inclui VOCÊ.
+/lib	Bibliotecas compartilhadas essenciais e modulos do kernel.
+/media	Contém pontos de montagem para midias removíveis.
+/mnt	Ponto de montagem temporária de sistemas de arquivos.
+/proc	Diretório virtual contém informações de processos e do kernel (sistema de arquivos proc).
+/root	Diretório home do superusuário administrativo root.
+/sbin	Binários essenciais de administração do sistema.
+/sys	Diretório virtual contendo informações organizadas do sistema.
+/tmp	Arquivos temporários que são deletados no desligamento do sistema.
+/usr	Hieraquia secundária de diretórios.
+/var	Dados variáveis, como logs do sistema por exemplo. variáveis e persistentes
+/srv	Dados para serviços fornecidos pelo sistema.
+/opt	pacotes de aplicativos e programas adicionais.
+/run	Dados de tempo de execução com ID processos. variável e temporário
+_______________________________________________________________________
+
+
+
+/		Raiz do sistema. Tudo comessa aqui. 
+
+/bin		Binários essenciais do dos usuários
+		*O diretório /bin contém binários essenciais aos usuários
+		ou seja, programas que precisam estar presentes quando o
+		sistema é inicializado no modo monousuário.
+		Aplicativos comuns,como navegadores e jogos geralmente se
+		localizam no diretório /usr/bin, ao passo que programas e
+		utilitários importantes são armazenados no diretório /bin.
+
+/boot		Arquivos estáticos de inicialização
+		*O diretório /boot contém arquivos necessários para inicializar
+		o sistema, como os arquivos do carregador de inicialização
+		GRUB e o kernel (ou kernels) do Linux. Alguns arquivos de
+		configuração se localizam no diretório /etc.
+
+/cdrom		Ponto de montagem para drives ópticos, como CD-ROMs
+		*Este diretório não faz parte do padrão de hierarquia FHS,
+		porém ele ainda é encontrado em algumas distribuições Linux.
+		Ele é usado como local temporário para CDs e DVDs inseridos
+		no drive – porém, o local padrão para essas mídias é o
+		diretório /media.
+
+/dev		Arquivos de Dispositivos
+		*No Linux os dispositivos (hardware e software) são 
+		representados como arquivos, e esse diretório contém uma 
+		grande quantidade de arquivos especiais que representam 
+		esses dispositivos.
+
+		Estes arquivos de dispositivos não são arquivos comuns,
+		e seu conteúdo não é legível – tente rodar o comando cat
+		/dev/sda1 para ver o que aparece.
+
+		Na verdade, o /dev/sda representa o primeiro disco SATA
+		instalado no sistema. Para trabalhar com esse disco,
+		é necessário usar um utilitário especial como o fdisk
+		ou o mkfs, por exemplo.
+
+		Neste diretório também encontramos os chamados 
+		“pseudo-dispositivos”, que são dispositivos virtuais que não
+		correspondem a hardware real da máquina. Como exemplo podemos
+		citar o dispositivo especial /dev/null que não produz saída 
+		nenhuma e automaticamente descarta toda a entrada direcionada 
+		a ele – é como um “buraco negro” de dados.
+
+		O diretório /dev contém nós de dispositivos, que são uma 
+		espécie de pseudo-arquivos usados por muitos dispositivos
+		de hardware (e de software) com a exceção de alguns 
+		dispositivos de rede. O diretório /dev/está sempre vazio 
+		quando não for montado, e se for montado conterá entradas
+		que são criadas pelo sistema udev, o qual cria e também
+		gerencia os nós no Linux, criando-os de forma dinâmica
+		quando os dispositivos são encontrados.
+
+		Este diretório é interessante pois mostra uma característica
+		marcante do sistema operacional Linux: no Linux, tudo é um
+		arquivo ou diretório. Usamos esses arquivos para configurar
+		e acessar vários dispositivos de hardware. Veremos com mais
+		detalhes essa teoria e o funcionamento do diretório /dev em
+		outro tópico.
+		Abaixo, a definição de ALGUNS dos arquivos encontrados dentro
+		de /dev:
+		
+		/dev/dsp	Digital Signal Processor; interface entre o
+				software que produz um som e a placa de som
+		/dev/fd0	Primeiro drive de 3 ½
+		/dev/hda	Drive Master na controladora primária IDE
+		/dev/hdb	Drive Slave na controladora primária IDE
+		/dev/hdc e /dev/hdd	Drives master e slave na controladora
+					secundária IDE
+		/dev/ht0	Primeiro drive de fita IDE
+		/dev/lp0	Primeiro dispositivo de impressora paralela
+		/dev/psaux	Porta de mouse PS/2
+		/dev/loop0	Primeiro dispositivo de loopback. Usado para
+				montar sistemas de arquivos não localizados em
+				outros dispositivos de blocos, como uma imagem
+				ISO9660 sem gravá-la em mídia.
+		/dev/null	“Balde de bits”; Buraco negro para onde dados
+				podem ser enviados – e nunca mais vistos
+		/dev/random	Gerador de números aleatórios do kernel
+		/dev/sda	Primeiro dispositivo SCSI ou SATA
+		/dev/sdb	Segundo dispositivo SCSI ou SATA
+		/dev/ttySO	Primeira porta serial
+		/dev/zero	Muitos zeros – retorna o valor 0
+
+/etc		Arquivos de configuração diversos
+		*O diretório /etc contém muitos arquivos de configuração do
+		sistema, os quais podem geralmente ser editados manualmente
+		usando-se um editor de textos, como o nano,emacs ou vim.
+			/etc/apt/sources.list/ fontes de pacotes do apt
+			/etc/profile/ path acessíveis de cada usuário 
+
+/home  ou  ~/	Diretórios home dos usuários
+		*O diretório /home contém um diretório padrão (de perfil)
+		para cada usuário. Se o nome de seu usuário é fabio, então
+		você encontrará um diretório de nome fabio dentro de /home,
+		portando /home/fabio. Este diretório contém arquivos do
+		usuário fabio e arquivos de configuração específicos dessa
+		conta de usuário. Os usuários possuem permissão de gravação
+		apenas em seu próprio diretório padrão, e apenas permissão
+		de leitura em outros diretórios do sistema (em alguns casos,
+		permissão nenhuma).
+
+/lib		Bibliotecas compartilhadas essenciais do sistema
+		*O diretório /lib contém bibliotecas que são necessárias 
+		aos programas localizados nos diretórios /bin /sbin.
+
+		Já as bibliotecas usadas pelos programas do diretório /usr/bin
+		se localizam no diretório /usr/lib.
+
+		As bibliotecas são códigos de programas que são compartilhados
+		entre aplicações e são necessários para que elas funcionem.
+		Essas bibliotecas geralmente tem nomes que se iniciam com
+		ld or lib.Diretório /lib - bibliotecas do sistema no Linux
+
+		Algumas distribuições Linux possuem o diretório /lib64,
+		o qual contém bibliotecas de 64 bits, ao passo que o 
+		diretório /lib armazena as bibliotecas de 32 bits.
+		Em sua maioria essas bibliotecas são chamadas de dlls,
+		“dynamically loaded libraries”, ou ainda shared libraries 
+		(bibliotecas compartilhadas) ou também Shared Objects (SO).
+
+		Neste diretório também costumamos encontrar os módulos do Kernel,
+		que são códigos do kernel, geralmente drivers de dispositivos
+		carregáveis e descarregáveis sem que seja necessária a 
+		reinicialização do sistema. Esses módulos são encontrados
+		no subdiretório /lib/modules/<kernel-version-number.
+
+/lost+found	Arquivos recuperados ("perdidos+encontrados")
+		*Caso ocorra um travamento no sistema, uma verificação do 
+		sistema de arquivos será realizada na próxima reinicialização.
+		Se forem encontrados arquivos corrompidos eles serão colocados
+		no diretório lost+found, permitindo assim que recuperemos
+		esses dados, ou ao menos boa parte deles.
+
+/media		Mídias removíveis
+		*O diretório /media contém subdiretórios onde são montados
+		dispositivos de mídias removíveis inseridas no computador,
+		como por exemplo um CD inserido no drive de CD/DVD,
+		o qual será montado em um diretório criado automaticamente
+		dentro de /media, nos permitindo acessar o conteúdo da mídia.
+
+/mnt		Pontos de montagem temporários
+		*O diretório /mnt é onde sistemas de arquivos temporários
+		podem ser montados pelos administradores de sistemas durante
+		seu uso. Por exemplo, podemos montar uma partição do Windows
+		nesse diretório para efetuarmos tarefas de recuperação de
+		arquivos, criando o diretório /mnt/windows.
+
+		Na verdade, podemos montar esses sistemas de arquivos em
+		vários locais do sistema, não necessariamente em /mnt.
+
+/opt		Pacotes opcionais
+		*O diretório /opt é um contêiner para pacotes de software
+		opcionais. Muito usado por determinados softwares
+		proprietários que não obedecem ao FHS.
+
+		Muitos sistemas unix armazenam software compilado localmente
+		no diretório /opt, e se esse for o caso, é interessante
+		mantê-lo em uma partição separada.
+
+/proc		Arquivos de processo e de kernel
+		*O diretório /proc contém arquivos especiais que representam
+		informações sobre processos e sobre o sistema.
+		O sistema de arquivos virtual proc
+
+		O sistema de arquivos montado no diretório /proc é também
+		conhecido como pseudo sistema de arquivos, pois seus arquivos
+		não existem fisicamente no disco rígido do computador.
+
+		O sistema de arquivos /proc contém arquivos virtuais, que são
+		arquivos que existem apenas na memória RAM da máquina,
+		os quais permitem visualizar dados do kernel que mudam
+		constantemente. Não há arquivos reais aqui, mas informações
+		em tempo real do sistema, como configurações de hardware e
+		memória física. Podemos citar alguns arquivos presentes no
+		diretório /proc:
+
+		/proc/cpuinfo – Informações sobre a CPU
+		/proc/interrupts – Informações sobre IRQs
+		/proc/meminfo – Informações sobre a memória do sistema
+		/proc/mounts – Informações sobre dispositivos e pontos de montagem
+		/proc/partitions – Informações sobre as partições dos discos
+		/proc/version – Versão do Kernel do Linux e do compilador gcc.
+
+		E o diretório /proc também possui alguns subdiretórios,
+		como o diretório /proc/<ID_processo>, que se trata de um
+		diretório que contém informações sobre um processo rodando
+		no sistema. Há um diretório desses para cada processo em
+		execução.
+
+		Também existe o subdiretório /proc/sys,o qual possui muitas
+		informações sobre o sistema, como configurações e dados sobre
+		o hardware.
+
+/root		Diretório home do usuário root
+		*Este diretório é o diretório padrão do usuário root. Veja
+		que o root não tem seu diretório home como subdiretório
+		de /ho,e, como todos os demais usuários.
+
+		Não confunda o diretório /root com o diretório / (root)("raiz")
+		, que é o diretório raiz do sistema.
+
+/run		Arquivos de estado de Aplicações
+		*O diretório /run fornece às aplicações um local para
+		armazenamento de arquivos transientes que elas necessitem
+		usar, como por exemplo sockets.
+
+		Apesar desses arquivos serem transientes, eles não são
+		armazenados em /tmp pois lá os arquivos poderiam ser excluídos
+		causando problemas às aplicações que os utilizam.
+
+/sbin		Binários (executáveis) para administração do sistema
+		*O diretório /sbin é muito parecido com o diretório /bin.
+		Ele possui muitos programas binários essenciais que são
+		geralmente utilizados pelo administrador do sistema em suas
+		tarefas de gerenciamento.
+
+		Como exemplo podemos citar os programas formatadores de
+		partições mkfs.ext4 e mkfs.vfat, e os comandos shutdown
+		e runlevel.
+
+/srv		Dados de Serviços
+		*O diretório /srv possui dados que são utilizados por
+		serviços Como exemplo podemos citar o web server Apache,
+		que usa o diretório /srv (na verdade, um subdiretório dentro
+		dele) para armazenamento das páginas (arquivos) de um website.
+
+/sys		Informações sobre o sistema e hardware
+		*Sistema de arquivos pseudo-virtual que fornece informações
+		sobre o sistema e o hardware do computador. Pode ser usado
+		para alterar parâmetros do sistema e também para tarefas de
+		debugging.
+
+		Função: facilitar a troca de informações entre os programas
+		que rodam no espaço do kernel, como os drivers, com os
+		programas que rodam no espaço do usuário (aplicações).
+
+		Quando um dispositivo é adicionado ao sistema, o kernel cria
+		um nome de dispositivo em /sys, e notifica o utilitário udev,
+		o qual gerencia os nomes de dispositivos dinamicamente,
+		criando então um arquivo de dispositivo, geralmente em /dev
+		(ou o remove).
+
+		Alguns subdiretórios de /sys e suas respectivas funções:
+
+		/sys/bus – Barramentos de dados do sistema
+		/sys/module – Módulos carregados no kernel
+		/sys/devices – Todos os dispositivos conectados
+		/sys/block – Dispositivos de bloco, como HDs
+
+/tmp		Arquivos temporários
+		*As aplicações podem armazenar arquivos temporários no
+		diretório /tmp. Estes arquivos são geralmente excluídos
+		quando o sistema é reiniciado e podem ser excluídos a
+		qualquer momento por utilitários como o tmpwatch.
+
+		O diretório /tmp é onde os usuários, assim como os programas
+		armazenam arquivos de forma temporária.
+
+		É interessante mantê-lo em uma partição separada pois seu
+		conteúdo pode crescer muito e interferir com o restante do
+		sistema.
+
+/usr		Binários (executáveis) dos usuários e dados somente leitura
+		*O diretório /usr contém aplicações e arquivos utilizados
+		pelos usuários comuns do sistema, ao contrário das aplicações
+		e arquivos que são usados pelo sistema em si. Por exemplo,
+		aplicações não-essenciais estão localizadas dentro do
+		diretório /usr/bin em vez do diretório /bin e binários de
+		administração do sistema ficam localizados no diretório
+		/usr/sbin em vez do diretório /sbin. Bibliotecas estão
+		locadas dentro do diretório /usr/lib.
+
+		O diretório /usr também contém outros diretórios – por
+		exemplo, arquivos que não dependem de arquitetura como
+		gráficos, que se localizam no diretório /usr/share.
+
+		Já o diretório /usr/local é onde aplicações compiladas
+		localmente são instaladas por padrão – isso as impedem de
+		bagunçar o resto do sistema.
+
+		Também é interessante manter esse diretório em uma partição
+		separada, pois pacotes são adicionados costumeiramente ao 
+		sistema.
+
+		Subdiretórios localizados em /usr
+
+		O diretório /usr possui ao menos os seguintes subdiretórios:
+
+		/usr/include 	Arquivos de cabeçalho usados para compilar
+			     	aplicações.
+		/usr/lib	Bibliotecas para programas nos diretórios
+				/usr/bin e /usr/sbin.
+		/usr/lib64	Bibliotecas de 64 bits para programas de 64
+				bits nos diretórios /usr/bin e /usr/sbin.
+		/usr/sbin	Binários de sistema não essenciais,
+				tais como daemons do sistema.
+		/usr/share	Dados compartilhados usados por aplicações,
+				geralmente não-dependentes de arquitetura.
+		/usr/share/doc	documentação de aplicações e bibliotecas.
+		/usr/src	Código-fonte, normalmente para o kernel do
+				Linux
+		/usr/X11R6	Arquivos de configuração do sistema X Window.
+				Geralmente obsoletos.
+		/usr/local	Dados e programas específicos da máquina
+				local. Alguns subdiretórios incluem bin, sbin,
+				lib, share, include, entre outros.
+				Software personalizado localmente.
+		/usr/bin	Este é o diretório primário dos comandos
+				executáveis no sistema
+
+/var		Arquivo de dados variáveis
+		*O diretório /var é a contraparte com permissão de escrita
+		do diretório /usr, o qual deve ser somente-leitura quando
+		em operação normal. Arquivos de log e tudo o mais que
+		normalmente seria escrito em /usr durante a operação normal
+		são escritos no diretório /var. Por exemplo, encontramos
+		arquivos de log no diretório /var/log.
+
+		O diretório /var é onde o sistema armazena seus arquivos
+		de spool, como o spool de impressão, filas de entrada e saída
+		de email e arquivos de log do sistema, entre outros.
+
+		Por conta disso, esses arquivos podem aumentar e diminuir de
+		tamanho drasticamente e sem aviso.
+
+		Ele também contém arquivos cujo tamanho e conteúdo podem mudar
+		enquanto o sistema está em execução, como as entradas nos
+		diretórios a seguir:
+
+		Arquivos de log do sistema:		/var/log
+		Pacotes e arquivos de banco de dados:	/var/lib
+		Filas de impressão:			/var/spool
+		Arquivos temporários:			/var/tmp
+
+		O diretório /var pode ser colocado em seu próprio sistema de
+		arquivos de modo que o seu crescimento possa ser
+		acomodado e seu tamanho não afete o sistema de forma grave.
+		Diretórios de serviços de rede como /var/ftp
+		(serviço de FTP) e /var/www (serviço web HTTP) também são
+		encontrados dentro de /var.
+
+Veja a página de manual hler(1)
+Compilado por: Luiz Paulo de Lima Araújo 2020 - 2022
+_________________________________________________________________________
+

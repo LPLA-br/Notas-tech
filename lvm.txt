@@ -1,0 +1,99 @@
+Logical Volume Manager
+
+/etc/lvm/lvm.conf
+
+File systems       ext4      xfs        ffs         4º
+Logical volume     /dev/A/v1 /dev/A/v2  /dev/B/v1   3º lv
+Volume Groups      A===================B====        2º vg
+Physical Volumes   sdb1 sdb2       sdc1 sdc2        1º pv
+Partitions         sdb1 sdb2       sdc1 sdc2
+Physical Drives    /dev/sdb        /dev/sdc
+
+Primeira etapa
+Crie partições e as atribua o tipo LVM
+para as partições ou dispositivos que pertecerão
+a este componente.
+
+Segunda etapa
+Adicionar volumes físicos aos grupos de
+volume (estes atuam como uma espécie de disco virtual).
+
+Terceira etapa
+Criar os volumes lógicos de cada
+grupo de volumes em seguida os formatando.
+
+Quarta etapa
+Formate o /dev/NOMEGRUPO/VOLOGICO com mkfs.SISTEMARQUIVOS
+(os sistemas de arquivos tem uma vasta gama de configurações
+,características e formas de montagem que devem ser conhecidas
+por ti)
+
+Quinta etapa
+Montar e usar.
+
+NOTA==
+Se a raiz do sistema
+fica em uma partição
+lvm, certifiques
+se configuraste o
+/etc/mkinitcpio.conf
+HOOKS=(base udev ... block lvm2 filesystems)
+
+Gerenciadores de boot podem
+não suportar o lvm, podera ou devera
+haver a necessidade de se criar uma
+partição tradicional para /boot
+efi e ou bios.
+======
+
+ESCANEAR
+    lvmdiskscan
+
+PHYSICAL VOLUME
+    pvdisplay
+    pvscan
+    pvcreate DISPOSITIVO|PARTIÇÃO
+
+VOLUME GROUPS
+    vgcreate NOMEGRUPO VOLUMEFISICO VOLUMEFISICO ...
+    vgcreate NOMEGRUPO OUTROVOLUMEFISICO
+    OU vgcreate NOMEGRUPO VOLUMEFISICO VOLUMEFISICO ... VOLUMEFISICO
+
+    vgextend NOMEGRUPO VOLUMEFISICO
+    vgextend NOMEGRUPO OUTROVOLUMEFISICO
+    OU vgextend NOMEGRUPO VOLUMEFISICO OUTROVOLUMEFISICO
+    EXEMPLO: vgextend grp1 /dev/sdb1 /dev/sdc
+
+    vgdisplay
+    vgscan
+
+LOGICAL VOLUMES
+    lvcreate -L TAMANHO NOMEGRUPO -n VOLUMELOGICO
+    EXEMPLO: lvcreate -L 1G grp1 -n coisa1
+    +100%FREE em tamanho resulta em ocupação total do
+    espaço disponível. +tamanhoUnidade
+
+    lvdisplay
+    lvscan
+
+===OPERAÇÕES NOS VOLUMES===
+
+Volume fisico
+    As Partições físicas tem limitações
+    no que tange seu redimensionamento.
+    Mas após aumento da partição execute:
+        pvresize VOLUMEFISICO
+    Para encolhimento:
+        pvresize --setphysicalvolumesize TAMANHO VOLUMEFISICO
+        Não pode se reduzir o volume físico a um tamanho menor
+        que a soma dos volumes lógicos(logical volumes).
+    Para mover:
+        pvdisplay -v -m
+        pvdisplay --alloc anywhere /dev/DISP:INI-FIM /dev/DISP:INI-FIM
+Grupo de volumes
+Volumes lógicos
+    lvresize -L +TAMANHO --resizefs grupo/volumelogico
+    Para fazer a expanção do sistema de arquivos em separado:
+    resize2fs /dev/GRUPO/VOLUMELOGICO NOVOTAMANHO
+
+lvremove GRUPO/VOLUME

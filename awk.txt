@@ -1,0 +1,34 @@
+
+NOME
+	awk - escaneador de padrões e linguagem de processamento de texto
+
+SINOPSE
+	awk [opções] 'pequeno-porém-útil-programa'
+
+OPÇÕES
+	-F 'delimitador_em_um_caractere'
+
+EXEMPLOS
+	awk -F ' ' '{print $1}' arquivo.txt
+	awk '(FS=" "){print $1 " " $2}' arquivo.txt
+
+			FS é a varíavel do delimitador.
+
+	awk '(FS=":"){print $1 "\t" $2}' /etc/passwd
+	awk '(FS=":"){print $1="jeej"}' /etc/passwd
+
+			awk pode receber texto via |
+			$VAR varíavel
+
+	awk -F ':' '/root/' /etc/passwd
+	awk -F ':' '/root/{print $1}' /etc/passwd
+
+			expressões regulares acima.
+
+	awk '{$variavel = /root/; print}' /etc/passwd
+
+			mostra 1 para linhas com padrão e 0 para as sem.
+
+	
+	
+

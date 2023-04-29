@@ -1,0 +1,43 @@
+Usuários e Grupos----------------------------------------------
+
+Refrescando a memória
+
+id useradd userdel usermod groupadd groupdel groupmod
+
+Usuário
+É uma pessoa real que utiliza a máquina
+ou por um programa de conta não logável ( nolongin ).
+Identificado pelo número UID
+
+/etc/passwd	campos
+nome:senha:uid:gid:gecos:home:shell
+
+gecos = 'informações gerais como número de telefone nome
+real e etcetera.'
+
+Grupo
+Coleção de Usuários que precisam compartilhar arquivos
+e recursos do sistema. Podem ser usados para conceder
+acesso a arquivos aos usuários participantes.
+Identificado pelo número GID
+
+O usuário tem o seu grupo pessoal (primário) de nome igual ao
+nome de usuário e os grupos adicionais (suplementares).
+
+/etc/group	campos
+nome:senha:gid:membros
+
+campo senha é obsoleto.
+
+Senhas de Usuário
+chage(8)
+
+/etc/shadow	campos
+nome:senhacriptografada:epochúltimaalteraçãosenha:diasmínimoalteração:diasmáximossemmudarsenha:
+avisodesenhaexpiradaantesprasofinal:periodoinatividade:epochdataexpiracao:x
+
+                    |              -M max dias                 |
+data última mudanca→| -m min dias |         | -W dias aviso    |←expiraçãosenha dias inativo -I    |←data inativo
+
+luiz & linux distros 2020-Agora
+

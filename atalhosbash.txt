@@ -1,0 +1,33 @@
+LISTA DE TECLAS DE ATALHO DO BASH
+
+	tab	autocompletar o que vc está digitando.
+	
+	ctrl+a	cursor para o início da linha.
+
+	ctrl+e	cursor para o fim da linha.
+
+	ctrl+c	interromper execução do programa.
+
+	ctrl+z	colocar programa em que você está em segundo plano
+		(fg NOME_DO_PROCESSO para voltar ao processo desejado)
+		'ps' para ver lista de processos.
+
+	ctrl+d	desconecta você do terminal atual (equivalente a exit).
+
+	ctrl+l	limpa o terminal como clear.
+
+	ctrl+u	backspace não. Se você escreveu o comando errado use este cara
+		para apagar da posição atual do cursor até o final da linha.
+
+	ctrl+k	faz a mesma coisa que o anterior só que apagando tudo.
+	
+	ctrl+w	apaga a palavra anterior ao cursor, se tiver no meio da
+		palavra apaga da posição do cursor até o início da palavra.
+	
+	ctrl+y	cola o texto apagado ao usar atalhos ctrl+w ctrl+u ctrl+k
+	
+	ctrl+p	ver comandos digitados ateriormente 
+		(como seta para cima)
+	
+	ctrl+n	ver comandos digitados posteriormente
+		(como seta para baixo)

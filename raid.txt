@@ -1,0 +1,115 @@
+Redudant Array of Inexpensive Disks
+
+    Os discos funcionam como apenas um, multiplicando
+    a performance geral pelo número de discos utilizados
+    no conjunto.
+
+TERMINOLOGIAS
+    
+    Redudância
+        Garantir a utilização sem interrupções
+        dos serviços e evitar a perda de dados.
+        -Formas alternativas de energia.
+        -Múltiplos locais de armazenamento.
+
+    Paridade
+        -Detecção de erros nas transmissões.
+        -Adição de um bit adicional para cada
+         Grupo de bits.
+
+RAID  0
+
+    Disco 1--2
+    Bloco 1, 2
+    Bloco 3, 4
+    Bloco 5, 6
+    Bloco 7, 8
+
+    Não utiliza a redundância ou paridade.
+
+RAID  1
+
+    Disco 1--2
+    Bloco 1, 1
+    Bloco 2, 2
+    Bloco 3, 3
+    Bloco 4, 4
+
+    Replicação dos dados.
+    Possibilita que dois ou mais discos possuam exatamente
+    o mesmo conteúdo. Preocupação com a confiabilidade dos
+    dados gravados. Sem paridade para detecção de erros.
+    Pode detectar erros através do ECC (Error Correcting Code)
+    que é a informação de controle de erros, no lugar da
+    paridade.
+
+RAID 2
+
+    Similar ao RAID 0, mas possuindo algorítmos ECC no lugar
+    da paridade.
+
+RAID 3
+
+    Disco 1---2---3---[4]
+    Bloco a1, a2, a3  a1,3  
+    Bloco a4, a5, a6  a4,6
+    Bloco a1, a2, a3  b1,3
+    Bloco a4, a5, a6  b4,6
+
+    Tem redundância e paridade.
+    Um bit de paridade é computado para cada palavra de dados
+    e escrito em um drive de paridade, paridade em um disco
+    separado, no caso acima, o quatro. Em possíveis falhas de um
+    disco, os dados podem ser reconstruídos através da paridade
+    calculada dos outros discos.
+
+RAID 4
+
+    Igual ao três, mas:
+    Paridade em blocos maiores.
+
+    Disco 1---2---3---[4]
+    Bloco a1, a2, a3  a
+    Bloco b1, b2, b3  b
+    Bloco c1, c2, c3  c
+    Bloco d1, d2, d3  d
+
+RAID 5
+    
+    As informações sobre paridade para os dados são distribuidas
+    ao longo de todos os discos.
+    Requer 3 ou mais unidades.
+    Suporta a perda de um membro
+
+ Disco 1  2  3  4
+ Bloco a1 b1 c1 pa
+ Bloco a2 b2 pa c2
+ Bloco a3 pa b3 c3
+ Bloco pa a4 b4 c4
+
+    Informações sobre paridade para os dados
+    são distribuidas ao longo de todos os discos.
+    Mais desempenho que o RAID 4 e boa tolerância
+    a falhas.
+
+RAID 6
+
+    Mesmo que o raid 5, porém usa o dobro de bits
+    de paridade, garantindo a integridade dos dados
+    caso até dois dos discos apresentarem falhas.
+
+SOFTWARE
+    mdadm(8)
+
+ETAPAS (fonte: arch wiki RAID)
+    -Apaga informações de raid anteriores (Caso existam)
+     "mdadm --misc --zero-suberblock /dev/DISP"
+    -Particione os discos. As partições devem ser do tipo linux RAID.
+     As partições devem ter o mesmo tamanho. Deixes espaços vazios no
+     fim dos discos.
+    -Use o mdadm para construires uma matriz dos discos.
+    -Atualize o arquivo de configuração /etc/mdadm.conf com
+    "mdadm --detail --scan >> /etc/madm.conf" 
+    -monta o array com "mdadm --assemble --scan"
+    -Formata com um sistema de arquivos adequado.
+
