@@ -1,8 +1,36 @@
  OpenSSH - Secure SHell Protocol
  comunicação de sistemas através de uma rede insegura.
+
  ssh usuario@ip_da_máquina_remota [comando_para_host_remoto]
- 
- criptografia de chave pública:
+
+ Algorítmos criptográficos utilizados:
+ 	rsa
+	ecdsa
+	ed25519
+________________________________________________________________________________________
+ SERVIDOR					CLIENTE
+
+ /etc/ssh/host_ALGORITMO_key.pub
+ IDENTIDADE DO HOST SERVIDOR
+
+						/home/USUARIO/.ssh/chave.pub
+							A QUE PODE SER ADICIONADA
+							NO authorized_key DO SERVIDOR
+							ssh-keygen -f .ssh/NOME
+
+						/home/USUARIO/.ssh/chave
+							A CHAVE PROPRIAMENTE DITA
+							ssh -p PORTA -i ./ssh/chave USER@HOST
+
+ /home/USER/.ssh/authorized_key			/home/USER/.ssh/authorized_keys
+ CHAVES AUTORIZADAS (CLIENTES)
+ pubkeys do(s) cliente(s).
+
+ /home/USER/.ssh/known_hosts			/home/USER/.ssh/known_hosts
+ 				HOSTS JÁ ACESSADOS
+________________________________________________________________________________________
+
+ CRIPTOGRAFIA DE CHAVE PÚBLICA----------------------------------------------------------
  Quando o cliente SSH conecta-se ao servidor SSH
  O servidor enviará uma chave pública para o cliente
  antes dele fazer login. A chave serve para estabelecer
@@ -19,9 +47,10 @@
  	StrictHostChecking=yes --anula a conecção se a chaves
 				 não se correspodem.
 
-Caso haja alteração da chave pública do servidor
-tu deverás editar os arquivos de know_hosts.
-Cada chave se encontra em uma linha.
+CASO HAJA ALTERAÇÃO DA CHAVE PÚBLICA DO SERVIDOR
+TU DEVERÁS EDITAR OS ARQUIVOS DE KNOW_HOSTS.
+CADA CHAVE SE ENCONTRA EM UMA LINHA.
+
 Campos do arquivo:
 nomeDoHost,"IPs_que_compartilham_mesma_chave_pública" \n
 algoritmo_criptográfico utilizado chave_pública
@@ -33,7 +62,7 @@ que o acessaram em /etc/ssh/*.key.pub
 arquivos ssh_host_*key.pub do servidor para seu arquivo
 ~/.ssh/know_hosts ou /etc/ssh/ssh_known_hosts
 
-AUTENTICAÇÃO BASEADA EM CHAVES SSH
+AUTENTICAÇÃO BASEADA EM CHAVES SSH-----------------------------------------------------
 
 Baseado no esquema chave pública e privada.
 Arquivo de chave privada - credencial de autenticação secreta e sua.
@@ -52,11 +81,13 @@ Suas chaves públicas/privadas são salvas em:
 ~/.ssh/id_rsa		privada
 ~/.ssh/id_rsa.pub	publica
 
-Se você não especificar uma senha durante ssh-keygen.
-Sua chave privada não será protegida. Nesse caso qualquer
-portador da chave privada poderá usa-la para autenticação.
-Com senha, para utilizar a private key, é necessário inserir
-a senha dela.
+SE VOCÊ NÃO ESPECIFICAR UMA SENHA DURANTE ssh-keygen.
+SUA CHAVE PRIVADA NÃO SERÁ PROTEGIDA. NESSE CASO QUALQUER
+PORTADOR DA CHAVE PRIVADA PODERÁ USA-LA PARA AUTENTICAÇÃO.
+COM SENHA, PARA UTILIZAR A PRIVATE KEY, É NECESSÁRIO INSERIR
+A SENHA DELA.
+
+SSH AGENT----------------------------------------------------------------------------------
 
 ssh-agent(1) poderá ser usado para armazenar temporáriamente em cache
 a sua senha de chave privada para uma verdadeira autenticação sem
@@ -75,8 +106,10 @@ também exibe a PID do processo ssh-agent. RH124 redhat®
  e /home/user/.ssh/key-with-pass
 
 As permissões de acesso de suas chaves devem ser:
-privada 0600
-pública 0644
+privada 0600 rw-------
+pública 0644 rw-r--r--
+
+SSH-COPY-ID----------------------------------------------------------------------------------
 
 o comando ssh-copy-id(1) copia a chave pública para o sistema
 de destino. EXEMPLVM: ssh-copy-id -i caminho/até/púlica user@host
@@ -86,7 +119,10 @@ $eval $(ssh-agent)
 O ssh-agent só trabalha no shell corrente (com variáveis locais)
 iniciar outro shell e tentar acessar por private key sem senha falhará
 
-CONFIGURAÇÃO DO SERVIDOR OPENSSH (sshd.service)
+NOTA: Se possível, addicionar a .pub gerada por ti para o servidor (append no authorized_key ) manualmente
+é mais seguro.
+
+CONFIGURAÇÃO DO SERVIDOR OPENSSH (sshd.service)======================================================
 Configuração: /etc/sshd_config
  BOAS:
  PROIBIR LOGIN REMOTO DIRETO PARA A CONTA ROOT
