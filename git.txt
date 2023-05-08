@@ -1,41 +1,53 @@
 FERRAMENTA DE CONTROLE DE VERSÕES GIT
- GERENCIAMENTO DOS ARQUIVOS DOS PROJETOS
+GERENCIAMENTO DOS ARQUIVOS DOS PROJETOS
 
 
+DINÂMICA ENTRE WORKTREE E INDEX
 
-NOMENCLATURAS----------------------------------
+(                WORKTREE              )(     INDEX    )
+UNTRACKED	UNMODIFIED	MODIFIED	STAGED
+|               |               |               |
+|---------------|---add-file----|-------------->|
+|               |---edit-file-->|               |
+|               |               |--stage-file-->|
+|<-remove-file--|               |               |
+|               |<------commit--|---------------|
 
-DIRETÓRIOTRABALHO	INDEX(STAGING AREA)	.GIT DIR(REPO)HEAD
+DINÂMICA ENTRE WORKTREE INDEX HEAD
+
+WORKTREE		INDEX(STAGING AREA)	.GIT (REPO)HEAD
 arquivos		área antes do commit	commit atual
-<----------------checkout------------------------
-----stage fix---------->
-                        --------commit--------->
+|                       |                       |
+|<-------------checkout-|-----------------------|
+|---stage fixes-------->|                       |
+|                       |-------commit--------->|
+|                       |                       |
+
 
 
 master 		É o nome padrão da branch principal do seu repositório (renomeável).
-		pode haver N branches derivados deste. d'ana d'joao
+		pode haver N branches derivados deste para trabalho em partes específicas
+		de um projeto.
 
 origin		É o nome padrão do repositório remoto,  (renomeável). 
 
 fork		Obtenção de um projeto em paralelo ao original para modificações próprias.
 
-----------------------------------------------
 
-UNTRACKED	UNMODIFIED	MODIFIED	STAGED
---------------------add------------------------>
-                ----edit------->
-                                ---stage------->
-<---remove------
-                <-----------commit--------------
+
 
 PARA MAIS DETALHES LEIA O MANUAL MAN CORRESPONDENTE.
 A DOCUMENTAÇÃO  ON-LINE É A  MESMA  DAS PÁGINAS MAN
 EM TUA DISTRO LINUX.
 
+
+
+			DESCRIÇÃO GENÊRICA DE CADA COMANDO
+			      ET PRINCIPAIS OPÇÕES
 CONFIGURAÇÃO
 
 	git
-		rastreador de conteúdo.
+		rastreador de conteúdo abestado.
 	
 	git help
 		mostra informação de ajuda sobre o git.
@@ -66,14 +78,22 @@ BASIC
 	git mv
 		move ou renomeia um arquivo, um diretório, ou um link simbólico.
 	
-	git reset [opção]
+	git reset [opção] [commit]
 		redefine o HEAD atual para o estado especificado
+		--hard
+		--soft
+		--mixed
+		--merge
+		--keep
+		--[no-]recurse-submodules
 	
 	git restore [arquivo]
-		restaura arquivos da árvore de diretórios
+		restaura arquivos modificados da árvore de diretórios
+		de acordo com o último commit.
 	
 	git notes	
-		adicionar ou inspecionar notas dos objetos
+		adicionar ou inspecionar notas dos objetos.
+		add copy append edit show merge remove prune
 
 RAMIFICAÇÃO E MESCLAGEM
 
@@ -82,13 +102,16 @@ RAMIFICAÇÃO E MESCLAGEM
 		listar, criar, renomear ou deletar branches, pode ser pricipal ou derivadas.
 	
 	git checkout
-		mover-se entre ramificações ou restaurar árvore de diretórios de trabalho.
+		Atualiza arquivos na árvore de trabalho para corresponder à versão no INDEX 
+		ou na árvore especificada.
+		Se nenhum pathspec foi fornecido, o git checkout também atualizará o HEAD
+		para definir o branch especificado como o branch atual VIDE(switch).
 
 	git switch
 		mover-se entre ramificações
 
 	git merge
-		mesclar duas ou mais branches
+		mesclar duas ou mais branches na atual.
 	
 	git mergetool
 		executar a ferramenta solucionadora de conflito de mescla (após merge geralmente)
@@ -98,6 +121,8 @@ RAMIFICAÇÃO E MESCLAGEM
 
 	git stash
 		Guarde as alterações em um diretório de trabalho sujo.
+		list show drop pop apply branch save clear create store
+
 
 	git tag 
 		Crie, liste, exclua ou verifique um objeto de tag assinado com GPG
@@ -110,10 +135,11 @@ COMPARTILHAMENTO E ATUALIZAÇÃO DOS PROJETOS
 
 	git fetch
 		Baixar objetos e referências de outros repositórios.
-		merges e commits do repositório remoto.
+		Alterações no remoto feitas por terceiros desde que fizeste pull
+		porém não altera a worktree.
 
 	git pull
-		puxar do remoto (Remoto é o mesmo projeto)
+		Incorpora mudaças de um repositório remoto.
 
 	git push
 		empurrar para remoto
@@ -134,10 +160,16 @@ COMPARTILHAMENTO E ATUALIZAÇÃO DOS PROJETOS
 INSPEÇÃO E COMPARAÇÃO
 
 	git show
-		mostrar todas as mudaças e objetos no git (commited).
+		mostrar vários tipos de objetos do git.
+		OBJETOS: HEAD <branch> etc...
 
 	git diff
-		mostra as mudanças entre commits, commit e a árvore de trabalho. Diferença
+		mostra as mudanças entre commits, commit e a árvore de trabalho,
+					WORKTREE vs INDEX
+		--cached		INDEX vs último_COMMIT
+		HEAD			WORKTREE vs último_COMMIT
+		<commitA> <commitB>	Commit vs Commit
+
 	
 	git difftool
 		mostar mudanças usando ferramentas diff comuns.
