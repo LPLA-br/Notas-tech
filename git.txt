@@ -54,6 +54,9 @@ CONFIGURAÇÃO
 
 	git config
 		obter e definir repositório ou configurar opções globais.
+		--local		local a um projeto no host.
+		--global	para todos projetos no host.
+		user.email user.name
 
 OBTENDO E CRIANDO PROJETOS
 	git init
@@ -71,9 +74,11 @@ BASIC
 
 	git commit -m "text"
 		confirmar as mudanças definitivamente para HEAD.
+		"text" frase mínima de modificações.
 	
 	git rm
 		remove arquivos do diretório de trabalho e do index.
+		git rm --cached		remover do index, não da worktree.
 
 	git mv
 		move ou renomeia um arquivo, um diretório, ou um link simbólico.
@@ -87,9 +92,9 @@ BASIC
 		--keep
 		--[no-]recurse-submodules
 	
-	git restore [arquivo]
+	git restore
 		restaura arquivos modificados da árvore de diretórios
-		de acordo com o último commit.
+		de acordo com o último commit. Vide manual.
 	
 	git notes	
 		adicionar ou inspecionar notas dos objetos.
@@ -108,7 +113,7 @@ RAMIFICAÇÃO E MESCLAGEM
 		para definir o branch especificado como o branch atual VIDE(switch).
 
 	git switch
-		mover-se entre ramificações
+		mover-se entre ramificações do projeto.
 
 	git merge
 		mesclar duas ou mais branches na atual.
@@ -183,15 +188,83 @@ INSPEÇÃO E COMPARAÇÃO
 	git describe
 		 Dê a um objeto um nome legível por humanos com base em uma referência disponível.
 
+CORRECIONAMENTO
 
-T R A B A L H O------C O L A B O R A T I V O
+	git apply
 
-Repositório Compartilhado
+	git cherry-pick
+
+	git diff
+
+	git rebase
+		Reaplicar commits em cima de outra ponta base.
+		-i --interactive
+
+	git revert
+
+DEBUG
+	git bisect
+
+	git blame
+
+	git grep
+
+
+
+T R A B A L H O------C O L A B O R A T I V O------------------------------
+
+GITHUB
+Code
+ Código fonte de um projeto.
+
+Issues
+ Levantamento de problemas a serem corrigidos.
+ Fechamento de problemas resolvidos.
+ Problema pode voltar e ser resolvido em seguida.
+
+Pull request
+ Ações de incorporação de modificações advindas
+ dos colaboradores.
+
+·REPOSITÓRIO COMPARTILHADO
 	Todos os participantes tem permissão para alterar
 	(add, push, commit, pull, branch , ...)
 	Adequado: projetos com poucos colaboradores.
 
-Fork & Pull
+	Comum em projetos mais reservados.
+
+	Problema !
+	Criação de ramificação.
+	Trabalho...
+	Solicitação de mescla para main se tudo
+	estiver certo (pull request).
+
+·FORK & PULL
 	Todos os colaboradores trabalham em forks do projeto principal.
 	para incorporar trabalho é necessário enviar um pull request para
-	os mantenedores do projeto.
+	mantenedores do projeto.
+
+	Comum em projetos open source.
+
+	Problema !
+	FORK pessoal do projeto para tua conta.
+	Git clone
+	Trabalho...
+	Git commit & push
+	pull request para as modificações.
+
+--------------------------------------------------------------------------
+
+REBASE
+Fusão de N>1 commits e um só para facilitação de revisão de commit.
+
+git rebase -i HEAD~3  	#reunir os três últimos
+git rebase -i COMMITDID	#reunir de COMMITDID até o mais recente.
+
+pick
+stash 
+stash
+...
+stash
+--------------------------------------------------------------------------
+
