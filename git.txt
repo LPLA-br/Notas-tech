@@ -123,6 +123,13 @@ RAMIFICAÇÃO E MESCLAGEM
 
 	git merge
 		mesclar duas ou mais branches na atual.
+		Resolução de confito:
+		git merge A B
+			CONFLITO !
+			EDITA ARQUIVO { remove delimitadores e corrige problemas }
+		git add file
+		git commit
+		RESOLUÇÃO CONCLUIDA
 	
 	git mergetool
 		executar a ferramenta solucionadora de conflito de mescla (após merge geralmente)
@@ -138,7 +145,31 @@ RAMIFICAÇÃO E MESCLAGEM
 
 	git tag 
 		Crie, liste, exclua ou verifique um objeto de tag assinado com GPG
-		(útil em versionamento)
+
+		Marcar pontos especificos na história como sendo importantes
+		Usado, geralmente, para marcar pontos onde foram feitos lançamento
+		de versões do projeto.
+		tipos:
+		LEVES: aponta para um commit específico
+		ANOTADAS: são um armazenamento completo de objetos no banco de dados do Git.
+		Elas têm checksum, contem marcações de nome, email e data; têm uma mensagem
+		de tag; e podem ser assinadas e asseguradas pela GPG (GNU Privacy Guard).
+
+		git tag -a v1.0 -m "versão 1.0 do Mércio"
+
+		$ git show v1.0
+		tag v1.0
+		Tagger: Vanessa Camargo <ben@straub.cc>
+		Date:   Sat May 3 20:19:12 2014 -0700
+
+		versão 1.0 do Mércio
+
+		commit ca82a6dff817ec66f44342007202690a93763949
+		Author: Mércio Jonilson <schacon@gee-mail.com>
+		Date:   Mon Mar 17 21:52:11 2008 -0700
+
+		    changed the version number
+
 	
 	git worktree
 		Gerenciar multiplas árvores de diretórios
@@ -173,7 +204,9 @@ INSPEÇÃO E COMPARAÇÃO
 
 	git show
 		mostrar vários tipos de objetos do git.
+		Exemplo: tags
 		OBJETOS: HEAD <branch> etc...
+
 
 	git diff
 		mostra as mudanças entre commits, commit e a árvore de trabalho,
@@ -293,33 +326,46 @@ bisect, revert, add, commit.
  branch,checkout,switch
  main
  |_development
- | |_funcionalidade/painel
- |   |_funcionalidade/painel/compras
- |   | |_funcionalidade/painel/compras/mecanismo-pesquisa
- |   |_funcionalidade/painel/vendas
- |     |_funcionalidade/painel/publicar-produto
- |_hotfix/v1.1
+ | |_feat/painel
+ | |_feat/requisicoes
+ |_release/v1.1.0
+ |_hotfix/v1.0.1
 
+
+GIT FLOW TRADICIONAL
+                    1.0  1.1                     1.2
+	main________C____C_______________________C
+	hotfix______|_\/      release R____R_/
+	develop_____|_ \______________/______\____
+	feature______\.__________.__./
+
+
+ https://medium.com/prolog-app/nossos-padr%C3%B5es-de-nomenclatura-para-branches-e-commits-fade8fd17106
+ {
  NOMENCLATURA DE BRANCH EM III PARTES
- EXTENDIDO POR MIM DE:
-  https://medium.com/prolog-app/nossos-padr%C3%B5es-de-nomenclatura-para-branches-e-commits-fade8fd17106
+
  tipo:
  	docs		documentação
 	feat		funcionalidade
 	fix		correção de bugs
-	hotfix		correção de bugs do main em produção
 	perf		performance
 	refactor	refatoração
 	style		estilo no código {padrões na escrita do código}
 	test		adicionar ou corrigir testes
+
+	hotfix		correção de bugs do main em produção
+	release		lançamento
  ação:
  	docs-funçõesHashAlpha-
+
  código livre:
+
  	docs-funçõesHashAlpha-X69
 
 	COMMIT MSG
 	<tipo> <escopo> <descrição imperativa> <código>
 	docs (funçõesHashAlpha): descreve as funções de hash alpha X69
+}
 
  VERSIONAMENTO SEMÂNTICO - BASICÃO
  0.0.0
@@ -334,6 +380,17 @@ bisect, revert, add, commit.
      |_Patch: informar hotfixes→não alteram funcionalidade da aplicação,
        entretanto corrigem bugs. Incrementa N vezes.
  Atente-se à arquitetura do projeto.
+
+·git desktop, git cola (ferramentas gráficas para o git)
+·git kraken (ferramentas gráfica para git flow)
+.Eventos git
+	Execução de shellscript padrão em resposta a eventos
+	do git
+	.git/hooks/SCRIPT-NAME.sample
+	CÓPIA PRÓPRIA COM MODIFICAÇÕES:
+	.git/hooks/SCRIPT-NAME
+	verifique as permissões de execução.
+	
 
 --------------------------------------------------------------------------
 
