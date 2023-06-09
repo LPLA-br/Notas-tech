@@ -107,10 +107,16 @@ RAMIFICAÇÃO E MESCLAGEM
 		listar, criar, renomear ou deletar branches, pode ser pricipal ou derivadas.
 	
 	git checkout
+		Mover-se entre ramificações ou restaurar arquivos da worktree
+
 		Atualiza arquivos na árvore de trabalho para corresponder à versão no INDEX 
 		ou na árvore especificada.
+
 		Se nenhum pathspec foi fornecido, o git checkout também atualizará o HEAD
-		para definir o branch especificado como o branch atual VIDE(switch).
+		para definir o branch especificado como o branch atual.
+		vide switch.
+
+		-b <nova-branch>
 
 	git switch
 		mover-se entre ramificações do projeto.
@@ -123,6 +129,7 @@ RAMIFICAÇÃO E MESCLAGEM
 
 	git log
 		mostrar log dos commits.
+		--graph 	#gráficos
 
 	git stash
 		Guarde as alterações em um diretório de trabalho sujo.
@@ -191,40 +198,39 @@ INSPEÇÃO E COMPARAÇÃO
 CORRECIONAMENTO
 
 	git apply
+		
 
 	git cherry-pick
+		Aplique as alterações introduzidas por alguns commits existentes
 
 	git diff
+		Mostrar diferença entre commits, entre commit e worktree etc...
 
 	git rebase
 		Reaplicar commits em cima de outra ponta base.
-		-i --interactive
+		git rebase -i HEAD~3  		#reunir os três últimos commits.
+		git rebase -i COMMITDID		#reunir de COMMITDIR até o mais recente.
 
-	git revert
-
+	git revert <hexid>
+		reverter alguns commits existentes.
 DEBUG
 	git bisect
+		Empregar a busca binária para encontrar o commit
+		que introduziu problemas ou mudaças indesejadas.
+		start
+		bad HEAD		# vide arquivus directori
+		good <hexid>
 
-	git blame
+	git blame <file>
+		Show what revision and author last modified each line of a file
+		Mostrar qual revisão e autor modificou por último cada linha do arquivo.
+		C U L P A D O !
 
 	git grep
 
 
 
 T R A B A L H O------C O L A B O R A T I V O------------------------------
-
-GITHUB
-Code
- Código fonte de um projeto.
-
-Issues
- Levantamento de problemas a serem corrigidos.
- Fechamento de problemas resolvidos.
- Problema pode voltar e ser resolvido em seguida.
-
-Pull request
- Ações de incorporação de modificações advindas
- dos colaboradores.
 
 ·REPOSITÓRIO COMPARTILHADO
 	Todos os participantes tem permissão para alterar
@@ -253,18 +259,83 @@ Pull request
 	Git commit & push
 	pull request para as modificações.
 
+GITHUB
+Code
+ Código fonte de um projeto.
+
+Issues
+ Levantamento de problemas a serem corrigidos.
+ Fechamento de problemas resolvidos.
+ Problema pode voltar e ser resolvido em seguida.
+
+Pull request
+ Ações de incorporação de modificações advindas
+ dos colaboradores.
+
+Wiki
+ Esta parte é extremamente importante pois é a
+ documentação de como utilizar o software ou
+ biblioteca desenvolvida no projeto.
+
 --------------------------------------------------------------------------
 
-REBASE
-Fusão de N>1 commits e um só para facilitação de revisão de commit.
+·Issues clone
+·Pull Requests (solicitação de puxamento). push et pull, fetch
+·Alternativas ao github: sourceforge,bitbucket...
+·Unindo plurimos commits em um só. rebase
+·Trazer um commit especifico de uma branch para HEAD da branch atual: cherry pick
+·O ponto que que uma alteração foi realizada, Descobrindo bug.
+bisect, revert, add, commit.
+·Quem é o responsável/culpado por uma alteração? git blame
+·main → produção ( códigos testados e aprovados prontos para implementação )
+ não commitar na main. Cria branch para isto.
+·ramificações para: incrementos e modificações(cuidado com conflitos):
+ branch,checkout,switch
+ main
+ |_development
+ | |_funcionalidade/painel
+ |   |_funcionalidade/painel/compras
+ |   | |_funcionalidade/painel/compras/mecanismo-pesquisa
+ |   |_funcionalidade/painel/vendas
+ |     |_funcionalidade/painel/publicar-produto
+ |_hotfix/v1.1
 
-git rebase -i HEAD~3  	#reunir os três últimos
-git rebase -i COMMITDID	#reunir de COMMITDID até o mais recente.
+ NOMENCLATURA DE BRANCH EM III PARTES
+ EXTENDIDO POR MIM DE:
+  https://medium.com/prolog-app/nossos-padr%C3%B5es-de-nomenclatura-para-branches-e-commits-fade8fd17106
+ tipo:
+ 	docs		documentação
+	feat		funcionalidade
+	fix		correção de bugs
+	hotfix		correção de bugs do main em produção
+	perf		performance
+	refactor	refatoração
+	style		estilo no código {padrões na escrita do código}
+	test		adicionar ou corrigir testes
+ ação:
+ 	docs-funçõesHashAlpha-
+ código livre:
+ 	docs-funçõesHashAlpha-X69
 
-pick
-stash 
-stash
-...
-stash
+	COMMIT MSG
+	<tipo> <escopo> <descrição imperativa> <código>
+	docs (funçõesHashAlpha): descreve as funções de hash alpha X69
+
+ VERSIONAMENTO SEMÂNTICO - BASICÃO
+ 0.0.0
+ | | |
+ |_|_|_Major: Representa uma versão incompatível ou alguma 
+   | | alteração drástica no projeto. redefine Minor e patch.
+   | |
+   |_|_Minor: Representa novas funcionalidades do projeto.
+     | redefine para zero todos os patches anteriores quando
+     | incrementado.
+     |
+     |_Patch: informar hotfixes→não alteram funcionalidade da aplicação,
+       entretanto corrigem bugs. Incrementa N vezes.
+ Atente-se à arquitetura do projeto.
+
 --------------------------------------------------------------------------
+
+
 

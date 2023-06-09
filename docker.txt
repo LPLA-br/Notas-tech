@@ -1,4 +1,166 @@
-Containers DOCKER
+------------------------------------------------------------------------
+				ANOTAÇÕES
+                            II IVNII MMXXIII
+			LVIZ PAVLVS LIMAE ARAVIVS
+                      DE CONTEINERIZATIONE DOCKERIS
+
+			DOCKER - CONTEINERIZAÇÃO
+	VIRTUALIZAÇÃO				CONTEINERIZAÇÃO
+	|app| |app| |app|		|app|app|   |app|app|		
+	|dep| |dep| |dep|		|depends|   |depends|
+	|S.O|=|S.O|=|S.O|		|CON    | = |CON    |
+	|   HIPERVISOR  |		|SISTEMA OPERACIONAL|
+	|SISTEMA OPERACI|		|    HARDWARE       |
+	|    HARDWARE   |
+
+
+Máquina virtual
+	·Simplesmente uma máquina física é simulada de forma que
+	um sistema operacional inteiro pode rodar sobre essa,
+	isolado, é claro, do sistema operacional host.
+	host  - sistema que hospeda.
+	guest - sistema que é hospedado.
+
+Conteineres
+	·Funcionam como partes isoladas de um sistema operacional.
+	 Isolamento garantido graças aos NAMESPACES
+	 	NAMESPACES proveem:
+			PID - isolamento de processos.
+			NET - isolamento de intefaces de rede.
+			IPC - isolamento da comunicação entre processos
+			      e memória compartilhada.
+			MNT - isolamento de sistema de arquivos e
+			      pontos de montagem.
+			UTS - provê isolamento do kernel, como se o
+			      conteiner fosse outro host.
+		CGROUPS controle  de recursos de cada conteiner.
+	·Contém uma aplicação e suas dependências.
+	·Microserviços
+
+INICIANDO
+após instalares o docker, adiciona teu usuário ao grupo "docker"
+no teu sistema unix/linux para
+que tenhas acesso a lista de comandos docker.
+
+	IMAGEM
+	1..N camadas (bibliotecas,ferramentas,serviços,arquivos)
+	necessários para execução de uma aplicação. Chamado também
+	de snapshot pois se trata de um sistema em um ponto fixo no
+	tempo. Prota para ser extendida para um novo uso.
+
+	CONTAINER
+	A "instância" de uma imagem com camadas extras chama-se conteiner.
+	Dá continuidade à estaticidade da imagem. O uso propriamente dito.
+	Ativo apenas se houver 1..N processos em execução.
+
+CAMADAS
+	tarefas que realizaram:
+		A criação da imagen.
+		A extenção da imagem para uma finalidade (camadas extras → container)
+	geralmente correspondem a várias linhas de um
+	DOCKERFILE ( Arquivo responsável pela criação e configuração de uma imagem ).
+	As camadas de uma imagem são imutáveis. As do conteiner extendem às da imagem
+	e são dinâmicas ( diferem de um container para outro ( são passageiras ))
+
+Dockerfile → IMAGEN → CONTAINER
+
+                      Ξ r/w
+Ξ            Ξ ro     Ξ
+
+PERSISTÊNCIA DE DADOS
+	Tendo em vista a natureza descartável de um
+	conteiner, temos três métodos de persistência
+	de dados para evitar perda de dados como:
+	dados de SGBD's, arquivos de configuração
+	de /etc e etc...
+
+ BIND MOUNT (montagem por vinculação guest:host)
+	Basicamente monta um diretório do conteiner em um
+	diretório da tua máquina. estará sob teu controle.
+
+	--mount type=bind,source=hostpath,target=guestpath
+
+	·não é gereciado pelo docker, mas sim por ti.
+	·escolhes onde montar.
+
+ VOLUMES ( $ docker volume )
+	Utilitário docker volume gerencia os volumes de forma
+	mais prática. montagem dentro de área protegida pelo
+	docker.
+
+	--volume NOMENVOLVMIS:CONTAINERISDIRECTORIVS
+
+	.É gerenciado pelo docker volume criar,remover,inspecionar...
+	·montagem direcionada para /var/lib/docker/volumes/<NOME>
+
+ TMPFS temporary filesystem
+	armazenamento na memória e não em disco por motivo de
+	segurança.
+
+	--mount type=tmpfs,source=,target=
+
+NETWORK
+	docker network
+	É possível criar uma rede interna de conteineres onde cada
+	um deles pode se contatarem pelos seus hostnames, resolução de nomes
+	DNS, ao invés de usar o variável IP.
+
+	networks:
+	NAMES	DRIVER
+	bridge	bridge		comunicação dos containeres em rede própria.
+	host	host		conteineres e portas do host "ligação".
+	none	null		sem interface de rede.
+	NOME	DRIVER		definido pelo dev
+
+DOCKER COMPOSE
+	Para tornar mais prático e confiável a subida de conteineres
+	há a ferramenta chamada docker compose. Escreve-se um arquivo de
+	configuração chamado docker-compose.yml que define como subir,descer...
+	cada conteiner.
+exemplo:
+--------------------------
+version: "1.0"
+services:
+  sgbd:
+    image: postgres:latest
+    container_name: sgbdados
+    volumes:
+      - dadosgbd:/var/lib/postgresql/data
+    networks:
+      - appnetwork
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=123
+      - PGDATA=/var/lib/postgresql/data
+
+  app:
+    image: foo/app:1.0
+    container_name: app
+    networks:
+      - appnetwork
+    ports:
+      - 8080:8080
+    depends_on:
+      - sgbd
+
+networks:
+  appnetwork:
+    driver:
+      bridge
+
+volumes:
+  dadosgbd:
+    external: true
+    name: dadosgbd
+
+config:
+
+secret:
+
+--------------------------
+
+------------------------------------------------------------------------
 
 RODANDO CONTAINERS (fragmentos de comandos)
     Iniciar um container de uma imagem:
@@ -64,13 +226,13 @@ GERENCIAR CONTAINERS
 
 GERENCIAR IMAGENS
     
-    baixar imagem:
+    Baixar imagem:
         docker pull IMAGE:[TAG]
 
-    subir imagem para o repositório:
+    Subir imagem para o repositório:
         docker push IMAGE:[TAG]
 
-    deletar uma imagem:
+    Deletar uma imagem:
         docker rmi IMAGE
 
     Mostrar uma lista de todas as imagens:
@@ -88,34 +250,63 @@ GERENCIAR IMAGENS
     Tag uma imagem:
         docker tag IMAGE NEWIMAGE
 
-    COnstruir e tag uma imagem de um dockerfile:
+    Construir e tag uma imagem de um dockerfile:
         docker build -t IMAGE DIR
 
     Salvar img para um tar :
         docker save IMGAE > FILE
 
-    Carregar imager mde um tar:
+    Carregar imager de um tar:
         docker load -i TARFILe
 
  INFORMAÇÕES E STATUS
     
-    mostrar logs de um container:
+    mostrar logs de um conteiner:
         docker logs CONTAIERS
 
-    status de todos os containers rodando:
+    status de todos os conteineres rodando:
         docker status
 
-    mostrar processor pertecentes a um contaier:
+    mostrar processos pertecentes a um conteiner:
         docker top CONTAINER
 
-    mostar versãop do docker^p:
+    mostar versão do docker:
         docker version
 
-    obter info detalhada sobre objeto:]
+    obter info detalhada sobre objeto:
         docker inspect NAME
 
-    info detalhadas de arquivos modificados no ocnteiniar:
+    info detalhadas de arquivos modificados no conteiner:
         docker diff CONATAINER
 
-    mostar portas mapesadas de um conetinaer:
+    mostar portas mapeadas de um conteiner:
         docker port CONTAINER
+
+------------------------------------------------------------------------
+
+--detached -d
+	# Desacoplamento do terminal atual para não trava-lo. Não interativos.
+
+--publish -p ip:[hostPort]:containerPort | [hostPort:]containerPort
+	# publicar porta da inteface de rede do container.
+
+$ docker run --interactive --tty --entrypoint /bin/SHELL ubuntu
+	# Criação e interação direta via terminal com o container docker do ubuntu.
+
+$ docker exec --interactive --tty CONTAINER-ID /bin/SHELL
+	# Entrando interativamente em um container docker
+
+$ docker build --tag AUTOR/NOMEAPLICATIONIS:VERSÃO .
+	# Criando imagem para projeto no diretório corrente usando build.
+
+$ docker ps --size
+	# SIZE	 newlayers (virtual = imgsize + newlayers)
+
+NETWORK ENTRE CONTAINERS PELA BRIDGE DOCKER
+
+$ docker network create --driver bridge NOME
+$ docker run --interactive --tty --name EXEMPLO --network CONTAINER_A --entrypoint /bin/bash ubuntu
+$ docker run --interactive --tty --name EXEMPLO --network CONTAINER_B --entrypoint /bin/bash ubuntu
+
+[root@d198f96c79fb ~]$ ping CONTAINER_A
+
