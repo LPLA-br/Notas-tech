@@ -122,7 +122,7 @@ RAMIFICAÇÃO E MESCLAGEM
 		mover-se entre ramificações do projeto.
 
 	git merge
-		mesclar duas ou mais branches na atual.
+		mesclar ou mais branches forasteiras à corrente.
 		Resolução de confito:
 		git merge A B
 			CONFLITO !
@@ -136,6 +136,7 @@ RAMIFICAÇÃO E MESCLAGEM
 
 	git log
 		mostrar log dos commits.
+		--oneline	#uma linha
 		--graph 	#gráficos
 
 	git stash
@@ -244,6 +245,9 @@ CORRECIONAMENTO
 		git rebase -i HEAD~3  		#reunir os três últimos commits.
 		git rebase -i COMMITDID		#reunir de COMMITDIR até o mais recente.
 
+		pick	<hexid>
+		1..N s	<hexid>		#squash
+
 	git revert <hexid>
 		reverter alguns commits existentes.
 DEBUG
@@ -264,6 +268,13 @@ DEBUG
 
 
 T R A B A L H O------C O L A B O R A T I V O------------------------------
+
+Tipos de contribuição segundo Luiz:
+ Estensivo
+  Estende o trabalho pré existente. Menos suscetível a conflitos.
+ Modificativo
+  Modifica o todo ou partes de uma subparte. Mais suscetível a
+  conflitos.
 
 ·REPOSITÓRIO COMPARTILHADO
 	Todos os participantes tem permissão para alterar
@@ -332,12 +343,56 @@ bisect, revert, add, commit.
  |_hotfix/v1.0.1
 
 
-GIT FLOW TRADICIONAL
+ GIT FLOW TRADICIONAL
                     1.0  1.1                     1.2
 	main________C____C_______________________C
 	hotfix______|_\/      release R____R_/
 	develop_____|_ \______________/______\____
 	feature______\.__________.__./
+
+
+	PERMANENTES
+	 main
+	 A ramificação principal do projeto que mantém o código
+	 testado e aprovado para produção que pode ser
+	 implementado no ambiente real. Cada commit
+	 recebe a etiqueta do versionamento semântico.
+
+	 develop
+	 A ramificação criada no início do projeto e que é mantida
+	 atualizada durante o processo de desenvolvimento.
+	 Esta mantém o código pré-produção e novas funcionalidades
+	 em teste. Novas funcionalidades devem ser ramificações
+	 derivadas de develop, quando prontas para teste, são
+	 mescladas à ramificação develop.
+	
+	AUXILIARES/TEMPORÁRIAS
+
+	 release
+	 o trabalho nas ramificações de lançamento consiste em
+	 pequenas correções de bugs e retoques finais que são
+	 específicos para liberar novos códigos e códigos que
+	 devem ser tratados separadamente da ramificação de
+	 desenvolvimento principal. Serve como uma espécie
+	 de interface entre develop e main.
+
+	 feature
+	 A ramificação das novas funcionalidades para o código.
+	 Quando trabalha-se em uma nova parte, esta é ramificada
+	 de develop. Após trabalhar em tal ramificação, verificando
+	 e examinando as modificações, faz-se a mescla desta com
+	 develop.
+	
+	 hotfix
+	 Mudanças urgentes para a ramificação main. se invocada,
+	 deve ser mesclada para main e develop. Geralmente serve
+	 para corrigir erros críticos e falhas de segurança.
+
+ PERMANENTES | TEMPORÁRIAS
+ MAIN________|_hotfix
+ |  |     |__|_release
+ DEVELOP__|__|_feature
+
 
 
  https://medium.com/prolog-app/nossos-padr%C3%B5es-de-nomenclatura-para-branches-e-commits-fade8fd17106
