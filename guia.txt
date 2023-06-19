@@ -151,9 +151,9 @@ usermod - modificar conta de usuário.
 userdel - deletar conta de usuário e seus arquivos.
 groupadd - cria um grupo no sistema.
 groupmod - Modificar um grupo existente.
+gpasswd - administra o arquivo /etc/group (Um groupmod avançado).
 groupdel - remover um grupo no sistema.
 chage - mudar informação de expiração da senha para um usuário.
-gpasswd - administra o arquivo /etc/group (Um groupmod avançado).
 chfn - mudar nome e informações pessoais do usuário (GECOS).
 pinky- mostra informações do usuário.
 last - imprime o registro de logins do sistema.

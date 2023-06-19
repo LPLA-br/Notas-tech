@@ -182,6 +182,8 @@ COMPARTILHAMENTO E ATUALIZAÇÃO DOS PROJETOS
 		Alterações no remoto feitas por terceiros desde que fizeste pull
 		porém não altera a worktree.
 
+		git fetch origin BRANCH-NOME:BRANCH-NOME	# trazer ramificação do remoto
+
 	git pull
 		Incorpora mudaças de um repositório remoto.
 

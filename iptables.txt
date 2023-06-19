@@ -1,34 +1,50 @@
 IPTABLES - FRONT-END DO NETFILTER
 Aplicada na terceira camada OSI (rede)
+OSI			TCP/IP
+APLICAÇÃO
+APRESENTAÇÃO
+SESSÃO			APLICAÇÃO
+TRANSPORTE		TANSPORTE
+REDE		<---> 	REDE
+ENLACE			ACESSO À REDE
+FÍSICO
 
-tables do iptables:
-filter
+tables TABELAS do iptables:
+FILTER
 	Tabela padrão para manipular pacotes de rede, usada para
 	configurar politicas para o tráfego que entra, atravessa
 	ou sai do computador.
-nat
+NAT
 	Tabela usada para alterar pacotes que criam uma nova
 	conexão, e para redirecionar conexões para nat..
-mangle
+MANGLE
 	Tabela usada para tipos específicos de alteração de pacotes,
-	que não devemser manipulados pelo sistema de rastreamento de
+	que não devem ser manipulados pelo sistema de rastreamento de
 	conexões.
-raw
+RAW
 	Marca pacotes que não devem ser manipulados pelo sistema de
 	rastreamento de conexões.
 
 EXEMPLO VISUAL:
+
+TABELAS
+|_CADEIAS
+  |_REGRAS
+
 table1---------------------------
 	chain1
-		rule1, rule2, rule3 ,ruleN
+		rule1
+		rule2
+		rule3
+		ruleN
 	chain2
-		rule1, rule2, rule3 ,ruleN
+		rule1
+		rule2
+		rule3
+		ruleN
 
 table2---------------------------
-	chain1
-		rule1, rule2, rule3 ,ruleN
-	chain2
-		rule1, rule2, rule3 ,ruleN
+tableN---------------------------
 
 
 
@@ -37,16 +53,16 @@ FILTER Regras normais de entrada/saída de dados serão aplicadas na table padr�
 	INPUT - Regras para pacotes que estão entrando no nosso servidor.
 	OUTPUT -Regras para pacotes que estão saindo do nosso servidor.
 	FORWARD - aplica rules aos pacotes de rede roteados através do
-						servidor(para outro servidor ou outra interface de rede do mesmo servidor)
+                  servidor(para outro servidor ou outra interface de rede do mesmo servidor)
 
 	ações possíveis em cada chain de FILTER:
 	ACCEPT - O pacote pode ser aceito no nosso servidor
 	DROP - O pacote será dropado, isso é,descartado.
-	REGECT - O pacote será rejeitado, isso é, será enviado um
+	REJECT - O pacote será rejeitado, isso é, será enviado um
 					 sinal para o cliente de que o pacote foi rejeitado.
 
-NAT é usada para fazer network address translation(basicamente converter
-IP privado em IP público).
+NAT é usada para fazer network address translation
+(basicamente converter IP privado em IP público).
 	chain:
 	PREROUTING
 	OUTPUT
@@ -72,39 +88,134 @@ RAW
 SECURITY
 	-
 
-Estrutura geral de uma rule
-iptables subcomando chain parâmetro1 valor1 parâmetroN valorN ação
+ESTRUTURA GERAL DE UMA RULE-----------------------------------------------------------
 
-SUBCOMANDOS
--A anexa a rule no final da chain especificada
--F apaga todas as rules na chain especificada
--L lista todas as rules da chain
--N cria uma nova chain com o nome desejado
--P configura a rule padrão da cadeia
--D apaga uma rule em uma posição na cadeia
--X exclui uma cadeia vazia
--I insere uma rule em uma posição na cadeia
+iptables SUBCOMANDO CHAIN parâmetro1 valor1 parâmetroN valorN AÇÃO
 
-AÇÕES (TARGETS)
+SUBCOMANDOS---------------------------------------------------------------------------
+-L --list		lista todas as rules da chain
+
+-N --new-chain		cria uma nova chain com o nome desejado
+-A --append		anexa a rule no final da chain especificada
+
+-P --policy		configura a rule política padrão da chain 
+-I --insert		insere uma rule em uma posição na chain
+
+-F --flush		apaga todas as rules na chain especificada
+-D --delete		apaga uma rule em uma posição na chain
+-X --delete-chain	exclui uma chain vazia
+
+
+AÇÕES---------------------------------------------------------------------------------
 ACCEPT o pacote é permitido
 DROP descartar pacote
 QEUE enviar o pacote ao userspace (código fora do kernel)
-RETURN descotinuar o processamento do pacote e aplicar a rule padrão a ele.
-ações adicionais:
+RETURN descotinuar o processamento do pacote e aplicar a rule padrão a ele. ações adicionais:
 REJECT descarta o pacote e envia o feedback ao remetente
 DNAT reescreve o endereço de destino NAT
 SNAT reescreve o endereço de origem NAT
 LOG coloca no log informações sobre o pacote
 
-PARÂMETRO
--t table      especificar a tabela (filter é a padrão)
--j ação       realiza a ação especificada
--p protocolo  especifica o protocolo (icmp, tcp, udp, all)
--s IP         IP de origem do pacote
--d IP         IP de destino do pacote
--I interface  nome da interface de rede de entrada do pacote
--o interface  nome da interface de rede de saída do pacote
--sport portas portas de origem
--dport portas portas de destino
--syn          identifica nova requisição de conexão
--icmp-type    tipo de mensagem ICMP
+PARÂMETROS----------------------------------------------------------------------------
+
+--table TABLE			especificar a tabela (filter é a padrão)		-t
+
+--protocol PROTOCOLO		especifica o protocolo (icmp, tcp, udp, all)		-p
+
+--source IP			IP de origem do pacote	|	0/0 = QUALQUER IP	-s
+--destination IP		IP de destino do pacote |	0/0 = QUALQUER IP	-d
+
+--in-interface INTERFACE	nome da interface de rede de entrada do pacote		-i
+--out-interface INTERFACE	nome da interface de rede de saída do pacote		-o
+
+-sport 0000			portas de origem da fonte
+-dport 0000			portas de destino do destino
+
+--match	PROP			propriedade específica: state, conntrack.		-m
+--state	ESTADOS			estados
+
+--jump AÇÃO			realiza a ação especificada				-j
+
+-syn				identifica nova requisição de conexão
+-icmp-type			tipo de mensagem ICMP
+
+--verbose	auto explicativo.
+--numeric	portas são mostradas numericamente.
+--line-numbers	^
+--------------------------------------------------------------------------------------
+
+INTERFACES DE REDE
+lo = loopback 127.0.0.1
+
+RASTREAMENTO DE CONEXÕES--------------------------------------------------------------
+connection tracking TCP <- transporte
+
+
+LISTEN		o host aguarda um pedido para iniciar uma conexão.
+ESTABLISHED	a conexão foi estabelicida.
+RELATED		o pacote está iniciando uma nova conexão, mas a nova é relacionada a uma
+		conexão já existente.
+INVALID		o pacote não pertence a nenhuma conexão rastreada.		
+NEW		o pacote está iniciando uma nova conexão ou é parte de uma conexão
+		que ainda não teve pacotes trafegados em ambas as direções.
+CLOSED		fechado
+
+
+EXEMPLOS------------------------------------------------------------------------------
+salvar configuração corrente et restaurar:
+$ iptables-save > file.txt
+$ iptables-restore < file.txt
+
+listar tabela filter(padrão):
+$ iptables -L
+$ iptables -t filter -L
+
+listar tabela nat:
+$ iptables -t nat -L
+
+bloquear tudo:
+$ iptables -t filter --policy INPUT DROP
+$ iptables -t filter --policy FORWARD DROP
+$ iptables -t filter --policy OUTPUT DROP
+
+navegador consegue estabelecer conexões:
+$ iptables -A INPUT --match state --state RELATED,ESTABLISHED -j ACCEPT 
+$ iptables -A OUTPUT --match state --state RELATED,ESTABLISHED -j ACCEPT 
+
+liberar loopback:
+$ iptables -t filter --policy INPUT --in-interface lo --jump ACCEPT
+$ iptables -t filter --policy INPUT --out-interface lo --jump ACCEPT
+
+na tabela, adicionar regra à cadeia:
+$ iptables -t filter -A INPUT --protocol PROTOCOLO --dport 0000 --jump AÇÃO
+
+remoção da regra acima:
+$ iptables -t filter -D INPUT --protocol PROTOCOLO --dport 0000 --jump AÇÃO
+
+permitindo apenas para um ip forasteiro específico:
+$ iptables -I INPUT --protocol tcp --source 192.168.2.1 --dport 22 --jump ACCEPT
+$ iptables -I INPUT --protocol tcp --source 0/0 --dport 22 --jump DROP
+
+liberar um limite de portas livres:
+$ iptables -t filter -A OUTPUT -p tcp --dport 1024:2000 -j ACCEPT
+$ iptables -t filter -A INPUT -p tcp --dport 1024:2000 -j ACCEPT
+
+UDP proibidâo (exceto para 53/udp vulgo: dns):
+$ iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+$ iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+$ iptables -A OUTPUT -p udp -j DROP
+$ iptables -A OUTPUT -p udp -j DROP
+
+apenas os nameservers desejados:
+$ iptables -A OUTPUT -p udp --dport 53 -d 8.8.8.8 -j ACCEPT
+$ iptables -A OUTPUT -p udp --dport 53 -d 8.8.4.4 -j ACCEPT
+
+nada de fazer ping:
+$ iptables -A OUTPUT -p icmp --icmp-type echo-request -j DROP
+
+nada de receber ping:
+$ iptables -A INPUT -p icmp --icmp-type echo-request -j REJECT
+
+
+persistência de configuração:
+
