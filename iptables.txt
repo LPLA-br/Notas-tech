@@ -1,4 +1,8 @@
 IPTABLES - FRONT-END DO NETFILTER
+
+iptables(8)
+ip6tables(8)
+
 Aplicada na terceira camada OSI (rede)
 OSI			TCP/IP
 APLICAÇÃO
@@ -163,59 +167,67 @@ CLOSED		fechado
 
 EXEMPLOS------------------------------------------------------------------------------
 salvar configuração corrente et restaurar:
-$ iptables-save > file.txt
-$ iptables-restore < file.txt
+# iptables-save > file.txt
+# iptables-restore < file.txt
 
 listar tabela filter(padrão):
-$ iptables -L
-$ iptables -t filter -L
+# iptables -L
+# iptables -t filter -L
 
 listar tabela nat:
-$ iptables -t nat -L
+# iptables -t nat -L
 
 bloquear tudo:
-$ iptables -t filter --policy INPUT DROP
-$ iptables -t filter --policy FORWARD DROP
-$ iptables -t filter --policy OUTPUT DROP
+# iptables -t filter --policy INPUT DROP
+# iptables -t filter --policy FORWARD DROP
+# iptables -t filter --policy OUTPUT DROP
 
 navegador consegue estabelecer conexões:
-$ iptables -A INPUT --match state --state RELATED,ESTABLISHED -j ACCEPT 
-$ iptables -A OUTPUT --match state --state RELATED,ESTABLISHED -j ACCEPT 
+# iptables -A INPUT --match state --state RELATED,ESTABLISHED -j ACCEPT 
+# iptables -A OUTPUT --match state --state RELATED,ESTABLISHED -j ACCEPT 
 
 liberar loopback:
-$ iptables -t filter --policy INPUT --in-interface lo --jump ACCEPT
-$ iptables -t filter --policy INPUT --out-interface lo --jump ACCEPT
+# iptables -t filter --policy INPUT --in-interface lo --jump ACCEPT
+# iptables -t filter --policy INPUT --out-interface lo --jump ACCEPT
 
 na tabela, adicionar regra à cadeia:
-$ iptables -t filter -A INPUT --protocol PROTOCOLO --dport 0000 --jump AÇÃO
+# iptables -t filter -A INPUT --protocol PROTOCOLO --dport 0000 --jump AÇÃO
 
 remoção da regra acima:
-$ iptables -t filter -D INPUT --protocol PROTOCOLO --dport 0000 --jump AÇÃO
+# iptables -t filter -D INPUT --protocol PROTOCOLO --dport 0000 --jump AÇÃO
 
 permitindo apenas para um ip forasteiro específico:
-$ iptables -I INPUT --protocol tcp --source 192.168.2.1 --dport 22 --jump ACCEPT
-$ iptables -I INPUT --protocol tcp --source 0/0 --dport 22 --jump DROP
+# iptables -I INPUT --protocol tcp --source 192.168.2.1 --dport 22 --jump ACCEPT
+# iptables -I INPUT --protocol tcp --source 0/0 --dport 22 --jump DROP
 
 liberar um limite de portas livres:
-$ iptables -t filter -A OUTPUT -p tcp --dport 1024:2000 -j ACCEPT
-$ iptables -t filter -A INPUT -p tcp --dport 1024:2000 -j ACCEPT
+# iptables -t filter -A OUTPUT -p tcp --dport 1024:2000 -j ACCEPT
+# iptables -t filter -A INPUT -p tcp --dport 1024:2000 -j ACCEPT
 
 UDP proibidâo (exceto para 53/udp vulgo: dns):
-$ iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
-$ iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
-$ iptables -A OUTPUT -p udp -j DROP
-$ iptables -A OUTPUT -p udp -j DROP
+# iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+# iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+# iptables -A OUTPUT -p udp -j DROP
+# iptables -A OUTPUT -p udp -j DROP
+OU
+# iptables -A INPUT -m state --state NEW -p udp --dport 53 -j ACCEPT
+# iptables -A INPUT -m state --state NEW -p tcp --dport 53 -j ACCEPT
 
 apenas os nameservers desejados:
-$ iptables -A OUTPUT -p udp --dport 53 -d 8.8.8.8 -j ACCEPT
-$ iptables -A OUTPUT -p udp --dport 53 -d 8.8.4.4 -j ACCEPT
+# iptables -A OUTPUT -p udp --dport 53 -d 8.8.8.8 -j ACCEPT
+# iptables -A OUTPUT -p udp --dport 53 -d 8.8.4.4 -j ACCEPT
 
 nada de fazer ping:
-$ iptables -A OUTPUT -p icmp --icmp-type echo-request -j DROP
+# iptables -A OUTPUT -p icmp --icmp-type echo-request -j DROP
 
 nada de receber ping:
-$ iptables -A INPUT -p icmp --icmp-type echo-request -j REJECT
+# iptables -A INPUT -p icmp --icmp-type echo-request -j REJECT
 
+computador específico:
+# iptables -A INPUT -m mac --mac-source 00:12:A1:24:BB:0C -j ACCEPT
+# iptables -A OUTPUT -m mac --mac-source 00:12:A1:24:BB:0C -j ACCEPT
 
 persistência de configuração:
+iptables-save > file.txt
+iptables-restore < file.txt
 

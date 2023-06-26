@@ -1,50 +1,195 @@
-HTTP e HTTPS
-{
-	"camada":"aplicação",
-	"desde": 1990
-}
+HTTP
+Protocolo sem estado que
+trata cada requisição como
+única.
 
-O protocolo http define um conjunto de métodos de requisição
-que indicam ação a ser executada para um dado recurso.
+TERMINOLOGIAS
+·Recurso
+	O alvo da requisição HTTP é o recurso que é uma
+	inteface de interação. São, geramente, identifi
+	cados pela URI(unifield Resource Identifier)
 
-GET
-	Solicita a representação de um recurso específico.
-	Requisições get devem retornar apenas dados.
-	Sintaxe:
-		GET /index.html
+·Representação
+	Informação que reflete o estado: passado, presente
+	ou futuro de um determinado recurso
 
-POST
-	Envia dados ao servidor. O tipo do corpo da solicitação
-	é indicado pelo cabeçalho.
-	Sintaxe:
-		POST /index.html
+·Conexões, Clientes e Servidores
+	cliente - programa que estabelece conexões a um servidor
+	 	  enviando-lhe requests.
+	servidor - programa que aceita conexões servindo responses
+		   HTTP ao cliente.
 
-PUT
-	Cria um novo recurso ou substitui uma representação do
-	recurso de destino com os novos dados. É idempotente:
-	chamá-lo uma ou várias vezes terá o mesmo efeito.
-	Sintaxe:
-		PUT /new.html HTTP/1.1
+·Mensagem
+	O protocolo de requests/responses para troca de Mensagens através
+	de uma conexão.
 
-DELETE
-	Remove o recurso especificado.
-	Sintaxe:
-		DELETE /arquivo.html HTTP/1.1
+	· request
+	O cliente manda uma mensagem na forma de request que contém:
+	O método, O alvo da requisição, headers fields:
+	(Informação do cliente, modificador da request, metadados de
+	representação)
 
-CONNECT
-HEAD
-OPTIONS
-PATCH
-TRACE
+	· response
+	O servidor manda uma ou mais response's ao cliente. Cada uma
+	contém: status code, headers fields:
+	(Informação do servidor, metadados do recurso,
+	metadados da apresentação, conteúdo a ser interpretado de
+	acordo com o status code)
+	trailer fields: Informação coletada durante envio
+	do conteúdo.
 
-Notas:
-·O Navegador faz a requisição do lado do cliente. requisição REQUEST
-	Cada requisição individual é enviada para um servidor, que irá
-	lidar com isso e forncecer um resultado, chamado de resposta.
-·O servidor responde as requisições de seus clientes. respostas RESPONSE
+·User Agent
+	Programa cliente que inicia a request.
+	EXEMPLOS:
+	Navegador, aplicativos móveis, dispositivos IOT etc...
 
-Buscar documentos de hipertexto.
-Buscar partes de documentos para atualizar páginas da Web sob demanda.
+·Origin Server
+	Programa que pode originar responses para um Resource alvo.
+
+·Intermediaries
+	proxy
+	gateway
+	tunnel
+
+	TERMOS:
+		upstream
+		downstream
+		inbound
+		outbound
+
+·Caches
+	O armazenamento local de messages responses e o subsistema
+	que controla o CRUD desta.
+
+IDENTIFICADORES EM HTTP
+
+
+	UNIFORM RESOURCE IDENTIFIER
+	Esse cara identifica o recurso fornecido pelo servidor.
+	Sua sintaxe básica é, informalmente e basicamente:
+	PROTOCOLO://{DOMINIO|IP}[:PORTA]{/CAMINHO/RECURSO}[[?campo=valor&campo=valor]|[#elemento_html]]
+
+
+	http-URI	http	://
+	authority	servidor que identificado pelo ip ou pelo domínio
+	path-abempty	/rota/até/recurso
+	[ ? query ]	consulta
+
+	https-URI	https	://
+	authority	servidor que identificado pelo ip ou pelo domínio
+	path-abempty	/rota/até/recurso
+	[ ? query ]	consulta
+
+
+EXEMPLOS DE MENSAGEMS HTTP
+
+	REQUEST----------------------
+	método, recurso, headers fields
+
+	GET /main/sobre.html HTTP/1.1
+	Host: 192.168.0.3
+	User-Agent: curl/7.64.1
+	Accept: text/html
+	Accept-Language: en-US, pt-BR
+	Accept-Encoding: gzip, deflate
+	Connection: keep-alive
+	Upgrade-Insecure-requests: 1
+	Content-Type: multipart/form-data, boundary=1285636
+	Content-Length: 345
+
+	body data
+
+	RESPONSE----------------------------------------
+	status code, headers fields, trailer fields.
+
+	HTTP/1.1 200 OK
+	Date: Mon, 27 Jul 2256 12:28:53 GMT
+	Server: Apache
+	Set-Cookie: aaa=...
+	ETag: "34aa387-d-1568eb00"
+	Last-Modified: Wed, 22 Jul 2251 19:15:56 GMT
+	Accept-Ranges: bytes
+	Vary: Accept-Encoding
+	Content-Type: text/html; charset=utf-8
+	Content-Length: 51
+	Content-Encoding: gzip
+	Keep-Alive: timeout=5, max=999
+	
+	body
+
+							|trailer fields
+
+	-------------------------------------------------
+
+	Vide documentação dos headers de requisição !
+
+MENSAGENS HTTP
+
+REQUEST----------------------------------------------------------------------------
+	LINHA INICIAL	método, recurso e protocolo
+	HEADERS
+		REQUEST
+		GENERAL
+		ENTITY
+	DADOS
+		...
+
+	MÉTODOS DE REQUISIÇÃO PARA UM DETERMINADO RECURSO.
+	RECURSOS ---N--- TÊM ---N--- MÉTODOS
+
+	GET
+		Solicita a representação de um recurso específico.
+		Requisições get devem retornar apenas dados.
+		Sintaxe:
+			GET /index.html
+
+	POST
+		Envia dados ao servidor. O tipo do corpo da solicitação
+		é indicado pelo cabeçalho.
+		Sintaxe:
+			POST /index.html
+
+	PUT
+		Cria um novo recurso ou substitui uma representação do
+		recurso de destino com os novos dados. É idempotente:
+		chamá-lo uma ou várias vezes terá o mesmo efeito.
+		Sintaxe:
+			PUT /new.html HTTP/1.1
+
+	DELETE
+		Remove o recurso especificado.
+		Sintaxe:
+			DELETE /arquivo.html HTTP/1.1
+
+	CONNECT
+	HEAD
+	OPTIONS
+	PATCH
+	TRACE
+
+RESPONSE---------------------------------------------------------------------------
+	STATUS	protocolo, status
+	HEADERS
+		RESPONSE
+		GENERAL
+		ENTITY
+	[BODY]
+
+	CÓDIGOS DE STATUS DA RESPOSTA
+
+	1xx: Informacional
+	2xx: Success
+	3xx: Redirection
+	4xx: Client Error
+	5xx: Server Error
+
+	HEADER FIELDS
+	Vide documentação dos headers de resposta !
+
+	TRAILER FIELDS
+	Vide documentação dos trailers de resposta !
+
+-----------------------------------------------------------------------------------
 
 Pode ser controlado pelo HTTP:
  Cache - A forma como documentos são cacheados.
