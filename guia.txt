@@ -300,17 +300,30 @@ GERENCIAMENTO DE PACOTES (softwares de seu sistema):
         pacman - gerenciador de pacotes absoluto do Arch linux.
 	makepkg - utilitário para compilar um pacote a partir do código fonte (Arch User Repository).
 
-INTERNET:
-wget - Utilitário de rede utilizado para recuperar arquivos da web.
-curl - ferramenta para transferir dados para um ou de um servidor.
-ip - mostrar / manipular roteamento, dispositivos de rede, interfaces e tuneis .
+REDES:
 ping - mandar pacotes para testar rede.
+ip - mostrar / manipular roteamento, dispositivos de rede, interfaces e tuneis .
+netstat - escrever: conexões, tabelas de roteamento, estartísticas de interfaces e etc...
+wget - Utilitário de rede utilizado para recuperar arquivos da web.
+curl - ferramenta para transferir dados para um ou de um servidor (capaz de fazer requisições http(s) (s)ftp ).
 iptables - ferramenta de administração para filtragem de pacotes e NAT (firewall avançado,frontend do netfilter)
 iw - mostra / manipula dispositivos sem fio e suas configurações
 networkctl - consulta o status dos links de conexão (systemd)
 links - navegador web cli(requer instalação)
 nmcli - utilitário de configuração do networkmanager cli(Network Manager).
 nmtui - utilitário de configuração do networkmanager tui(Network Manager).
+ss - utilitário para investigar sockets ( comunicação entre processos através de redes ).
+tracepath - traçar rota até servidor alvo.
+traceroute - ^
+nmap - descobrir host e serviçõs ( em portas ) em uma rede.
+ntop - mostra o status de uso da rede, lista de hosts e etc.
+nc - (netcat) ferramenta de largo emprego.
+tcpdump - mostrar tráfego em uma rede pela interface alvo.
+ssh - acesso seguro a sistema UNIX® ou LINUX® ou BSD® alvo.
+ftp - transferir arquivos entre hosts de forma segura via ssh.
+sftp - transferir arquivos entre hosts de forma segura e interativa via ssh.
+
+
 
 -----------------------------------------------------------------------
 
