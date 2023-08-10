@@ -7,7 +7,9 @@ TERMINOLOGIAS
 ·Recurso
 	O alvo da requisição HTTP é o recurso que é uma
 	inteface de interação. São, geramente, identifi
-	cados pela URI(unifield Resource Identifier)
+	cados pela URI(Unifield Resource Identifier)
+
+	URL ( Unifield Resource Locator )
 
 ·Representação
 	Informação que reflete o estado: passado, presente
@@ -65,8 +67,10 @@ IDENTIFICADORES EM HTTP
 
 
 	UNIFORM RESOURCE IDENTIFIER
+
 	Esse cara identifica o recurso fornecido pelo servidor.
 	Sua sintaxe básica é, informalmente e basicamente:
+
 	PROTOCOLO://{DOMINIO|IP}[:PORTA]{/CAMINHO/RECURSO}[[?campo=valor&campo=valor]|[#elemento_html]]
 
 
@@ -83,43 +87,54 @@ IDENTIFICADORES EM HTTP
 
 EXEMPLOS DE MENSAGEMS HTTP
 
-	REQUEST----------------------
-	método, recurso, headers fields
+REQUEST
+método, recurso, versão HTTP
+campos de cabeçalho
+corpo
 
-	GET /main/sobre.html HTTP/1.1
-	Host: 192.168.0.3
+_________________________________________________________________
+	GET /usuario/barroso/?documento=constituicao HTTP/1.1
+
+	Host: www.stf.com
 	User-Agent: curl/7.64.1
 	Accept: text/html
 	Accept-Language: en-US, pt-BR
-	Accept-Encoding: gzip, deflate
-	Connection: keep-alive
-	Upgrade-Insecure-requests: 1
-	Content-Type: multipart/form-data, boundary=1285636
-	Content-Length: 345
+_________________________________________________________________
+	POST /usuario/barroso/atualizarinfos HTTP/1.1
 
-	body data
+	Host: www.stf.com
+	User-Agent: Safari
 
-	RESPONSE----------------------------------------
-	status code, headers fields, trailer fields.
+	titulo=lei&estado=RJ&npais=Brasil
+	
+_________________________________________________________________
 
+RESPONSE
+status code, headers fields, trailer fields.
+versão HTTP, código de status, data
+campos cabeçalho
+campos trailer
+
+_________________________________________________________________
 	HTTP/1.1 200 OK
 	Date: Mon, 27 Jul 2256 12:28:53 GMT
 	Server: Apache
-	Set-Cookie: aaa=...
+	Set-Cookie: aaa=bbb
 	ETag: "34aa387-d-1568eb00"
 	Last-Modified: Wed, 22 Jul 2251 19:15:56 GMT
 	Accept-Ranges: bytes
 	Vary: Accept-Encoding
 	Content-Type: text/html; charset=utf-8
-	Content-Length: 51
-	Content-Encoding: gzip
-	Keep-Alive: timeout=5, max=999
 	
-	body
+	<html lang="pt-BR">
+		<body>
+			<h1> corpo com dados </h1>
+		</body>
+	</html>
 
-							|trailer fields
+	|trailer fields
 
-	-------------------------------------------------
+_________________________________________________________________
 
 	Vide documentação dos headers de requisição !
 
@@ -134,20 +149,40 @@ REQUEST-------------------------------------------------------------------------
 	DADOS
 		...
 
-	MÉTODOS DE REQUISIÇÃO PARA UM DETERMINADO RECURSO.
-	RECURSOS ---N--- TÊM ---N--- MÉTODOS
+	Métodos de requisição para um determinado recurso:
+
+	RECURSOS ---N--- TÊM/estão ---N--- MÉTODOS
 
 	GET
 		Solicita a representação de um recurso específico.
 		Requisições get devem retornar apenas dados.
+
+		·Podem ser cacheadas.
+		·Historificadas pelo navegador.
+		·Salvas pelos marcadores.
+		·Não usar para dados sensíveis.
+		·Grande restrição de tamanho.
+		·Obter dados apenas.
+
+		application/x-www-form-urlencoded ← 2048 caracteres ASCII|UTF-8
+
 		Sintaxe:
-			GET /index.html
+			GET /form.html
 
 	POST
 		Envia dados ao servidor. O tipo do corpo da solicitação
 		é indicado pelo cabeçalho.
+
+		·Nunca devem ser cacheadas.
+		·Não ficam no histórico do navegador.
+		·Não podem ser marcadas pelo marcadores.
+		·Sem restrições de tamanho.
+
+		application/x-www-form-urlencoded
+		multipart/form-data BINÁRIO
+
 		Sintaxe:
-			POST /index.html
+			POST /form.html
 
 	PUT
 		Cria um novo recurso ou substitui uma representação do
@@ -162,10 +197,20 @@ REQUEST-------------------------------------------------------------------------
 			DELETE /arquivo.html HTTP/1.1
 
 	CONNECT
+		Criar um túnel de comunicação cliente/servidor
+		para determinado recurso.
 	HEAD
+		Get com retorno de cabeçalho apenas, nada de corpo.
+		Sintaxe:
+			HEAD /index.html
 	OPTIONS
+		Comunicação de opções para determinado recurso.
 	PATCH
+		Atualização parcial de um recurso.
+		Sintaxe:
+			PATCH /
 	TRACE
+		debug
 
 RESPONSE---------------------------------------------------------------------------
 	STATUS	protocolo, status

@@ -5,42 +5,64 @@ ________________________________
 |EQUIPE B back-end              |
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
+POST	criar o recurso
+GET	obter o recurso
+PATCH	atualizar parcialmente o recurso
+PUT	atualizar completamente o recurso
+DELETE	deletar o recurso
+
 I Client/Server
 
 Dai ao back o que é do back e dai ao front o que é do front.
-front-> interface, UX, requisitar
-back -> comunicação com o banco de dados, gerenciamento de cache, loging, responder...
 
-II Stateless
+front-> interface, UX, requisições.
+back -> comunicação com o SGBD(rel|!rel), gerenciamento de cache, loging, respostas.
 
-Requisições únicas e independentes e Devem ter tudo que o servidor precisa para responder.
-O servidor não guarda estado do cliente.
-Toda informação de estado fica no cliente EX: sessões.
+II Stateless - sem estado
 
-III Cacheable
+Requisições únicas e independentes e Devem ter toda a informação que o servidor
+precisa para atender à requisição advinda do cliente.
 
-Muitos clientes requisitando os mesmos recursos, cache neles!
-A solicitou um determinado recurso -> cache!
-B, C e D requisitam as mesmas coisas -> tome cache pré-salvo!
-Desepenho+ processamento_desnecessário-
+O servidor não guarda nemhum estado do cliente.
+O cliente mantém suas informações de estado localmente:
+EX: sessões em um sistema
 
-IIII Uniform interface
+III Cacheable/cache
 
-Comunicação cliente e servidor.
-Regras para tornar a comunicação cliente e servidor
-mais genêrica possível.
+Volume grande de requisições de mesma natureza, resultam
+em consumo de recursos físicos do servidor, como memória ,processamento, I/O
+nos discos rígidos. Para evitar a situação supracitada, se é necessário
+criar um cache capaz de guardar informações frequêntemente acessadas. Se antes
+o servidor fazia dez etapas para pegar a informação para cada cliente
+requisitador agora ele fará apenas uma: mandar a informação, ou partes dela, em
+cache.
 
-	A.Identificando o resource
-		cada recurso/resource deve ter uma URI específica
+A solicitou um determinado recurso > cache
+B, C e D requisitam as mesmas coisas < cache
+
+IIII Uniform interface/ interface uniforme
+
+	Comunicação cliente e servidor.
+	Regras para tornar a comunicação
+	cliente e servidor
+	mais genêrica possível.
+
+	A.IDENTIFICANDO O RESOURCE
+
+		Cada recurso/resource deve ter uma URI específica
 		e coesa para poder ser acessado.
 
-		HTTP/1.1 GET http://demo.com/user/demostration
+		HTTP/1.1 GET http://demo.com/user/demostration/perfil
+		HTTP/1.1 GET http://demo.com/user/demostration/configuracao
+		HTTP/1.1 POST http://demo.com/user/demostration/configuracao
+		HTTP/1.1 GET http://demo.com/user/demostration/meusdados
 
-	B.Representação do resource
-		A forma como o recurso será devolvido ao cliente
-		pode ser em: HTML, XML, JSON, TXT
+	B.REPRESENTAÇÃO DO RESOURCE
 
-		Exemplo de acordo com mostrado em A:
+		O formato como o recurso será devolvido ao cliente
+		formatos: HTML, XML, JSON, TXT
+
+		Exemplo de acordo com mostrado em A para JSON:
 		|{
 		|"name":"demostration",
 		|"job":"Games/Animal'sGame",
@@ -48,9 +70,10 @@ mais genêrica possível.
 		|}
 
 
-	C.Resposta auto-explicativa
+	C.RESPOSTA AUTO-EXPLICATIVA
+
 		Passagem de metadados na requisição e na resposta
-		EX: código HTTP da resposta, Host, Content-type, etc...
+		código HTTP da resposta, Host, Content-type, Agente usuário
 
 
 		|GET /#!/users/demostration HTTP/1.1
@@ -58,7 +81,8 @@ mais genêrica possível.
 		|Accept: application/json
 		|Host: demo.com
 
-	D.Hypermedia
+	D.HYPERMEDIA
+
 		Retornar todas informações necessárias na resposta para que o cliente
 		saiba navegar e ter acesso a todos os recursos da aplicação.
 
@@ -67,7 +91,7 @@ mais genêrica possível.
 
 		RESPONSE
 		{
-		    "post": {
+		    "postagem": {
 			"id": 42,
 			"title": "Conceitos REST",
 			"decription": "Um pouco sobre conceito da arquitetura REST",
@@ -78,7 +102,7 @@ mais genêrica possível.
 				"rel": "self"
 			    },
 			    {
-				"href": "/demostration/post/42",
+				"href": "/demostration/post/42/comments",
 				"method": "DELETE",
 				"rel": "remove"
 			    },
@@ -115,10 +139,10 @@ V Sistema em camadas/ Layered System
                                                \------SERVIDOR E
 
 VI Code-On-Demand(opcional)
+
 	cliente executar código sob demanda, estender parte
 	da lógica do servidor para o cliente. não faz parte
 	da arquitetura, porém pode ser utilizado quando a
 	execução for mais eficiente no client side.
-
 
 

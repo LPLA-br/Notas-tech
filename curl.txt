@@ -1,0 +1,18 @@
+NOME
+	curl - transferir de uma url
+
+SINOPSE
+	curl OPÇÕES URL
+
+DESCRIÇÃO
+	fazer requisições à servidores visando seus recursos
+	explicitados em sua api.
+	Por padrão faz requisição GET.
+
+OPÇÕES
+	-i --include	Mostre header da resposta no output
+	-d --data	Dados a serem enviados no POST
+	-H --header	Envia header da requisição
+	-X --request	Especifica o método HTTP a ser usado na requisição
+
+
