@@ -1,0 +1,16 @@
+SOCKETS - Processos inter comunicantes trans rede.
+
+<netinet.h>
+<sys/socket.h>
+<unistd.h>
+
+PROCESSO SERVIDOR	PROCESSO CLIENTE
+socket()		socket()
+bind()			connect()
+listen()		|
+accept()		|
+read()			write()
+write()			read()
+...
+close()			close()
+

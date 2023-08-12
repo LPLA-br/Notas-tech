@@ -220,19 +220,13 @@ RESPONSE------------------------------------------------------------------------
 		ENTITY
 	[BODY]
 
-	CÓDIGOS DE STATUS DA RESPOSTA
+	CÓDIGOS DE STATUS DAS RESPOSTAS
 
 	1xx: Informacional
 	2xx: Success
 	3xx: Redirection
 	4xx: Client Error
 	5xx: Server Error
-
-	HEADER FIELDS
-	Vide documentação dos headers de resposta !
-
-	TRAILER FIELDS
-	Vide documentação dos trailers de resposta !
 
 -----------------------------------------------------------------------------------
 
@@ -242,3 +236,42 @@ Pode ser controlado pelo HTTP:
  Autenticação - Usando o cabeçalho WWW-Autenticate.
  Proxy e tunelamento.
  Sessões Usando cookies HTTP ex:carrinhos de compra de e-commerces.
+
+
+CAMPOS NOTÁVEIS:
+ HEADER FIELDS
+
+	CONTEXTO
+	 Host
+	 User-Agent
+	 Referer
+	 Date
+
+ 	AUTORIZAÇÃO
+	 Authorization
+
+	CORS/Cross origin Resource
+	 Origin
+	 Access-Control-Allow-Origin
+	 Access-Control-Allow-Credentials
+	 Access-Control-Allow-Headers
+	 Access-Control-Allow-Methods
+	 ...
+
+	CONTEÚDO
+	 Content-Type
+	 Content-Length
+	 Content-Encoding
+	 Content-Language
+	 Content-Location
+
+	NEGOCIAÇÃO DE CONTEÚDO
+	 Accept
+	 Accept-Charset
+	 Accept-Encoding
+	 Accept-Language
+	
+	COOKIES
+	 Cookie
+	 Set-Cookie
+

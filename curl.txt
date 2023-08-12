@@ -10,9 +10,36 @@ DESCRIÇÃO
 	Por padrão faz requisição GET.
 
 OPÇÕES
-	-i --include	Mostre header da resposta no output
-	-d --data	Dados a serem enviados no POST
-	-H --header	Envia header da requisição
-	-X --request	Especifica o método HTTP a ser usado na requisição
 
+	INPUT
+	-X --request	Especifica o método HTTP a ser usado na requisição
+	-H --header	Envia header da requisição
+	-I --head	requisição HEAD
+	-d --data	Dados a serem enviados para POST como form data
+
+	OUTPUT
+	-i --include	Mostre header da resposta no output
+
+EXEMPLOS
+	curl --request GET --header "Content-Type: text/xml" http:/foo.com/a
+	curl --request GET http:/foo.com/a?ano=2015&mes=agosto
+	curl --request POST -d "usuario=mércio&senha=mia%20pica&press=OK" http:/foo.com/a
+	curl --request POST -data-urlencode -d "?usuario=mércio&senha=mia%20pica"
+	curl --form upload=@LOCALFILENAME --form press=OK http:/foo.com/f
+	curl --request PUT ...
+
+	curl --user name:password http://foo.com/auth
+	curl --user-agent "Mozilla/4.0 ..."
+
+	curl --cookie "nome=mércio" http://foo.com/a
+
+	curl --request POST 'https://foo.com/a' \
+	-H 'Content-Type: application/json' \
+	-d '{ "demonstration":"D" }'
+
+INFORMAÇÕES
+	application/x-www-form-urlencoded -> query na uri, Plaintext
+	multipart/formdata		  -> no corpo da requisição. Binário
+
+	%20 = \n = espaço
 
