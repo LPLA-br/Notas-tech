@@ -169,6 +169,9 @@ REQUEST-------------------------------------------------------------------------
 		Sintaxe:
 			GET /form.html
 
+		Operação CRUD comum:
+			Read
+
 	POST
 		Envia dados ao servidor. O tipo do corpo da solicitação
 		é indicado pelo cabeçalho.
@@ -184,17 +187,26 @@ REQUEST-------------------------------------------------------------------------
 		Sintaxe:
 			POST /form.html
 
+		Operação CRUD comum:
+			Create
 	PUT
 		Cria um novo recurso ou substitui uma representação do
 		recurso de destino com os novos dados. É idempotente:
 		chamá-lo uma ou várias vezes terá o mesmo efeito.
+
 		Sintaxe:
 			PUT /new.html HTTP/1.1
 
+		Operação CRUD comum:
+			Update/Replace
+
 	DELETE
 		Remove o recurso especificado.
+
 		Sintaxe:
 			DELETE /arquivo.html HTTP/1.1
+
+		Delete
 
 	CONNECT
 		Criar um túnel de comunicação cliente/servidor
@@ -207,8 +219,13 @@ REQUEST-------------------------------------------------------------------------
 		Comunicação de opções para determinado recurso.
 	PATCH
 		Atualização parcial de um recurso.
+
 		Sintaxe:
 			PATCH /
+
+		Operação CRUD comum:
+			Update/Modify
+
 	TRACE
 		debug
 
