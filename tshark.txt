@@ -1,0 +1,18 @@
+NOME
+	tshark - analizar tráfico da rede CLI
+OPÇÕES
+	-D	listar interfaces de rede
+
+	-r _	ler arquivo .pcap
+	-w _	escrever arquivo .pcap
+
+	-Y _	filtrar por protocolo X
+
+	-F _	formato da saida (json,fields->csv,text...)
+
+	-e a.b
+		filtragem de campos de saida ex: ip.src ip.dst json.http.request.method ...
+		veja o manual para "wireshark-filter" e o manual online para campos.
+
+  -E separator=<caractere>
+

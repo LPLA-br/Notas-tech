@@ -37,6 +37,9 @@ EXEMPLOS
 	-H 'Content-Type: application/json' \
 	-d '{ "demonstration":"D" }'
 
+	DADOS CRUS PARA SOCKET
+	echo '{"a":10,"b":2}' | curl telnet://192.168.27.250:8080
+
 INFORMAÇÕES
 	application/x-www-form-urlencoded -> query na uri, Plaintext
 	multipart/formdata		  -> no corpo da requisição. Binário
