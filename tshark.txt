@@ -6,9 +6,12 @@ OPÇÕES
 	-r _	ler arquivo .pcap
 	-w _	escrever arquivo .pcap
 
-	-Y _	filtrar por protocolo X
+	-Y _	adicionar parâmetros de filtragem como nome de protocolo
+        ou expressão lógica com propriedades '(ip.proto > 5 || ...)'
 
-	-F _	formato da saida (json,fields->csv,text...)
+	-T _	formato da saida (json,fields->csv,text...)
+
+  -F formato de sadia do arquivo escrito usando -w
 
 	-e a.b
 		filtragem de campos de saida ex: ip.src ip.dst json.http.request.method ...

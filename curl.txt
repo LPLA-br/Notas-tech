@@ -18,13 +18,14 @@ OPÇÕES
 	-d --data	Dados a serem enviados para POST como form data
 
 	OUTPUT
-	-i --include	Mostre header da resposta no output
+	-i --include	Mostra header da resposta no output
+  -v --verbose  Mostra campos de cabecalho
 
 EXEMPLOS
-	curl --request GET --header "Content-Type: text/xml" http:/foo.com/a
-	curl --request GET http:/foo.com/a?ano=2015&mes=agosto
-	curl --request POST -d "usuario=mércio&senha=mia%20pica&press=OK" http:/foo.com/a
-	curl --request POST -data-urlencode -d "?usuario=mércio&senha=mia%20pica"
+	curl -v --request GET --header "Content-Type: text/xml" http:/foo.com/a
+	curl -v --request GET http:/foo.com/a?ano=2015&mes=agosto
+	curl -v --request POST -d "usuario=mércio&senha=mia%20pica&press=OK" http:/foo.com/a
+	curl -v --request POST -data-urlencode -d "?usuario=mércio&senha=mia%20pica"
 	curl --form upload=@LOCALFILENAME --form press=OK http:/foo.com/f
 	curl --request PUT ...
 

@@ -41,6 +41,10 @@ TIPO
 
 	-links NUMERO	(+|-)
 
+COMO AGIR
+  -prune  não recursionar dentro de um diretório encontrado
+          (útil para deleção de node_modules)
+
 * pode ser dois para criar um campo de menor para maior
 Exemplo:
 -size +50M -size 100M
