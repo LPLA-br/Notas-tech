@@ -18,9 +18,11 @@ FILTER
 	Tabela padrão para manipular pacotes de rede, usada para
 	configurar politicas para o tráfego que entra, atravessa
 	ou sai do computador.
-NAT
-	Tabela usada para alterar pacotes que criam uma nova
-	conexão, e para redirecionar conexões para nat..
+NAT (network address translation)
+  Tabela de tradução de endereços.
+  permite que máquinas dentro de uma rede se comuniquem
+  com outra rede como se estivessem aglomerados sob um
+  único IP (o do gateway/firewall).
 MANGLE
 	Tabela usada para tipos específicos de alteração de pacotes,
 	que não devem ser manipulados pelo sistema de rastreamento de
@@ -35,20 +37,10 @@ TABELAS
 |_CADEIAS
   |_REGRAS
 
-table1---------------------------
-	chain1
-		rule1
-		rule2
-		rule3
-		ruleN
-	chain2
-		rule1
-		rule2
-		rule3
-		ruleN
-
-table2---------------------------
-tableN---------------------------
+EXEMPLO:
+filter------------
+  INPUT
+    "regra"
 
 
 
@@ -57,7 +49,8 @@ FILTER Regras normais de entrada/saída de dados serão aplicadas na table padr�
 	INPUT - Regras para pacotes que estão entrando no nosso servidor.
 	OUTPUT -Regras para pacotes que estão saindo do nosso servidor.
 	FORWARD - aplica rules aos pacotes de rede roteados através do
-                  servidor(para outro servidor ou outra interface de rede do mesmo servidor)
+            servidor(para outro servidor ou outra interface de rede do mesmo servidor)
+            (o que estiver passando pela máquina)
 
 	ações possíveis em cada chain de FILTER:
 	ACCEPT - O pacote pode ser aceito no nosso servidor
@@ -68,13 +61,18 @@ FILTER Regras normais de entrada/saída de dados serão aplicadas na table padr�
 NAT é usada para fazer network address translation
 (basicamente converter IP privado em IP público).
 	chain:
-	PREROUTING
-	OUTPUT
-	POSTROUTING
+	PREROUTING - modificação de pacote antes de roteados.
+	OUTPUT - modificação de pacotes antes de saírem do sistema.
+	POSTROUTING - modificação de pacotes após roteamento
+                (geralmente usado para mascaramento de IP SNAT)
 
 	ações possíveis em cada chain de NAT:
+  MASQUERADE
+  SNAT
+  DNAT
 
-MANGLE
+MANGLE  Modificação de cabeçalhos de pacotes. Marcação de pacotes para
+        posterior manipulação por outras regras ou ferramentas.
 	chain:
 	PREROUTING
 	OUTPUT
@@ -82,7 +80,7 @@ MANGLE
 
 	ações possíveis em cada chain de MANGLE:
 
-RAW
+RAW Controlar o rastreamento de conexões ...
 	chain:
 	PREROUTING
 	OUTPUT
@@ -94,7 +92,7 @@ SECURITY
 
 ESTRUTURA GERAL DE UMA RULE-----------------------------------------------------------
 
-iptables SUBCOMANDO CHAIN parâmetro1 valor1 parâmetroN valorN AÇÃO
+iptables -t <tabela> [SUBCOMANDOS] opção argumento ... opção argumento
 
 SUBCOMANDOS---------------------------------------------------------------------------
 -L --list		lista todas as rules da chain
@@ -116,9 +114,19 @@ DROP descartar pacote
 QEUE enviar o pacote ao userspace (código fora do kernel)
 RETURN descotinuar o processamento do pacote e aplicar a rule padrão a ele. ações adicionais:
 REJECT descarta o pacote e envia o feedback ao remetente
-DNAT reescreve o endereço de destino NAT
-SNAT reescreve o endereço de origem NAT
-LOG coloca no log informações sobre o pacote
+DNAT  redireciona o tráfego destinado a uma porta específica do ip do
+      (gateway/roteador/firewall) para a porta correspondente do IP da rede interna.
+      (comunicação fora->dentro)
+SNAT  dispositivos da rede interna terão seu tráfego para fora desta rede adaptados para
+      sairem através do (gateway/roteador/firewall). Pacotes sairão como sendo da única
+      máquina da rede com ip público na rede externa mas entrarão voltando para os
+      respectivos solicitantes.
+      (comunicação dentro->fora)
+LOG   coloca no log informações sobre o pacote.
+MASQUERADE  Pega qualquer tráfego outbound (saída) da rede e altera o endereço de
+            origem. É como se todos em casa compartilhassem o mesmo telefone para
+            fazer ligações, e o roteador apenas lembrasse de quem ligou para poder
+            retornar ligações corretamente.
 
 PARÂMETROS----------------------------------------------------------------------------
 
@@ -126,14 +134,17 @@ PARÂMETROS---------------------------------------------------------------------
 
 --protocol PROTOCOLO		especifica o protocolo (icmp, tcp, udp, all)		-p
 
---source IP			IP de origem do pacote	|	0/0 = QUALQUER IP	-s
---destination IP		IP de destino do pacote |	0/0 = QUALQUER IP	-d
+--source IP			IP de origem do pacote	|	0/0 = QUALQUER IP	    -s
+--destination IP		IP de destino do pacote |	0/0 = QUALQUER IP -d
 
 --in-interface INTERFACE	nome da interface de rede de entrada do pacote		-i
 --out-interface INTERFACE	nome da interface de rede de saída do pacote		-o
 
--sport 0000			portas de origem da fonte
--dport 0000			portas de destino do destino
+--sport 0000			É a porta na qual o tráfego se origina, no dispositivo
+                  que está enviando o pacote.
+
+--dport 0000      É a porta para a qual o tráfego é direcionado,
+                  no dispositivo que deve receber o pacote.
 
 --match	PROP			propriedade específica: state, conntrack.		-m
 --state	ESTADOS			estados
@@ -143,25 +154,24 @@ PARÂMETROS---------------------------------------------------------------------
 -syn				identifica nova requisição de conexão
 -icmp-type			tipo de mensagem ICMP
 
---verbose	auto explicativo.
---numeric	portas são mostradas numericamente.
---line-numbers	^
+--verbose	auto explicativo. -v
+--numeric	portas são mostradas numericamente. -n
+--line-numbers    adicionar linhas às regras de uma cadeia.
 --------------------------------------------------------------------------------------
 
 INTERFACES DE REDE
 lo = loopback 127.0.0.1
 
-RASTREAMENTO DE CONEXÕES--------------------------------------------------------------
-connection tracking TCP <- transporte
+RASTREAMENTO DE CONEXÕES TCP----------------------------------------------------------
 
 
 LISTEN		o host aguarda um pedido para iniciar uma conexão.
 ESTABLISHED	a conexão foi estabelicida.
 RELATED		o pacote está iniciando uma nova conexão, mas a nova é relacionada a uma
-		conexão já existente.
+          conexão já existente.
 INVALID		o pacote não pertence a nenhuma conexão rastreada.		
-NEW		o pacote está iniciando uma nova conexão ou é parte de uma conexão
-		que ainda não teve pacotes trafegados em ambas as direções.
+NEW		    o pacote está iniciando uma nova conexão ou é parte de uma conexão
+          que ainda não teve pacotes trafegados em ambas as direções.
 CLOSED		fechado
 
 
@@ -230,4 +240,21 @@ computador específico:
 persistência de configuração:
 iptables-save > file.txt
 iptables-restore < file.txt
+
+========== NAT ============
+edite o parâmetro do kernel
+net.ipv4.ip_forward = 1
+para permitir o roteamento de pacotes
+através da máquina.
+
+permitir que hosts da rede local possam ter acesso à outra rede:
+# iptables -t nat -A POSTROUTING -o [interface_wan] -j MASQUERADE
+
+joga requisições para 8080 do gateway/firewall para IP:PORTA:
+( tal host da rede interna possui um serviço em execução escutando à porta 80 ):
+# iptables -t nat -I PREROUTING -P tcp --dport 8080 -j DNAT --to-destination 192.168.0.2:80
+
+permitir que máquinas da rede interna possam trafegar seus
+pacotes pelo (gateway/firewall/roteador):
+# iptables -t nat -I POSTROUTING -j MASQUERADE
 

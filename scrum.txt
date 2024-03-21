@@ -1,0 +1,53 @@
+Metodologia ágil SCRUM
+4 de Outubro de 2023
+
+Atividades metodológicas:
+Requisitos, Análise, Projeto, evolução e entrega
+
+Pessoal:
+ ·Proprietário do produto
+ ·Scrum master
+ ·Time de desenvolvimento
+
+
+BACKLOG - REGISTRO DE TRABALHO
+ Lista com prioridades definidas para requisitos
+ funcionais que são de valor ao cliente.
+ Pode ser atualizado a qualquer momento
+ pelo Gerente de Produto.
+ Uma parte de todas as funcinalidades são atribuidas
+ ao backlog. As funcionalidades, depedendo da complexidade
+ , podem ser fragmentadas em sub partes adicionáveis ao
+ backlog.
+
+SPRINT ~30DIAS
+ Unidade de trabalho de duração delimitada
+ para cumprimento de requisitos estabelecidos
+ no backlog.
+ Atividade metodológica pode ser realizada em N
+ sprints.
+
+REUNIÃO SCRUM 24..24 HORAS
+ Reunião curta conduzida pelo SCRUM MASTER de ~15min
+ com as seguintes questões universais:
+
+ ·O que realizaste desde a última reunião de equipe?
+ ·Quais obstáculos enfrentaste ?
+ ·O o que farás até a próxima reunião da equipe ?
+
+ Respostas são avaliadas para descoberta de possíveis
+ problemas.
+
+DEMO
+ entrega incremetal do software ao cliente onde
+ a funcionalidade é demonstrada e avaliada por ele.
+ É resultado de um ou alguns sprints de trabalho.
+
+ ESQUEMA fonte: (Roger S. Pressman et Bruce R. Maxim p.78)
+
+backlog do sprint	 backlog ---> Itens pedentes --> sprint 30dias -> demo
+backlog do produto	|backlog
+			|backlog
+
+vide guia scrum disponível em scrum.org
+
