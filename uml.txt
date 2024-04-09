@@ -1,0 +1,21 @@
+UML - UNIFIELD MODELLING LANGUAGE
+ANOTAÇÕES BREVES
+
+DIAGRAMAS UML
+  Estrutural
+    Classes (estático)
+    Objetos
+    Pacotes
+    Componentes
+    Implantação
+    Estrutura composta
+    Perfil
+  Comportamental
+    Caso de Uso
+    Sequência (dinâmico)
+    Comunicação
+    Estado
+    Atividades
+    Visão geral de Interação
+    Temporização
+

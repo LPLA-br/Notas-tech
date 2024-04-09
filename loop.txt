@@ -1,0 +1,80 @@
+PSEUDO DISPOSITIVOS DE BLOCO LOOP
+
+Podes criar um arquivo vazio e utiliza-lo como
+se fosse um dispositivo de bloco. Esses pseudo
+dispositivos de bloco podem conter sistemas de
+arquivos e serem montados.
+
+Um caso de uso útil é quando teu sistema é instalado
+sob várias partições. Digamos que /home está em uma
+partição com armazenamento esgotante e / está em uma
+partição larga com muito espaço livre. Para resolver
+o problema sobreposto podes criar um dispositivo loop,
+criar um arquivo vazio com bytes zerados em / e torna-lo
+um arquivo montável em loop onde teu usuário comum pode
+acessa-lo sem restrições.
+(NOTA: não podes configurar montagem automática
+através de /etc/fstab. Entretanto um script "job"
+que é executado pelo init pode configurar e montar
+em tempo de boot (systemd, sysVinit e etc...))
+
+loop (4) - dispositivos loop
+losetup (8) - configurar e controlar dispositivos loop
+
+CRIANDO UM DISPOSITIVO LOOP
+
+dd if=/dev/zero of=[destino_do_arquivo] bs=1024 count=[quantidade_de_blocos]
+  if=[origem] no caso acima o pseudo dispositivo preenchedor de zeros.
+  of=[destino]
+  bs = block size tamanho de cada bloco em BYTES
+  count = quantidade de blocos
+
+  Se bs = 1024 e count = 51200 temos 1024bytes * 51200 blocos= 52428800 bytes
+  52428800 bytes / 1024 =
+  51200 kilobytes / 1024 =
+  50 megabytes aproximadamente.
+
+  o arquivo criado é totalmente cheio de zeros.
+
+Dispositivos loop são numerados de 0 até N e localizam-se
+no diretório dos dispositivos /dev.
+Inicialmente haverá apenas loop0 pois e papel do admin criar mais destes
+se assim for necessário.
+
+losetup [DISPOSITIVO_LOOP] [ARQUIVO_ZERO_FILLED]
+  -f | --find   lista os loopN disponíveis
+
+  EXEMPLO SEQUÊNCIAL REAL:
+
+  # lsblk -f
+    (retorna lista com pontos de montagem utilizados ou não utilizados)
+
+  # losetup -f
+  /dev/loop1
+  /dev/loop2
+
+  # losetup /dev/loop1 /looparquivo
+  # losetup /dev/loop1
+    (retorna detalhes do loop associado com sucesso)
+
+  Formate-o com o sistema de arquivo de sua preferência.
+  Exemplo para ext4:
+
+  # mkfs --type ext4 -v /dev/loop1
+
+  Crie um ponto de montagem dentro de /mnt :
+
+  # mkdir /mnt/meuPontoDeMontagem01
+
+  Finalmente monte loop:
+  mount -t ext4 /dev/loop1 /mnt/meuPontoDeMontagem01
+
+  Uso do pseudo disco:
+  df -H /dev/loop1
+
+  Ferramentas específicas dos sistemas de arquivos podem ser usadas:
+  ext4: tune2fs
+
+  Após uso podes desmontar:
+  umount /mnt/meuPontoDeMontagem01
+

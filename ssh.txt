@@ -7,6 +7,16 @@
  	rsa
 	ecdsa
 	ed25519
+
++================================================================+
+||  A L E R T A    C R Í T I C O !!!!                           ||
+||  CONFIGURE TEU FIREWALL PARA IPv4 E REPLIQUE AS REGRAS PARA  ||
+||  IPv6.                                                       ||
+||  TESTES MOSTRARAM QUE ACESSO AO USUÁRIO PELO IPv6 TIVERAM    ||
+||  SUCESSO SEM A    S E N H A !!!                              ||
+||  PARA MAIS SEGURANÇA BLOQUEIE TODAS AS TABELAS DA CADEIA     ||
+||  filter PARA IPv6 E LIBERE APENAS AS NECESSÁRIAS.            ||
++================================================================+
 ________________________________________________________________________________________
  SERVIDOR					CLIENTE
 

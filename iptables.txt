@@ -20,9 +20,9 @@ FILTER
 	ou sai do computador.
 NAT (network address translation)
   Tabela de tradução de endereços.
-  permite que máquinas dentro de uma rede se comuniquem
-  com outra rede como se estivessem aglomerados sob um
-  único IP (o do gateway/firewall).
+  permite que máquinas dentro de uma rede local se comuniquem
+  com outra rede superior como se estivessem aglomerados sob um
+  único IP (o do gateway/firewall/roteador).
 MANGLE
 	Tabela usada para tipos específicos de alteração de pacotes,
 	que não devem ser manipulados pelo sistema de rastreamento de
@@ -67,9 +67,9 @@ NAT é usada para fazer network address translation
                 (geralmente usado para mascaramento de IP SNAT)
 
 	ações possíveis em cada chain de NAT:
-  MASQUERADE
-  SNAT
-  DNAT
+  MASQUERADE  - Mascaramento
+  SNAT - source network address translation
+  DNAT - destiny network address translation
 
 MANGLE  Modificação de cabeçalhos de pacotes. Marcação de pacotes para
         posterior manipulação por outras regras ou ferramentas.
@@ -95,90 +95,123 @@ ESTRUTURA GERAL DE UMA RULE-----------------------------------------------------
 iptables -t <tabela> [SUBCOMANDOS] opção argumento ... opção argumento
 
 SUBCOMANDOS---------------------------------------------------------------------------
--L --list		lista todas as rules da chain
+-L --list         lista todas as rules da chain
 
 -N --new-chain		cria uma nova chain com o nome desejado
--A --append		anexa a rule no final da chain especificada
+-A --append       anexa a rule no final da chain especificada
 
--P --policy		configura a rule política padrão da chain 
--I --insert		insere uma rule em uma posição na chain
+-P --policy       configura a rule política padrão da chain 
+-I --insert		    insere uma rule em uma posição na chain
 
--F --flush		apaga todas as rules na chain especificada
--D --delete		apaga uma rule em uma posição na chain
+-F --flush		    apaga todas as rules na chain especificada
+-D --delete       apaga uma rule em uma posição na chain
 -X --delete-chain	exclui uma chain vazia
 
 
 AÇÕES---------------------------------------------------------------------------------
-ACCEPT o pacote é permitido
-DROP descartar pacote
-QEUE enviar o pacote ao userspace (código fora do kernel)
-RETURN descotinuar o processamento do pacote e aplicar a rule padrão a ele. ações adicionais:
-REJECT descarta o pacote e envia o feedback ao remetente
-DNAT  redireciona o tráfego destinado a uma porta específica do ip do
-      (gateway/roteador/firewall) para a porta correspondente do IP da rede interna.
-      (comunicação fora->dentro)
+ACCEPT    o pacote é permitido
+DROP      descartar pacote
+REJECT    descarta o pacote e envia o feedback ao remetente.
+QUEUE     enviar o pacote ao userspace (código fora do kernel)
+RETURN descotinuar o processamento do pacote e aplicar a rule padrão a ele.
+
+NAT (NETWORK ADDRESS TRANSLATION):
+DNAT  redireciona o tráfego destinado a uma porta específica do
+      (gateway/roteador/firewall) para a porta correspondente de um IP
+      específico da rede interna.
+      (LAN <=gateway- WAN)
+
 SNAT  dispositivos da rede interna terão seu tráfego para fora desta rede adaptados para
       sairem através do (gateway/roteador/firewall). Pacotes sairão como sendo da única
       máquina da rede com ip público na rede externa mas entrarão voltando para os
       respectivos solicitantes.
-      (comunicação dentro->fora)
-LOG   coloca no log informações sobre o pacote.
+      (comunicação LAN =gateway-> WAN)
+
 MASQUERADE  Pega qualquer tráfego outbound (saída) da rede e altera o endereço de
             origem. É como se todos em casa compartilhassem o mesmo telefone para
             fazer ligações, e o roteador apenas lembrasse de quem ligou para poder
             retornar ligações corretamente.
+logging:
+LOG registra informações de log de acordo com a regra no log do sistema.
 
 PARÂMETROS----------------------------------------------------------------------------
 
---table TABLE			especificar a tabela (filter é a padrão)		-t
+-t --table TABLE          especificar a tabela (filter é a padrão)
 
---protocol PROTOCOLO		especifica o protocolo (icmp, tcp, udp, all)		-p
+-p --protocol PROTOCOLO   especifica o protocolo (icmp, tcp, udp, all)
 
---source IP			IP de origem do pacote	|	0/0 = QUALQUER IP	    -s
---destination IP		IP de destino do pacote |	0/0 = QUALQUER IP -d
+-s --source IP            IP de origem do pacote	|	0/0 = QUALQUER IP
+-d --destination IP       IP de destino do pacote |	0/0 = QUALQUER IP 
 
---in-interface INTERFACE	nome da interface de rede de entrada do pacote		-i
---out-interface INTERFACE	nome da interface de rede de saída do pacote		-o
+-i --in-interface INTERFACE	  nome da interface de rede de entrada do pacote
+-o --out-interface INTERFACE	nome da interface de rede de saída do pacote
 
---sport 0000			É a porta na qual o tráfego se origina, no dispositivo
-                  que está enviando o pacote.
+PARA QUE ENTENDAS AS DUAS OPÇÕES ABAIXO IMAGINA QUE ÉS O GATEWAY DE UMA REDE
+QUE COMUNICA-SE COM HOSTS EXTERIORES À REDE INTERNA (TABELA FILTER):
 
---dport 0000      É a porta para a qual o tráfego é direcionado,
-                  no dispositivo que deve receber o pacote.
+--sport PORT		  Para INPUT: o source é a porta da outra máquina que te enviou o pacote.
+                  Para OUTPUT: o source é a porta da tua máquina que enviou pacote à outra.
+                  Para FORWARD: tua porta source para outra porta tua.
 
---match	PROP			propriedade específica: state, conntrack.		-m
---state	ESTADOS			estados
+--dport PORT      Para INPUT: a outra máquina destina à uma porta tua.
+                  Para OUTPUT: a tua máquina destina à porta de outra máquina.
+                  Para FORWARD: a tua máquina destina à outra porta tua.
 
---jump AÇÃO			realiza a ação especificada				-j
+-m --match PROP   Propriedades específicas para regras. exemplos:
+                  tcp, udp, icmp,
+                  state( tcp = <ESTABLISHED || RELATED || NEW || INVALID> )
+                  limit (limita taxa de correspondêcia dos pacotes),
+                  recent (endereços ip recentes),
+                  mac (correspondêcias à endereços MAC)
 
--syn				identifica nova requisição de conexão
--icmp-type			tipo de mensagem ICMP
+                  -s --state ESTADO
+                    Empregado após "-m|--match state"
+                    especifica um estado de conexão de um pacote tcp.
+                    permitindo conexões tcp:
+                    # iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
---verbose	auto explicativo. -v
---numeric	portas são mostradas numericamente. -n
---line-numbers    adicionar linhas às regras de uma cadeia.
+-j --jump AÇÃO    Executa uma ação para regra especificada. Localiza-se ao fim do comando.
+
+-syn            identifica nova requisição de conexão
+-icmp-type      tipo de mensagem ICMP
+
+-v --verbose          opção autoexplicativa.
+-n --numeric          portas são mostradas numericamente.
+--line-numbers        adicionar linhas à exibição de "-L | --list".
 --------------------------------------------------------------------------------------
 
 INTERFACES DE REDE
-lo = loopback 127.0.0.1
+Lebra-te que são as INTERFACES de rede espetadas na tua máquina
+que adquirem o endereço ip de uma rede X.
+lo: 127.0.0.1 loopback
+DEMAIS:
+linux clássico: eth0, eth1, eth2 ... ethN
+linux moderno:  enp2s0, enp5s0 ... (VEJA O ARQUIVO redes.txt em INTERFACES DE REDE)
+
 
 RASTREAMENTO DE CONEXÕES TCP----------------------------------------------------------
 
-
-LISTEN		o host aguarda um pedido para iniciar uma conexão.
+LISTEN		  o host aguarda um pedido para iniciar uma conexão.
 ESTABLISHED	a conexão foi estabelicida.
-RELATED		o pacote está iniciando uma nova conexão, mas a nova é relacionada a uma
-          conexão já existente.
-INVALID		o pacote não pertence a nenhuma conexão rastreada.		
-NEW		    o pacote está iniciando uma nova conexão ou é parte de uma conexão
-          que ainda não teve pacotes trafegados em ambas as direções.
-CLOSED		fechado
+RELATED     o pacote está iniciando uma nova conexão, mas a nova é relacionada a uma
+            conexão já existente.
+INVALID     o pacote não pertence a nenhuma conexão rastreada.		
+NEW         o pacote está iniciando uma nova conexão ou é parte de uma conexão
+            que ainda não teve pacotes trafegados em ambas as direções.
+CLOSED		  fechado
 
 
 EXEMPLOS------------------------------------------------------------------------------
-salvar configuração corrente et restaurar:
-# iptables-save > file.txt
-# iptables-restore < file.txt
+SALVAR CONFIGURAÇÃO CORRENTE ET RESTAURAR:
+ATIVE O SERVICO iptables.service E SALVE AS
+CONFIGURAÇÕES EM
+/etc/iptables/iptables.rules PARA IPV4
+/etc/iptables/ip6tables.rules PARA IPV6
+
+# iptables-save > /etc/iptables/iptables.rules
+# /sbin/ip6tables-save > /etc/iptables/iptables.rules
+# iptables-restore < /etc/iptables/ip6tables.rules
+# ip6tables-restore < /etc/iptables/ip6tables.rules
 
 listar tabela filter(padrão):
 # iptables -L
@@ -242,17 +275,21 @@ iptables-save > file.txt
 iptables-restore < file.txt
 
 ========== NAT ============
-edite o parâmetro do kernel
+edite o parâmetro do kernel:
 net.ipv4.ip_forward = 1
-para permitir o roteamento de pacotes
-através da máquina.
+para permitir o roteamento de pacotes através da máquina.
 
-permitir que hosts da rede local possam ter acesso à outra rede:
-# iptables -t nat -A POSTROUTING -o [interface_wan] -j MASQUERADE
+permitir que hosts da rede local possam ter acesso à rede superior
+via mascaramento para todas as máquinas da rede local:
+# iptables -t nat -A POSTROUTING -o [interface_wan_gateway] -j MASQUERADE
 
-joga requisições para 8080 do gateway/firewall para IP:PORTA:
-( tal host da rede interna possui um serviço em execução escutando à porta 80 ):
-# iptables -t nat -I PREROUTING -P tcp --dport 8080 -j DNAT --to-destination 192.168.0.2:80
+especificando um host específico:
+iptables -t nat -A POSTROUTING -s 192.168.0.33/24 -j MASQUERADE
+
+joga requisições para 8080 do gateway/firewall/roteador para IP:PORTA:
+portas dinâmicas são: de 49152 a 65535
+( tal host da rede interna possui um serviço executante escutando a porta 80 ):
+# iptables -t nat -I PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 192.168.0.2:80
 
 permitir que máquinas da rede interna possam trafegar seus
 pacotes pelo (gateway/firewall/roteador):
