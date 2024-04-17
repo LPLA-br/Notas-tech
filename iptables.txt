@@ -58,18 +58,27 @@ FILTER Regras normais de entrada/saída de dados serão aplicadas na table padr�
 	REJECT - O pacote será rejeitado, isso é, será enviado um
 					 sinal para o cliente de que o pacote foi rejeitado.
 
-NAT é usada para fazer network address translation
-(basicamente converter IP privado em IP público).
+NAT é usada para fazer tradução de endereços entre rede menor LAN e outra maior.
 	chain:
-	PREROUTING - modificação de pacote antes de roteados.
-	OUTPUT - modificação de pacotes antes de saírem do sistema.
-	POSTROUTING - modificação de pacotes após roteamento
-                (geralmente usado para mascaramento de IP SNAT)
+	PREROUTING - Modifica o destino dos pacotes assim que chegam da LAN. (SNAT)
+  INPUT -
+	OUTPUT - Modificação de pacotes antes de saírem do sistema.
+	POSTROUTING - Modifica a origem LAN dos pacotes
+                antes de saírem. (DNAT, MASQUERADE)
 
 	ações possíveis em cada chain de NAT:
-  MASQUERADE  - Mascaramento
-  SNAT - source network address translation
-  DNAT - destiny network address translation
+  SNAT - source network address translation (para fora)
+         Alterar o IP de origem dos pacotes exientes da rede.
+         Útil em redes locais com gateway linux sendo o único
+         com IP público. aplicado em PREROUTING
+  DNAT - destiny network address translation (para dentro)
+         Alterar o endereço de destino de pacotes entrantes
+         permitindo acesso a um host da rede LAN pela rede externa
+         WAN. aplicado em POSTROUTING
+  MASQUERADE - Mascaramento (para fora)
+         SNAT especial. Quando o IP da interface de saída do gateway é
+         dinâmico. O MASQUERADE monitora a interface de saída e adapta-se
+         ao novo IP. aplicado em POSTROUTING
 
 MANGLE  Modificação de cabeçalhos de pacotes. Marcação de pacotes para
         posterior manipulação por outras regras ou ferramentas.
