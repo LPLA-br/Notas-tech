@@ -17,6 +17,7 @@
 ||  PARA MAIS SEGURANÇA BLOQUEIE TODAS AS TABELAS DA CADEIA     ||
 ||  filter PARA IPv6 E LIBERE APENAS AS NECESSÁRIAS.            ||
 +================================================================+
+
 ________________________________________________________________________________________
  SERVIDOR					CLIENTE
 
