@@ -1,0 +1,34 @@
+TERMINOLOGIAS DO CLOUDSTACK
+
+Regiões: Uma coleção de uma ou mais zonas geograficamente próximas
+gerenciadas por um ou mais servidores de gerenciamento.
+
+Zonas: normalmente, uma zona é equivalente a um único
+datacenter. Uma zona consiste em um ou mais pods e armazenamento
+secundário.
+
+Pods: um pod geralmente é um rack ou uma linha de
+racks que inclui um switch de camada 2 e um ou mais clusters.
+
+Clusters: um cluster consiste em um ou mais hosts homogêneos
+e armazenamento primário.
+
+Host: Um único nó de computação dentro de um cluster; geralmente um hipervisor. 
+
+Armazenamento primário: um recurso de armazenamento normalmente fornecido a
+um único cluster para a execução real de imagens de disco de
+instância. (O armazenamento primário em toda a zona é uma opção,
+embora normalmente não seja usado.)
+
+Armazenamento secundário:
+um recurso de toda a zona que armazena modelos de disco, imagens
+ISO e instantâneos.
+
+---------------------------------------------------------------------
+Redes
+
+Básico: camada2 com isolação de Guest provido ,na camada3, pelo
+hipervisor do dispositivo "Bridge"
+
+Avançado: Isolação em camada2 como em VLANs Terminologias=(SDN, NVP)
+

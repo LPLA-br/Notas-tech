@@ -42,11 +42,22 @@ TIPO
 	-links NUMERO	(+|-)
 
 COMO AGIR
-  -prune  não recursionar dentro de um diretório encontrado
-          (útil para deleção de node_modules)
+  -prune
+          não recursionar dentro de um diretório encontrado
+          (útil para deleção de muitos node_modules por exemplo)
+
+  -exec comando_linux opcoes_ou_argumentos_próprios_do_comando '{}' \;
+          {} significa que cada saída de find sera aplicada ali.
+          \; indica fim da de declaração do comando
+          EXEMPLO: find ./ -type d -exec chmod 0700 '{}' \;
+          Perceba que {} encontra-se entre aspas simples e ; é
+          antecedido de \ Isso acontece para evitar que o shell
+          aplique seus globs de expanção.
+
 
 * pode ser dois para criar um campo de menor para maior
 Exemplo:
 -size +50M -size 100M
 
-VIDE find(1) para mais detalhes.
+leia o manual de sistema find(1) para explicações
+mais detalhadas deste comando poderoso.
