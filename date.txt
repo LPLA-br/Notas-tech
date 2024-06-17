@@ -1,0 +1,4 @@
+Formate a saída da ferramenta date
+
+date +%CARACTERE_FORMATAÇÃO_VIDE_MANUAL
+date +'EXEMPLO: %D %I'

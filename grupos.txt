@@ -1,0 +1,31 @@
+Grupos do linux
+Por Luiz Paulo.
+
+Para que servem os grupos no linux ?
+
+  Para que usuários não root possam ter acesso
+  a dispositivos de hardware e a exclusividades
+  de alguma aplicação de sistema (docker,tshark)
+  e também para controle de acesso baseado em grupos
+  Exemplo: usuários que estão no grupo criado por min
+  chamado "publico" podem trabalhar em diretórios
+  que estejam sobre este.
+  Lembra-te que todo arquivo criado por usuário tem
+  propriétario e grupo deste, Exemplo:
+
+
+Onde fica o arquivo de registro dos grupos ?
+/etc/group
+
+Mostra-me os grupos na distro Arch linux !
+
+adm     acesso total aos arquivos de journal
+ftp     /srv/ftp    acesso a arquivos dos servidores ftp
+http    /srv/http/  acesso a arquivos dos servidores http
+log     /var/log    acesso a logs do sistema
+rfkill  /dev/rfkill controle de estado de energia de dispositivos sem fio
+uucp    acesso à dispositivos /dev/{ttyS,tts,ttyUSB,ttyACM,rfcomm} (placas de desenvolvimento)
+
+Para mais acesse: https://wiki.archlinux.org/title/Users_and_groups_(Portugu%C3%AAs)
+
+

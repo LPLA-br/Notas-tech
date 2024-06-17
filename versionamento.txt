@@ -1,0 +1,30 @@
+Versionamento
+
+0.0.0
+MAIOR.MINOR.PATCH
+|     |     |
+|     |     |__Correção de problema, bug, falha e etc.
+|     |________Quantificação de funcionalidades de forma incremental.
+|______________Grande Mudança que gera incompatibilidade com versões anteriores.
+
+Geralmente sua aplicação sempre terá pelo menos uma funcionalidade
+no princípio, logo temos a 0.1.0 como o início absoluto.
+
+A estabilidade aferida e confirmada é comumente definida como 1.0.0
+
+Alpha: extremamente instável exclusivamente para desenvolvedores e testes.
+Beta:  parcialmente instável e livre para uso de uma parcela do público alvo relatante de problemas.
+Release Candidate: liberado para uso porém ainda coletando informações para finalizar.
+
+Exemplo gênerico:
+0.4.2-alpha
+0.6.7-alpha
+0.10.0-beta
+0.10.10-rc
+1.0.0
+
+Na prática versionamento tende a ganhar contornos próprios de cada
+projeto.
+
+Veja git.txt para ver informações sobre versionamento com o git(1)
+
