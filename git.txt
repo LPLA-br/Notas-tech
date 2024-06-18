@@ -356,9 +356,8 @@ bisect, revert, add, commit.
 	PERMANENTES
 	 main
 	 A ramificação principal do projeto que mantém o código
-	 testado e aprovado para produção que pode ser
-	 implementado no ambiente real. Cada commit
-	 recebe a etiqueta do versionamento semântico.
+	 testado e aprovado para ser implantado em produção real
+	 cada commit aqui recebe a etiqueta do versionamento semântico.
 
 	 develop
 	 A ramificação criada no início do projeto e que é mantida
@@ -371,12 +370,10 @@ bisect, revert, add, commit.
 	AUXILIARES/TEMPORÁRIAS
 
 	 release
+   Trata-se de uma ramificação criada de dev quando esse
+   adquiriu recursos suficientes para um lançamento.
 	 o trabalho nas ramificações de lançamento consiste em
-	 pequenas correções de bugs e retoques finais que são
-	 específicos para liberar novos códigos e códigos que
-	 devem ser tratados separadamente da ramificação de
-	 desenvolvimento principal. Serve como uma espécie
-	 de interface entre develop e main.
+	 pequenas correções de problemas de segurança e documentação.
 
 	 feature
 	 A ramificação das novas funcionalidades para o código.
@@ -389,6 +386,25 @@ bisect, revert, add, commit.
 	 Mudanças urgentes para a ramificação main. se invocada,
 	 deve ser mesclada para main e develop. Geralmente serve
 	 para corrigir erros críticos e falhas de segurança.
+
+  OUTRAS
+   docs
+   Documentação de api, manuais do usuário e etc...
+
+   perf
+   Performance de uma funcionalidade (aprimoramento de algoritmo)
+
+   refactor
+   Refatoração de código fedorento
+
+   test
+   Ramificação de testes automáticos ou manuais.
+
+   OUTRAS
+   O projeto pode adicionar novas categorias de ramificações
+   de acordo com as necessidades do ambiente de desenvolvimento.
+
+  
 
  PERMANENTES | TEMPORÁRIAS
  MAIN________|_hotfix
