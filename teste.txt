@@ -1,0 +1,25 @@
+Teste de software
+
+Componente -  unidade de código que pode ser testada de
+              forma independente. Ex: função, classe, módulo
+
+Módulo - parte integrande de um software.
+
+Problemas:
+ erro     - 
+ falha    - 
+ defeito  - 
+
+Tipos de testes:
+  Unitário - método a método ou função a função
+  Integração - comunicação inter Componente
+
+Métricas Avaliadas:
+  Performance, segurança, confiabilidade e etc ...
+
+Avaliação:
+  Caixa preta - não importa os meios apenas o resultado.
+  Caixa branca - inclui averiguação do código interno.
+
+
+

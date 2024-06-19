@@ -373,7 +373,8 @@ bisect, revert, add, commit.
    Trata-se de uma ramificação criada de dev quando esse
    adquiriu recursos suficientes para um lançamento.
 	 o trabalho nas ramificações de lançamento consiste em
-	 pequenas correções de problemas de segurança e documentação.
+   testes em busca de bugs e problemas para correção in loco
+   e documentação.
 
 	 feature
 	 A ramificação das novas funcionalidades para o código.
@@ -392,13 +393,18 @@ bisect, revert, add, commit.
    Documentação de api, manuais do usuário e etc...
 
    perf
-   Performance de uma funcionalidade (aprimoramento de algoritmo)
+   Performance de uma funcionalidade (aprimoramento de algoritmos)
 
    refactor
    Refatoração de código fedorento
+   Uma alteração feita na estrutura interna do software para torná-lo mais
+   fácil de entender e mais barato para modificar sem alterar seu comportamento
+   observável. Aqui pode ser feita avaliações para melhor adequação aos padrões de
+   projeto: Arquitetura, escrita, organização, formatação e etc...
 
    test
-   Ramificação de testes automáticos ou manuais.
+   Ramificação de testes automáticos ou manuais em partes do projeto
+   (não passível de release devido a natureza do projeto).
 
    OUTRAS
    O projeto pode adicionar novas categorias de ramificações
@@ -420,14 +426,15 @@ bisect, revert, add, commit.
  tipo:
  	docs		documentação
 	feat		funcionalidade
-	fix		correção de bugs
-	perf		performance
+	fix		  correção de bugs
+	perf		  performance
 	refactor	refatoração
-	style		estilo no código {padrões na escrita do código}
-	test		adicionar ou corrigir testes
+	style     estilo no código {padrões na escrita do código}
+	test		  adicionar ou corrigir testes
 
 	hotfix		correção de bugs do main em produção
-	release		lançamento
+	release		lançamento (vide supra)
+
  ação:
  	docs-funçõesHashAlpha-
 
@@ -435,9 +442,10 @@ bisect, revert, add, commit.
 
  	docs-funçõesHashAlpha-X69
 
-	COMMIT MSG
-	<tipo> <escopo> <descrição imperativa> <código>
-	docs (funçõesHashAlpha): descreve as funções de hash alpha X69
+EXEMPLOS:
+	<tipo> <escopo> <descrição_imperativa> <código>
+	docs (funçõesHashAlpha): descreve as funções de hash alpha X69.
+  fix  (moduloAutenticador): corrige problema com caracteres pontuais.
 }
 
  VERSIONAMENTO SEMÂNTICO - BASICÃO
