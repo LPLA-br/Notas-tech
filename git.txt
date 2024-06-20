@@ -372,7 +372,7 @@ bisect, revert, add, commit.
 	 release
    Trata-se de uma ramificação criada de dev quando esse
    adquiriu recursos suficientes para um lançamento.
-	 o trabalho nas ramificações de lançamento consiste em
+   o trabalho nas ramificações de lançamento consiste em
    testes em busca de bugs e problemas para correção in loco
    e documentação.
 
@@ -410,6 +410,38 @@ bisect, revert, add, commit.
    O projeto pode adicionar novas categorias de ramificações
    de acordo com as necessidades do ambiente de desenvolvimento.
 
+
+ https://medium.com/prolog-app/nossos-padr%C3%B5es-de-nomenclatura-para-branches-e-commits-fade8fd17106
+ NOMENCLATURA DE RAMIFICAÇÃO EM III PARTES
+
+ TIPO DA RAMIFICAÇÃO:
+ 	docs		documentação
+	feat		funcionalidade
+	fix		  correção de bugs
+	perf		  performance
+	refactor	refatoração
+	style     estilo no código {padrões na escrita do código}
+	test		  adicionar ou corrigir testes
+	hotfix		correção de bugs do main em produção
+	release		lançamento (vide supra)
+
+ TRABALHO:
+ 	docs-funçãoAutenticadora-
+
+ CÓDIGO DE TAREFA SE EXISTIR:
+
+ 	docs-funçõesHashAlpha-69
+
+ESTRUTURA DA MENSAGEM DE COMMIT 
+   ______________________________________
+  |<tipo> (?escopo) <descrição_imperativa>
+  |<?body detalhamento>
+  |<?footer pequenas infos como tarefa>
+
+  EXEMPLO:
+	docs (funçõesHashAlpha): descreve as funções de hash alpha X69.
+  fix  (moduloAutenticador): corrige problema com caracteres pontuais.
+
   
 
  PERMANENTES | TEMPORÁRIAS
@@ -418,35 +450,6 @@ bisect, revert, add, commit.
  DEVELOP__|__|_feature
 
 
-
- https://medium.com/prolog-app/nossos-padr%C3%B5es-de-nomenclatura-para-branches-e-commits-fade8fd17106
- {
- NOMENCLATURA DE BRANCH EM III PARTES
-
- tipo:
- 	docs		documentação
-	feat		funcionalidade
-	fix		  correção de bugs
-	perf		  performance
-	refactor	refatoração
-	style     estilo no código {padrões na escrita do código}
-	test		  adicionar ou corrigir testes
-
-	hotfix		correção de bugs do main em produção
-	release		lançamento (vide supra)
-
- ação:
- 	docs-funçõesHashAlpha-
-
- código livre:
-
- 	docs-funçõesHashAlpha-X69
-
-EXEMPLOS:
-	<tipo> <escopo> <descrição_imperativa> <código>
-	docs (funçõesHashAlpha): descreve as funções de hash alpha X69.
-  fix  (moduloAutenticador): corrige problema com caracteres pontuais.
-}
 
  VERSIONAMENTO SEMÂNTICO - BASICÃO
  0.0.0
