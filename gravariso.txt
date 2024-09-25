@@ -1,2 +1,2 @@
-gravar		dd if=/dir/até/iso of=/dev/sdb bs=4M
+gravar		dd if=/dir/até/iso of=/dev/sdb bs=4M status=progress onflag=sync
 recuperar	fdisk /dev/sdb & mkfs.FILESYS /dev/sdb(1||2||N)

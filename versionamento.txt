@@ -3,8 +3,8 @@ Versionamento
 0.0.0
 MAIOR.MINOR.PATCH
 |     |     |
-|     |     |__Correção de problema, bug, falha e etc.
-|     |________Quantificação de funcionalidades de forma incremental.
+|     |     |__Correção de problema, bug, falha.
+|     |________Quantificação de funcionalidades ou melhorias de forma incremental.
 |______________Grande Mudança que gera incompatibilidade com versões anteriores.
 
 Os números funcionam na forma de contagem posicional

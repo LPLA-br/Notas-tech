@@ -1,25 +1,100 @@
 Teste de software
 
-Componente -  unidade de código que pode ser testada de
-              forma independente. Ex: função, classe, módulo
-
-Módulo - parte integrande de um software.
-
 Problemas:
- erro     - 
- falha    - 
- defeito  - 
+ defeito  - implementação errada
+ erro     - resultado de defeito ou falha. Retornos errados.
+ falha    - quebra introduzida por um grande erro.
+
+Paradigmas:
+OOP - estado na forma de atributos e métodos que alteram esse estado.
+PROCEDIMENTAL - Estado na forma de variáveis globais e funções.
+FUNCIONAL - Sem Estado ordenação matemática.
 
 Tipos de testes:
-  Unitário - método a método ou função a função
-  Integração - comunicação inter Componente
 
-Métricas Avaliadas:
-  Performance, segurança, confiabilidade e etc ...
+FUNCIONAIS - caixa preta
 
-Avaliação:
-  Caixa preta - não importa os meios apenas o resultado.
-  Caixa branca - inclui averiguação do código interno.
+  Unidade/Unitário - funções ou métodos tem sua lógica posta em prova.
+  Integração - comportamento de módulos colaborantes é posta em prova.
+  Aceitação - Confirma se atende às expectativas dos usuários.
+  Sistema - Avaliação do sistema como compilante dos requisitos funcionais.
 
+NÃO FUNCIONAIS
+  
+  Desempenho
+  Carga
+  Estresse
+  Usabilidade
+  Segurança
+  Confiabilidade
 
+OUTROS
+
+  Regressão - Garantir que novas funcionalidades não quebram as pré existentes
+  Exploratório - Uso do software como meio de descobrir bugs (Ponta a Ponta)
+  Instalação - Avalia procedimento de instalação
+  Compatibilidade - Operação e várias plataformas
+
+Ponta a ponta - replicação do comportamento do usuário com o software
+em um ambiente de aplicação completa. Verifica-se coisas como: carregamento
+de uma página, processo de login, transação de informações etc etc.....
+
+TERMOS
+Mocks - imita dados ou componentes (classes funções)
+
+Tecno meet - Hermerson Araújo
+Regressão - retorno de bug que estava tido até então como corrigido
+ou introdução de quebra com criação de nova funcionalidade.
+Arquitetura de software e testes são essenciais.
+Testes: crias uma função que valida outra.
+Testes podem ser implementados em classes ou como um conjunto de
+funções.
+ENTRADA -> LÓGICA -> RETORNO(DIRETO|INDIRETO)
+Teste de classe tem-se o estado na forma de atributos e métodos
+que podem alterar tal estado.
+Todo teste que contém composição de classes é um teste de integração.
+
+End 2 End: testa a integração entre fontend e api
+exemplo: expect resposta com código 201 e com campos
+id, email, password, accesss_plan_id
+É feito na aplicação como um todo replicando o ambiente de produção.
+
+Testes automatizados são úteis para certifica-te
+de que as alterações que fazes no sofware não quebra
+o que é tido como estável até aquele momento.
+
+Mocks - os dublês
+  faker
+    Dado falso para validar {email:"invalido",senha:"curta"}
+    faker-js biblioteca fornecedora de dados falsos.
+  stub/dummy
+    Dublê de teste burro. Classe que implementa
+    interface real com métodos burros para validar a lógica de um
+    componente real. Exemplo: classe com método que simula consulta
+    ao banco de dados.
+    biblioteca sinon.js cria mocks
+  spy
+    é um stub que guarda estado para finalidade de avaliação
+    de comportamento. verificar chamadas, argumentos e retornos.
+    biblioteca: Jest
+  matchers
+    A menor parte de ferramentas de teste ex: .toBeInteger()
+  mock
+    Imita uma biblioteca real sendo superior a um stub e spy
+
+  Arrange/ arranjar new dumb();
+  Act/ agir const a = ...
+  Assert/ afirmar expect()
+
+  Coverage/ Cobertura
+  Mito: A cobertura de testes deve cobrir tudo.
+    Apenas as partes mais críticas do software.
+  Mito: É possível fugir de testes manuais.
+    Lógicas hipercomplexas podem requerir teste manuais.
+
+integração  E2E         lento  minutos
+            integration        segundos
+isolação    unit        rápido milissegundos
+
+Até onde testar ?
 
