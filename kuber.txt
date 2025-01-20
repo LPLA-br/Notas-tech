@@ -1,0 +1,170 @@
+KUBERNETES
+
+Containers
+- Implementação facilitada da integração contínua/entrega contínua
+- Variáveis ambiente rápidamente configuráveis
+- Consistência entre ambiente de desenvolvimento e produção
+
+Docker facilita a construção de ambientes isolados
+em sistemas *nix
+
+Primeiro desenvolvimento:
+1979 chegara a chamada de sistema chroot no UNIX
+que permite a alteração da raiz e seus processos filhos.
+
+ORQUESTRAÇÃO DE CONTÊINERES
+
+Escalabilidade clássica da aplicação web
+Copiar sistema em N máquinas da LAN e por um proxy reverso
+para balancear a carga roteando as requisições conforme
+a disponibilidade de recurso das máquinas da rede local.
+
+                            Rede local
+www----proxyReversoUnix_____Unix Server 1 cpu 92%
+                          |_Unix Server 2 cpu 67%
+                          |_Unix Server 3 cpu 20%
+
+Isso caracteriza funcionamento distribuido.
+
+RECURSOS
+
+Caso fosse necessário adquirir peças novas para Unix Server 1
+teria-se praticado a Escalabilidade Vertical.
+
+1 máquina com poder x=10 é melhorada para ela própria com mais poder x=12
+
+Se a aquisição de máquinas menores, capazes de executar instâncias
+de nosso sistema em desenvolvimento, fosse feita em conjunto
+com a divisão distribuida de carga, então estaria-se praticando
+a Escalabilidade Horizontal.
+
+1 máquina com poder x=10; Duas máquinas com poder x=10·2 mais
+balanceador.
+
+OBSERVAÇÃO: gerenciamento de sessão server side não é apropriada
+para computação distribuida pois o proxy reverso pode direcionar
+a requisição com credenciais para uma instância sem o estado de
+login em sua memória. STICKY SESSIONS
+
+ARQUITETURAS
+
+Monolítica - literalmente toda a lógica de negócio a ser processada
+é contida em um sistema que, geralmente, compila para um único executável
+ou executa todo a partir de um código fonte principal sob a égide
+de um conjunto estático de tecnologias. Muito útil para pequenos sistemas mas
+tende a se tornar um pesadelo se:
+
+ -cresce demais.
+ -modifica-se frequentemente E não segue estritamente padrões de
+  engenharia de software.
+ -for aplicado em ambientes altamente distribuidos como nos cenários acima.
+
+Microsserviços - o sistema é quebrado em vários subsistemas, denominados serviços,
+autoexecutáveis com endpoints que permitem interoperarem com outros. O grande
+orientador dessa segmentação é o domínio. Veja também sobre a SOA
+(Service Oriented Architecture).
+
+Exemplos de domínios implemantados em serviços em uma aplicação X:
+0. Client (front-end)
+1. Autenticador
+2. Gerenciador de Contas
+3. Vendas
+4. Compras
+5. Gerenciador de dados
+6. Configurações dos usuários
+
+Vantagens: 
+O serviço usa a tecnologia que lhe é coveniente.
+O serviço pode ser substituido por outro de implementação mais refinanda.
+
+INTEGRAÇÃO CONTÍNUA E ENTREGA CONTÍNUA - conjunto de práticas que
+automantizam o desenvolvimento de software.
+
+INTEGRAÇÃO CONTÍNUA - Integrar alterações de código em repositório
+compartilhado várias vezes no dia.
+
+ENTREGA CONTÍNUA - Automatizar a integração de código e a liberação de
+versões finais para usuários.
+
+IMPLANTAÇÃO CONTÍNUA - liberar automaticamente atualizações no ambiente
+de produção.
+
+OBJETIVOS: minimizar downtime, eficientizar ambientes de trabalho,
+responder rápidamente à nos requisitos, incorporar feedback dos usuários
+mais frequentemente.
+
+Orquestração de conteineres com KUBERNETES
+Útil para balanceamento de carga, orquestração de armazenamento,
+lançamento e reversão de versão automatizadas, empacotamento binário
+automático, autocorreção de conteineres, Gerenciamento de configuração
+de segredos.
+
+OBJETOS KUBERNETES e COMANDOS DO GERENCIADOR CLI:
+
+kubectl COMANDO TIPO_OBJETO NOME [opções]
+kubectl COMANDO help
+
+  O CLUSTER Kubernentes é composto de NÓS servidores de uma rede física ou lógica que
+  executam aplicações conteinerizadas. Cada nó hospeda PODS que são componentes
+  de uma aplicação.
+
+  ... config view           #visualizar configuração dos CLUSTERS
+
+  OS NODES (nós) executam Pods e podem ser virtuais ou físicos
+
+  OS NAMESPACES fornecem meios para isolar grupos de recursos em um CLUSTER
+
+  ... get namespaces
+  ... create namespace
+
+  O POD é a menor unidade implantável que pode ser criada e gerenciada no k8s
+  trata-se de um grupo de um ou mais conteineres que compartilham a mesma rede
+  ,armazenamento mais uma especificação de como executá-los chamada de OBJETO e
+  escrita sob a sintaxe .yaml
+  Um pod modela um host lógico específico da aplicação onde os conteineres
+  são fortemente acoplados, logo o POD tem IPs e as 65535 portas TCP. Pods têm
+  estado de execução de acordo com nível de sucesso e características dos seus
+  conteineres internos. (POD: nginx, mariadb )
+
+  ... create -f pod.yaml
+  ... get pods [--all-namespaces] [-n NOME_NAMESPACE]
+  ... get pod -o FORMATO=yaml|json|...
+  ... describe pod NOME
+
+  O REPLICASET é responsável por manter um conjunto estável de PODs executando
+  tendo a missão de garantir a disponibilidade de um número específico de PODs
+  idênticos. rollingUpdateStrategy garante que 75% execute
+
+  ... get rs
+  ... apply -f replicaset.yaml [--dry-run=client]
+  ... scale rs NOME_RS --replicas=N
+  ... delete rs NOME_RS
+
+
+  O DEPLOYMENT gerencia conjuntos de Pods para executar a carga de
+  trabalho da aplicação. Fornece atualizações declarativas para
+  Pods e replicasets.
+
+  ... create deploy NOME --image=NOME --replicas=10
+  ... get deploy
+  ... edit deploy NOME
+  ... rollout history deploy NOME
+  ... rollout undo deploy NOME --to-revision=VERSÃO
+
+  NAMESPACES são
+
+(Namespace(deployment(replicaset(pod))))
+
+              Y A M L
+POD---------------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+------------------------------------
