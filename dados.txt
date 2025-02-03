@@ -1,0 +1,37 @@
+Lista de métodos comumente empregados em análise de dados:
+
+Regressão:
+    Linear, Ridge, Lasso, Logística.
+
+Classificação:
+    K-Nearest Neighbors (KNN), SVM, Árvores de Decisão, Random Forest, XGBoost.
+
+Clustering:
+    K-means, DBSCAN, Hierárquico.
+
+Redução de Dimensionalidade:
+    PCA, t-SNE, UMAP.
+
+Séries Temporais:
+    ARIMA, SARIMA, LSTM.
+
+Modelagem Bayesiana:
+    Redes Bayesianas, Naive Bayes.
+
+Redes Neurais:
+    Feedforward, CNNs, RNNs, GANs.
+
+Técnicas de Ensemble:
+    Bagging, Boosting, Stacking.
+
+Análise de Textos (NLP):
+    TF-IDF, Word2Vec, Transformers (BERT, GPT).
+
+Técnicas de Avaliação:
+    Cross-validation, AUC-ROC, F1-score.
+
+Otimização:
+    Gradient Descent, Bayesiana, Evolutiva.
+
+Técnicas de Pré-processamento:
+    Normalização, Padronização, Codificação (One-hot, Label Encoding).
