@@ -151,7 +151,16 @@ kubectl COMANDO help
   ... rollout history deploy NOME
   ... rollout undo deploy NOME --to-revision=VERSÃO
 
-  NAMESPACES são
+  NAMESPACES é uma forma de agrupar os objetos sobre
+  um espaço de nome.
+
+  ... get namespaces
+
+  INGRESS mapear tráfego para diferentes backends com
+  base em regras que defines pela API k8s
+
+  client - |cluster| - Ingress - routingRule - Service=Pods
+
 
 (Namespace(deployment(replicaset(pod))))
 
@@ -192,8 +201,8 @@ events
 events.events.k8s.io
 flowschemas.flowcontrol.apiserver.k8s.io
 horizontalpodautoscalers.autoscaling
-ingressclasses.networking.k8s.io
-ingresses.networking.k8s.io
+  ingressclasses.networking.k8s.io
+  ingresses.networking.k8s.io
 jobs.batch
 leases.coordination.k8s.io
 limitranges
@@ -201,8 +210,8 @@ mutatingwebhookconfigurations.admissionregistration.k8s.io
   namespaces
 networkpolicies.networking.k8s.io
   nodes
-persistentvolumeclaims
-persistentvolumes
+  persistentvolumeclaims
+  persistentvolumes
 poddisruptionbudgets.policy
   pods
 podtemplates
