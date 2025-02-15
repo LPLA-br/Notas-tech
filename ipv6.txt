@@ -1,23 +1,81 @@
 IPV6
-Endereços variam de
 
-0000:0000:0000:0000:0000:0000:0000:0000
+I. Endereços ipv6 são compostos de 8 blocos de
+16 bits. Cada bloco denomina-se duo octeto
 
-até
+  0000:0000:0000:0000:0000:0000:0000:0000
+  ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
 
-ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+II. Cada bloco é representado por 4 dígitos
+hexadecimais
 
-370 undecilões de endereços possíveis
+  0123:4567:89ab:cdef:0000:0000:0000:0000
 
-unicast - uma interface de dispositivo
-multicast - N interfaces
-anycast - mais próxima de N interfaces
-broadcast - d e s c a r t a d o
+III. Cada dígito hexadecimal representa quatro bits
 
-nibble    f     4 bits  1111
-byte      ff    8 bits  (1111)•2
-word      ffff  16bits  (1111)•4
+  nibble    f     4 bits  1111
+  byte      ff    8 bits  (1111)•2
+  word      ffff  16bits  (1111)•4
 
-192.168.0.0/24 = 0000:0000:0000:0000:0000:ffff:c0a8:0000
-192.168.0.1/24 = 0000:0000:0000:0000:0000:ffff:c0a8:0001
-192.168.0.1/24 = 0000:0000:0000:0000:0000:ffff:c0a8:0002
+  00 = 0
+  ff = 255
+
+IV. Zeros à esquera são omitíveis
+
+  2001:0DB8:00AD:000F:0000:0000:0000:0001
+  2001:DB8:AD:F:0:0:0:1
+
+V. 370 undecilões de endereços possíveis.
+
+VI. Há três tipos de endereços
+
+  unicast - uma interface de dispositivo
+  multicast - N interfaces
+  anycast - mais próxima de N interfaces
+
+  broadcast - d e s c a r t a d o
+
+VII. Como seria ipv4 representado por hexadecimais
+estilo ipv4 e ipv6?
+
+  ipv4              | ipv4 hexadecimal  | estilo duo octeto ipv6
+  192.168.0.0/24    | C0.A8.00.0/24     | C0A8:0000/24
+  192.168.0.1/24    | C0.A8.00.1/24     | C0A8:0001/24
+  192.168.0.254/24  | C0.A8.00.FE/24    | C0A8:00FE/24
+
+VIII. Exemplo de conversão ipv4 para ipv6
+
+  192.168.0.0/24 =    0000:0000:0000:0000:0000:FFFF:C0A8:0000
+  192.168.0.1/24 =    0000:0000:0000:0000:0000:FFFF:C0A8:0001
+  192.168.0.2/24 =    0000:0000:0000:0000:0000:FFFF:C0A8:0002
+  192.168.0.255/24 =  0000:0000:0000:0000:0000:FFFF:C0A8:00ff
+
+IX. Como funciona os prefixos ?
+
+  UNICAST E ANYCAST:
+
+  Prefixo de rede e identificador de host onde
+  a primeira parte é a rede e a segunda o host.
+
+  1. prefixo de roteamento maior que ou igual 48 bits
+  2. identificador de sub rede menor que ou igual 16 bits
+  3. identificador de interface de rede
+
+  MSB                                   LSB
+  1               2   | 3
+  0000:0000:0000: 0000|:0000:0000:0000:0000 /64
+                      |
+
+  EXCLUSIVO LOCAL ( O VELHO IPV4 )
+  
+  1. prefixo cujo o bit menos significante é
+      1. endereços atribuidos globalmente
+      2. endereços atribuidos localmente
+  2.definido aleatoriamente uma vez
+  3.identificador de subrede <= 16 bits
+  4.identificador de interface
+
+  1  2             3     4
+  00 00:0000:0000: 0000|:0000:0000:0000:0000 /64
+
+CONTINUA ...
