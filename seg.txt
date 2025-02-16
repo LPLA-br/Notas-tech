@@ -1,0 +1,17 @@
+5 Dimensões da segurança da informação
+( representadas aqui como camadas )
+
+5 AMEAÇAS               ( Interrupção, Interceptação, Modificação, Fabricação )
+4 OBJETIVOS/PRINCÍPIOS  ( Disponiblidade, Confidencialidade, Integridade, Autenticidade, Não repúdio)
+3 COMPONENTES           ( Hardware, Software, Informações, Pessoas, Ambiente )
+2 OPERAÇÕES             ( Acesso, Transporte, Armazenamento, Processamento )
+1 INFORMAÇÕES           ( Texto, Imagem, Dados, Som, (video=imagem*n+som) )
+
+Não repúdio = impossibilidade de negar autoria (origem/destino)
+
+Vulnerabilidade - ponto fraco explorável por pessoas ou impostas por condições adversas do
+ambiente.
+Ameaça - Qualquer coisa que pode infligir perda, dano ou destruição através da exploração
+da vulnerabilidade.
+Risco - Potencial de perda, dano ou destruição como resultado de uma ameaça que explora
+uma vulnerabilidade.
