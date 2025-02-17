@@ -1,0 +1,31 @@
+PROTOCOLOS DE EMAIL
+
+PROTOCOLOS
+
+smtp - simple mail transfer protocol    25/tcp
+  rfc 821 -> rfc 5321
+pop3 - post office protocol             110/tcp
+imap - internet message access protocol 143/tcp
+|_imap3 220/tcp
+|_imaps 993/tcp
+
+RESPONSABILIDADES
+
+smtp - Trabalha apenas para transferência de email pela rede
+imap/pop - Recebimento de email
+
+PARTES ENVOLVIDAS
+- Agente usuário
+    Compor, enviar, responder, exibir,
+    organizar e pesquisar emails.
+- Agentes de transferência de mensagem
+
+emissor->
+  agenteTransf.smtp->
+  [caixaDeCorreio]agenteTransf-entrega->
+destinatário
+
+O agente de transferência garante a entrega
+do email ao destinatário assim que ele estiver
+online.
+

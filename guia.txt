@@ -227,6 +227,7 @@ tar - utilitário criar ou expandir arquivos .tar
 ar - criar, modificar e extrair arquivos .ar
 unzip - utilitário de descompactar arquivos .zip
 unrar - utilitário de descompactar arquivos .rar
+iconv - converte arquivo de texto de uma econdificação para outra (iconv -f X -t Y FILE)
 
 UTILITÁRIOS TEXTO:
 more - exibe o conteúdo de um texto de forma simples.
