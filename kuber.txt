@@ -178,6 +178,27 @@ kubectl COMANDO help
   ... scale rs NOME_RS --replicas=N
   ... delete rs NOME_RS
 
+  SERVICE consiste em um método de expor uma rede de aplicação que
+  executa em 1..N Pod(s) no teu aglomerado. Cada pod têm endereço ip
+  no aglomerado. Entretanto o ip não e estático devido a efemeridade
+  dos Pods. Service é uma abstração que permite a exposição de um
+  grupo de pods sobre a internet (independemente de qual Node os executam)
+  O conjunto de pods alvo de um serviço são comumente determinados pelo
+  Selector que defines.
+  Se tua carga de trabalho fala HTTP, podes utilizar o INGRESS para controlar
+  o tráfego web que atinge a carga de trabalho.
+  A Gateway provê capacidades extra indo além do Ingress e do Service.
+  Leia: https://kubernetes.io/docs/concepts/cluster-administration/networking/
+
+  Há 4 tipos de Service:
+  1. ClusterIP - expõe serviço em um IP interno do cluster.
+  2. NodePort  - expõe serviço para cada IP de Node (NodePort) em porta estática.
+                 permite acesso de fora.
+  3. LoadBalancer - Expõe serviço externamente usando balanceador de carga alieno. 
+  4. ExternalName - Mapeia serviço para conteúdo de ExternalName
+
+  .. get services
+
   NAMESPACES é uma forma de agrupar os objetos sobre
   um espaço de nome.
 
