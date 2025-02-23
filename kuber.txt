@@ -12,7 +12,10 @@ Primeiro desenvolvimento:
 1979 chegara a chamada de sistema chroot no UNIX
 que permite a alteração da raiz e seus processos filhos.
 
+
 ORQUESTRAÇÃO DE CONTÊINERES
+
+ORQUESTRADOR 1..N NÓS 1..N CONTAINERS
 
 Escalabilidade clássica da aplicação web
 Copiar sistema em N máquinas da LAN e por um proxy reverso
@@ -64,6 +67,9 @@ autoexecutáveis com endpoints que permitem interoperarem com outros. O grande
 orientador dessa segmentação é o domínio. Veja também sobre a SOA
 (Service Oriented Architecture).
 
+Menção honrosa: Filosofia UNIX
+https://cscie2x.dce.harvard.edu/hw/ch01s06.html
+
 Exemplos de domínios implemantados em serviços em uma aplicação X:
 0. Client (front-end)
 1. Autenticador
@@ -93,11 +99,23 @@ OBJETIVOS: minimizar downtime, eficientizar ambientes de trabalho,
 responder rápidamente à nos requisitos, incorporar feedback dos usuários
 mais frequentemente.
 
-Orquestração de conteineres com KUBERNETES
+KUBERNETES - APLICAÇÕES PRÁTICAS
 Útil para balanceamento de carga, orquestração de armazenamento,
 lançamento e reversão de versão automatizadas, empacotamento binário
 automático, autocorreção de conteineres, Gerenciamento de configuração
 de segredos.
+
+IDENTIFICAÇÃO
+1.  O kubernetes possui um conjunto de objetos para gerência do cluster
+2.  Cada objeto possui Name único para cada tipo de recurso
+    EX: um recurso Pod pode ter Name: Nginx-server
+3.  Names são subordinados aos Namespaces de forma que Pod A
+    pode existir sobre o espaço de nomes AA enquanto outro Pod
+    A pode existir com o mesmo nome sobre outro espaço de nomes AB.
+4.  Cada objeto kubernetes possui um UID único em todo o cluster.
+5.  atributos não únicos definidos por usuários são providos por:
+  5.1 labels        Leia a RFC 1123 ou RFC 1035 para detalhes
+  5.2 annotations   Leia a ISO/IEC 9834-8
 
 OBJETOS KUBERNETES e COMANDOS DO GERENCIADOR CLI:
 
@@ -107,6 +125,9 @@ kubectl COMANDO help
   O CLUSTER Kubernentes é composto de NÓS servidores de uma rede física ou lógica que
   executam aplicações conteinerizadas. Cada nó hospeda PODS que são componentes
   de uma aplicação.
+
+  O CONTROL PLANE é o computador interface entre o aglomerado e o profissional
+  gerente.
 
   ... config view           #visualizar configuração dos CLUSTERS
 
@@ -125,21 +146,18 @@ kubectl COMANDO help
   são fortemente acoplados, logo o POD tem IPs e as 65535 portas TCP. Pods têm
   estado de execução de acordo com nível de sucesso e características dos seus
   conteineres internos. (POD: nginx, mariadb )
+  Conteineres de Pods intercomunicam-se diferentemente do docker. No Kuberentes
+  Container A invocaria localhost para porta do outro Container B para comunicação
+  enquanto o docker puro criaria uma sub-rede lógica onde cada container possui
+  um ip próprio com todas as portas tcp/udp disponíveis.
+  A seguinte hierarquia e conhecida pelo escritor desta síntese
+  Cluster possui Nós (máquinas de carga de trabalho) que possuem N Pods que possuem
+  N Conteineres em execução.
 
   ... create -f pod.yaml
   ... get pods [--all-namespaces] [-n NOME_NAMESPACE]
   ... get pod -o FORMATO=yaml|json|...
   ... describe pod NOME
-
-  O REPLICASET é responsável por manter um conjunto estável de PODs executando
-  tendo a missão de garantir a disponibilidade de um número específico de PODs
-  idênticos. rollingUpdateStrategy garante que 75% execute
-
-  ... get rs
-  ... apply -f replicaset.yaml [--dry-run=client]
-  ... scale rs NOME_RS --replicas=N
-  ... delete rs NOME_RS
-
 
   O DEPLOYMENT gerencia conjuntos de Pods para executar a carga de
   trabalho da aplicação. Fornece atualizações declarativas para
@@ -151,6 +169,15 @@ kubectl COMANDO help
   ... rollout history deploy NOME
   ... rollout undo deploy NOME --to-revision=VERSÃO
 
+  O REPLICASET é responsável por manter um conjunto estável de Pods executando
+  tendo a missão de garantir a disponibilidade de um número específico de PODs
+  idênticos. rollingUpdateStrategy garante que 75% execute
+
+  ... get rs
+  ... apply -f replicaset.yaml [--dry-run=client]
+  ... scale rs NOME_RS --replicas=N
+  ... delete rs NOME_RS
+
   NAMESPACES é uma forma de agrupar os objetos sobre
   um espaço de nome.
 
@@ -161,21 +188,45 @@ kubectl COMANDO help
 
   client - |cluster| - Ingress - routingRule - Service=Pods
 
+  PERSISTENT VOLUMES é uma peça de armazenamento no Cluster provisionado pelo
+  administrador ou dinâmicamente via Storage Classes. É um recurso no Cluster
+  assim como os Nodes o são. Ciclo de vida idependente de Pods usuários.
 
-(Namespace(deployment(replicaset(pod))))
+  ... get pv
 
+  PERSISTENT VOLUMES CLAIMS é uma requisição por armazenamento pelo usuário.
+  É similar a um Pod. Pods consomem recursos dos Node que os hospedam enquanto
+  os Persistent Volume Claims consomem recusos definidos pelos Persistent
+  Volumes. Pods podem requerer níveis específicos de recursos (cpu e memória)
+  enquanto Claims podem requisitar tamanhos de armazenamento X com AccessModes
+  específicos definidos EX:( ReadWriteOnce,ReadOnlyMany, ReadWriteMany, ReadWriteOncePod)
+
+  ... get pvc
+
+  CONFIG MAPS objeto de api usado para armazenar dados não confidenciais no formato
+  pares de chaves-valores. Pods consomem ConfigMaps na forma de variáveis de ambiente
+  argumentos de linha de comando de programas ou como arquivos de configuração em volume.
+  Este objeto permitirá que desacoples configurações ambientais das suas Imagens de Container.
+  ATENÇÃO: este objeto não provê criptografia das informações que guarda
+
+  ... get secrets
+
+  SECRETS é um objeto que possui uma pequena quantidade de dados sensíveis como:
+  Senhas, Tokens ou Chaves. Tal informação, de outra forma, poderia ser colocada
+  em uma especificação de Pod. Este objeto existe de modo a fornecer um meio de
+  evitar a colocação de credenciais confidenciais no código de tua aplicação.
+
+
+O YAML é o arquivo que permite que definas
+objetos 
               Y A M L
-POD---------------------------------
+------------------------------------
 apiVersion: v1
-kind: Pod
+kind: TipoObjeto
 metadata:
-  name: nginx
+  IDENTIFICAÇÕES
 spec:
-  containers:
-  - name: nginx
-    image: nginx:1.14.2
-    ports:
-    - containerPort: 80
+  ESPECIFICAÇÕES_TÉCNICAS
 ------------------------------------
 
 LISTA GERAL DE OBJETOS KUBERNETES
