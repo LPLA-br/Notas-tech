@@ -1,0 +1,145 @@
+INDEX DOS ALGORITMOS
+
+Este arquivo tem como finalidade
+anotar as formas de clasificação dos
+algoritmos.
+
+Nota: Algoritmos já pre-existem e
+devem ser estudados pelo programador
+para aprimoramento de sua lógica e
+pensamento computacional.
+Entretanto, em ambiente
+de produção busca-se uma implentação
+geral e escalável e a adapta para o problema
+corrente seguindo a máxima acadêmica
+"sobre o ombro de gigantes".
+
+
+ESTRUTURA DE DADOS___________________________________________
+  conjunto de um ou mais dados ou código e seus respectivos
+  tipos variando em acordo com a tecnologia empregada.
+  São utilizados para representar a informção. São simplemente
+  a base de toda a ciência da informação.
+
+  C           struct
+  C++         struct, class
+  JAVA        class
+  Python      dict, list, tuple
+  Javascript  object, "array"
+_____________________________________________________________
+
+
+PROGRAMA
+  DADOS
+    CONSTANTES
+    DINÂMICOS/VARIÁVEIS
+  CÓDIGO
+    IMPERATIVO
+      Ordens de manipulação direta da informaçáo
+      na sua forma bruta.
+    ESTRUTURADO
+      Estruturas de controle.
+        sequênciação, iteração, decisão.
+    OBJETOS
+      Aprimora a organização do estruturado.
+      abstração, polimorfismo, herança, encapsulamento de dados
+    FUNCIONAL
+      funções de primeira classe (podem ser tratadas como variáveis)
+      funções de alta classe (recebem funções)
+      imutabilidade, recursão, funções puras e impuras
+      evitar: efeitos colaterais
+
+
+"O usuário não se importa como fizeste o programa.
+Ele apenas quer os resultados bons e usáveis."
+Luiz e qualquer programador, 2025
+
+TIPOS:
+
+  ABORDAGEM
+    DETERMINÍSTICA/PURA
+      sempre retorna x para entrada y.
+    NÃO DETERMINÍSTICA/IMPURA
+      plúrimas retornos válidos para mesma entrada.
+    PROBABILISTICO/ALEATÓRIO
+      aleatorieadade define passos de execução para retorno.
+
+  PARADIGMA
+    DIVISÃO E CONQUISTA
+      Dividir o problema em subproblemas menores
+      e resolver recursivamente até a resposta final.
+    GANANCIOSO/GULOSO
+      Tomada de decisões locais para encontrar uma
+      solução global aproximada.
+    PROGRAMAÇÃO DINÂMICA
+      Resolver problema sobrepondo problemas e armazenando
+      resultados.
+    BACKTRACKING
+      Teste de todas possibilidades (força bruta)
+      com retorno em caso de caminho errado.
+      BRANCH AND BOUND
+        Evita caminhos inúteis através da técnica de poda.
+
+  ESTRUTURA DE DADOS EMPREGADA
+    ORDENAÇÃO
+      Conjunto de dados primitivos ou objetos.
+      Matrizes unidimensionais ou multidimensionais
+      contendo dados primitivos, estruturas ou objetos.
+    PESQUISA/BUSCA 
+      Nas mesmas estruturas acima expostas seguindo
+      restrição da necessidade de identificação única
+      por elemento (nem sempre dependendo do algoritmo
+      de busca/pesquisa).
+    GRAFOS
+      Estruturas de dados com elementos capezes de apontar para
+      outras elementos e portar consigo informações.
+      1..1 ou 1..N ou N..N (arestas, vértices e faces)
+      ÁRVORES e FLORESTAS
+      CICLOS
+      LINHAS
+    FILAS E PILHAS
+      -First in First out
+      -First in Last out
+    HASHING/ TABELA DE DISPERÇÃO
+      Converter dados de qualquer tamanho em
+      um número de tamanho fixo.
+
+  FINALIDADE
+    COMPRESSÃO
+      armazenamento, banda de rede
+    CRIPTOGRÁFICOS
+    ESTEGANOGRÁFICOS
+      segurança da informação em meios
+      inseguros
+    SIMULAÇÃO
+      física,química,biológica
+    INTELIGÊNCIA ARTIFICIAL
+      simulação do intelecto humano
+      em sistemas digitais.
+      APRENDIZADO DE MÁQUINA
+        aprendizado de padrões
+        para aplicação sem intervenção
+        humana. Aplicações específicas
+    ...
+
+  COMPLEXIDADE
+    EXATOS
+      encontra solução ótima
+      1+1=2
+    APROXIMADOS
+      encontra solução aproximada do problema
+      raio/diametro ~= 3.1415
+    HEURÍSTICOS
+      regras empíricas para encontrar soluções rápidas.
+    METAHEURÍSTICOS
+      estratégias genêricas para otimização.
+
+  FORMAS DE EXECUÇÃO
+    RECURSIVO
+      pilha de chamada de funções.
+    ITERATIVO
+      N execuções de um código.
+    PARALELO (paralelismo != threads)
+      subprocessos ou threads, paralelismo (cpu)
+    DISTRIBUIDO (redes  TCP/IP)
+      X cargas para X máquinas.
