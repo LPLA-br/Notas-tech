@@ -1,0 +1,62 @@
+------------------------------------------------------------------------0x00000000 +1GB
+UNIX KERNEL SPACE
+User cannot read from nor write to these addresses ohterwise resulting
+a SEGMENTATION FAULT
+
+------------------------------------------------------------------------0xc0000000
+                            USER MODE SPACE
+... ohter programs or space full of trash
+------------------------------------------------------------------------
+STACK
+rw-
+local variables (automatic int x)
+caller's return addresses (function call)
+------------------------------------------------------------------------
+
+
+empty
+
+
+------------------------------------------------------------------------
+HEAP 
+rw-
+PT-br: "monte"
+dynamic memory allocation (malloc, free) (new, delete)
+shared by libraries and dynamically loaded modules in a process
+------------------------------------------------------------------------
+BSS (OLD: BLOCK STATED BY SYMBOL) || UNINITIALIZED DATA SEGMENT
+rw-
+global and static variables initialized to zero or nothing.
+------------------------------------------------------------------------
+DATA || INITIALIZED DATA SEGMENT
+rw-
+global and static variables initialized by programmer
+------------------------------------------------------------------------
+TEXT || CODE SEGMENT
+--x
+machine instructions of data manipulation, logic, artithmetic
+conditional jumps, jumps, bitwise and etc...
+Is the program itself, Hello world program:
+
+    .global _start
+
+    .text
+_start:
+    # write(1, mensagem, 13)
+    mov     $1, %rax
+    mov     $1, %rdi
+    mov     $mensagem, %rsi
+    mov     $13, %rdx
+    syscall
+
+    # exit(0)
+    mov     $60, %rax
+    xor     %rdi, %rdi
+    syscall
+mensagem:
+    .ascii  "ola mundo\n"
+------------------------------------------------------------------------
+... ohter programs or space full of trash
+------------------------------------------------------------------------0xffffffff
+
+
