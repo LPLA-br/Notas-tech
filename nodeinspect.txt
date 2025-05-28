@@ -1,0 +1,50 @@
+Ferramenta de debug de scripts CLI do node.js
+
+Eliminando de vez o console.log(); para depuração
+
+$ node inspect index.js
+
+Comandos
+  Debug>
+    EXECUÇÃO
+      run                     rodar programa.
+      restart                 re-iniciar todo programa.
+      kill                    matar programa.
+
+    PONTOS DE PARADA PARA ANÁLISE
+      setBreakpoint( "file.js", linha )
+      setBreakpoint( linha )
+      setBreakpoint( fn() )   para primeira declaração do corpo de uma função.
+      setBreakpoint()         para a linha atual de passo.
+
+      breakpoints             listar todos os pontos de parada.
+
+      clearBreakpoint( "arquivofonte.js", 25 )
+    
+    PASSOS
+      cont, c                 continuar execução.
+      next, n                 próximo passo.
+      step, s                 passo em.
+      out, o                  pular para fora de escopo (saltar escopos locais).
+      pause                   pausar execução.
+
+    ANÁLISE DE CONTEXTO CORRENTE
+      backtrace               listar pilha de chamada de funções corrente.
+      list( linhas )          mostrar código fonte corrente em X linhas antes e depois.
+
+      EXECUTAR AUTOMANTICAMENTE PARA CADA PASSO
+      watch( expressao )      assitir variável ou expressão.
+      watchers                lista os visualizadores de expressão.
+      unwatch( expressao )    para de assitir variável ou expressão.
+
+      exec EXPR, p EXPR       executar expressao no passo corrente (alternativa a watch)
+
+    PERFIL DE CPU
+      profile                 iniciar sessão de perfil da CPU.
+      profileEnd              encerrar sessão de perfil da CPU. 
+      profiles                listar perfis coletados em memória.
+      profiles[X].save(filepath='./nome') salvar perfil para armazenamento em caminho informado.
+
+      takeHeapSnapshot(filepath='./nome') salvar snapshot do heap para JSON no armazenamento.
+
+

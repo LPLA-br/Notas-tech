@@ -1,0 +1,22 @@
+TIPAGEM
+
+Tipos Primitivos
+e Abstratos (classes)
+
+Forte
+  Não é possível fazer converção implicita de variável para outro tipo.
+  Tratar um inteiro como se fosse string resulta em erro.
+Fraca
+  Conversões implicitas ocorrem.
+  Inteiro pode ser tratado como string e string pode ser tratada como
+  inteiro se for restrita a caracteres numéricos.
+Estática
+  Tipos são explicitamente marcados no código fonte e verificados em tempo de compilação.
+Dinâmica
+  Tipos são implicitos no código fonte e determinados em tempo de execução.
+
+          FORTE           FRACA
+ESTÁTICA  Java            C/C++
+DINÂMICA  Python          Javascript
+
+C/C++ cast de primitivos, estruturas, classes

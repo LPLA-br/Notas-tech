@@ -1,0 +1,60 @@
+Programação orientada a objetos.
+Do Primitivo ao Abstrato.
+
+PILARES FUNDAMENTAIS DO PARADIGMA
+Abstração - Subconjuntos de atributos e métodos/comportamentos pensados da realidade (O domínio, A solução)
+Encapsulamento - Máxima ocultação possível de atributos e mecanismos internos das classes.
+Herança - Extenção de atributos e ou comportamentos (conjunto -> superconjunto -> superconjunto).
+Polimorfismo - Modificação/sobrescrita de comportamento que não viola a pre e pós condição mais a invariância das bases.
+
+OBSERVAÇÕES
+A Entidade possui atributo !
+Pessoa tem a propriedade do atributo "nome". Entretanto não possui propriedade sobre atributo "rua".
+Mas, o abiente de implementação que não exige complexidade pode permitir a existência de tal atributo
+à entidade 
+
+TIPOS ABSTRATOS DE DADOS
+Conjunto S de Objetos.
+|_Conjunto P de operações/comportamentos definidos sobre os elementos de S.
+  |_Conjunto R de regras que definem operações/comportamentos/relacionamentos entre elementos de S.
+
+ESPECÍFICO características específicas de entidade não compartilhada por outras entidades.
+
+RELAÇÕES ENTRE CLASSES (verbos)
+  HERDAR (Concreta ou abstrata)
+    Polimorfismo (sobrescrita) de método/comportamento não viola: pre condições, pós condições e invariância.
+    Herança cria uma sub instância mais específica.
+    Diagrama de Venn aplicável.
+  IMPLEMENTAR
+    Polimorfismo manifesta-se por Implementação de método definido em contrato.
+    Dependência de implementação a nível de parametros e retorno.
+    Segregação de interfaces necessária para evitar dependências abstratas inúteis.
+  ASSOCIAR
+    Instaciação de classe concreta em construtor para uso em escopo global da classe (alto acoplamento).
+    Parâmetro de construtor contrato para recebimento de objeto (médio acoplamento).
+    Parâmetro de construtor contrato para recebimento de objeto adaptador para outro objeto (baixo acoplamento) Overenginnering Danger
+    Instância em construtor de Cursor para manipular banco de dados relacional é uma Associação.
+  DEPENDER
+    Instanciação casual em código de método da classe (alto acoplamento).
+    Recebimento de objeto externo via parâmetro de método (médio acoplamento).
+    Recebimento de objeto externo via parâmetro tipo contrato (baixo acoplamento).
+    Instânciar Math em 1..N método(s) é uma relação de dependência.
+  COMPOR
+    Depende obrigatoriamente de subpartes
+    "A parte não existe sem o todo"
+    Empresa composta por 1..N Funcionario
+    Carro possui 3..N Roda
+    Aeronave possui 2..N Asa
+    Casa possui 1..N Comodo, Andar, AreaQuadrada, VolumeCubico
+    PessoaFisica 1..1 Cpf
+  AGREGAR
+    Depende opcionalmente de subpartes
+    "A parte pode existir sem o todo"
+    Empresa terceiriza para 0..N Empresas
+    Carro possui 0..N CintoDeSeguranca
+    Aeronave possui 0..N CompartimentoPressurizado
+    Casa possui 0..N Piscina, Estatua, Portico, Impluvio
+    PessoaFisica possui 0..N PessoaJuridica
+
+
+

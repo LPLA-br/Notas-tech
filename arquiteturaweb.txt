@@ -1,0 +1,111 @@
+ARQUITETURA e WEB
+Uma visão geral das arquiteturas padronizadas e populares populares.
+
+  MONOLÍTICAS
+    Centralizção das funcionalidades
+    Uma base de código
+    Um banco de dados
+    Um processo
+    Fácil de implementar e testar
+    Escalabilidade vertical
+    Escalabilidade horizontal por replicas
+    Fortes acoplamentos (quebra por alteração e partes)
+
+
+  N-LAYERS 
+    Conhecidas por ter camadas com
+    as seguintes responsabilidades
+    genêricas:
+      INTERFACE USUÀRIO UI
+      LÓGICA DE NEGÓCIO BLL
+      ACESSO A DADOS    DAL
+
+    MODEL VIEW CONTROLLER
+      Apresentação (View): Interface de usuário
+      Controller et Service: regras de negócio e orquestração
+      Model et Repository: dados, comunicação com o banco de dados
+
+      VIEWS
+        Renderização dinâmica provida pelo
+        servidor. Interface gráfica para
+        o usuário final.
+      CONTROLADORES
+        Gerência de interface REST e
+        interface para lógica de negócio.
+      SERVICE
+        Classes responsáveis pelas regras
+        de negócio sem responsabilidade
+        de manipulação no banco de dados.
+        Outros definem como local de
+        implementação da lógica de negócio.
+      REPOSITORY (padrão repositório)
+        classes responsáveis apenas
+        por manipular banco de dados
+        (armazenamento de dados das
+        entidades).
+      UTILIÁRIA
+        Utilidades como conversores de medidas
+        internos ou externos.
+
+    N-TIER EX:
+      Apresentation,business,data,infrastructure(logs,auth)
+
+
+
+  CLEAN ARCHITECTURE (SOLID et DOMAIN DRIVEN DESIGN et Object Calisthenics)
+
+    HEXAGONAL: Ports e Adapters
+      Core (Domínio/Aplicação): regras de negócio essenciais.
+      Adapters (infrastrutura/<Interfaces>): traduz requisições para o núcleo do sistema.
+      Ports (Interface de aplicação): Define os contratos para entrada e saída de dados.
+
+    ONION
+      USER INTERFACE
+      Views
+      Controllers
+        APLICATION_CORE
+          Servicos de Dominio
+            Interfaces
+            Entidades
+      INFRA
+        Repository
+        Impl. Services
+
+      DEPENDÊNCIAS EXTERNAS
+        SQL, CLOUD, MAIL
+
+      UI------------
+      INFRA--- | TESTS
+        |      | |
+      APLICATION-CORE
+
+      Microsoft cita hexagonal, onion, Port-Adapters como sendo nomes anteriores
+      da clean architecture.
+
+
+  MICROSERVIÇOS ? Evolução progressiva dos sistemas inicialmente monolíticos.
+    Atenção à sobrengenharia de sistemas !
+
+    Gateway roteamento, autenticação
+    Serviços independentes intercomunicantes
+      Via filas (kafka, rabbitmq) ou web (HTTP)
+    Banco de dados único para cada serviço
+
+    EX: Serviços: pedidos, entregas, consumidor
+
+    Aumenta muito custo com infraestrutura horizontal
+    Complexidade sistêmica aumenta EXPONENCIALMENTE: CI/CD ferramentas infra.
+    Cada serviço deve ser gerenciado por um time.
+    Falta de conhecimento dos limites do dominio da aplicação ainda não totalmente
+    compreendida (retrabalho infernal).
+
+    Historicamente projetos monolíticos adotaram gradualmente os microserviços.
+
+TERMINOLOGIAS
+
+MVP = (Minimal Viable Project/product) mínimo projeto/produto viável
+      Conjunto de funcionalidades confiáveis empregáveis em
+      em situações reais com usuários.
+
+
+

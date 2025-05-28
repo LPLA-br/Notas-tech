@@ -1,44 +1,109 @@
-		REST ABSTRATO
-________________________________
-|EQUIPE A front-end             |
-|       DOCUMENTAÇÃO DO PROJETO  > APLICAÇÃO
-|EQUIPE B back-end              |
-‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+REST
+REPRESENTATIONAL STATE TRANSFER
 
-POST	criar o recurso
-GET	obter o recurso
-PATCH	atualizar parcialmente o recurso
-PUT	atualizar completamente o recurso
-DELETE	deletar o recurso
+STATUS
+  INFORMAÇÃO 100 199
+  SUCESSO 200 299
+  REDIRECIONAMENTO 300 399
+  ERRO CLIENTE  400 499
+  ERRO SERVIDOR 500 599
+
+SEMÂNTICA DO HTTP RFC 9110
+
+*Idempotência = resultado não muda para ação repetida
+-Inseguro - operação não somente read only
+
+* GET         Obter recurso
+  /users
+  /users/mercio
+  200 OK
+
+*-PUT         Criar ou Substituir recurso completamente
+  /users/mercio
+  201 Created, 200 OK || 204 No Content
+  415 Unsupported Media Type -> Content-Type
+
+*-DELETE      Remover recurso
+  /users/marcio
+  204 No Content
+  200 OK (com representação do eliminado)
+  202 Accepted - (aceito, ainda não deletado)
+
+
+ -POST        Criar recurso (publicar)
+  /users/girolamo
+  Content-Type:
+  FORMS:
+    application/x-www-form-urlencoded
+    multipart/form-data
+    text/plain
+  Providing a block of data, such as the fields entered into an HTML form, to a data-handling process
+  Posting a message to a bulletin board, newsgroup, mailing list, blog, or similar group of articles
+  Creating a new resource that has yet to be identified by the origin server
+  Appending data to a resource's existing representation(s).
+  200 OK
+  201 Created
+  206 Partial Content
+  204 No Content
+  304 Not Modified
+  303 See Other -> Location:
+  416 Range Not Satisfiable
+
+ -PATCH       Atualizar parcialmente recurso
+  /users/mercio
+
+  HEAD        Obter, Obter ... Obter recurso (Headers) sem Body
+  /users
+
+  OPTIONS     ?
+  /?
+
+ -CONNECT     ?
+  /?
+
+QUERY_STRINGS
+  1. filtragem de resultados
+  2. ordenação de resultados
+  3. paginação de resultados
+  4. parâmetros opcionais (como no terminal linux)
+
+ROTAS
+  1. identificação única por recurso
+
+BODY
+  1. dados sensíveis
+  2. dados extensos
+  3. o próprio HTML
+
 
 I Client/Server
 
-Dai ao back o que é do back e dai ao front o que é do front.
+  Dai ao back o que é do back e dai ao front o que é do front.
 
-front-> interface, UX, requisições.
-back -> comunicação com o SGBD(rel|!rel), gerenciamento de cache, loging, respostas.
+  front-> interface, UX, requisições.
+  back -> comunicação com o SGBD(rel|!rel), gerenciamento de cache, loging, respostas.
 
 II Stateless - sem estado
 
-Requisições únicas e independentes e Devem ter toda a informação que o servidor
-precisa para atender à requisição advinda do cliente.
+  Requisições únicas e independentes e Devem ter toda a informação que o servidor
+  precisa para atender à requisição advinda do cliente.
 
-O servidor não guarda nemhum estado do cliente.
-O cliente mantém suas informações de estado localmente:
-EX: sessões em um sistema
+  O servidor não guarda nemhum estado do cliente.
+  O cliente mantém suas informações de estado localmente:
+  EX: sessões em um sistema
 
 III Cacheable/cache
 
-Volume grande de requisições de mesma natureza, resultam
-em consumo de recursos físicos do servidor, como memória ,processamento, I/O
-nos discos rígidos. Para evitar a situação supracitada, se é necessário
-criar um cache capaz de guardar informações frequêntemente acessadas. Se antes
-o servidor fazia dez etapas para pegar a informação para cada cliente
-requisitador agora ele fará apenas uma: mandar a informação, ou partes dela, em
-cache.
+  Volume grande de requisições de mesma natureza, resultam
+  em consumo de recursos físicos do servidor, como memória ,processamento, I/O
+  nos discos rígidos. Para evitar a situação supracitada, se é necessário
+  criar um cache capaz de guardar informações frequêntemente acessadas. Se antes
+  o servidor fazia dez etapas para pegar a informação para cada cliente
+  requisitador agora ele fará apenas uma: mandar a informação, ou partes dela, em
+  cache.
 
-A solicitou um determinado recurso > cache
-B, C e D requisitam as mesmas coisas < cache
+  A solicitou um determinado recurso > cache
+  B, C e D requisitam as mesmas coisas < cache
 
 IIII Uniform interface/ interface uniforme
 
