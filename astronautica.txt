@@ -1,0 +1,147 @@
+ASTRONAUTICA
+Português !
+
+O foguete
+  Dispara porções de sua própria massa, por unidade de tempo,
+  em uma direção e com violência para, em reação contrária,
+  acelerar à direção contrária.
+  NÃO DEPENDE DE ATMOSFERA !
+
+Movimentos
+  Rolagem - rotação (frente,trás)
+  tangagem - horizontal (cima,baixo)
+  Guinada - vertical (esquerda,direita)
+
+Direções
+
+  Perpendiculares ao plano orbital
+    I.  Normal
+    II. Anti-normal
+
+  Paralelo ao plano orbital
+    I.    Progrado
+    II.   Retrogrado
+    III.  Intra radial (Nadir -  centro do corpo celeste a frente)
+    V.    Extra radial (Zenith - centro do corpo celeste nas costas)
+
+  Relativo a ponto fixo na abóbada celeste
+    I. Ponto inercial
+
+Manobras
+  Orbita de um corpo
+
+    I.Circularizacao
+      Queima no apoastro de órbita excentrica para atingir órbita circular.
+
+    II.Alteração de inclinação do plano orbital (alinhamento de planos orbitais).
+      Queimas Normais e Anti-normais em, respectivamente, nos dois pontos interseccionantes
+      dos planos orbitais A e B.
+
+    III.Sincronização
+      Ajustes de altitude para manipulação da velocidade relativa a outra
+      nave na órbita. Visa encontrar-se com outra nave. Feita após manobra
+      superscrita.
+
+    IIII.Acoplagem
+      União física de duas naves em órbita.
+
+    V.injeção trans(lunar|marciana|venusiana)
+      Manobra para por objeto em trajetória de X.
+
+  Sistema estelar de planetas
+
+    I. Escape
+      Acelerar para além da velocidade de escape do poço gravitacional
+      de planeta.
+
+    II. Transferência interplanetária
+
+      Planetas Internos → mais energia
+      Planetas Externos → menos energia
+      
+      I.Hohmann
+      Aproveitar alinhamento planetário optimo para
+      escapar do planeta A e interceptar diretamente planeta B
+      em uma trajetória de órbita eliptica. Eficiente em tempo
+      para tecnologia atual. Custoso em combustível.
+      Queima de ejeção e queima de inserção na órbita desejada.
+
+      IIBi-eliptica
+      Queima para órbita muito excêntrica, queima no apoastro
+      de tal órbita excêntrica para interceptação do outro corpo,
+      queima para captura orbital pelo corpo celeste ao aproximar-se.
+      Menos custoso em combustível, mais custoso em tempo.
+      
+    III. Asistência gravitacional
+      Aproveitar campos gravitacionais de corpos celestes massivos
+      para ganho ou perca de momento pela espaçonave.
+      Menos custoso em combustível, mais custoso em tempo e
+      em computação. Varia em função: da distância corpo e
+      nave, atitude e azimute de captura e ejeção.
+
+    IIII. Aerofrenagem
+      Aproveitar atmosfera de planeta para desacelerar
+      espaçonave sem gastar combustível. Perigoso devido
+      ao calor do plasma no escudo de calor. Pode ser intensa
+      e muito efetiva e perigosa ou suave demorada e segura.
+
+    V. Entrada Atmosférica
+      Havendo intensão de pousar na superfície ou, de alguma
+      forma manter-se na atmosfera. mergulha-se e desacelera-se
+      até consolidação de voo atmosférico.
+
+    VI. Re-entrada
+      Difere da entrada por ocorrer como retorno ao corpo celeste
+      de orígem da espaçonave.
+
+    VII. Pouso com Atmosfera
+      Aproveita: Sustentação aerodinâmica e nave de corpo aerodinâmico
+      para voo de trajetória controlada. Fonte propulsiva necessária
+      apenas para manutenção de altitude.
+
+    VIII. Pouso sem Atmosfera
+      Pouso 100% feito com vetor de propulsão por ejeção de massa (foguetes).
+
+Orbitas e trajetórias
+
+    A interação gravitacional de N corpos
+    cria os baricentros.
+
+    Propriedades das orbitas
+
+      I. Apoastro - Ponto mais alto da órbita (baixa velocidade)
+
+      II. Periastro - Ponto mais baixo da órbita (alta velocidade)
+
+      III. Excentricidade - 0=círcular perfeita, x>0 e x<1 elipse ,1= trajetória de escape parabólica.
+
+      IIII. Inclinação - plano orbital com relação ao plano orbital ou eixo de rotação do corpo orbitado.
+
+      V. Longitude de nó ascendente (Ascensão reta do nó ascendente)
+        ângulo entre plano orbital de referência e plano orbital corrente.
+
+      VI. Argumento de periastro
+
+      VII. Semi-eixo maior
+        menor diametro de uma elipse.
+
+      VIII. Semi-eixo menor
+        Maior diametro de uma elipse.
+
+      VIII. Anomalia média
+
+    Trajetórias orbitais (órbitas)
+      I. Órbita circular
+      II. Órbita eliptica
+        O corpo mais massivo em um dos focos.
+
+    Captura e ejeção
+      III. trajetória parabólica
+      IIII. trajetória hiperbólica
+      V. trajetória reta
+        Possível, de fato, apenas para corpos sem massa
+        e sem interação gravitacional.
+
+    Estranhos
+      I. pontos de lagranje
+

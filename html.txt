@@ -1,0 +1,37 @@
+INLINE
+Elementos que não ocupam toda linha
+e quebram a estilização. Não são do
+tipo "block"
+
+Elementos de texto e formatação:
+<a> – link
+<span> – contêiner genérico
+<b> – negrito (sem ênfase)
+<strong> – negrito com ênfase semântica
+<i> – itálico (sem ênfase)
+<em> – itálico com ênfase semântica
+<u> – sublinhado
+<small> – texto menor
+<mark> – destaque visual
+<abbr> – abreviação
+<cite> – citação de título de obra
+<code> – código fonte
+<kbd> – entrada do teclado
+<samp> – saída de um programa
+<var> – variável
+<sub> – subscrito
+<sup> – sobrescrito
+<time> – data/hora
+<wbr> – possível ponto de quebra de linha
+
+Elementos de formulário (inline por padrão):
+<input>
+<label>
+<select>
+<textarea>
+<button>
+
+Elementos visuais:
+<img> – imagem
+<canvas> – (inline por padrão, mas costuma-se usar como block)
+<svg> – gráfico vetorial
