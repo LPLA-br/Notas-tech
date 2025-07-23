@@ -1,0 +1,48 @@
+Resumo de implementação de simulação fisica gravitacional bidimensional
+
+ESTRUTURA DE DADOS DE UM OBJETO
+px, py
+vx, vy -> sqrt( vx² + vy² ) = hipotenusa = modulo do vetor resultante
+ax, ay -> sqrt( vx² + vy² ) = hipotenusa = modulo do vetor resultante
+massa
+raio
+
+distância até outro objeto
+  abs( sqrt( (x2-x1)² + (y2-y1)² ) )
+
+quadrante relativo a outro objeto
+  direção até outro objeto em graus atan2(y,x) quadrantes: 1,2 (3,4 requer correção)
+    Inversão-> direção do outro objeto até min
+
+SOH seno relativo a outro objeto (radiano->graus)
+
+CAH cosseno relativo a outro objeto (radiano->graus)
+
+Acelerar ou mover-se rumo a ...
+  vx e vy ax e ay: devem ser distribuidos com os sinais para ir à direção correta
+  -vx,vy    vx,vy
+  -vx,-vy   vx,-vy
+
+Constante da gravitação universal deve ser G=1
+para estabilidade númerica. Força gravitacional:
+(G · ma · mb)/distancia(a,b)
+
+RADIANO PARA GRAU
+(rad*180/PI) = grau
+
+GRAU PARA RADIANO
+(grau*PI/180) = radiano
+
+Mudar direcao corrente para direção arbitraria:
+  velocidade = sqrt( vx² + vy² )
+  novaDirecaoGraus = 125
+  novaDirecaoRadianos = 125*PI/180
+Distribuindo nova direção:
+  vx2 = velocidade * cosseno( novaDirecaoRadianos )
+  vy2 = velocidade * seno( novaDirecaoRadianos )
+
+INTEGRAÇÃO VERLET PARA ESTABILIDADE NUMÉRICA
+pxAnterior
+pyAnterior
+posicaoAnterior = {x,y}
+deltaTempo

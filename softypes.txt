@@ -1,0 +1,102 @@
+Tipos de software web
+
+Custo: tempo, dinheiro
+
+
+
+------------------------------------------------
+
+- ESTÁTICO (Website)
+  Mudanças advêm da interveção técnica do
+  desenvolvedor.
+  Baixo custo mas funcionalidades limitadas.
+  Excelete para pequenos negócios que
+  querem uma precença simples na web
+  provendo informações básicas.
+
+- DINÂMICO
+  Scripts cliente e servidor para geração
+  de conteúdo em tempo real. Bancos de dados
+  usados.
+  Desenvolvimento e manutenção mais complexo.
+  Custo maior e ambiente de hospedagem mais
+  complexamente elaborado.
+  Diversifica-se em vários tipos de aplicação.
+  Pode ser monousuário ou multiusuário.
+
+------------------------------------------------
+
+- PÁGINA ÚNICA (SPA)
+  Uma página HTML com capacidade de atualizar
+  suas subpartes de acordo com a interação
+  do usuário.
+  Boa experiência do usuário.
+  EX: Mídia Social, Clientes Email e
+  Softwares baseados em cloud (Software As A Service)
+  Número menor de recarregamentos por ação do usuário
+  Tempo de Carregamento maior nas inicializações
+  da aplicação.
+
+- MULTI PÁGINA (MPA)
+  Recarrega toda a página a cada interação do usuário.
+  Formato tradicional bom para websites com muito
+  conteúdo e várias funcionalidades.
+  EX: sites eComerce (Mercado livre, Amazon),
+    Catálogos online,
+    Plataformas educacionais (Suap)
+  Lida com banco de dados extensos e estruturas
+  complexas mais eficientemente.
+  Exige mais recursos do servidor.
+
+- APLICAÇÕES WEB PROGRESSIVAS (PWAs)
+  Hibridos de aplicações web e aplicações móveis
+  Instaláveis para tela inicial do dispositivo
+  móvel.
+  Usa service workers ou scripts executando ao
+  fundo.
+
+  Funcionalidade offline
+  Push notifications
+  sincronização de dados nos fundos
+
+  Compartilhavel via URL
+  Eficiente para usuários com conectividade
+  limitada.
+  EX: Google Docs, Suap
+
+- CMS CONTENT MANAGEMENT SYSTEMS
+  Ambiente colaborativo, criação e modificação
+  de conteúdo digital em um ambiente colaborativo.
+  EX: Controle de versão, History, Busca, publicação
+  web. Wordpress, Github ...
+
+- RIA RICH INTERNET WEB APPLICATIONS
+  Trazer experiência estilo desktop
+  para o usuário.
+  EX: Lucid Chart, Google Docs
+
+- Animated Web Applications
+  Visualmente rico
+  EX: jogos, propagandas, demos gráficas.
+
+------------------------------------------------
+Benefícios das aplicações web:
+
+1.Acessíveis de qualquer dispositivo que rode um
+navegador decente.
+2.Requer menos recursos financeiros para desenvolvimeno
+3.Onera menos o usuário comum (Atualizações)
+4.Escaláveis
+
+Problemas:
+1.Segurança (Acesso não autorizado, vazamentos de dados)
+  1.1 Mitigações: Auditações e verificações frequêntes,
+  criptografia de dados, práticas de seguraça no código,
+  Autenticação e Autorização efetivas, Validação de entradas,
+  (chaves, tokens, OAuth)
+2.Lentidão por: cliente pesado para máquina do cliente ou
+carga dos clientes pesada para os servidores.
+3.Totalmente hostil ao offline (perca de progresso a inacessividade)
+
+
+
