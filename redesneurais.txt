@@ -1,0 +1,20 @@
+REDES NEURAIS
+Artificial Neural Network (ANNs)
+or
+Simulated Neural Network (SNNs)
+
+REDE PERCEPTRON MULTICAMADAS
+
+· Objetiva a decisão, classificação.
+· Imita funcionamento de neurônios.
+· Nós em camadas unidirecionais interconectadas.
+· Nós possuem peso e "limiar"
+· saída de nó com valor superior a limiar especificado esse nó ativa-se-á enviando dados à proxima camada "feedforward".
+· N camadas ocultas.
+· Classifica e agrupa dados.
+· Central em modelos de aprendizado profundo.
+· São treinadas por meio de um conjunto de informações de informações N dimensionais.
+· Entrada multidimensional para unidimensional.
+
+entrada → peso → somatório → função de ativação neural linear ou não linear → saída
+

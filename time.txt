@@ -1,0 +1,61 @@
+Divisões de Responsabilidades em desenvolvimento de software
+
+Analistas de Requisitos
+Analistas de Segurança
+Arquitetos de Software
+Gerentes de projetos
+Designers (UI/UX)
+Desenvolvedores (back et front)
+Engenheiros de DevOps
+  Automatização e otimização do desenvolvimento,
+  implantação e operação do software.
+
+3 a 9 membros em média
+Equipes maiores são necessárias para projetos complexos, entretanto
+exigem mais coordenação.
+
+Modelo genêrico
+Comunicação → Planejamento → Modelagem → Construção → Entrega
+
+Execução das etapas
+Linear || Iterativo || Evolucionário || Paralelo
+
+Requisitos, Projeto/modelagem, Implementação/TesteUnitários, Testes de Integração,
+Implantação/Manutenção.
+
+Metodologia
+  Tradicional
+    Execução geralmente em Cascata(linear e senquencial).
+    Documentação pronta no início do projeto.
+    Alta inflexibilidade (difícil e custoso).
+    Exige definição clara e detalhada dos requisitos.
+    Cliente interfere apenas no início.
+    Documentação formal e detalhada.
+    Produto entregue apenas ao final do projeto.
+    Hieraquia bem definida e gerente poderoso.
+    Sucesso = Aderência ao planejado (prazo, escopo, orçamento)
+  Ágil
+    Execução Iterativa e Incremental (sprints de 1 a 4 semanas).
+    Mudanças são esperadas e tratadas em qualquer etapa.
+    Requisitos em evolução constante.
+    Cliente faz parte do processo.
+    Documentação mínima necessária.
+    Entrega constante por partes funcionais.
+    Equipe auto organizada e multifuncional com liderança distribuída.
+    Valor entregue e capacidade de adaptação.
+
+
+Triângulo de ferro da gestão de projetos
+Custo, Tempo, Escopo → Qualidade
+
+Propriedades típicas à iteração
+  Refatoração
+  Extensão/incremento de funcionalidade
+  Correção
+  Vide Versionamento semântico.
+
+Métodos para poupar recursos
+  Cascata, Lean, PMBOK® em cascata
+Métodos para poupar tempo
+  Agile, Scrum, Kanban, Scrumban
+

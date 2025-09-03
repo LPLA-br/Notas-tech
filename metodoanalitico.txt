@@ -1,0 +1,99 @@
+Racionalismo
+
+Método analítico de René Descartes.
+Ou método Cartesiano.
+
+* Incremento Luiziano
+
+I. EVIDÊNCIA, PARÂMETROS
+  Procedência, Qualidade da informação
+  Provar, Clarificar, Revelar, Destacar Informação
+  
+  *Se o conhecimento base já existe então trata-se de um exercício de aprendizado.
+
+  *Se o conhecimento base não existe ou é incompleto ou de vericidade duvidosa então
+  trata-se de um exercício de descoberta.
+
+  *Quebra recursiva arboriforme de um conjunto de conhecimentos em palavras
+   ou frases ou orações:
+
+  Estrela
+    Energia
+      Radiação
+        Temperatura
+  Planeta
+    Supracrustal
+      Atmosfera
+        Clima
+          Ventos
+            Radiação solar
+      Magnetosfera
+        Ferromagnetismo
+    Crosta
+      Superficie
+        Sólido
+          Erosão
+            Fluidos
+      Oceano
+        Líquido
+      Atividade Vulcânica
+        Vulcão
+          Erupções frequentes
+      Tectonismo
+        Terremotos
+        Continente
+    Infracrustal
+      Magma
+        Ferromagnetismo
+
+II. ANÁLISE, ANALISAR
+  Dividir problema em partes simples.
+  Identificar relações entre partes e todo.
+  Resolver problemas mais simples, posteriormente os mais complexos.
+
+  Problema da interação/relação intersistemas Terra/Espaço.
+
+  Partes:
+  Atmosfera com relação aos produtos do vulcanismo (ventos). peso: x
+  Tectonismo e relação com vulcanismo. peso: y
+  Magnetosfera e Magma ferrífero com relação à magnetosfera. peso: y
+  Tectonismo submarino e supramarino com relação à crosta terrestre. peso: x
+  Circulação de fluidos gasosos e líquidos em função da energia radiativa solar. peso: z
+
+III. ORDEM, ORDENAR
+  Categorizar, Classificar, Hierarquizar, Qualificar partes resolvidas.
+  Concluir abrangente em camadas.
+
+  CATEGORIZAÇÃO → Atribuir categoria de acordo com conceitos;
+    Conceito: geófilos:
+      Tectonismo e magmatismo.
+      Erosão
+    Conceito: semi-geófilos:
+      Dinâmica atmosferica dioturna.
+    Conceito: alienos
+      Radiação solar
+
+  CLASSIFICAÇÃO → Organizar em classes ou grupos segundo critérios definidos.
+    Critério = tempo
+      Sistemas dinâmicos de rápida manifestação, Sistemas dinâmicos de lenta manifestação.
+    Critério = procedência do alimentador da manifestação dinâmica
+      Sistemas alimentados por energia externa, Sistemas com energia própria decadente.
+
+  HIERARQUIZAÇÃO → O que é superior ou inferior em dimensão, escopo, influência
+  autoridade (autoria) em todo sistema.
+    Radiação solar
+      Atmosfera terrestre gasosa
+        Erosão aeólica
+
+  QUALIFICAÇÃO → Atribuição de qualidades.
+    Perigosos: Vulcões, Terremotos ...
+    Essenciais: Atmosfera, Oceano, Radiação solar de baixa intensidade, magnetosfera planetária ...
+    Fundamentais: Planeta, Continente ...
+    Semi-imóveis: Crosta, Planeta ...
+    Móveis: Oceano, Atmosfera, Sedimentos ...
+
+IV. ENUMERAÇÃO, ENUMERAR, ESPECIFICAR, EXPOR.
+  Rever conclusões minunciosamente.
+  Validar a existência de lacunas ou falhas.
+  Comunicar resultados → Desenvolvimento, Conclusão, Resultados.
+
