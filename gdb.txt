@@ -1,0 +1,32 @@
+DEBUG DE PROGRAMAS C E C++ COMPILADOS PELO GCC
+
+NO SHELL LINUX ...
+  $ gcc -g programa.c -o programa.out
+  $ gdb ./programa.out
+
+NO SHELL DO GDB
+  (list | l)    mostrar trecho de código corrente
+  (break | b)   recebe argumento N do tipo numérico. Define ponto de parada
+                quando executares run.
+  (delete | d)  recebe argumento N do tipo numérico. Remover pontos de parada.
+  (run | r)     rodar programa até topar com breakpoint e parar para seguir
+                ordens do programador.
+  (next | n)    saltar chamada de funcoes (útil em iterações com camada a funcões)
+  (step | s)    saltar uma instrução C/C++ por vez (análise detalhada).
+                Pode saltar N linhas se passares número N no parâmetro.
+  (kill | k)    Matar o programa
+  (what | w)    Recebe nome de variável disponível no contexto de execução
+                para determinar seu tipo.
+  (print | p)   Recebe nome de variável disponível no contexto de execução
+                para mostrar seu conteúdo.
+  (display)     mostrar continuamente o valor de uma variável (parâmetro é nome da var)
+                acessível naquele contexto durante passos.
+  (info locals)     obter conteúdo de todas variáveis instanciadas naquele contexto.
+  (info registers)  ver registradores do programa.
+  (disassemble)     ver código assembly do programa.
+  (backtrace | bt)  visualizar pilha de recursão corrente.
+  (help | h)        pode receber nome de outro comando para detalhes especificos.
+  (quit | q)        simplesmente sair do gdb.
+
+No mais, desejo-te boa sessão de debug. Boa sorte !
+
