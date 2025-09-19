@@ -1,0 +1,78 @@
+CONTEXTO: Circuitos elétricos corrente contínua
+
+LEIS DE OHM
+  
+  tensão = corrente * resistẽncia       V=IR
+
+  corrente = tensão / resistẽncia       I=V/R
+
+  resistẽncia = tensão / corrente       R=V/I
+
+  SI_______________________COMUMENTE EM:
+ |tensão → Volt          | -
+ |corrente → Ampere      | -, mili, micro
+ |resistẽncia → Ohm      | -, kilo, mega, giga
+ |capacitãncia → Farad   | micro, nano, pico
+ |energia → Joule        | -, kilo, mega
+ |potência → Watt        | -, kilo, mega
+ |carga → Coloumb        |
+ |_______________________|
+
+  ________
+  |      |
+  |      |___
+  +       _|_:
+  -      |
+  |      |
+  |______|
+
+  Capacitãncia - capacidade de um sistema
+  de armazenar alguma carga elétrica.
+  1 Farad armazena um Coloumb de carga
+  elétrica quando um Volt de tensão lhe
+  é aplicado.
+ 
+  capacitãncia = carga / tensão
+
+  Potência - razão em que energia elétrica é
+  convertida em outras formas de energia
+  (luz(eletromagnética), mecânica, térmica).
+
+  potência é unidade de energia por unidade de tempo.
+
+  potência = tensão / corrente        (Mesma equação da resistência)
+
+  potência = corrente² resistễncia
+
+  potência = tensão² / resistễncia
+
+  corrente = potência / tensão
+
+CAPACIDADE DE BATERIAS RECARREGÁVEIS
+
+  Carga completa seguida de descarga total. Requer
+  carga resistiva constante nos terminais da bateria.
+  O tempo de descarga é quanto tempo a bateria leva
+  para atingir a tensão mínima crítica.
+
+  Por fim:
+
+  capacidade (Ah) = corrente (A) * tempoDescarga (h)
+
+  Uma bateria que produz ~0.5A em 4horas tem capacidade de 2Ah
+  ou 2000 mAh
+
+CONSUMO
+  potência (Wh) = tensão / corrente (Ah)
+
+CONVERSÃO AC DC
+  
+  Transformador         AC 220v para DC 10v ou 12v
+    Converter AC para DC (bobina de cobre com núcleo de ferro)
+  Retificador           AC oscilante para DC pulsante( 5v, 0v, 5v, 0v ...)
+    Garantir fluxo em uma direção (diodos).
+  Filtro                DC pulsante e imperfeições
+    Suavizar efeito chicote dos pulsos (capacitores).
+  Regulador de tensão   DC 5v constante e confiável
+    Regulação por dissipação na forma de calor ou modulação de pulsos.
+
