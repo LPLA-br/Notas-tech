@@ -1,0 +1,27 @@
+
+SINOPSE
+  ps [opções ...]
+
+
+DESCRIÇÃO
+  Síntese de opções e argumentos importantes do comando ps(1)
+  para detalhes acerca de processos.
+
+OPÇÕES
+
+---------------------------------------------------------------------------------------    
+    -e              "every" selecionar todos processos
+    -A              "all" todos processos 
+---------------------------------------------------------------------------------------    
+    -u USUARIO      filtra por usuário (teu usuário corrente se não houver argumento)
+---------------------------------------------------------------------------------------    
+
+    -f              listagem de formato completo.
+    -F              listagem de formato bastante completo.
+---------------------------------------------------------------------------------------    
+
+    -H              formato de árvore de processos
+    -L              mostrar Threads
+
+    -o FORMATO      mostrar colunas selecionadas EX: euser,ruser,suser,fuser,f,comn,label
+

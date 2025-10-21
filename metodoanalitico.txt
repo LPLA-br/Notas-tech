@@ -6,6 +6,9 @@ Ou método Cartesiano.
 * Incremento Luiziano
 
 I. EVIDÊNCIA, PARÂMETROS
+  Verdadeiro é apenas aquilo que se apresenta à mente de forma
+  clara, distinta e indubitável.
+
   Procedência, Qualidade da informação
   Provar, Clarificar, Revelar, Destacar Informação
   
@@ -47,6 +50,9 @@ I. EVIDÊNCIA, PARÂMETROS
         Ferromagnetismo
 
 II. ANÁLISE, ANALISAR
+  Divisão do problema até partes indivisíveis, a fim
+  de siplificá-lo para melhor entendimento.
+
   Dividir problema em partes simples.
   Identificar relações entre partes e todo.
   Resolver problemas mais simples, posteriormente os mais complexos.
@@ -61,6 +67,9 @@ II. ANÁLISE, ANALISAR
   Circulação de fluidos gasosos e líquidos em função da energia radiativa solar. peso: z
 
 III. ORDEM, ORDENAR
+  Síntese, reconstrução do conhecimento ordenadamente. Das ideias
+  simples às mais complexas.
+
   Categorizar, Classificar, Hierarquizar, Qualificar partes resolvidas.
   Concluir abrangente em camadas.
 
@@ -93,6 +102,9 @@ III. ORDEM, ORDENAR
     Móveis: Oceano, Atmosfera, Sedimentos ...
 
 IV. ENUMERAÇÃO, ENUMERAR, ESPECIFICAR, EXPOR.
+  Revisão geral, visa garantir a não omissão de partes importantes
+  e correção da conclusão final.
+
   Rever conclusões minunciosamente.
   Validar a existência de lacunas ou falhas.
   Comunicar resultados → Desenvolvimento, Conclusão, Resultados.

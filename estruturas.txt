@@ -1,0 +1,115 @@
+DESCRIÇÃO, ATRIBUTOS E MÉTODOS DAS ESTRUTURAS DE DADOS FUNDAMENTAIS (INCOMPLETO)
+
+LIST
+
+  Coleção de estruturas de tamanho variável e ou variáveis primitivas
+  dinamicamente alocadas interassociadas bidirecionalmente
+  capaz de adaptar-se à manipulação CRUD respeitando continuidade
+  Natural zero inclusiva de índicie. (Luiz, 2025)
+
+  Hash table de índicie numérico natural inclusivo de zero
+  e imanipulável.
+
+  ATRIBUTES AND METHODS              FUNDAMENTAL DATA OPERATION
+  length
+
+  append( element )                   C
+  pop( ?index ): element              DR
+  insert( index, element )            C
+  set( index, newElement )            U
+  remove( element )                   D
+  clear()                             D
+  search( element ): element | null   R
+
+STACK (FILO)
+
+  ?maxSize
+  topPointer
+
+  push( element )                     C
+  pop(): element || peek():element    DR
+  top(): element                      R
+  
+  isEmpty()                           R
+  size()                              R
+  ?isFull()                           R
+
+QUEUE (FIFO)
+
+  frontPointer
+  rearPointer
+
+  enqueue( element )                  C
+  dequeue(): element                  DR
+
+  getFront(): element                 R
+  getRear(): element                  R
+
+  isEmpty()                           R
+  size()                              R
+
+HASH TABLE ( Object, Map, Dictionary, Unordered_map, Unordered_set, HashMap, HashSet )
+
+  Estrutura que usa função de espalhamento (hashing) para transformar
+  cada chave em um índicie da tabela de hash tornando-a O(1) até O(n)
+  para consulta de chave conhecida.
+
+  Nota: hash não é check sum.
+
+  chave = "exemplo"
+  hash("exemplo") = 42    hash retorna { x | 0 > x < 128 } (risco alto de colisão)
+  indicie = hash("exemplo")
+
+  "exemplo" → hash() → 42     todas infinitas vezes
+
+  hash table possui matriz unidimensional de tamanho fixo 0 >= x <= 127.
+
+  Aplicar redução de intervalo de hash function pode fazer com que número retornado
+  por ela seja um endereço de memória dentro de um limite pré estabelecido
+  aumentando risco de colisão (ruim) mas otimizando a questão da matriz acima exposta.
+
+  positionsAvailable
+  keysNumber
+  loadFactor = keysNumber / positionsAvailable
+
+  hashFunction( key ): Hash
+
+  put( element )
+  get( element ): element
+  delete( element )
+
+  Separating Chaining - posições de array armazenam pares chave-valor
+  Open Addressing - posição ocupada desencadeia busca por outra posição livre no array
+
+_________________PSEUDOCODE____________________
+  int h(x){ return x % 16 } //retorna de 0 até 16 ciclicamente para { 0 > x } crescente
+
+  // número resultante cresce devido ao somatório
+  int sascii( String x, int M )
+  {
+    for ( somatorio = 0; i=0; i<x.length; i++)
+    {
+      somatorio += x.toAsciiNumber();
+    }
+    return somatorio % M;
+  }
+
+  // dobra de string (continua aumentando em função desconhecida do tamanho da string)
+  int sfold(String s, int M)
+  {
+    long sum = 0, mul = 1;
+    for (int i = 0; i < s.length; i++)
+    {
+      mul = (i % 4 == 0) ? 1 : mul * 256;
+      sum += s.charAt(i) * mul;
+    }
+    return (int)(Math.abs(sum) % M);
+  }
+
+_________________PSEUDOCODE____________________
+
+GRAPH
+
+  CIRCLE
+  TREE
+

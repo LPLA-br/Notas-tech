@@ -1,0 +1,91 @@
+FORMATADOR DE DOCUMENTOS PARA PÁGINAS DE MANUAL E DOCUMENTOS
+CLÁSSICO DOS SISTEMAS DA FAMILIA UNIX
+
+---------------------------------------------------------------------------------------------
+| COMPILAÇÃO DE COMANDOS DE FORMATAÇÃO DO UNIX ROFF OU GNU GROFF
+| .TH: Defines the document's header information (Title, Section, Date, Source, Manual Group).
+| .SH: Creates a section heading.
+| .SS: Creates a subheading.
+| .PP: Starts a new paragraph with default indentation and spacing.
+| .LP: Starts a new paragraph with left alignment and no indentation.
+| .IP: Creates an item in an itemized list, with an optional label and indentation amount.
+| .B: Renders the following text in bold.
+| .I: Renders the following text in italics.
+| .R: Renders the following text in regular font.
+| .RI: Renders the first argument in regular font and the second in italics.
+| .BR: Renders the first argument in bold and the second in regular font.
+|
+| .nf: Disables fill mode, preventing automatic line wrapping.
+| .fi: Re-enables fill mode.
+| .ad: adjust
+| .br: break line
+| .ce: center
+| .ll N: line length
+| .pl N: paper length
+| .sp N: Adds N lines of vertical space.
+| .in N: indent
+| .\" `: Indicates a comment line.
+|
+---------------------------------------------------------------------------------------------
+
+EXEMPLO RÁPIDO ABAIXO GERADO PELO GEMINI - 17 de Outubro de 2025
+
+.\" This is a comment line.
+.\" It starts with a double quote and is ignored by the formatter.
+
+.TH EXAMPLE 7 "October 17, 2025" "roff example" "User Manuals"
+.\" .TH sets the title, section, date, source, and manual group.
+
+.SH NAME
+EXAMPLE \- a simple roff example
+
+.SH SYNOPSIS
+.B example
+.RI [options]
+.IR [file ...]
+
+.SH DESCRIPTION
+This document provides a basic example of the
+.B roff
+language. It demonstrates how to use various formatting requests and macros
+to structure a document.
+
+.PP
+Paragraphs are typically started with the
+.B .PP
+request, which ensures proper spacing and indentation.
+
+.SS Subheading
+Subheadings are created using the
+.B .SS
+request.
+
+.IP "Item 1" 4
+This is an itemized list. The
+.B .IP
+request creates an indented paragraph with a label. The "4" specifies the indentation amount.
+
+.IP "Item 2"
+Labels can be omitted, in which case a default indentation is used.
+
+.nf
+.\" .nf turns off fill mode, so lines are not automatically wrapped.
+This text
+will appear
+exactly as typed,
+preserving line breaks.
+.fi
+.\" .fi turns fill mode back on.
+
+.LP
+The
+.B .LP
+request starts a new paragraph with left alignment and no indentation.
+
+.sp 2
+.\" .sp adds vertical space. Here, 2 lines of space.
+
+.SH SEE ALSO
+.BR groff (1),
+.BR man (7)
+
