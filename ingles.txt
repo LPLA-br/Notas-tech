@@ -2,62 +2,114 @@ INGLÊS - colinha do leitor de documentação
 
 NOUNS
 NÚMERO INRREGULAR
-SING	PLUR
-man	men
-woman	women
-mouse	mice
-tooth	teeth
-foot	feet
-child	children
+SING  PLUR
+man   men
+woman women
+mouse mice
+tooth teeth
+foot  feet
+child children
+
+COMPARATIVE
+Luiz is BIGGER than Mercio.
+
+SUPERLATIVE
+the BIGGEST man of world
 
 ARTICLES/DELIMITERS
-DEFINITE--------INDEFINITE
-The		A gun
-		An analytic computer ...
+DEFINITE
+The president are needed.
+
+INDEFINITE
+A starship is necessary to reach Mars.
+An analytic computer is capable of ...
 
 VERBS
-Part tense or preterite or simple past.
-_________________________________
- base 3psi  pt     pp     gerund
- walk walks walked walked walking
+  ASPECT
+  |_past
+  |_present
+  |_future
+
 _________________________________________________________________________________
-I walked		I walk			I will walk
-I was walking		I am walking		I will be walking
-I had walked		I have walked		I will have walked
-I had been walking	I have been walking	I will have been walking
+BASE          walk
+THIRD PERSON  walks
+SIMPLE PAST   walked
+PARTICIPE     walked
+GERUND        walking
 _________________________________________________________________________________
-I saw			I see			I will see
-I was seeing		I am seeing		I will be seeing
-I had seen		I have seen		I will have seen
-I had been seeing	I have been seeing	I will have been seeing
+REGULAR EXAMPLE
+SIMPLE
+  I walked
+  I walk
+  I will walk
+
+CONTINUOUS
+  I was walking
+  I am walking
+  I will be walking
+
+PERFECT
+  I had walked
+  I have walked
+  I will have walked
+
+PERFECT CONTINUOUS
+  I had been walking
+  I have been walking
+  I will have been walking
+_________________________________________________________________________________
+IRREGULAR EXAMPLE
+SIMPLE
+  I saw
+  I see
+  I will see
+
+CONTINUOUS
+  I was seeing
+  I am seeing
+  I will be seeing
+
+PERFECT
+  I had seen
+  I have seen
+  I will have seen
+
+PERFECT CONTINUOUS
+  I had been seeing
+  I have been seeing
+  I will have been seeing
 _________________________________________________________________________________
 
 ______________________________________________________________________
 
 pr=pronoun vb=verbbase pp=pastparticiple gr=gerund pt=pasttense w=will
 
-			PAST		PRESENT		FUTURE
+PAST		PRESENT		FUTURE
 ______________________________________________________________________
-SIMPLE			PR.PT		PR.VB		PR.W.VB			V
-PERFECT			PR.PT.GR	PR.VB.GR	PR.W.VB.GR		BE.V
-CONTINUOUS		PR.PT.PP	PR.VB.PP	PR.W.VB.PP		HAVE.V 
-CONTINUOUS PERFECT	PR.PT.PP.GR	PR.VB.PP.GR	PR.W.VB.PP.GR		HAVE.BE.V  (PERFEITO PROGRESSIVO)
+SIMPLE              PR.PT       PR.VB       PR.W.VB       V
+PERFECT             PR.PT.GR    PR.VB.GR    PR.W.VB.GR    BE.V
+CONTINUOUS          PR.PT.PP    PR.VB.PP    PR.W.VB.PP    HAVE.V 
+CONTINUOUS PERFECT  PR.PT.PP.GR PR.VB.PP.GR PR.W.VB.PP.GR HAVE.BE.V  (PERFEITO PROGRESSIVO)
 ______________________________________________________________________
 
 AUXILIAR
-I	am	was
-you	are	were
-he	is	was
-she	is	was
-it	is	was
-we	are	were
-you	are	were
-they	are	were
+I	am	    was
+you	are	  were
+he	is	  was
+she	is	  was
+it	is    was
+we	are   were
+you	are   were
+they are  were
 
-VB	VB3	PT		PP	GR	
-be	is	was,were	been	being
-do	does	did		done 	doing
-have	has	had		had	having
+to be
+to do
+to have
+
+VB    VB3   PT        PP    GR	
+be    is    was,were  been  being
+do    does	did       done  doing
+have	has   had       had   having
 
 AFIRMAÇÃO
 I will have been seeing
@@ -70,37 +122,45 @@ will I have been seeing ?
 
 
 MODAIS GENÊRICOS
-can	expresar habilidade	He can get here later.
-can	solicitar permissão	Can I open the door ?
-may	expresar possibilidade	She may be in the coffeeshop.
-may	solicitar permissão	May I sit down, please?
-must	expressar obrigação	The students must behave as I want.
-must	expressar alta crença	He must be over 75 years old.
-should	aconselhar		You should stop smoking.
-would	ofertar			Would you like a glass of water?
-would	"if"			If I were you, I would say sorry.
+can     expresar habilidade:  He can get here later.
+can  solicitar permissão:	    Can I open the door ?
+may	expresar possibilidade:   She may be in the coffeeshop.
+may	solicitar permissão:      May I sit down, please?
+must	expressar obrigação:    The students must behave as I want.
+must	expressar alta crença:  He must be over 75 years old.
+should	aconselhar:           You should stop smoking.
+would	ofertar:                Would you like a glass of water?
+would	"if":                   If I were you, I would say sorry.
 
 PRONOMES
 pessoais---------------------------------
-I	me	my	mine	myself
-you	you	your	yours	yourself
-He	him	his	his	himself
-She	her	Her	hers	herself
-It	it	Its	its	itself
-we	us	Our	ours	ourself
-you	you	your	yours	yourself
-they	them	Their	theirs	themselves
+I       me        My        mine        myself
+you     you       Your      yours       yourself
+He      him       His       his         himself
+She     her       Her       hers        herself
+It      it        Its       its         itself
+we      us        Our       ours        ourself
+you     you       your      yours       yourself
+they    them      Their     theirs      themselves
 ----------------------------------------
 Demostrative-
-this	these
-that	those
--------------
+this	these       ·->||
+that	those       ·->        ||
+----------------------------------------
 Interrogative------------------------------------
-What	used to the things
-Who	meant for people or person
-Whom	used for people or person
-Which	used for things and in some cases people
-Whose	used for a person
+What          USED TO THE THINGS.
+              what is that ?
+              what are you doing ?
+Who           MEANT FOR PEOPLE OR PERSON.
+              who called me ?
+Whom          USED FOR PEOPLE OR PERSON (VERB OBJECT POSITION) fomal
+              to whom did you speak ?
+Which         USED FOR THINGS AND IN SOME CASES PEOPLE.
+              which color do you want ?
+              the car which is parked there is mine.
+Whose         USED FOR A PERSON (cujo)
+              whose book is this ?
+              I have a friend whose dog is very firendly.
 -------------------------------------------------
 
 ADVERBS not syntetic with -ly
@@ -109,23 +169,23 @@ Afirmação
 Frequência
 Intensidade
 Lugar
-	above anywere around bellow everywhere far
-	here
+above anywere around bellow everywhere far
+here
 Modo
-	amiss fast ill
+amiss fast ill
 Tempo
-	already always hereafter
-	late never now
-	soon still then
-	yesterday today tomorrow
-	when
+already always hereafter
+late never now
+soon still then
+yesterday today tomorrow
+when
 
 PREPOSITIONS
-as	semelhança
-in	time or place
-on	time(date,days of week),place,object,surface
-at	hour,specifield place
-to	movement,position destiny,distance,comparison
-for	duration of the time. finality or function
+as    semelhança
+in    time or place
+on    time(date,days of week),place,object,surface
+at    hour,specifield place
+to    movement,position destiny,distance,comparison
+for   duration of the time. finality or function
 
 

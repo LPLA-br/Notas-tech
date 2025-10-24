@@ -1,0 +1,42 @@
+INTEGRAÇÃO CONTÍNUA/ ENTREGA CONTÍNUA
+
+USARÁS GERENCIADORES DE VERSÃO PARA CONTROLAR ALTERAÇÕES NO CÓDIGO DA APLICAÇÃO (ramificações).
+
+AUTOMATIZE OS TESTES UNITÁRIOS, INTEGRAÇÃO E E2E (END TO END)
+  Implementar, Debugar, Testar (IDT) (Paulo, Luiz, 2025)
+
+AUTOMATIZE PROCESSO DE BUILD
+  Compilar|transpilar -> enpacotar (tar) -> ARTEFATO (git tag E github) ->
+    IMPLANTAÇÃO -> desenpacotar -> configurar -> executar
+
+INTEGRAÇÃO FREQUÊNTE
+  Encorage desenvolvedores a integrar mudaças de código em repositório compartilhado multiplas vezes
+  ao dia.
+  Modelo "de grão em grão a galinha enche o bico"
+
+ITERAÇÕES E FEEDBACK's
+  Implemente mecanismos de feedback para que o usuario torne-se um colaborador
+  notificando os desenvolvedores (tu|vos) a corrigir, aprimorar, construir e testar resultados.
+
+O PROCESSO:
+levantar requisitos, planejar,
+modelar, construir, testar,
+implantar, (operar & monitorar)
+
+INTEGRAÇÃO CONTÍNUA
+Prática de desenvolvimento de software que enfatiza integração contínua
+de mundanças no código em um repositório compartilhado. Tem como objetivo
+detectar e resolver problemas de integração cedo no ciclo de desenvolvimento
+ágil.
+
+ENTREGA CONTÍNUA
+Extende os princípios da IC (CI) para automar a implantação de aplicações
+em vários ambientes, incluindo o de produção. CD garante que o software está
+sempre em estado implantável e pode ser lançado a qualquer momento.
+Requer automação da implantação. Estratégias de rollback em caso de lançamento
+muito problematico. implantações blue-green para evitar down-time durante
+lançamentos.
+Ferramentas populares: Kubernetes/Docker, Jenkins, Spinnaker dentre outros.
+
+VIDE TAMBÉM: TimesAgeis( Scrum, Kanban ), ProcessosTiEmpresa( ITIL, COBIT )
+

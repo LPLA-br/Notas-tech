@@ -1,4 +1,6 @@
-IPV6
+IPV6 
+set colorcolumn=60
+set textwidth=60
 
 I. Endereços ipv6 são compostos de 8 blocos de
 16 bits. Cada bloco denomina-se duo octeto
@@ -27,55 +29,193 @@ IV. Zeros à esquera são omitíveis
 
 V. 370 undecilões de endereços possíveis.
 
-VI. Há três tipos de endereços
+  Macro alocação realizada em partes pela
+  IANA através dos três primeiros bits do ipv6.
+      ↓↓↓
+BIN-> 0010 XXXX XXXX XXXX HEX-> 2XXX
+BIN-> 0011 XXXX XXXX XXXX HEX-> 3XXX
 
-  unicast - uma interface de dispositivo
-  multicast - N interfaces
-  anycast - mais próxima de N interfaces
+  NOTA: Considere o bit menos significativo,
+  identificado pelo X maiusculo,
+  como sendo zero ou um na tabela abaixo.
+
+  HEX BIN  DESCRIPTION
+  0-1 000X unspecified, loopback, embedded IPV4 addresses
+  2-3 001X global unicast addresses (ALOCAÇÃO ATUAL PELA IANA)
+  4-5 010X FUTURE
+  6-7 011X FUTURE
+  8-9 100X FUTURE
+  A-B 101X FUTURE
+  C-D 110X FUTURE
+  E-F 111X link-local, Unique-local, Multicast addresses
+
+Correntemente todo endereço ipv6 inicia com 2 ou 3
+
+VI. Há três tipos principais de endereços
+
+  Unicast, Multicast e Anycast e subdivisões.
+
+  (UNICAST) - identifica uma interface de rede ipv6
+  habilitada.
+    (GLOBAL UNICAST) 2000::/3
+      Endereço acessível a nível global e distribuido para
+      todas instituições resposáveis pelo planeta.
+    (LINK-LOCAL) fe80::/10
+      Identificador autoconfigurado da interface de rede
+      criado a partir do endereço MAC.
+    (LOOPBACK) ::1/128
+      Interface de rede lógica da própria máquina.
+      Famosa 127.0.0.1 no ipv4
+    (UNSPECIFIED) ::/128
+      Usado por sistemas operacionais quando não há qualquer
+      endereço válido e processos como o DHCP. Roteadores
+      não roteiam isto.
+      0.0.0.0/32 no ipv4
+    (UNIQUE LOCAL) fc00::/7
+      Tipo especial de endereço global único ipv6 com certas
+      caracteristicas. Vide capítulo VIII
+    (EMBEDDED IPV4) ::/80
+      Simplesmente uma emulação do ipv4 no ipv6
+      128-80 = 48bits
+
+  (MULTICAST) - identificador de camada de rede para conjunto
+  de interfaces pertecentes a diferentes nós ipv6 habilitados.
+    (WELL-KNOWN) ff00::/12
+    (Transient) ff10::/12
+    (Solicited-Node) ff02:0:0:0:0:1:ff00/104
+
+  (ANYCAST) - identificador de camada de rede para um conjunto
+  de interfaces pertecentes a diferentes nós ipv6 habilitados.
 
   broadcast - d e s c a r t a d o
+    Funcionalidade broadcast é implementada usando
+    endereços MULTICAST.
 
-VII. Como seria ipv4 representado por hexadecimais
-estilo ipv4 e ipv6?
+VII. Como seria ipv4 representado por hexadecimais no estilo ipv6?
 
   ipv4              | ipv4 hexadecimal  | estilo duo octeto ipv6
   192.168.0.0/24    | C0.A8.00.0/24     | C0A8:0000/24
   192.168.0.1/24    | C0.A8.00.1/24     | C0A8:0001/24
   192.168.0.254/24  | C0.A8.00.FE/24    | C0A8:00FE/24
 
-VIII. Exemplo de conversão ipv4 para ipv6
+VIII. Como funciona os prefixos ?
 
-  192.168.0.0/24 =    0000:0000:0000:0000:0000:FFFF:C0A8:0000
-  192.168.0.1/24 =    0000:0000:0000:0000:0000:FFFF:C0A8:0001
-  192.168.0.2/24 =    0000:0000:0000:0000:0000:FFFF:C0A8:0002
-  192.168.0.255/24 =  0000:0000:0000:0000:0000:FFFF:C0A8:00ff
+  O IPV6 mantêm estrutura REDE,HOST/XXX
+  Com algumas difereças que serão sucintamente
+  apontadas abaixo.
 
-IX. Como funciona os prefixos ?
+  1.UNICAST
 
-  UNICAST E ANYCAST:
+  1.1 GLOBAL UNICAST 2000::/3 ou 3000::/3------------------
 
-  Prefixo de rede e identificador de host onde
-  a primeira parte é a rede e a segunda o host.
+  Este endereço existe em nível PLANETÁRIO !
 
-  1. prefixo de roteamento maior que ou igual 48 bits
-  2. identificador de sub rede menor que ou igual 16 bits
-  3. identificador de interface de rede
+  a. prefixo de roteamento global       "provider"
+  b. identificador de subrede           "site"
+  c. identificador de interface de rede "host"
 
-  MSB                                   LSB
-  1               2   | 3
-  0000:0000:0000: 0000|:0000:0000:0000:0000 /64
-                      |
+  MSB                R H                LSB
+     a------------b---| c------------------
+  ↓↓↓                 |
+  0020:0000:0000: 0000|:0000:0000:0000:0000 /3
+  0030:0000:0000: 0000|:0000:0000:0000:0000 /3
 
-  EXCLUSIVO LOCAL ( O VELHO IPV4 )
+  Atualmente a IANA aloca endereços do prefixo 2000::/3
+  para os provedores regionais. Exemplo: parte deste espaço
+  é alocado para American Registry for Internet Numbers que,
+  por sua vez aloca sub-partes deste espaço de enderços
+  2001:18::/23 para Internet Serviçe Providers e grandes
+  clientes como uma Microsoft® da vida.
+
+  IANA 2000::/3
+    ARIN 2001:18::/23
+      ISP 2001:18B1::/32
+        CLIENTE 2001:18B1:1::/48
+      MICROSOFT 2001:18B1:2::/48
+
+  Perceba a capacidade de agregação que o ipv6 possui.
+  Perceba também que a capacidade de possuir um endereço
+  ipv6 depende de como os orgãos (Nic.br no brasil)
+  e provedoras de internet atuem ativamente.
+
+  1.1-------------------------------------------------------
+
+  1.2 LINK-LOCAL FE80::/10 ---------------------------------
+
+  Tipo especial de unicast que é AUTOCONFIGURADO em qualquer
+  interface de rede usando uma combinação do prefixo link-
+  local (primeiros 10 bits = 1111 1110 10XX) e o endereço
+  MAC da interface de rede.
+
+  ↓↓↓
+  FE8x:
+  FE9x:
+  FEAx:
+  FEBx:
+
+  1111 1110 10|xx 
+
+  Onde dois bits menos significativos terceiro nibble,
+  faz parte de um espaço de 54 bits.
+
+  PREFIXO REDE IDENTIFICADOR_INTERFACE
+  10 bits + 54 bits + 64 bits
+  64 bits + 64 bits
+
+  Este endereço permite que nós acoplados a um link em
+  comum possam comunicar-se entre si.
+  Torna DHCP ou intervenção manual opcional em rede local
+  (exceto nos casos em que a placa de rede pirata que
+  compraste na internet possui, por azar, um MAC indêntico
+  ao da tua placa).
+
+  Casos de uso:
+    Comunicar ponta a ponta com outra máquina na rede local.
+    Jogar Counter-Strike 1.6 localmente com amigos.
+    Testar tua API REST rodando no PC atráves do teu
+    celular.
+
+  Exemplo de endereço MAC sem significado (camada 2):
+  FF:FF:FF:FF:FF:FF
+
+  1.2-------------------------------------------------------
+
+  1.3 LOOPBACK ::1/128--------------------------------------
+    Identifica uma interface lógica sem representante físico
+    que está sempre UP e rodando. Comumente é utilizado por
+    desenvolvedores para testar APIs simples e por usuários
+    comuns para acessar serviços rodando em suas próprias
+    máquinas.
+  1.3-------------------------------------------------------
+
+  1.4 UNIQUE LOCAL fc00::/7---------------------------------
+    É globalmente único, porém tem especificidades:
+
+    -Possui prefixo global único similar a endereço global
+    unicast. Se acidentalmente vazado para fora de uma
+    instituição não conflita com outros endereços ipv6
+    -Sua estrutura é bem conhecida, permitindo filtragem
+    fácil.
+    -Permite interconexão de sites sem criação de nenhum
+    conflito.
+    -Depende de espaço de endereço de provedor de internet
+    independente. Caso contrário conflitos podem ocorrer por
+    uso indevido de outros espaços de endereços alocados.
+    -Aplicações tratam tais endereços como ipv6 global
+    regular (indistigue).
+
+    Os roteadores da Internet filtram quaisquer rotas de
+    entrada ou saída do IPv6 local. A estrutura de um
+    endereço local exclusivo é mostrada abaixo:
+    
+    PREFIXO GLOBAL_ID SUBNET_ID INTERFACE_ID
+    FC00:   42b       16b       64b
+
+  1.4-------------------------------------------------------
   
-  1. prefixo cujo o bit menos significante é
-      1. endereços atribuidos globalmente
-      2. endereços atribuidos localmente
-  2.definido aleatoriamente uma vez
-  3.identificador de subrede <= 16 bits
-  4.identificador de interface
 
-  1  2             3     4
-  00 00:0000:0000: 0000|:0000:0000:0000:0000 /64
+BIBLIOGRAFIA
 
-CONTINUA ...
+[1] https://www.networkacademy.io/ccna/ipv6/ipv6-address-types
+[2]
+[3]
