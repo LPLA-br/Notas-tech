@@ -32,6 +32,9 @@ EXEMPLOS
   Monitorar origem e destino para host específico:
   tcpdump -i eth0 host 192.168.0.4
 
+  Monitorar ipv6:
+  tcpdump -i eth0 ip6
+
 RECOMENDADO
   
   leia pcap-filter(7) para compreender sintaxe
