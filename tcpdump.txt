@@ -1,0 +1,39 @@
+
+NOME
+  tcpdump - depurar tráfego de rede.
+
+SINOPSE
+  
+  tcpdump -i [OPÇÕES] [EXPRESSÃO]
+  
+OPÇÕES
+
+  -c numero       quantos pacotes capturar
+  -F arquivo      leitura expressões de filtragem pcap
+
+  -w arquivo      saída (se omitido vai para STDOUT)
+  -r arquivo      ler arquivo de captura criado por captura anterior.
+
+  -n              não converter endereços, portas para seus nomes.
+  -nn             NÃO CONVERTER ENDEREÇOS, PORTAS PARA SEUS NOMES.
+
+  -v   verboso
+  -vv  VeRbOsO
+  -vvv V E R B O S O
+
+EXEMPLOS
+  
+  Apenas porta 80:
+  tcpdump port 80
+
+  Tráfego entre máquinas, nada de ssh:
+  tcpdump -i eth0 src 192.168.0.4 and dst 192.168.69.5/ and not port 22
+
+  Monitorar origem e destino para host específico:
+  tcpdump -i eth0 host 192.168.0.4
+
+RECOMENDADO
+  
+  leia pcap-filter(7) para compreender sintaxe
+  de filtragem de pacotes.
+

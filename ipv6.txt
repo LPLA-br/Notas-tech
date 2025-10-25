@@ -3,7 +3,7 @@ set colorcolumn=60
 set textwidth=60
 
 I. Endereços ipv6 são compostos de 8 blocos de
-16 bits. Cada bloco denomina-se duo octeto
+16 bits. Cada bloco denomina-se duo-octeto
 
   0000:0000:0000:0000:0000:0000:0000:0000
   ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
@@ -22,12 +22,18 @@ III. Cada dígito hexadecimal representa quatro bits
   00 = 0
   ff = 255
 
+  Um endereço ipv6 possui:
+  32 caracteres hexadecimais (nibbles)
+  16 bytes (octetos)
+  8 words
+
 IV. Zeros à esquera são omitíveis
 
   2001:0DB8:00AD:000F:0000:0000:0000:0001
   2001:DB8:AD:F:0:0:0:1
 
-V. 370 undecilões de endereços possíveis.
+V. O ipv6 é humilde, possui apenas (undecilhões) 340.282.366
+.920.938.463.463.374.607.431.768.211.456 endereços.
 
   Macro alocação realizada em partes pela
   IANA através dos três primeiros bits do ipv6.
@@ -81,8 +87,10 @@ VI. Há três tipos principais de endereços
   (MULTICAST) - identificador de camada de rede para conjunto
   de interfaces pertecentes a diferentes nós ipv6 habilitados.
     (WELL-KNOWN) ff00::/12
-    (Transient) ff10::/12
-    (Solicited-Node) ff02:0:0:0:0:1:ff00/104
+      Multicasts do legados do ipv4
+    (TRANSIENT) ff10::/12
+    (SOLICITED-NODE) ff02:0:0:0:0:1:ff00/104
+      Multicasts e pseudo-broadcast direcionado
 
   (ANYCAST) - identificador de camada de rede para um conjunto
   de interfaces pertecentes a diferentes nós ipv6 habilitados.
@@ -105,6 +113,8 @@ VIII. Como funciona os prefixos ?
   apontadas abaixo.
 
   1.UNICAST
+  Identificação de uma interface.
+  Comunicação de um para um.
 
   1.1 GLOBAL UNICAST 2000::/3 ou 3000::/3------------------
 
@@ -123,7 +133,7 @@ VIII. Como funciona os prefixos ?
   Atualmente a IANA aloca endereços do prefixo 2000::/3
   para os provedores regionais. Exemplo: parte deste espaço
   é alocado para American Registry for Internet Numbers que,
-  por sua vez aloca sub-partes deste espaço de enderços
+  por sua vez aloca sub-partes deste espaço de endereços
   2001:18::/23 para Internet Serviçe Providers e grandes
   clientes como uma Microsoft® da vida.
 
@@ -209,13 +219,93 @@ VIII. Como funciona os prefixos ?
     endereço local exclusivo é mostrada abaixo:
     
     PREFIXO GLOBAL_ID SUBNET_ID INTERFACE_ID
-    FC00:   42b       16b       64b
+    FC00:   42bits    16bits    64bits
 
   1.4-------------------------------------------------------
-  
 
-BIBLIOGRAFIA
+  1.5 EMBEDDED IPV4-IN-IPV6 ::FF:FF:FF:FF-------------------
+    Endereço unicast com zeros nos primeiros 96 bits
+    (128-96 = 32)
+    Trata-se de uma sub-camada de retrocompatibilidade com o
+    largamente utilizado ipv4.
+
+  1.5-------------------------------------------------------
+
+  2. MULTICAST
+
+  ff00::/8
+
+  Um nó manda pacotes para multiplos destinos
+  simultâneamente (De um para Muitos).
+
+  Os destinos são um conjunto de intefaces de rede
+  conhecidos como Grupo Multicast.
+
+  Os primeiros 8 bits são 1 (dois F's).
+  Equivale a 224.0.0.0/4 multicast do ipv4.
+  
+  Todo pacote enviado a um multicast possui um endereço
+  unicast de origem. Endereço multicast não pode ser endereço
+  origem de um pacote.
+
+  Broadcast não existe no ipv6, multicast grupos multicast
+  especiais cumprem este papel.
+
+  2.1 WELL-KNOWN MULTICAST ADDRESSES ff00::/12--------------
+
+    Herdado do ipv4 e ainda importante para uso especial
+
+    FF02::1     Todos endereços nós
+    FF02::2     Todos endereços roteadores
+    FF02::4     Roteadores DVMRP
+    FF02::5     Todos roteadores OSPFv3
+    FF02::6     Roteadores OSPFv3 desginados
+    FF02::A     Todos roteadores EIGRP (IPV6)
+    FF02::D     Todos roteadores PIM
+    FF02::12    VRRP
+    FF02::16    Todos roteadores MLDv2-capable
+  2.1-------------------------------------------------------
+    
+  2.2 SOLICITED-NODE MULTICAST ADDRESS FF02::1:FF00:0/104---
+    Um endereço multicast de nó solicitado é um tipo
+    especial de multicast IPv6. É usado como uma abordagem
+    mais eficiente para a entrega de transmissão do IPv4. Um
+    endereço multicast de nó solicitado é gerado
+    automaticamente usando um unicast IPv6 de uma interface.
+
+    EXEMPLO:
+    Unicast address
+    2001:0000:0000:0000:0000:0000:12|34:ABCD
+    Multicast group
+    FF02:0000:0000:0000:0000:0000:FF|34:ABCD
+
+    Diferente do broadcast ipv4, onde todos nós respondiam,
+    apenas o nó alvo responde processando a requisição.
+
+  2.2-------------------------------------------------------
+
+  3. ANYCAST
+
+  Um endereço anycast é um identificador de camada de rede
+  normalmente atribuído a mais de uma interface (um conjunto
+  de interfaces), pertencente a diferentes nós habilitados
+  para IPv6.  Pacotes enviados para um endereço anycast são
+  entregues na interface "mais próxima" identificada por
+  esse endereço. "Mais próximo" normalmente significa aquele
+  com a melhor métrica de roteamento de acordo com o
+  protocolo de roteamento IPv6. 
+
+  Os endereços Anycast são alocados a partir do espaço de
+  endereços unicast, portanto, eles são indistinguíveis de
+  endereços unicast globais. Configurar o mesmo endereço
+  unicast para mais de uma interface faz com que seja um
+  endereço anycast. Os dispositivos que possuem um endereço
+  anycast atribuído devem ser explicitamente configurados
+  para reconhecer que o endereço é usado para comunicação
+  anycast.
+
+FONTES
 
 [1] https://www.networkacademy.io/ccna/ipv6/ipv6-address-types
-[2]
-[3]
+[2] https://ipv6.br/post/enderecamento/
+[3] 
