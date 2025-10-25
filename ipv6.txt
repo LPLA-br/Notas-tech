@@ -304,8 +304,64 @@ VIII. Como funciona os prefixos ?
   para reconhecer que o endereço é usado para comunicação
   anycast.
 
+IX. IPv6 e sua relação inseparável com ICMPv6
+
+  O IPv6, diferente do IPv4, quebra se o ICMPv6
+  for bloqueado por firewall na tua máquina.
+
+  Isso acontece porque o ICMPv6 provê:
+
+  1. echo-request echo-reply
+
+  5. mensagens de erros e diagnósticos de alcançe
+    PACKET-TOO-BIG (novo)
+    time-exceeded
+    destination-unreachable 
+
+  INDO ALÉM
+
+  2. Descoberta de vizinhos (Substituindo ARP)
+     neighbor-solicitation
+     neighbor-advertisement
+     descoberta de HOSTS vizinhos
+
+  3. Descoberta de roteador (Substituindo ARP)
+     router-solicitation
+     router-advertisement
+     para autoconfiguração (SLAAC -> LINK-LOCAL)
+
+  4. Multicast Listener Discovery (Substituindo IGMP)
+
+
+  O ipv4 quebrava tais funcionalidades em vários protocolos
+  como o:
+  
+  ARP     - Address Resolution Protocol (layer 2)
+          Responsável por mapear endereço IPv4 lógico para
+          endereço físico MAC em uma rede local (LAN)
+          Em outras palavras, é um componente necessário
+          para resolução de endereços locais no ipv4.
+          ARP-request
+          ARP-reply
+          Cache Update
+
+  ICMPv4  - Internet Control Message Protocol (layer 3)
+          Responsável por enviar mensagens de erro e infor-
+          mação operacional de sucesso ou falha. Comumente
+          usado para testes de alcançe em redes.
+          Unreachable
+          Time exceeded
+          Echo req/Echo res
+
+  IGMP    - Internet Group Management Protocol
+          Responsável por estabelecer grupos multicast
+
 FONTES
 
 [1] https://www.networkacademy.io/ccna/ipv6/ipv6-address-types
 [2] https://ipv6.br/post/enderecamento/
-[3] 
+[3] https://en.wikipedia.org/wiki/Internet_Group_Management_Protocol
+[4] https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol
+[5] https://en.wikipedia.org/wiki/Address_Resolution_Protocol
+[6] https://en.wikipedia.org/wiki/IPv6
+
