@@ -1,41 +1,44 @@
-ip(8) - Visão rápida
+IP(8) - VISÃO RÁPIDA
 
-ipv4:
-ip -4 addr
+IPV4:
+  ip -4
 
-ipv6:
-ip -6 addr
+IPV6:
+  ip -6
 
-brevemente (não ser verboso):
-ip -brief addr show
+BREVEMENTE (NÃO SER VERBOSO):
+  ip -brief addr show
 
-roteamento:
-ip route show
+ROTEAMENTO:
+  ip route show
+  ip route show default
 
 NOTAS:
   1.IP, MÁSCARAS E INTERFACES ABAIXO SÃO DEMONSTRATIVAS
   2. CONFIGURAÇÕES ABAIXO SÃO DO PONTO DE VISTA DE UM HOST NA SUB-REDE
 
-Definição de endereço ip para interface de rede X:
-ip addr {add | change} 10.0.0.2/255.255.255.0 dev enp1s0
+DEFINIÇÃO DE ENDEREÇO IP PARA INTERFACE DE REDE X:
+  ip addr {add | change} 10.0.0.2/255.255.255.0 dev enp1s0
 
-Eliminar todos os ip's de uma interface de rede:
-ip addr flush enp1s0
+ELIMINAR TODOS OS IP'S DE UMA INTERFACE DE REDE:
+  ip addr flush enp1s0
 
-Definir/remover roteamento padrão:
-ip route {add | del} default via 10.0.0.1 dev enp1s0
+DEFINIR/REMOVER ROTEAMENTO PADRÃO:
+  ip route {add | del} default via 10.0.0.1 dev enp1s0
 
-Ativar/Desativar interface de rede:
-ip link set enp1s0 {down | up}
+ATIVAR/DESATIVAR INTERFACE DE REDE:
+  ip link set enp1s0 {down | up}
 
 HOST or GATEWAY
 
-O "ip route" utiliza duas sintaxes. A primeira para especificar a interface
-local para avancar pacotes à rede de destino e a segunda para para especificar
-o endereço ip do próximo roteador de salto (hop) para chegar em uma rede destino.
+  O "ip route" utiliza duas sintaxes. A primeira para especificar a interface
+  local para avancar pacotes à rede de destino e a segunda para para especificar
+  o endereço ip do próximo roteador de salto (hop) para chegar em uma rede destino.
 
-ip route DEST_NETWORK [SUBNETMASK] via INTERFACE_TO_EXIT [adm_distance] [permanent]
-ip route DESTINATION_NETWORK [SUBNETMASK] IP_ADDRESS_OF_NEXT_HOP_NEIGHBOR [adm_distance] [permanent]
+  ip route DEST_NETWORK [SUBNETMASK] via INTERFACE_TO_EXIT [adm_distance] [permanent]
+  ip route DESTINATION_NETWORK [SUBNETMASK] IP_ADDRESS_OF_NEXT_HOP_NEIGHBOR [adm_distance] [permanent]
 
-ip route add 10.0.0.0/24 via 10.0.0.1 dev enp7s0
+  ip route add 10.0.0.0/24 via 10.0.0.1 dev enp7s0
+
+
 
