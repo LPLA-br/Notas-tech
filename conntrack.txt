@@ -1,0 +1,23 @@
+conntrack - LINUX CONNECTION TRACKING
+
+Importante para configuração do iptables.
+Trata-se da forma como o kernel Linux trata
+conexões.
+
+[-m state --state A,B,C... ]
+
+ESTADOS-------------------------------------------------------------
+
+NEW             Um pacote requisitando nova conexão
+
+ESTABLISHED     Um pacote parte de uma conexão existente
+
+RELATED         Um pacote que requisita uma nova conexão mas é parte
+                de uma conexão existente. Exemplo: FTP usa porta 21
+                para estabelecer conexão, mas dados são transferidos
+                em uma porta diferente (tipicamente 20).
+
+INVALID         Um pacote que não é parte de qualquer conexão na
+                connection tracking table.
+
+ESTADOS-------------------------------------------------------------
