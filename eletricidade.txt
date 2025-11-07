@@ -1,5 +1,24 @@
 CONTEXTO: Circuitos elétricos corrente contínua
 
+PARALELO
+Corrente distribui-se em N caminhos
+Tensão distribui-se em N caminhos
+Falha_um_nó -> circuito_suboperante
+___________
+|    |  |  |
+Vcc  A  B  C
+|____|__|__|
+
+SÉRIE
+Corrente distribui-se igualmente
+Tensão distribui-se igualmente
+Falha_um_nó -> circuito_inoperante
+
+__B_C_D_
+|       |
+Vcc     |
+|_______|
+
 LEIS DE OHM
   
   tensão = corrente * resistẽncia       V=IR
@@ -76,3 +95,30 @@ CONVERSÃO AC DC
   Regulador de tensão   DC 5v constante e confiável
     Regulação por dissipação na forma de calor ou modulação de pulsos.
 
+CAPACITORES
+  EM SÉRIE
+    capacitância diminui 1/Ceq = 1/C1 + 1/C2 ...
+    mesma corrente
+    tensões dividem-se
+    em CC: carrega e bloqueia
+    Usado para dividir tensão, ajustar valor pequeno.
+  EM PARALELO
+    capacitância somam Ceq = C1 + C2 + ...
+    mesma tensão
+    correntes somam
+    em CC carrega e bloqueia
+    Usado em maior reserva de energia e filtragem
+
+RESISTORES
+  EM SÉRIE
+    Mesma corrente
+    Tensões somam
+    Req = R1 + R2 ...
+  EM PARALELO
+    Mesma tensão
+    Correntes somam
+    1/Req = 1/R1 + 1/R2 ...
+
+DIODO
+  EM SÉRIE
+  EM PARALELO
