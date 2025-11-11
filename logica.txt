@@ -1,0 +1,67 @@
+LÓGICA FORMAL
+
+OPERADORES LÓGICOS (unicode)
+
+¬ ~ ! ′
+(negação) NOT;
+
+∧ · &
+(conectivo “e” conjunção ) AND;
+
+∨ + ∥
+(conectivo “ou” disjunção (inclusiva) ) OR;
+
+⇒ → ⊃
+(conectivo “se, então” implicação/condicional ) IMPLY;
+
+⇔ ↔ ≡
+(conectivo “se, e somente se” equivalência/bicondicional) XNOR;
+
+⊻ ⊕ ↮ ≢
+(conectivo “ou exclusivo” possui um traço em baixo do "V") XOR;
+
+↑ | ⊼
+(conectivo “negação disjunta”) NAND.
+
+↓ ⊽
+(conectivo “negação conjunta” ) NOR;
+
+⊤ T 1
+(verdade tautologia) TOP, TRUTH, VERUM, FULL_CLAUSE;
+
+⊥ F 0
+(contradição) BOTTON, FALSITY, CONTRADICTION, FALSUM, EMPTY_CLAUSE;
+
+PRECEDÊNCIA
+I.     (), {}
+II.    not 
+III.   Λ, V, Vxor
+IIII.  →
+V.     ↔
+
+PROPRIEDADES
+  Associativo
+  Comutativo
+  Distributivo
+  Idempotente
+  Absorsão
+  Monotonicidade
+  Afinidade
+  Dualidade
+  Verum-preservante
+  Falsum-preservante
+  involutibilidade (involução)
+
+Argumento
+  DEDUTIVO
+    válido
+      sano
+      insano
+    inválido
+      insano
+  NÃO-DEDUTIVO
+    forte
+      convicente
+      inconvicente
+    fraco
+      inconvicente

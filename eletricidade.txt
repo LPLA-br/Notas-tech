@@ -37,6 +37,8 @@ LEIS DE OHM
  |carga → Coloumb        |
  |_______________________|
 
+ 1A = 1 Coloumb/segundo
+
   ________
   |      |
   |      |___
@@ -45,7 +47,7 @@ LEIS DE OHM
   |      |
   |______|
 
-  Capacitãncia - capacidade de um sistema
+  CAPACITÂNCIA - capacidade de um sistema
   de armazenar alguma carga elétrica.
   1 Farad armazena um Coloumb de carga
   elétrica quando um Volt de tensão lhe
@@ -95,30 +97,150 @@ CONVERSÃO AC DC
   Regulador de tensão   DC 5v constante e confiável
     Regulação por dissipação na forma de calor ou modulação de pulsos.
 
-CAPACITORES
-  EM SÉRIE
-    capacitância diminui 1/Ceq = 1/C1 + 1/C2 ...
-    mesma corrente
-    tensões dividem-se
-    em CC: carrega e bloqueia
-    Usado para dividir tensão, ajustar valor pequeno.
-  EM PARALELO
-    capacitância somam Ceq = C1 + C2 + ...
-    mesma tensão
-    correntes somam
-    em CC carrega e bloqueia
-    Usado em maior reserva de energia e filtragem
+COMPONENTES ELETRONICOS
 
-RESISTORES
-  EM SÉRIE
-    Mesma corrente
-    Tensões somam
-    Req = R1 + R2 ...
-  EM PARALELO
-    Mesma tensão
-    Correntes somam
-    1/Req = 1/R1 + 1/R2 ...
+Valor nominal - especifiação básica do componente.
+Tolerância -  variação do valor nominal para mais ou para menos dentro
+              de um limite de qualidade.
+Potência Máxima - pontência máxima dissipável pelo componente antes do dano.            
+Tensão Máxima - auto explicativo e muito importante para diodos e capacitores.
+Corrente Máxima - auto explicativo e muito importante em diodos emissores de luz.
+Frequência de operação -  auto explicativo e importante para capacitores e indutores
+                          em aplicações de alta frequência.
+Tempo de resposta - importante, exemplo: trasistores bipolares vs FET
+Faixa de temperatura de operação
 
-DIODO
+
+PASSIVOS###########################################################
+
+  RESISTORES - limitação de corrente, tensão ou frequência elétrica.
+    RESISTÊNCIA OHM que afeta CORRENTE AMPERE e TENSÃO VOLT
+    EM SÉRIE
+      Mesma corrente
+      Tensões somam
+      Req = R1 + R2 ...
+    EM PARALELO
+      Mesma tensão
+      Correntes somam
+      1/Req = 1/R1 + 1/R2 ...
+
+  VARISTOR - proteger circuitos contra surtos de tensão desviando excessos
+
+  CAPACITORES - filtra sinal, suavizar variação tensão
+    CAPACITÂNCIA EM FARADS e TENSÃO EM VOLTS
+    Pode ser POLARIZADO+- OU NÃO
+    EM SÉRIE
+      capacitância diminui 1/Ceq = 1/C1 + 1/C2 ...
+      mesma corrente
+      tensões dividem-se
+      em CC: carrega e bloqueia
+      Usado para dividir tensão, ajustar valor pequeno.
+    EM PARALELO
+      capacitância somam Ceq = C1 + C2 + ...
+      mesma tensão
+      correntes somam
+      em CC carrega e bloqueia
+      Usado em maior reserva de energia e filtragem
+  
+  capacitor eletrolítico
+  capacitor cerâmico
+  capacitor poliéster
+
+
+  INDUTORES - armazenamento de energia em campo magnético.
+  BOTÕES - sinais de um bit por usuários.
+  FUSÍVEIS -  evita dano por fusão do material condutor cortando
+              a corrente para o circuito.
+
+ATIVOS ############################################################
+
+TRANSISTORES - aplificação ou controle de fluxo
+
+  ganho de corrente (β ou hfe)
+    medida de capacidade do transistor aplificar corrente.
+    Razão entre corrente saída e a corrente de entrada.
+    Bi  - β em DC e hfe em AC
+    FET - ganho de transcondutância (gm)
+  tensão de limiar (Vth)
+    tensão mínima necessária para aplicar ao terminal
+    de controle (base ou porta) para iniciar a condução
+    do componente. Em transistores de efeito de campo,
+    a tensão de limiar é a tensão porta-fonte necessária
+    para criar um canal condutivo entre o dreno e
+    a fonte.
+  resistência de entrada saída (rin e rout)
+  corrente de fuga
+    corrente que foge através do transistor mesmo
+    sem corrente no (portão ou base).
+  capacitâncias
+    capacitâncias parasitas dos transistores
+    nos terminais.
+    Capacitância de junção ColetorBaseEmissor Cbe
+    Capacitância de junção BaseColetor Cbc
+    Capacitância de porta-fonte (Cgs) em FETs
+
+  TRANSISTORES FIELD EFFECT (FET)
+    Fonte (S) source
+    dreno (D) drain
+    portão (G) gate
+
+    CANAL N
+      dreno e fonte - N
+      portão - P
+    CANAL P
+      dreno e fonte - P
+      portão - N 
+
+    Transistores Field Effect NPN baixa potência
+    BC108,
+    BC182,
+    BC548
+
+  TRANSISTORES BIPOLARES
+    coletor (c)
+    base    (b)
+    emissor (e)
+
+    coletor-N P(base)P N-Emissor
+    coletor-P N(base)N P-Emissor
+
+DIODO - retificação de sinal
+
+  DO ÂNODO PARA O CÁTODO
+  NÃO DO CÁTODO PARA O ÂNODO
+
+  Propriedades
+    tensão direta de polarização (VF)
+      só conduz se tensão passar do valor VF
+    corrente direta maxima (IF)
+      corrente máxima que aguenta sem dano.
+    resistência dinâmica (rD)
+      resistência que o diodo apresenta em DC
+    tensão reversa máxima (VR)
+      tensão máxima que o diodo suporta em DC sem dano.
+    corrente reversa de fuga (IR)
+      pequena corrente que flui pelo diodo
+      quando polarizado reversamente. Varia
+      sobre temperaturas e tensões altas.
+    tempo de recuperação (tRR)
+      tempo que leva para o diodo se recuperar
+      de uma inversão de polaridade e voltar
+      ao estado bloqueante.
+
   EM SÉRIE
   EM PARALELO
+
+  diodos de retificação
+    1N4001 1A 50V
+    1N4002 1A 100V
+    1N4007 1A 1000V
+    1N5401 3A 100V
+    1N5408 3A 1000V
+  diodos Zener (tensão constante em ampla faixa de correntes)
+  diodos schottky (queda de tensão menor que diodos de silício)
+  diodos emissores de luz (LED)
+  diodo fotovoltaico (célula solar)
+  diodo de potência (aguenta altas correntes e tensões)
+  diodo tunel ou esaki (fenômeno de condução por tunelamento quântico)
+
+

@@ -63,8 +63,8 @@
 
 
 
-
-
+  "É no trabalho honesto, preço justo e bons negócios onde edificamos uma
+  grande nação."
 
 
 
@@ -148,14 +148,14 @@
   CLÁUSULA PRIMEIRA - DO OBJETO
 
   1.1 O presente contrato tem por objeto a prestação de serviços profissionais
-  especializados em TECNOLOGIA DA INFORMAÇÃO por parte da CONTRATADA de acordo
-  com os termos e condições detalhados neste contrato.
+  especializados em TECNOLOGIA DA INFORMAÇÃO PARA WEB por parte da CONTRATADA
+  em acordo com os termos e condições detalhados neste contrato.
 
-  1.2 O OBJETO configura-se-a como uma peça de software com finalidade de
+  1.2 O OBJETO configura-se-á como uma peça de software com finalidade de
   manipular ou apenas exibir informações de/sobre negócios através da internet.
 
-
-
+  1.3 O OBJETO deve ser divido em partes mínimas úteis para garantia de entrega
+  de valor constante (bi|tri|N)semanalmente.
 
 
 
@@ -188,12 +188,13 @@
   necessários à perfeita consecução do mesmo.
 
   2.2 A CONTRATANTE é obrigada ainda a disponibilizar, de modo a garantir a
-  existência do OBJETO:
+  existência ou a manutenção do OBJETO:
 
   2.2.1 - Recursos financeiros para pagamento de:
 
-  A. Taxa mensal ou (bi/tri/N)-mestral de infraestrutura de computadores provida
-  por empresa terceirizada garantindo a existência do OBJETO.
+  A. Taxa mensal ou (bi/tri/N)-mestral de infraestrutura de computadores
+  provida por empresa terceirizada e gerenciado pela CONTRATADA (em consenso
+  com CONTRATANTE) garantindo a existência do OBJETO.
 
   B. Pagamento anual ou por (bi/tri/N)-ênio do registro de domínio .br de seu
   próprio negócio garantindo acesso fácil por nome memorável. EX:
@@ -207,7 +208,6 @@
 
   2.3 A CONTRATANTE deverá efetuar o pagamento na forma e condições
   estabelecidas na cláusula quinta.
-
 
 
 
@@ -238,17 +238,53 @@
   em relação a eles.
 
   3.5 A CONTRATADA deverá fornecer os respectivos documentos fiscais ou RPA’S
-  (recibo de pagamento de autônomo), referente ao (s) pagamento (s) do presente
-  instrumento.
+  (recibo de pagamento de autônomo), referente ao(s) pagamento(s) do presente
+  instrumento (infraestrutura de computadores núvem, domínio, certificados).
 
   3.6 A CONTRATADA tem obrigação de esclarecer e orientar transparentemente o
   CONTRATANTE sobre quais meios externos pagos ou não possibilitam a existência
   do OBJETO.
 
+
+
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
   3.7 A CONTRATADA tem obrigação de esclarecer e orientar transparentemente sob
   como gerenciar o OBJETO ativo após fim do contrato nos casos em que não houver
-  estabelecimento de novo contrato. Vide cláusula décima segunda - das
-  disposições gerais em (12.4).
+  estabelecimento de novo contrato para tarefas relativas a manutenção,
+  atualização, extenção, correção, refatoração, reforço de segurança.
+  Vide cláusula (XII) Décima segunda - das disposições gerais em (12.4).
+
+  3.8 A CONTRATADA, tendo em vista a liberdade de RESCISÃO IMOTIVADA exposta na
+  cláusula (X) décima, tem obrigação de deixar documentação mínima que possibil-
+  ite que outro profissional possa continuar o serviço de onde a CONTRATADA
+  parou.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
@@ -260,7 +296,7 @@
   presente contrato.
 
   4.2 O serviço prestado pode compor-se de 1 (uma) ou n-ésimas partes expostas
-  no ANEXO II deste contrato na forma dinâmica acordada entre as partes.
+  no ANEXO II deste contrato na forma acordada entre as partes.
 
   4.3 Os serviços terão início em ________ dias corridos da assinatura do
   presente contrato.
