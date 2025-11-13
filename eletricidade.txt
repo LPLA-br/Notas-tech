@@ -32,6 +32,7 @@ LEIS DE OHM
  |corrente → Ampere      | -, mili, micro
  |resistẽncia → Ohm      | -, kilo, mega, giga
  |capacitãncia → Farad   | micro, nano, pico
+ |indutância → Henry     | -
  |energia → Joule        | -, kilo, mega
  |potência → Watt        | -, kilo, mega
  |carga → Coloumb        |
@@ -148,6 +149,9 @@ PASSIVOS###########################################################
 
 
   INDUTORES - armazenamento de energia em campo magnético.
+    INDUTÂNCIA em HENRYs
+  TRANSFORMADOR - modifica níveis de tensão e corrente mantendo potência
+    (dois ou mais indutores acoplados)
   BOTÕES - sinais de um bit por usuários.
   FUSÍVEIS -  evita dano por fusão do material condutor cortando
               a corrente para o circuito.

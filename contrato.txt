@@ -123,7 +123,7 @@
   residente e domiciliado em ________ , e;
 
   PARTE CONTRATADA
-  ____________, (nacionalidade), (profissão), portador da
+  ____________, Brasileiro, desenvolvedor web, portador da
   identidade nº ____________ SSP/___ e do CPF nº _______________, residente e
   domiciliado nesta comarca, na Rua _______________________________, doravante
   denominado CONTRATADA.
@@ -145,20 +145,56 @@
 --------------------------------------------------------------------------------
 
 
+  CONTRATO DE PRESTAÇÃO DE SERVIÇO
+
+
+  DAS PARTES (INFORMAL)
+
+  PARTE CONTRATANTE
+  ____________, doravante denominado CONTRATANTE;
+
+  PARTE CONTRATADA
+  ____________, Brasileiro, desenvolvedor web, doravante denominado parte
+  CONTRATADA.
+
+  Decidem as partes, na melhor forma de direito, celebrar o presente CONTRATO DE
+  PRESTAÇÃO DE SERVIÇOS, que reger-se-á mediante as cláusulas e condições
+  adiante estipuladas.
+
+
+  CÓDIGO CIVIL
+  Art. 107. A validade da declaração de vontade não dependerá de forma especial
+  , senão quando a lei expressamente a exigir.
+
+  Art. 104. Validade do negócio jurídico requer:
+    I - agente capaz;
+    II - objeto lícito, possível, determinado ou determinável;
+    III - forma prescrita ou não defesa em lei;
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
   CLÁUSULA PRIMEIRA - DO OBJETO
 
-  1.1 O presente contrato tem por objeto a prestação de serviços profissionais
+  §1.1 O presente contrato tem por objeto a prestação de serviços profissionais
   especializados em TECNOLOGIA DA INFORMAÇÃO PARA WEB por parte da CONTRATADA
   em acordo com os termos e condições detalhados neste contrato.
 
-  1.2 O OBJETO configura-se-á como uma peça de software com finalidade de
-  manipular ou apenas exibir informações de/sobre negócios através da internet.
+  §1.2 O OBJETO configura-se-á como uma peça de software capaz de manipular
+  informações através da rede nacional ou munidial de computadores.
 
-  1.3 O OBJETO deve ser divido em partes mínimas úteis para garantia de entrega
-  de valor constante (bi|tri|N)semanalmente.
+  §1.3 O OBJETO pode ser divido em pequenas partes úteis para garantia de entrega
+  de valor constante para cada semanda de serviço prestado da CONTRATADA para a
+  CONTRATANTE.
 
-
-
+  §1.4 O OBJETO é propriedade da parte CONTRATANTE.
 
 
 
@@ -183,14 +219,14 @@
 
   CLÁUSULA SEGUNDA - OBRIGAÇÕES DA CONTRATANTE
 
-  2.1 A CONTRATANTE deverá fornecer à CONTRATADA todas as informações
+  §2.1 A CONTRATANTE deverá fornecer à CONTRATADA todas as informações
   necessárias à realização do serviço, devendo especificar os detalhes
   necessários à perfeita consecução do mesmo.
 
-  2.2 A CONTRATANTE é obrigada ainda a disponibilizar, de modo a garantir a
-  existência ou a manutenção do OBJETO:
+  §2.2 A CONTRATANTE é obrigada ainda a disponibilizar, de modo a garantir a
+  existência de novo OBJETO:
 
-  2.2.1 - Recursos financeiros para pagamento de:
+  §2.2.1 - Recursos financeiros para pagamento de:
 
   A. Taxa mensal ou (bi/tri/N)-mestral de infraestrutura de computadores
   provida por empresa terceirizada e gerenciado pela CONTRATADA (em consenso
@@ -202,16 +238,16 @@
 
   C. Pagamento anual ou por (bi/tri/N)-ênio do registro de certificado SSL/TLS
   que garante autenticidade do OBJETO evitando que criminosos criem uma cópia
-  inautêntica do site para fins maliciosos (apenas para aplicações objetos que
-  manipulam informações confidenciais de usuários ou da empresa evitando
-  Phishing).
+  inautêntica do site para fins maliciosos.
 
-  2.3 A CONTRATANTE deverá efetuar o pagamento na forma e condições
-  estabelecidas na cláusula quinta.
+  §2.3 A (2.2) é válida apenas para casos de escrita de um site ou aplicação web
+  novo/inéditos. Caso OBJETO já exista e esteja em operação sua infraestrutura
+  já pré existe e a 2.2 não vale. Configura exceção em caso de necessidade de
+  modificação da infraestrutura para extenção, escalamento, manutenção et cetera
+  do OBJETO por provavelemente envolver custos de aumento da infraestrutura.
 
-
-
-
+  §2.4 A CONTRATANTE deverá efetuar o pagamento pelo serviço prestado na forma e
+  condições estabelecidas na cláusula quinta.
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -219,31 +255,31 @@
 
   CLÁUSULA TERCEIRA - OBRIGAÇÕES DA CONTRATADA
 
-  3.1 A CONTRATADA deverá prestar os serviços solicitados pela CONTRATANTE
+  §3.1 A CONTRATADA deverá prestar os serviços solicitados pela CONTRATANTE
   conforme descritivo, especificações e prazos previstos no ANEXO I.
 
-  3.2 A CONTRATADA se obriga a manter absoluto sigilo sobre as operações, dados,
+  §3.2 A CONTRATADA se obriga a manter absoluto sigilo sobre as operações, dados,
   estratégias, materiais, informações e documentos da CONTRATANTE, mesmo após a
   conclusão dos serviços ou do término da relação contratual.
 
-  3.3 Os contratos, informações, dados, materiais e documentos inerentes à
+  §3.3 Os contratos, informações, dados, materiais e documentos inerentes à
   CONTRATANTE ou a seus clientes deverão ser utilizados, pela CONTRATADA, por
   seus funcionários ou contratados, estritamente para cumprimento dos serviços
   solicitados pela CONTRATANTE, sendo VEDADO a comercialização ou utilização
   para outros fins.
 
-  3.4 Será de responsabilidade da CONTRATADA todo o ônus trabalhista, tributário
+  §3.4 Será de responsabilidade da CONTRATADA todo o ônus trabalhista, tributário
   e previdenciário referente ao período que perdurar a prestação do serviço
   objeto deste instrumento, ficando a CONTRATANTE isenta de qualquer obrigação
   em relação a eles.
 
-  3.5 A CONTRATADA deverá fornecer os respectivos documentos fiscais ou RPA’S
+  §3.5 A CONTRATADA deverá fornecer os respectivos documentos fiscais ou RPA’S
   (recibo de pagamento de autônomo), referente ao(s) pagamento(s) do presente
-  instrumento (infraestrutura de computadores núvem, domínio, certificados).
+  instrumento.
 
-  3.6 A CONTRATADA tem obrigação de esclarecer e orientar transparentemente o
+  §3.6 A CONTRATADA tem obrigação de esclarecer e orientar transparentemente o
   CONTRATANTE sobre quais meios externos pagos ou não possibilitam a existência
-  do OBJETO.
+  de novo OBJETO.
 
 
 
@@ -253,14 +289,14 @@
 --------------------------------------------------------------------------------
 
 
-  3.7 A CONTRATADA tem obrigação de esclarecer e orientar transparentemente sob
+  §3.7 A CONTRATADA tem obrigação de esclarecer e orientar transparentemente sob
   como gerenciar o OBJETO ativo após fim do contrato nos casos em que não houver
   estabelecimento de novo contrato para tarefas relativas a manutenção,
-  atualização, extenção, correção, refatoração, reforço de segurança.
-  Vide cláusula (XII) Décima segunda - das disposições gerais em (12.4).
+  atualização, extenção, correção, refatoração, reforço de segurança et cetera.
+  Vide cláusula Décima Segunda - das disposições gerais em (12.4).
 
-  3.8 A CONTRATADA, tendo em vista a liberdade de RESCISÃO IMOTIVADA exposta na
-  cláusula (X) décima, tem obrigação de deixar documentação mínima que possibil-
+  §3.8 A CONTRATADA, tendo em vista a liberdade de RESCISÃO IMOTIVADA exposta na
+  cláusula Décima, tem obrigação de deixar documentação mínima que possibil-
   ite que outro profissional possa continuar o serviço de onde a CONTRATADA
   parou.
 
@@ -291,14 +327,14 @@
 
   CLÁUSULA QUARTA - DOS SERVIÇOS
 
-  4.1 A CONTRATADA atuará nos serviços contratados de acordo com as
-  especificações descritas no ANEXO I, que passa ser parte integrante do
-  presente contrato.
+  §4.1 A CONTRATADA atuará nos serviços contratados de acordo com as
+  especificações descritas e acordadas no ANEXO I, que passa ser parte
+  integrante do presente contrato.
 
-  4.2 O serviço prestado pode compor-se de 1 (uma) ou n-ésimas partes expostas
-  no ANEXO II deste contrato na forma acordada entre as partes.
+  §4.2 O serviço prestado pode compor-se de 1 (uma) ou N-ésimas atividades
+  expostas no ANEXO II deste contrato na forma acordada entre as partes.
 
-  4.3 Os serviços terão início em ________ dias corridos da assinatura do
+  §4.3 Os serviços terão início em ________ dias corridos da assinatura do
   presente contrato.
 
 
@@ -327,25 +363,25 @@
 
   CLÁUSULA QUINTA - DA AVALIAÇÃO DE PERFORMANCE
 
-  5.1 A execução dos serviços, objeto do presente contrato, passará por
+  §5.1 A execução dos serviços, objeto do presente contrato, passará por
   avaliações periódicas para fins de constatar o cumprimento dos indicadores de
   produtividade, abaixo indicados:
 
-  5.1.1 SEGURANÇA: Para fins de observância aos indicadores de segurança do
+  §5.1.1 SEGURANÇA: Para fins de observância aos indicadores de segurança do
   presente contrato, semanalmente a CONTRATADA deve comprovar o emprego de
   técnicas e ferramentas que garantem a segurança mínima necessária de qualquer
   aplicação OBJETO na internet;
 
-  5.1.2 QUALIDADE: Para fins de observância aos indicadores de qualidade do
+  §5.1.2 QUALIDADE: Para fins de observância aos indicadores de qualidade do
   presente contrato, semanalmente a CONTRATADA deve comprovar o cumprimento
   integral da prestação de serviço por testes, demonstrações ou qualquer outro
   meio estipulado pelo CONTRATANTE;
 
-  5.1.3 COMUNICAÇÃO: Para fins de observância aos indicadores de comunicação do
+  §5.1.3 COMUNICAÇÃO: Para fins de observância aos indicadores de comunicação do
   presente contrato, semanalmente a CONTRATADA deve comprovar o progresso das
   atividades acordadas;
 
-  5.1.4 PONTUALIDADE: Para fins de observância aos indicadores de pontualidade
+  §5.1.4 PONTUALIDADE: Para fins de observância aos indicadores de pontualidade
   do presente contrato, semanalmente a CONTRATADA deve comprovar o cumprimento
   integral do período mínimo fixado para desempenho da sua prestação de serviço;
 
@@ -363,11 +399,11 @@
 
   CLÁUSULA SEXTA - DA EXCLUSIVIDADE
 
-  5.1 A CONTRATADA atuará COM EXCLUSIVIDADE em favor da CONTRATADA, NÃO podendo
+  §5.1 A CONTRATADA atuará COM EXCLUSIVIDADE em favor da CONTRATADA, NÃO podendo
   exercer sua atividade para outras empresas, ou efetuar negócios em nome e por
   conta própria, ainda que seja com terceiro não cliente da CONTRATANTE.
 
-  6.2 A CONTRATADA terá gerência integral na área de serviço que lhe é
+  §6.2 A CONTRATADA terá gerência integral na área de serviço que lhe é
   destinada, com TOTAL AUTONOMIA, devendo atender exclusivamente o cronograma
   firmado entre as partes.
 
@@ -399,27 +435,27 @@
 
   CLÁUSULA SÉTIMA - DO PREÇO E DAS CONDIÇÕES DE PAGAMENTO
 
-  MODALIDADE SEMANAL
+  §7.1 O(s) serviço(s) OBJETO deste contrato serão remunerados na modalidade de
+  pagamento por hora trabalhada. O valor postulado consistirá de R$ 10.00 por
+  hora de serviço prestado no intervalo de 08:00 até 12:00 (Quatro horas) e
+  14:00 até 18:00 (Quatro horas), totalizando 8 (Oito) horas de serviço prestado
+  por dia; ou seja faixa horária convensionada como horário comercial;
 
-  7.1 Os serviços OBJETO deste contrato serão remunerados pela quantia
-  determinada pela multiplicação de um VALOR MONETÁRIO CONSTANTE cobrado por
-  HORAS PRESTADAS em 7 (Sete) dias da semana (Segunda-feira a Sexta-feira).
+  §7.2 O pagamento deverá ser realizado aos fins de semana; Seu valor será
+  computado ao mutiplicar o valor postulado pelas horas de provimento do serviço
+  efetivadas na semana. Este inciso está em consonância com o inciso (1.3) da
+  cláusula Primeira.
 
-  R$ __.__ por hora de serviço prestado no intervalo de 08:00 até 12:00 (Quatro
-  horas) e 14:00 até 18:00 (Quatro horas), totalizando 8 (Oito) horas de serviço
-  prestado por dia;
+  §7.3 Nos casos em que houver RESCISÃO IMOTIVADA  deste contrato durante
+  execução de serviço (semana quebrada) a CONTRATANTE terá obrigação de pagar a
+  parte CONTRATADA pelo tempo de serviço prestado até aquele momento.
 
-  7.2 A parcela será postulada em cada SÁBADO e o valor a ser pago será
-  computado por VALOR MONETÁRIO CONSTANTE vezes 8 (Oito) horas de SERVIÇO
-  PRESTADO vezes DIAS EFETIVAMENTE PRESTADOS acordado neste contrato.
+  §7.3 Quanto ao DESCUMPRIMENTO por parte CONTRATANTE, levando em conta o inciso
+  de (8.1) da cláusula Oitava, a CONTRATANTE deve pagar a parte CONTRATADA pelo
+  tempo de serviço prestado até o momento de seu DESCUMPRIMENTO.
 
-
-
-
-
-
-
-
+  §7.4 A parte CONTRATADA tem obrigação de manter uma tabela que relaciona tempo
+  e custo (horário semanal) no ANEXO III deste contrato.
 
 
 
@@ -435,11 +471,11 @@
 
   CLÁUSULA OITAVA - DO DESCUMPRIMENTO
 
-  8.1 O descumprimento de qualquer uma das cláusulas por qualquer parte,
+  §8.1 O descumprimento de qualquer uma das cláusulas por qualquer parte,
   implicará na rescisão imediata deste contrato, não isentando a CONTRATADA de
   suas responsabilidades referentes ao zelo com informações e dados da
-  CONTRATANTE.
-
+  CONTRATANTE e não isentando a CONTRATANTE de suas responsabilidades
+  fiscais/temporais.
 
 
 
@@ -471,17 +507,17 @@
 
   CLÁUSULA NONA - DO PRAZO E VALIDADE
 
-  9.1 A CONTRATADA deverá realizar os serviços dentro dos prazos determinados no
+  §9.1 A CONTRATADA deverá realizar os serviços dentro dos prazos determinados no
   cronograma previsto no ANEXO I, sendo sua responsabilidade comunicar a
   impossibilidade de cumprimento, bem como os motivos para tal e o novo prazo
   previsto, estando em sua competência a capacidade para tal avaliação.
 
-  9.2 Este instrumento é válido pelo prazo de 1 ano, prorrogável por igual
+  §9.2 Este instrumento é válido pelo prazo de 1 ano, prorrogável por igual
   período, até a finalização do serviço, ora contratado, ou encerramento do
   contrato, não ficando as partes isentas de seus compromissos éticos.
 
-  9.3 A natureza imprevisível do desenvolvimento de sistemas reforça a 9.1
-
+  §9.3 A natureza imprevisível do desenvolvimento de sistemas reforça
+  responsabilidade comunicativa no inciso (9.1) desta clásula.
 
 
 
@@ -507,7 +543,7 @@
 
   CLÁUSULA DÉCIMA - DA RESCISÃO IMOTIVADA
 
-  10.1 Poderá o presente instrumento ser rescindido por qualquer das partes, em
+  §10.1 Poderá o presente instrumento ser rescindido por qualquer das partes, em
   qualquer momento, sem que haja qualquer tipo de motivo relevante,
   respeitando-se um período mínimo de ________ dias, devendo então somente ser
   finalizadas e pagas as etapas que já estiverem em andamento.
@@ -543,22 +579,58 @@
 
   CLÁUSULA DÉCIMA PRIMEIRA - DA OBSERVÂNCIA À LGPD
 
-  11.1 O CONTRATANTE declara expresso CONSENTIMENTO que a CONTRATADA irá
+  §11.1 O CONTRATANTE declara expresso CONSENTIMENTO que a CONTRATADA irá
   coletar, tratar e compartilhar os dados necessários ao cumprimento do
   contrato, nos termos do Art. 7º, inc. V da LGPD, os dados necessários para
   cumprimento de obrigações legais, nos termos do Art. 7º, inc. II da LGPD, bem
   como os dados, se necessários para proteção ao crédito, conforme autorizado
   pelo Art. 7º, inc. V da LGPD.
 
-  11.2 O CONTRATADA tem obrigação de garantir a confidencialidade na aplicação
-  OBJETO desenvolvida por meio de técnicas de sengurança da informação
-  fundamentais:
+  §11.2 O CONTRATADA tem obrigação de garantir a confidencialidade dos dados
+  pessoais sensíveis do OBJETO desenvolvida por meio de técnicas de segurança da
+  informação fundamentais em acordo com inciso VII do artigo 6º da lei geral de
+  proteção de dados:
 
   A. Requisições HTTPS criptografadas por meio de registro de SSL (certificado
-  TLS 1.2 ou superior) garantido confidencialidade, integridade e autenticidade.
+  TLS 1.2 ou superior) garantido confidencialidade, integridade e autenticidade
+  a nível de objetivo/princípio.
 
-  B. Armazenamento indireto de credenciais por meio do hashing e salt em
-  sistemas de bancos de dados.
+  B. Armazenamento indireto de dados sensíveis por meio de técnicas de hashing e
+  salt em sistemas de bancos de dados.
+
+  C. Tratamento de informações providas por usuário para inibir ataques de
+  injeção de SQL.
+
+  D. Autenticação por Token JWT ou OAuth.
+
+  E. Restrição de acesso (autorização) por garantia de Rule BAsed ACcess.
+
+
+
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+  §11.3 De acordo com LGPD Art. 5º, inciso VI, CONTROLADOR é pessoa natural ou
+  jurídica, de direito público ou privado, a quem competem as decisões
+  referentes ao tratamento de dados pessoais (CONTRATANTE). Enquanto OPERADOR é
+  pessoa natural ou jurídica, de direito público ou privado, que realiza o
+  tratamento de dados pessoais em nome do controlador (CONTRATADO).
+
+  §11.5 Ao fim do contrato a CONTRATADA não terá mais responsabilidades
+  operacionais sobre tratamento de dados da aplicação.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -579,7 +651,7 @@
 
   CLÁUSULA DÉCIMA TERCEIRA - DO FORO
 
-  13.1 Para dirimir quaisquer controvérsias oriundas do presente contrato, as
+  §13.1 Para dirimir quaisquer controvérsias oriundas do presente contrato, as
   partes elegem o foro da Comarca de ________ do Estado de ________ .
 
   Por estarem assim justos e de acordo, firmam o presente instrumento, em duas
@@ -607,6 +679,8 @@
 
 
 
+
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
@@ -616,23 +690,23 @@
   desenvolvidos de acordo com a atividade a ser exercida pelo CONTRATADO;)
   ┌────────────────────────────────────────────────────────────────────┐
   │Semana_01                                                           │
+  │                                                                    │
   ├────────────────────────────────────────────────────────────────────┤
   │Semana_02                                                           │
+  │                                                                    │
   ├────────────────────────────────────────────────────────────────────┤
   │Semana_03                                                           │
+  │                                                                    │
   ├────────────────────────────────────────────────────────────────────┤
   │Semana_04                                                           │
+  │                                                                    │
   ├────────────────────────────────────────────────────────────────────┤
   │Semana_XX                                                           │
+  │                                                                    │
   ├────────────────────────────────────────────────────────────────────┤
   │Semana_99                                                           │
+  │                                                                    │
   └────────────────────────────────────────────────────────────────────┘
-
-
-
-
-
-
 
 
 
@@ -679,4 +753,76 @@ aplicações comerciais para internet.
   7.3 Avaliação de necessidade de Escalamento Horizontal ou Vertical
   7.4 Resposta a ataques
   7.5 Tratamento de Feedbacks
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+  ANEXO III - Custo em função das semanas. Inciso (7.4) cláusula Sétima.
+
+  10 R$/Hora
+                          ~1ºmês                   ~2ºmês
+                             ↓                       ↓
+  semana(s) [1    2    3     4     5     6     7     8     9     10  ]
+  custo(s)  [400  800  1200  1600  2000  2400  2800  3200  3600  4000]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                     FIM
 --------------------------------------------------------------------------------
