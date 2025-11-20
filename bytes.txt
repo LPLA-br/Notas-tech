@@ -1,0 +1,58 @@
+PARTICIONAMENTO DE DISCOS E BYTES
+
+Os sistemas operacionais, em seus terminais, usam
+ferramentas que, de modo a evitar confusão, expressam
+tamanho de memória ou de armazenamento em Bytes que
+são a menor unidade da informação endereçável (convensão).
+
+Façamos um exercício breve para compreender como converter
+tais Bytes em grandezas maiores apenas batendo o olho.
+
+Um Byte possui 8 bits logo:
+
+BYTES_EXATOS        ORDEM_DE_GRANDEZA_BINÁRIA_EXATA
+1                   Byte
+1,024               kibibyte
+1,048,576           mebibyte  1024^2
+1,073,741,824       gibibyte  1024^3
+1,099,511,627,776   tebibyte  1024^4
+
+UNIDADES BINÁRIAS EXATAS
+
+Unidades binárias exatas são escritas da seguinte forma:
+
+PREFIXO_DECIMAL_CORTADO + BI + BYTE
+Ki lo
+Me ga
+Gi ga
+
+exemplos: Kibibytes, Mebibytes
+
+APROXIMAÇÕES DECIMAIS INTUITIVAS
+
+Perceba que tratar informação binária como se fosse decimal
+permite que compreendamos rápidamente aquelas porradas de
+bytes que o comando do terminal nos apresenta. logo 1024
+vira 1000.Isso é o que faz um pendrive de 4GB possuir
+99511627776 Bytes a menos.
+
+Kilo é mil decimal.
+Se o armazenamento possui N milhares de bytes então
+ele possui N KiloBytes decimais.
+
+Mega é milhão decimal.
+Se o sistema possui N milhoes de bytes então
+ele possui N MegaBytes decimais.
+
+Giga é bilhão decimal.
+Se o sistema possui N bilhoes de bytes então
+ele possui N GigaBytes decimais.
+
+Tera é trilhão decimal.
+Se o sistema possui N bilhoes de bytes então
+ele possui N TeraBytes decimais.
+
+Em conclusão, use esta nota em momentos que fores
+particionar discos, instalações de sistemas ou
+em programaçao de softwares escovadores de bits.
+

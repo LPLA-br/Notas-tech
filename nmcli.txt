@@ -1,0 +1,22 @@
+Network Manager CLI
+
+# listar redes wifi disponíveis
+nmcli device wifi list
+
+# conectar-se com rede wifi ordinária
+nmcli device wifi connect ExemploDaSilva password 123
+
+# Conectar-se a uma rede educacional eduroam
+nmcli device wifi connect "eduraom" --ask
+
+802.1x.eap "tls"
+802.1x.identity MATRÍCULA@ifrn.edu.br
+802.1x.eap "123"
+
+802.1x.client-cert
+802.1x.private-key
+802.1x.private-key-password
+802.1x.ca-cert
+
+Leita também ip.txt para saber como configurar as interfaces de
+rede manualmente.
