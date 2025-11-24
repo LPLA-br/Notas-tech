@@ -1,5 +1,26 @@
 Glossário rápido de Hardware Computadores
 
+Driver (Software Driver)
+  software responsável por permitir a interação entre sistema operacional
+  e hardware específico (placa de vídeo, som, rede, impressora, teclado).
+
+  FUNÇÃO: enviar comandos e receber dados do/para dispositivo.
+  ONDE: no código do kernel do sistema ou em Módulos carregáveis.
+
+Módulo (Kernel Linux)
+  Trecho de código carregável em tempo de execução.
+
+  FUNÇÃO: extender funcionalidade do kernel sob demanda. Atuam sobre
+  suporte de hardware (Driver) ou funcionalidade, por exemplo, de sistemas
+  de arquivos.
+
+Firmware
+  Software carregado em chip de dispositivo de hardware
+  (ROM,EPROM ou FLASH)
+
+  FUNÇÃO: Provê meios de inicialização ao conectar/energizar.
+  EXEMPLOS: BIOS ou UEFI de placas mãe. Software de Hard disk, impressora
+  roteador, controlador de placa de vídeo e etc ...
 
 Conectores
   ENERGIA (FONTE ELÉTRICA DE ALIMENTAÇÃO)
@@ -37,27 +58,54 @@ Conectores
         HDMI (High Definition Multimedia Interface)
         DP  (Display Port)
 
-Driver (Software Driver)
-  software responsável por permitir a interação entre sistema operacional
-  e hardware específico (placa de vídeo, som, rede, impressora, teclado).
+Fabricantes
+  Tudo que roda no Silicio e até mais
+    TSMC (Taiwan)
+  CPU E GPU
+    Intel
+    AMD
+    Apple (M1,M2,M3) MacOS
+  GPU
+    NVIDIA
+  CPU e GPU Mobile e outros
+    Qualcomm
 
-  FUNÇÃO: enviar comandos e receber dados do/para dispositivo.
-  ONDE: no código do kernel do sistema ou em Módulos carregáveis.
+  Placas-mãe
+    Placas-vídeo
+      ASRock
+      Notebooks
+        -Gigabyte(linha:AORUS)
+        Periféricos
+          -ASUS(linha:ROG)
+          -MSI
+  Placas-vídeo (NVIDIA)
+    Zotac, Galax/KFA2, PNY, Inno3D
+  Placas-vídeo (AMD)
+    Sappire,PowerColor,XFX
 
-Firmware
-  Software carregado em chip de dispositivo de hardware
-  (ROM,EPROM ou FLASH)
+  Armazenamento
+    RAM et SSD
+      Kingston
+      Crucial/Micron
+      Corsair
+      G.Skill, Patriot, TeamGroup(linha:T-Force)
+    SSD e HDD
+      Samsung
+      Seagate
+      Western Digital (WD)
 
-  FUNÇÃO: Provê meios de inicialização ao conectar/energizar.
-  EXEMPLOS: BIOS ou UEFI de placas mãe. Software de Hard disk, impressora
-  roteador, controlador de placa de vídeo e etc ...
+  PCs prontos
+    HP Inc.
+    Dell
+    Lenovo
+    Acer
+    Microsoft(linha:surface)
+    Apple(linha:MAC)
 
-Módulo (Kernel Linux)
-  Trecho de código carregável em tempo de execução.
-
-  FUNÇÃO: extender funcionalidade do kernel sob demanda. Atuam sobre
-  suporte de hardware (Driver) ou funcionalidade, por exemplo, de sistemas
-  de arquivos.
-
+  Fontes elétricas
+    Corsair
+    Seasonic
+    EVGA
+    bequiet!
   
 
