@@ -1,0 +1,14 @@
+
+NOME
+  grep - filtragem de texto com expressões regulares
+
+OPÇÕES
+  -E --extended-regexp
+  -e PADRÃO               repita este para N padrões
+  -i --invert-match       busca reversa
+
+BUSCA POR MÚLTIPLOS PADRÕES
+
+  Difere de sed(1)
+  sed -E -e '^exemplo' -e 'alpha$' -e '^(A|a)lpha' arquivo.txt
+

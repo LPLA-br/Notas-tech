@@ -1,0 +1,63 @@
+Glossário rápido de Hardware Computadores
+
+
+Conectores
+  ENERGIA (FONTE ELÉTRICA DE ALIMENTAÇÃO)
+    ATX
+    EPS
+    fio
+  DADOS (PLACA MÃE E DISPOSITIVOS ESSENCIAIS)
+    SATA ((Serial) Advanced Technology Attachment) I ou II ou III
+      (Protocolo comunicação AHCI)
+      HD (Hard Disc), SSD (Solid State Drive)
+      e = External
+      m = mini
+    Slot M.2 ou U.2(maior)
+      SSD 
+      NVMe (Non-Volatile Memory Express)
+    PCI (Peripheral Component Interconnect) OBSOLETO
+      PCIexpress (Atual)
+    USB (Serial) 1.0 branco ou 2.0 preto ou 3.0 azul
+      Tipo A
+      Tipo C
+    PS/2 OBSOLETO
+      Teclado e Mouse 
+    Ethernet (Paralelo) UNIVERSAL
+      RJ-45
+    Áudio
+      P2/ JACK 3.5mm UNIVERSAL
+        Verde: Fone ou Caixas de som
+        Rosa: Microfone
+        Azul: Entrada de linha
+    Vídeo
+      RCA (Radio Corporation of America) A/V OBSOLETO
+      DVI (Digital Visual Interface) OBSOLETO
+      VGA (Video Graphics Array) OBSOLETO
+      Vídeo/Audio
+        HDMI (High Definition Multimedia Interface)
+        DP  (Display Port)
+
+Driver (Software Driver)
+  software responsável por permitir a interação entre sistema operacional
+  e hardware específico (placa de vídeo, som, rede, impressora, teclado).
+
+  FUNÇÃO: enviar comandos e receber dados do/para dispositivo.
+  ONDE: no código do kernel do sistema ou em Módulos carregáveis.
+
+Firmware
+  Software carregado em chip de dispositivo de hardware
+  (ROM,EPROM ou FLASH)
+
+  FUNÇÃO: Provê meios de inicialização ao conectar/energizar.
+  EXEMPLOS: BIOS ou UEFI de placas mãe. Software de Hard disk, impressora
+  roteador, controlador de placa de vídeo e etc ...
+
+Módulo (Kernel Linux)
+  Trecho de código carregável em tempo de execução.
+
+  FUNÇÃO: extender funcionalidade do kernel sob demanda. Atuam sobre
+  suporte de hardware (Driver) ou funcionalidade, por exemplo, de sistemas
+  de arquivos.
+
+  
+

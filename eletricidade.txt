@@ -98,6 +98,14 @@ CONVERSÃO AC DC
   Regulador de tensão   DC 5v constante e confiável
     Regulação por dissipação na forma de calor ou modulação de pulsos.
 
+  CIRCUITOS CORRELATOS
+  1. Retificador de onda completa
+  Uma fonte AC, um trafo, quatro diodos(retificação em ponte), um capacitor
+  um transistor FET desconhecido e saída DC.
+  2. Retificador de onda completa (w/center tapped transformer)
+  3. Retificador de meia onda
+  Uma fonte AC, um trafo e um diodo.
+
 COMPONENTES ELETRONICOS
 
 Valor nominal - especifiação básica do componente.

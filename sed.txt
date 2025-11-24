@@ -13,6 +13,9 @@ OPÇÕES
 
 	-f script-file, --file=script-file
 
+  -i --in-place
+    aplica modificações no arquivo (CUIDADO ! FAÇA BACKUP OU git add .)
+
 COMANDOS E REGEX
 	Substituição s
 		'[NUMERO]s/regex/replacement/flags'
@@ -34,3 +37,26 @@ COMANDOS E REGEX
 	flags:
 		g	substiui os encontrados por replacement.
 		p	imprime o espaço de 
+
+MULTIPLAS TRANSFORMAÇÕES EM UMA CHAMADA
+
+  sed -E 's/exemplo/olpmexe/g; s/teste/etset/g; s/(M|m)iercoles/xilercoles/g' arquivo.txt
+
+MODIFICA PEDAÇO RESTRITO DO QUE É ENCONTRADO
+
+  EXEMPLO 01:
+  Exemplo clássico do rato que roeu a roupa do rei de roma:
+  Toda linha que comessa com "O rato" mais qualquer caractere.
+  Subsititua conservando (O rato) para posição \1
+
+  $ echo "O rato roeu a roupa do rei de roma" | sed -E 's/^(O rato).*/ \1 comeu queijo/g'
+  O rato comeu queijo
+
+  EXEMPLO 02:
+  Substituição de linha comessante com "enum" conservando
+  o nome da enumeração e eliminando os ": string".
+
+  sed -E 's/^enum (.*): string/enum \1/g'
+
+  s/()/\1/g  ->  (PADRÃO_EM_CONSERVA) e \1 é onde por padrão conservado
+
