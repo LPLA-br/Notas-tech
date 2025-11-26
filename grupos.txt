@@ -17,15 +17,24 @@ Para que servem os grupos no linux ?
 Onde fica o arquivo de registro dos grupos ?
 /etc/group
 
-Mostra-me os grupos na distro Arch linux !
+GRUPOS em sistemas linux
 
-adm     acesso total aos arquivos de journal
-ftp     /srv/ftp    acesso a arquivos dos servidores ftp
-http    /srv/http/  acesso a arquivos dos servidores http
-log     /var/log    acesso a logs do sistema
-rfkill  /dev/rfkill controle de estado de energia de dispositivos sem fio
-uucp    acesso à dispositivos /dev/{ttyS,tts,ttyUSB,ttyACM,rfcomm} (placas de desenvolvimento)
+root    todo poderoso.
+adm     acesso total aos arquivos de journal.
+ftp     /srv/ftp    acesso a arquivos dos servidores ftp.
+http    /srv/http   acesso a arquivos dos servidores http.
+log     /var/log    acesso a logs do sistema.
+rfkill  /dev/rfkill Controle de estado de energia.
+                    (ligado|desligado) de dispositivos
+                    de conexão sem fio da máquina.
+uucp    acesso à portas seriais e dispositivos conectadas a elas (arduino por exemplo).
+        /dev
+            /ttyS
+            /tts      
+            /ttyUSB
+            /ttyACM
+            rfcomm
 
-Para mais acesse: https://wiki.archlinux.org/title/Users_and_groups_(Portugu%C3%AAs)
-
+LEIA: ./devices.txt para uma lista descritiva dos nomes crípticos de dispositivos em /dev
+ACESSE: https://wiki.archlinux.org/title/Users_and_groups
 
