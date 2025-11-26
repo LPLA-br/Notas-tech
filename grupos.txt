@@ -1,39 +1,93 @@
-Grupos do linux
-Por Luiz Paulo.
+GRUPOS EM SISTEMAS UNIX
+A quais pertences ?
 
 Para que servem os grupos no linux ?
 
-  Para que usuários não root possam ter acesso
-  a dispositivos de hardware e a exclusividades
-  de alguma aplicação de sistema (docker,tshark)
-  e também para controle de acesso baseado em grupos
-  Exemplo: usuários que estão no grupo criado por min
-  chamado "publico" podem trabalhar em diretórios
-  que estejam sobre este.
-  Lembra-te que todo arquivo criado por usuário tem
-  propriétario e grupo deste, Exemplo:
+Para que usuários não root possam ter acesso
+a dispositivos de hardware e a exclusividades
+de alguma aplicação atuante me nível de sistema
+(docker,tshark) e também para controle de acesso
+baseado em grupos.
+
+Exemplo: usuários que estão no grupo criado por min
+chamado "publico" podem trabalhar em diretórios
+que estejam sobre este.
+
+Lembra-te que todo arquivo criado por usuário tem
+propriétario e grupo deste, Exemplo:
 
 
 Onde fica o arquivo de registro dos grupos ?
 /etc/group
 
-GRUPOS em sistemas linux
+GRUPOS CONHECIDOS EM SISTEMAS LINUX $#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#
 
+POBRES:
+nobody  usuário sem previlégio.
+nogroup grupo sem previlégio.
+
+SERVIÇOS INTERNOS:
+daemon  processos em sistemas antigos
+bin, sys  compatiblidade UNIX clássica
+
+ADMINISTRADORES:
 root    todo poderoso.
-adm     acesso total aos arquivos de journal.
+wheel   o que pode usar su, sudo, doas para root.
+
+USUÁRIOS COMUNS;
+users   grupo coletivo pardão para N usuarios participarem
+*       grupo privado de usuário (* significa qualquer nome).
+
+REDES:
+network acesso a controle de rede. NetworkManager, netctl, (varia por distro)
+inet  permissoes de rede (obsoleto)
+
+SERVIÇOS CLÁSSICOS:
+adm     acesso total aos arquivos em /var/log.
+log     /var/log    acesso a logs do sistema.
+logger  sistemas de logging rsyslog.
+systemd-journal/journal ler logs do systemd-journald
+mail    acesso a agentes de email (postfix, exim ...)
 ftp     /srv/ftp    acesso a arquivos dos servidores ftp.
 http    /srv/http   acesso a arquivos dos servidores http.
-log     /var/log    acesso a logs do sistema.
+
+DISPOSITIVOS (em parte bagunçado pelo systemd):
 rfkill  /dev/rfkill Controle de estado de energia.
                     (ligado|desligado) de dispositivos
                     de conexão sem fio da máquina.
-uucp    acesso à portas seriais e dispositivos conectadas a elas (arduino por exemplo).
+video   GPUs, DRM/KMS, /dev/dri
+audio   ALSA/Pulse, /dev/snd
+input   acesso a dispositivos de entrada /dev/input/*
+disk    acesso a dispositivos de bloco /dev/sdX /dev/hdX e etc...
+cdrom   drives opticos
+lp      Impressoras e CUPS
+scanner Escaneadores USB ou SANE
+tty     teletypewriters (comumente não adiciona-se usuários)
+uucp    acesso à portas seriais e dispositivos conectadas a elas. EX: Modens, ttyS*, arduino
         /dev
             /ttyS
             /tts      
             /ttyUSB
             /ttyACM
             rfcomm
+dialout acesso a portas seriais e modems ttyS* ttyUSB*
+plugdev permissão para manipular dispositivos removíveis via udev
+usb     acesso direto às USBs
+
+SUBSISTEMAS:
+kmem  acesso a /dev/kmem
+kvm   acesso a /dev/kvm (virtualização poderosa)
+libvirt/libvirtd  gerência de máquinas virtuais.
+docker  acesso a comandos administrativos de conteineres docker.
+qemu    isolamento de virtualização.
+wireshark captura de pacotes sem ser superusuário.
+
+FERRAMENTAS INSTALÁVEIS:
+postgres  acesso a banco dados postgres instalado no host.
+mysql
+sudo    alternativa ao "wheel" exclusivo do comando sudo.
+
+$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#
 
 LEIA: ./devices.txt para uma lista descritiva dos nomes crípticos de dispositivos em /dev
 ACESSE: https://wiki.archlinux.org/title/Users_and_groups
