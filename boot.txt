@@ -1,0 +1,68 @@
+BOOT - A cascata dominó que culmina em um sistema proto para trabalhar.
+
+MASTER BOOT RECORD
+Reside do primeiro setor do dispositivo de bloco.
+Este setor possui 512 Bytes.
+4 partições onde uma pode subdividir-se em N partições lógicas.
+446 Bytes para código de máquina.
+
+VOLUME BOOT RECORD
+Setor de boot da partição que é marcada como "inicializável".
+512 Bytes
+Contém código capaz de acessar Filesystem da partição
+ou carregar o Stage1.5 que sabe fazer isso.
+
+
+BIOS
+|_MBR /dev/hda
+  |_VBR /dev/hda1
+    |
+    Possível estágio intermediário
+    |
+    |_Bootloader do SO (Comumente o Grub)
+      |_Kernel (linux)
+        |_init
+
+esquema genérico abstrato simples de partições
+dev    type mountpoint
+hda    disk               <-MBR
+|_hda1 part /             <-inicializável->VBR
+|_hda2 part /home
+|_hda2 part [SWAP] 
+
+###################################################################
+
+UNIFIED EXTENSIBLE FIRMWARE INTERFACE substituindo o velho BASIC INPUT OUTPUT SYSTEM
+e é em conjunto com GUID PARTITION TABLE SCHEME (GPT)
+que usa o UUID (universally unique identifiers)
+
+UEFI Firmware
+|_GPT (leitura)
+  |_ESP (partição /boot)
+    |_bootloader.efi
+      |_initramfs (carregar coisas como: LVM, RAID, compressão, Crypto)
+      |_Kernel (linux)
+        |_monta initramfs como /
+          |_executa init -> carregar drivers necessários e encontrar a rootfs real.
+            |_monta rootfs em /mnt/root
+              |_kernel muda de initramfs pra rootfs
+                |_init, real de fato, de rootfs comessa.
+
+NOTA: initramfs é opcional e facilita uso de LVM e RAID
+providos por módulos de kernel complexos.
+
+A alternativa é COMPILAR um kernel personalizado com tais
+funcionalidades ativas. Se, e somente se tal funcionalidade
+não estiver presente no Kernel corrente.
+
+NVRAM possui entradas correspondentes com
+arquivos x86 em /boot
+
+esquema genérico abstrato simples de partições
+dev    type mountpoint
+hda    disk
+|_hda1 part /boot <-FAT32 com imagem do kernel, initramfs, bootloader e outros.
+|_hda2 part /
+|_hda2 part /home
+|_hda2 part [SWAP] 
+
