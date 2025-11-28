@@ -222,6 +222,7 @@ md5sum - computa e checa mensagem de digestão MD5 (checar integridade de arquiv
 sha256sum - computa e checa mensagem de digestão SHA256 (checar integridade de arquivos baixados)
 sha515sum - computa e checa mensagem de digestão SHA512 (checar integridade de arquivos baixados)
 od - faz o dump de um arquivo em octal decimal e ou hexadecimal
+hexdump - faz o dump hexadecimal de arquivo (de byte em byte) (-X|-C).
 gzip - comprimir ou expandir arquivos .zip
 tar - utilitário criar ou expandir arquivos .tar
 ar - criar, modificar e extrair arquivos .ar
@@ -232,7 +233,6 @@ iconv - converte arquivo de texto de uma econdificação para outra (iconv -f X 
 UTILITÁRIOS TEXTO:
 more - exibe o conteúdo de um texto de forma simples.
 less - exibe o conteúdo de um texto de forma mais prática.
-grep - imprime linhas que coincidem com padrões em expressões regulares passado nos argumentos.
 head - imprime as primeiras N linhas de um arquivo de texto.
 tail - imprime as últimas N linhas de um arquivo de texto.
 sort - ordenar linhas de arquivos de texto ou saída de outros programas.
@@ -240,6 +240,7 @@ ln - cria links simbólicos ou físicos entre arquivos.
 wc - imprime número de newlines ’\n’(linhas), palavras e caracteres de um texto.
 tr - modifica ou deleta caracteres de arquivo passado para stdin.
 uniq - reporta ou omite linha idênticas repetidas.
+grep - imprime linhas que coincidem com padrões em expressões regulares passado nos argumentos.
 sed - editor stream para filtrar e transformar texto (útil em scripts)
 awk - escaneador de padrões e linguagem de processamento de texto plano (útil em scripts)
 cut - corta seções específicas de cada linha de um arquivo de texto organizado.
@@ -291,15 +292,15 @@ timeout - executa um comando por tempo limitado.
 sleep - para a execução por um certo período de tempo.
 
 GERENCIAMENTO DE PACOTES (softwares de seu sistema):
-    FEDORA LINUX(E o Red Hat® enterprise Linux®):
-        dnf - gerenciador de pacotes de baixo nível.
-	yum - gerenciador de pacotes de alto nível.
-    DEBIAN LINUX
-        apt - gerenciador de pacotes de auto nível.
-	dpkg - manuseador de pacotes de baixo nível, vide suas subunidades.
-    ARCH LINUX
-        pacman - gerenciador de pacotes absoluto do Arch linux.
-	makepkg - utilitário para compilar um pacote a partir do código fonte (Arch User Repository).
+FEDORA LINUX(E o Red Hat® enterprise Linux®):
+dnf - gerenciador de pacotes de baixo nível.
+yum - gerenciador de pacotes de alto nível.
+DEBIAN LINUX
+apt - gerenciador de pacotes de auto nível.
+dpkg - manuseador de pacotes de baixo nível, vide suas subunidades.
+ARCH LINUX
+pacman - gerenciador de pacotes absoluto do Arch linux.
+makepkg - utilitário para compilar um pacote a partir do código fonte (Arch User Repository).
 
 REDES:
 ping - mandar pacotes para testar rede.
@@ -433,5 +434,17 @@ EXTRAS:
 	ultimo diretório que tu estava e o que estais agora.
 	cd sem argumento te teletransportará para sua home (é o mesmo que cd ~)
 
+  Redirecionar bytes para dispositivo de audio interpretar como som digital:
+  $ cat /tmp/urandom | padsp tee /dev/audio > /dev/null
+  Caso arquivo seja pequeno para stdout não sujar muito:
+  $ cat /tmp/f.txt | padsp tee /dev/audio
+  
+  No unix tudo é um arquivo. Dispositivos são arquivos especiais que
+  recebem ou emitem Bytes.
+  Antigamente cat som.wav > /dev/audio emitia, diretamente, audio !
+  e para /dev/lp0 para imprimir os bytes em papel e /dev/tty0 para
+  emitir caracteres em uma teletypewriter (terminal parecido com má-
+  quina de escrever).
 
-Escrito por luiz paulo de lima araújo 2020 - 2022.
+Escrito por luiz paulo de lima araújo 2020,2021,2022,2023,2024,2025.
+
