@@ -1,0 +1,24 @@
+Receitas para ffmpeg CLI
+
+ffmpeg OPÇÕES_GLOBAIS OPÇÕES_ARQUIVO_ENTRADA  -i INPUT OUTPUT_FILE_OPÇÕES OUTPUT
+
+lista.txt----------
+file 'exemplo.mp4'|
+file 'exemplo.mp4'|
+file 'exemplo.mp4'|
+-------------------
+
+Conversão de formatos
+ffmpeg -i video.mp4 video.m4a
+ffmpeg -i musica.mp3 musica.wav
+
+Concatenação de vídeos
+ffmpeg -f concat -i lista.txt -c copy saida.mp4
+
+Manipulação de propriedades visuais do vídeo (brilho,contraste e saturação)
+ffmpeg -i input.mp4 -vf eq=brightness=0.2:contrast=1.1:saturation=1.2 saida.mp4
+  -vf = video filter
+  x=0 é normal
+  x>0 é aumento
+  x<0 é diminuição
+
