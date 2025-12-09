@@ -1,0 +1,5 @@
+
+# acessar programa na porta UDP/9999
+nc -udp 127.0.0.1 9999
+escreva coisas e pressione \n
+

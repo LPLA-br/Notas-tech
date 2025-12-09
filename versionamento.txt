@@ -7,6 +7,30 @@ MAIOR.MINOR.PATCH
 |     |________Quantificação de funcionalidades ou melhorias de forma incremental.
 |______________Grande Mudança que gera incompatibilidade com versões anteriores.
 
+------------------------------------------------------------------------------
+MINOR? - LPLA-br
+
+EVIDÊNCIAS E ANÁLISE
+A informação pode ser, no âmbito de um dispositivo de armazenamento de dados
+binários, Lida ou Escrita.
+Ler é simples ou composto, logo, apenas ler envolve consulta da informação
+restritivamente buscada enquanto ler compostamente envolve processamento pesado da
+informação obtida em análise logico-matematico-restritivas.
+Escrita subdivide-se em Criar, Atualizar, Substituir ou Deletar.
+Atualizar é um sub conjunto de Substituir é define-se por ser parcial.
+
+CONCLUSÃO
+O método de definição de MINOR partirá analiticamente do CRUD e terminará ,
+definido-se de fato, no que efetivamente o usuário pode executar sobre os
+dados.
+
+BACKEND TCP/IP: endpoints REST sobre o HTTP que fazem 1 (uma) coisa e a fazem
+perfeitamente bem.
+
+FRONTEND app ou web: elemento de interface gráfica monofunção capaz de
+requisitar 1 (uma) ação bem definida no backend.
+------------------------------------------------------------------------------
+
 Os números funcionam na forma de contagem posicional
 Exemplo:
 0.1.0 tua aplicação sempre terá pelo menos uma funcionalidade no comesso. (ínicio absoluto)

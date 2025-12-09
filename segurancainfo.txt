@@ -1,0 +1,95 @@
+De acordo com Ricardo Kleber a segurança da informação
+pode ser subdividida em 5 dimensões
+
+INFORMAÇÃO
+  bytes
+    dados binários
+    texto
+    imagem
+    audio
+    vídeo = (imagens*n + audio)
+
+CLASSES E OPERAÇÕES (VERBOS)
+  acessar
+  transportar
+  armazenar
+  processar
+
+COMPONENTES
+  hardware
+    softwares
+      informações
+        pessoas
+          ambientes
+
+OBJETIVOS E PRINCÍPIOS DA SEGURANÇA DA INFORMAÇÃO
+  confidencialidade, confidencial
+  integridade, íntegro
+  disponibilidade, disponível
+  autenticidade, autêntico
+  não repúdio, não repudiável (autoria inegável)
+
+  legalidade
+
+AMEAÇAS -
+VULNERABILIDADES -
+  interceptação
+    afeta confidencialidade.
+    Man in the middle em redes.
+  modificação
+    afeta integridade.
+    Software modificado de forma maliciosa para
+    adição de backdoor.
+    Ataque supply chain.
+  interrupção
+    afeta disponibilidade.
+    Deny Of Service 
+    Distributed Deny Of Service
+  fabricação
+    afeta autenticidade
+    Deepfakes
+
+Todo sistema computacional estará sujeito a:
+VULNERABILIDADES como pontos falhos que podem
+ser explorados pelas AMEAÇAS, intencionalmente
+ou não, causantes de danos ou destruição.
+RISCO como potencial de perda, dano ou destruição
+como resultado da AMEAÇA explorante de VULNERABILIDADE.
+
+As principais ferramentas de segurança da informação são:
+
+Esteganografia - ocultação da informação
+e arquivos aparentemente normais.
+
+Criptografia - ocultamente escrever (doutros) garantindo
+a confidencialidade em meios inseguros. Podes, através de
+ógãos confiáveis, também garantir a autenticidade e não repúdio.
+  humana:
+    cifra de substituição e etc...
+  computacional:
+    Simétrica
+      Possuis uma chave e a compartiha com quem achas que deve poder
+      descriptografar tuas mensagens. O problema reside na forma de
+      como compartilhar a chave seguramente. Computacionalmente
+      é mais eficiente que algoritmos assimétricos.
+      DES
+      AES
+    Assimétrica
+      Chave pública é usada por outros para criptografar.
+      E tu. que recebes arquivos criptografados, usaras tua Chave privada
+      para descriptografa-los.
+      RSA (Rivest Shamir and Adleman)
+      Triple DES
+    
+
+Funções HASH - função que gera um número único para
+todos o bytes computados de um arquivo garantindo
+integridade. Permite também armazenar seguramente
+credenciais de acesso de forma que possas comparar
+com o hash de uma credencial provida.
+
+MD5 (OBSOLETO)
+SHA256
+SHA512
+
+
