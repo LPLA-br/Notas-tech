@@ -1,0 +1,59 @@
+Guia Suscinto do GNU Privacy Guard
+
+ALGORÍTMOS CRIPTOGRÁFICOS
+RSA — assinatura, criptografia, certificação, autenticação
+DSA — assinatura (legado)
+ElGamal — criptografia (legado)
+ECDSA — assinatura
+ECDH — criptografia
+Ed25519 — assinatura / certificação
+cv25519 (X25519) — criptografia
+
+TIPOS DE CHAVE PÚBLICA - CAPACIDADE
+primaria [C] certificar (assinar chaves) primária,offline,não_divulge
+subchave [E] criptografar (confidencialidade).
+subchave [S] assinar (autenticidade).
+subchave [A] autenticar (identidade).
+
+# CRIAR CHAVE PRIVADA 
+$ gpg --default-new-key-algo rsa4096 --gen-key
+
+# ABRIR SHELL GPG PARA GERENCIAR CHAVE PRIVADA
+# CRIAR SUBCHAVES PÚBLICAS (nunca usa a chave pública primária diretamente).
+# MUITA COISA PODE SER RESOLVIDA NESTE SHELL GPG
+$ gpg --edit-key EMAIL
+
+# LISTAR TUAS CHAVES PRIVADAS
+$ gpg --list-secret-keys
+# E AS PÚBLICAS
+$ gpg --list-public-keys
+# ONDE PUB É PRIMÁRIA E SUB E SUBCHAVE PUBLICÁVEL.
+# TUDO
+$ gpg --list-keys
+
+# VERIFICAÇÃO ESTRUTURAL
+$ gpg --fingerprint KEYID
+
+# EXPORTAR SUBCHAVES PÚBLICAS (possui versão inútil da chave primária apenas como âncora de identidade)
+# EXPORTAR SUBCHAVES PÚBLICAS SEM A PUBLIC (Apenas as subchaves privadas)
+# MÁQUINAS ONLINE (SERVIDORES)
+$ gpg --export-secret-keys KEYID > subkeys.asc
+
+# VISUALIZAR PROPRIEDADES DA CHAVE EXPORTADA OU IMPORTADA
+$ gpg --list-packets exemplo.asc
+ou
+$ gpg --import-options show-only --import exemplo.asc
+# se possui apenas sub então não é chave primária completa (incomum)
+
+# IMPORTAR CHAVE PÚBLICA OBTIDA EM MEIO PÚBLICO CONFIÁVEL.
+$ gpg --import subkeys.asc
+
+# CRIPTOGRAFAR E ASSINAR
+$ gpg --encrypt --sign -r EMAIL arquivo.txt
+
+# VERIFICAR ASSINATURA USANDO A CHAVE PÙBLICA DA PESSOA
+# CUJO ARQUIVO ACREDITA-SE SER DE AUTORIA DELE. TEXTO PLANO
+# COM ASSINATURA EMBUTIDA.
+$ gpg --verify arquivo.txt
+
+
