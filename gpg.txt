@@ -1,4 +1,5 @@
 Guia Suscinto do GNU Privacy Guard
+Criptografia e assinatura sob teu nome.
 
 ALGORÍTMOS CRIPTOGRÁFICOS
 RSA — assinatura, criptografia, certificação, autenticação
@@ -15,7 +16,22 @@ subchave [E] criptografar (confidencialidade).
 subchave [S] assinar (autenticidade).
 subchave [A] autenticar (identidade).
 
-# CRIAR CHAVE PRIVADA 
+----------------- OPÇÕES FUNDAMENTAIS -----------------
+
+--encrypt -e [--sign]
+--sign -s
+--verify
+--armor [--export]
+--export
+--import
+
+--symmetric -c
+
+para mais detalhes leia $ man gpg
+----------------- OPÇÕES FUNDAMENTAIS -----------------
+
+
+# CRIAR CHAVE PRIVADA RSA 4096
 $ gpg --default-new-key-algo rsa4096 --gen-key
 
 # ABRIR SHELL GPG PARA GERENCIAR CHAVE PRIVADA
@@ -25,25 +41,29 @@ $ gpg --edit-key EMAIL
 
 # LISTAR TUAS CHAVES PRIVADAS
 $ gpg --list-secret-keys
-# E AS PÚBLICAS
-$ gpg --list-public-keys
-# ONDE PUB É PRIMÁRIA E SUB E SUBCHAVE PUBLICÁVEL.
-# TUDO
+
+# LISTAR AS PÚBLICAS [com o fingerprint (id)]
+$ gpg --list-public-keys [--with-subkey-fingerprint]
+
+# LISTAR TUDO
 $ gpg --list-keys
 
-# VERIFICAÇÃO ESTRUTURAL
-$ gpg --fingerprint KEYID
+# EXPORTAR CHAVES PÚBLICAS (publicamente seguro)
+$ gpg --armor --export EMAIL > keys.asc
 
-# EXPORTAR SUBCHAVES PÚBLICAS (possui versão inútil da chave primária apenas como âncora de identidade)
-# EXPORTAR SUBCHAVES PÚBLICAS SEM A PUBLIC (Apenas as subchaves privadas)
-# MÁQUINAS ONLINE (SERVIDORES)
-$ gpg --export-secret-keys KEYID > subkeys.asc
+# EXPORTAR CHAVES PRIVADAS (nunca publica isto !)
+$ gpg --armor --export-secret-keys
+
+# EXPORTAR APENAS SUBCHAVE [APENAS SUBCHAVE]
+$ gpg --armor --export FINGERPRINT_DA_CHAVE! > subchave.asc
+
+# VERIFICAR ESTRUTURAL
+$ gpg --fingerprint KEYID
 
 # VISUALIZAR PROPRIEDADES DA CHAVE EXPORTADA OU IMPORTADA
 $ gpg --list-packets exemplo.asc
-ou
+OU, HUMANAMENTE LEGÍVEL:
 $ gpg --import-options show-only --import exemplo.asc
-# se possui apenas sub então não é chave primária completa (incomum)
 
 # IMPORTAR CHAVE PÚBLICA OBTIDA EM MEIO PÚBLICO CONFIÁVEL.
 $ gpg --import subkeys.asc
