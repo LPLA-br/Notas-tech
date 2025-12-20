@@ -1,0 +1,5 @@
+MACROS_C - auxiliar leitura de cabeçalhos C
+
+Macros com parâmetros ##parametro##
+  #define EXEMPLO(x) Prefixo##x##Sufixo
+  EXEMPLO(Rinoceteio) = PrefixoRinoceteioSufixo
