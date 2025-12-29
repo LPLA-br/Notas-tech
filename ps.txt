@@ -24,4 +24,5 @@ OPÇÕES
     -L              mostrar Threads
 
     -o FORMATO      mostrar colunas selecionadas EX: euser,ruser,suser,fuser,f,comn,label
+                    (leia o manual man)
 

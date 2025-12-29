@@ -1,0 +1,55 @@
+Enumeração de palavras e ou definições
+correlatas com computação intensa
+e eficiência.
+
+CUIDADO COM ENGENHARIA EXTREMA PARA
+PROBLEMAS SIMPLES !
+
+paralelismo
+|_sub processos
+|_THREADS
+
+concorrência
+
+Hardware Heterogêneo
+|_Multiplas CPU's e Arquiteturas
+  |_Características arquiteturais da CPU
+    que orientam qual macro problema
+    executar sobre tal hardware.
+
+Message Passing Interface (MPI) comunicação entre processos
+em sistemas distribuidos.
+
+Aceleração de hardware
+|_Pesado? joga na GPU !
+
+I/O e uso eficiente da Hierarquia de memórias/Armazenamentos
+|_Registrador (Bytes)
+|_Cache       (MegaBytes)
+|_Memória RAM DDRx (GigaBytes)
+|_SSD,NVME,HD (Giga ou TeraBytes)
+
+Design simples e enxuto (menos é mais)
+|_Refatorações
+|_Desenho iterativo
+  |_Escovamento de Bits
+  | |_Consisão acima de Verbosidade Humana
+  |_Redução de etapas algoritmicas
+  |_Simplificação de equações
+  |_Simplificação de expressões lógicas
+
+Algoritmos e Estruturas de Dados Eficientes
+|_Aplicação dinâmica de algoritmos em função das
+  caracteristicas do problema. (Strategy)
+
+Escalar Verticalmente ($$)
+|_+memória
+|_+cpu's
+|_+armazenamento
+
+Escalar Horizontalmente ($$$$$$$$) (Sistemas distribuidos)
+|_Aglomerado de computadores.
+|_Computação com carga distribuida (balanceamento).
+|_Redes e protocolos de comunicação.
+  |_Limites dos protocolos.
+

@@ -1,0 +1,13 @@
+
+hexdump - ferramenta de análise de bytes
+
+-n N tamanho do bloco apresentado em bytes
+-s (offset) salto de N bytes. (se -n 128 então -s recebe 128*x)
+
+-C caracteres ASCII
+-X hexadecimal organizado
+
+EXEMPLOS
+Visualizar o quarto bloco de 128 bytes do arquivo exemplo.txt
+hexdump -C -n 128 -s $((128*4)) exemplo.txt
+
