@@ -334,13 +334,30 @@ sftp - transferir arquivos entre hosts de forma segura e interativa via ssh.
  
  Introdução a ações no shell:
 
-	pipeline:
-	| pipe direciona a saída(stdin) de um comando para entrada d'outro exemplo:
-		ls | grep diretorio/
+  No Unix em geral todo programa possui os seguintes descritores de arquivos
+  STDIN - entrada de caracteres
+  STDOUT - saída de caracteres processados pelo programa
+  STDERR - informação de erro
+
+  Pontos filosóficos dos sistemas UNIX que sustetam este paradigma:
+  I. Um programa faz uma coisa e a faz bem.
+  II. Escreva programas que recebe dados d'outros e retorna-os processados para
+  outros programas.
+  E
+  ·Escreva programas que lidam com transmissões (streams) de texto pois essa
+  é uma interface universal.
+
+  Com isso em vista, introduzo a pipeline que faz diferentes programas trabalharem
+  junto no shell linux:
+
+	PIPELINE:
+	| pipe direciona a STDOUT de um comando para STDIN d'outro exemplo:
+  Exemplo:
+	ls | grep 'padrao_buscado'
 
 
-	redirecionamento:
-	> direciona a saída (stdout) do comando para um arquivo a ser criado. 
+	REDIRECIONAMENTO:
+	> direciona a saída STDOUT do comando para um arquivo a ser criado. 
 	  Se existe um arquivo com mesmo nome do que será criado, o já
 	  existente de mesmo nome será substituido (sobrescrito), também pode
 	  criar um novo arquivo vazio. exemplos:
@@ -348,14 +365,16 @@ sftp - transferir arquivos entre hosts de forma segura e interativa via ssh.
 		echo "substituído" > texto.txt
 		> novovazio.txt
 
-	>> direciona a saída (stdout) do comando para um arquivo mas ao
+  REDIRECIONAMENTO ANEXATIVO:
+	>> direciona a saída STDOUT do comando para um arquivo mas ao
 	  ao contrário de > não substitui o arquivo pré-existente de
 	  mesmo nome, apenas anexa o conteúdo após a linha final.
 	  Exemplos:
 		echo "Goku disse:" > goku.txt
 		echo "Vegeta olha bem!" >> goku.txt
 
-	< direciona o arquivo de texto para entrada(stdin) do comando
+  RETRO REDIRECIONAMENTO:
+	< redireciona arquivo para STDIN de um comando.
 		Exemplo:
 		ls < listaDeDiretorios.txt
 		sort < listaDePalavrasDesordenadas.txt
@@ -365,6 +384,23 @@ sftp - transferir arquivos entre hosts de forma segura e interativa via ssh.
 		|
 		Exemplo3 comando composto com >>:
 		sort < OutralistaDePalavrasDesordenadas.txt >> listaDePalavrasOrdenadas.txt
+
+  HEREDOC - RETRO REDIRECIONAMENTO DE ESCRITA PELO USUÁRIO:
+  << PALAVRA indica que escreverás n linhas. Quando digitares PALAVRA encerrará
+  passando os caracteres escritos para STDIN do comando ao lado esquerdo de "<<"
+  Exemplos:
+  $ cat << EOF
+  > roda games ?
+  > EOF
+  roda games ?
+  $
+
+  HERE STRING - RETRO REDIRECIONAMENTO DE ESCRITA PELO USUÁRIO PARA UMA STRING:
+  Funciona como heredoc mas apenas para uma linha.
+  Exemplos:
+  $ cat <<< exemplo
+  exemplo
+  $
 
 	globbing:
 	* diretórios e subdiretórios em um nível ou *parte_do_nome:

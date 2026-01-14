@@ -1,0 +1,69 @@
+O que um sistema de arquivos ext4 em um dispositivo
+de armazenamento de blocos precisa para ser "sistema minimamente usável" ?
+
+0. bootloader grub (pc||efi)
+|_possívelmente configurarás as entradas
+  em /boot/grub/grub.cfg
+1. vmlinuz O KERNEL 
+2. initramfs-tools (recomendado se houver raid,docker,kvm,lvm ... )
+3. init(8)
+  sysvinit
+  busybox init
+  runit
+  openrc
+  systemd
+4. biblioteca C padrão
+  glibc
+  musl
+5. espaço de usuário O SHELL
+  sh (POSIX)
+  bash
+  busybox sh
+6. utilitários nucleares APLICAÇÕES
+  gnu-coreutils + util-linux + procps
+  busybox
+  kmod  para gerenciar módulos do kernel
+7. gerenciador de dispositivos /dev/**/*
+  devtmpfs
+  mdev (busybox)
+  udev
+8. File Hierachy Standard
+/
+├─ bin
+├─ sbin
+├─ lib   (ou lib64)
+├─ etc
+├─ dev
+├─ proc
+├─ sys
+├─ tmp
+├─ usr
+│   ├─ bin
+│   └─ lib
+└─ var
+9. montagem de sistemas de arquivos virtuais do kernel
+  mount -t proc proc /proc
+  mount -t sysfs sys /sys
+  mount -t devtmpfs dev /dev
+10. configs fundamentais
+  /etc/
+    fstab
+    passwd
+    group
+    hostname
+    hosts
+11. login e gerenciadores de sessão
+  getty (busybox||BSD)
+  agetty (util-linux)
+  login (busybox)
+
+  elogind (systemd)
+  seatd
+  ConsoleKit (classic)
+12. rede
+  iproute2(ip) ou ifconfig
+  dhclient
+
+. kmod para gerenciar módulos do kernel
+. elogind||
+
