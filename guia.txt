@@ -188,6 +188,7 @@ crontab - cron tarefas para usuários individuais.
 chsh - mudar o shell padrão do sistema.
 setfont - muda a fonte do console tty (por padrão: /usr/share/kbd/consolefonts/lat2-16.psfu.gz)
 vmstat - relata iformações sobre: processos, memória, paginação, atividades do disco e cpu e etc...
+vlock - travar com senha sessão corrente em tty virtual sem deslogar.
 
 ARQUIVOS:
 locate - busca por arquivo através de um indice gerado regularmente.

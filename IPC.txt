@@ -1,0 +1,48 @@
+IPC, linux e tu, programador backend.
+PIPES (anônimos, texto é uma interface universal)
+  $ ls | grep *.txt
+  STDIN   0
+  STDOUT  1
+  STDERR  2
+FIFOs (Named Pipes (p))
+  I.aparece e é persistente como arquivo no sistema de arquivos.
+  II.pode ser usado para comunicação entre processos.
+  III.protocolo deve ser definidos.
+  $ mkfifo /tmp/exemplo
+  $ echo "vish" > /tmp/exemplo
+  $ cat < /tmp/exemplo
+  vish
+SIGNALS
+  I.Modificação básica e padronizada de estados do processo
+  II. SIGINT, SIGTERM, SIGKILL e outros
+  III. kill(1), pkill(1)
+  |#include <signal.h>
+  |signal(SIGINT,signalHandlerFunction); //handle incoming termination.
+  |kill(pid,SIGTERM); //kill who ?
+SHARED MEMORY (memória compartilhada, mais rápido)
+  I.requre mutex ou semáforos para prevenir condições de corrida
+  e integridade de dados.
+  |#include <sys/shm.h>
+  |int shmId = shmget( KEY, SIZE, IPC_CREAT | 0666 );
+  |char* shared_memory = shmat( shmId, NULL, 0 );
+MESSAGE QUEUES
+  I. forma estruturada de enviar e receber mensagens.
+  |#include <sys/msg.h>
+  |int msgId = msgget(KEY,IPC_CREAT | 0666);
+  |msgsnd(msgId,&message,sizeof(message),0); //send
+  |msgrcv(msgId,&message,sizeof(message),0,0); //receive
+SOCKETS (TCP|UDP)
+  |#include <sys/socket.h>
+  |int sock = socket(AF_INET, SOCK_STREAM, 0);
+  |bind(sock, (struct sockaddr *)&addr, sizeof(addr));
+
+Raceconditions
+Deadlocks
+Communication Overheads
+Memory problems
+
+SOFTWARE PARA DEGUG DE IPC
+ipcs
+strace
+lsof
+
