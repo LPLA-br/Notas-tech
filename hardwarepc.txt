@@ -107,5 +107,18 @@ Fabricantes
     Seasonic
     EVGA
     bequiet!
-  
+
+API GRÁFICAS
+  MICROSOFT
+    DirectX (1995)
+    |_Direct3D 11 (1996)
+  APPLE
+    Metal (2014)
+  SILICON GRAPHICS
+    Opengl (1991)
+    Opengl Embedded Systems "GLES" (2003)
+    Vulkan (2015) "sucessor do opengl"
+    Mesa || Mesa3D ... "implementação open source do opengl"
+
+
 

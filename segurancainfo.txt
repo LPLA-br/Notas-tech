@@ -92,4 +92,31 @@ MD5 (OBSOLETO)
 SHA256
 SHA512
 
+ATAQUES NO ESCOPO DE APLICAÇÕES DISTRIBUIDAS
+
+  Deny of Service
+    Maquina requisita recursos pesados
+    ao servidor da aplicação inúmeras vezes por segundo
+    a tornando inacessível para clientes legítimos.
+    
+  Distributed Deny of Service
+    Trata-se de uma evolução do ataque sobre-exposto.
+    Aliciamento de várias máquinas em várias redes para
+    sobrecarregar servidores da aplicação os fazendo
+    negar serviço ao legítimos clientes.
+
+  Econonic Denial of Service || Economic Denial of Sustainability
+    Explora infraestruturas que escalam automaticamente (cpu,memória e
+    armazenamento) de modo a aumentar ou inviabilizar o custo destes
+    escalementos para a empresa provedora.
+
+  SOLUÇÕES E MITIGAÇÕES
+  Limite número de instâncias que a aplicação pode criar na infraestrutura de
+  núvem. Configure um Web Application Firewall (WAF). Crie um "Rate Limiting"
+  por IP. Limite o escopo geográfico das requisições para apenas o país de
+  atuação da tua empresa. configure o nftables para limitar taxa de requisições
+  para os atacantes.
+  
+
+
 
