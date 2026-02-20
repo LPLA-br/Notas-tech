@@ -109,3 +109,9 @@ IV. ENUMERAÇÃO, ENUMERAR, ESPECIFICAR, EXPOR.
   Validar a existência de lacunas ou falhas.
   Comunicar resultados → Desenvolvimento, Conclusão, Resultados.
 
+Síntese para programadores
+  verificarEvidencia( evidencia )
+  decomporProblema( problemaComplexo )
+  ordenarPensamentoDoSimplesAoComplexo( elementosSimples )
+  revisarEnumerarIntegridade()
+

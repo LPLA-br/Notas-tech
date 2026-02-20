@@ -1,0 +1,60 @@
+Representação de números em computação binária
+Recapitulação sintética
+
+NÚMEROS NATURAIS
+Não há segredo 0000 = 0 e 1111 = 15
+
+NÚMEROS INTEIROS
+
+COMPLEMENTO PARA UM (obsoleto)
+
+(6 = 0110) Aplicando negação bit a bit temos (1001 = -6)
+
+possui-se dois zeros onde o zero real é considerado:
+	0000 = 0
+	1111 = -0 (convertido para o zero acima)
+
+0111	7
+0110	6
+0101	5
+0100	4
+0011	3 
+0010	2
+0001	1
+0000	0
+1111	-0
+1110	-1
+1101	-2
+1100	-3
+1011	-4
+1010	-5
+1001	-6
+1000	-7
+
+
+COMPLEMENTO DE DOIS (inteiro com sinal)
+(0001 = 1, complemento de um para todos bits 1110, adiciona +1 = 1111 = -1)
+1111	-1
+1110	-2
+1101	-3
+1100	-4
+1011	-5
+1010	-6
+1001	-7
+1000	-8 O lado maior sempre negativo
+0111	7
+0110	6
+0101	5
+0100	4
+0011	3
+0010	2
+0001	1
+0000	0 Apenas um zero
+
+NÚMEROS RACIONAIS
+
+(parte inteira , ponto||vírgula , parte fracionária finita)
+
+(+|-) MANTISSA vezes BASE elevado a (+|-)EXPOENTE
+
+
