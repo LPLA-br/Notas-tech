@@ -51,10 +51,49 @@ COMPLEMENTO DE DOIS (inteiro com sinal)
 0001	1
 0000	0 Apenas um zero
 
-NÚMEROS RACIONAIS
+NÚMEROS RACIONAIS e IRRACIONAIS(finitos)
+parte inteira, parte fracionária finita
 
-(parte inteira , ponto||vírgula , parte fracionária finita)
+IEEE-754 - STANDARD FOR FLOATING-POINT ARITHMETIC
 
-(+|-) MANTISSA vezes BASE elevado a (+|-)EXPOENTE
+sinal,expoente,mantissa
 
+float16 (half)		1,5,10
+float32 (float)		1,8,23
+float64 (double)	1,11,52
+
+-Primeiro bit é o de sinal MSB
+
+-N bits para expoente MSB->LSB
+bit de sinal do expoente, expoente (leia acima sobre o COMPLEMENTO DE DOIS)
+
+-Mantissa MSB->LSB
+cada bit possui valor posicional:
+1/2, 1/4, 1/8, 1/16 ... 1/2²³ ...
+0.5, 0.25, 0.125, 0.0625 ... 0.0000001192092896 ...
+para cada posição igual a 1 soma-se valor posicional
+Observe que trata-se de um arredondamento.
+
+Aplica-se fórmula
+sinal x 2^expoente x somatorio_mantissa
+
+ARITMÉTICA DE PONTO FIXO
+Dois números naturais (com ou sem sinal) para
+parte inteira e para parte flutuante
+
+1685.452 -> 1685 e 452 -> 1685 e 0.452
+
+Não há erro de arredondamento mas ainda há
+o limite de combinações binárias e risco de overflow ou underflow.
+Entretanto é útil para cálculo financeiro, simulações físicas infinitesimamente
+precisas, criptografia dentre outras.
+
+divisão, raiz, seno, cos, log ficam complicados !
+
+							ieee754			ponto fixo
+precisão			.variável		fixa	
+limites				.enorme			limitada
+velocidade		.excelente	pior
+determinismo	.imperfeito	perfeito
+simplicidade	.simples		complexo
 
