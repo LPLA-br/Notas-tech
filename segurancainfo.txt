@@ -7,7 +7,7 @@ INFORMAÇÃO
     texto
     imagem
     audio
-    vídeo = (imagens*n + audio)
+    (imagens*n + audio) = vídeo
 
 CLASSES E OPERAÇÕES (VERBOS)
   acessar
@@ -48,6 +48,18 @@ VULNERABILIDADES -
   fabricação
     afeta autenticidade
     Deepfakes
+
+DEFINIÇÕES COMUNS
+
+Autenticação
+	Método que visa comprovar que és a pessoa
+	que dizes ser. Provê autorização para validar
+	operações sobre os dados.
+
+Autorização
+	Emprego de credenciais obtidas durante processo
+	de autenticação para permitir teu acesso a certa
+	informação protegida.
 
 Todo sistema computacional estará sujeito a:
 VULNERABILIDADES como pontos falhos que podem

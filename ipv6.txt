@@ -356,6 +356,32 @@ IX. IPv6 e sua relação inseparável com ICMPv6
   IGMP    - Internet Group Management Protocol
           Responsável por estabelecer grupos multicast
 
+COLA SUCINTA-----------------------------------------------------
+IPv6 - O protocolo de rede do presente
+formato_ipv6 = 0000:0000:0000:0000:0000:0000:0000:0000  8 duo-octetos de /1 até /128
+linklocal = fe80::XXXX:XXXX:XXXX:XXXX%INTERFACE
+linklocal http = http://[fe80::XXXX:XXXX:XXXX:XXXX%INTERFACE]:PORTA/
+linklocal ssh  = fe80::XXXX:XXXX:XXXX:XXXX%INTERFACE sem colchetes
+linklocal sftp = http://[fe80::XXXX:XXXX:XXXX:XXXX%INTERFACE]:PORTA/
+
+ALOCAÇÃO IANA
+HEX BIN  DESCRIPTION
+0-1 000X unspecified (::/128), loopback (::1/128), embedded IPV4 addresses (::/80)
+2-3 001X global unicast addresses (2000::/3)
+4-5 010X FUTURE
+6-7 011X FUTURE
+8-9 100X FUTURE
+A-B 101X FUTURE
+C-D 110X FUTURE
+E-F 111X link-local(fe80::/10), Unique-local(fc00::/7),
+Multicast addresses( 
+        well-known (ff00::/12)
+        transient (ff10::/12)
+        solicited-node (ff02:0:0:0:0:1:ff00::/104)
+)
+anycast - conjunto de interfaces
+----------------------------------------------------------------
+
 FONTES
 
 [1] https://www.networkacademy.io/ccna/ipv6/ipv6-address-types
