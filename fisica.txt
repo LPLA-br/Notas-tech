@@ -1,48 +1,150 @@
-Resumo de implementação de simulação fisica gravitacional bidimensional
+ANOTAÇÕES DE MATEMÁTICA/FÍSICA DO PROGRAMADOR
 
-ESTRUTURA DE DADOS DE UM OBJETO
-px, py
-vx, vy -> sqrt( vx² + vy² ) = hipotenusa = modulo do vetor resultante
-ax, ay -> sqrt( vx² + vy² ) = hipotenusa = modulo do vetor resultante
-massa
-raio
+RAZÕES TRIGONOMÉTRICAS DO TRIÂNGULO RETÂNGULO
+	Seno, Cosseno, Tangente
+	Oposto, Adjacente, Hipotenusa
+	SOH s = o/h
+	CAH c = a/h
+	TOA t = o/a
+	Retornam proporções adimensionais.
 
-distância até outro objeto
+TEOREMA DE PITÁGORAS
+	a² + o² = h²				Soma do quadrado dos catetos para obter o quadrado da hipotenusa.
+	h = sqrt( a² + b² )	Raiz quadrada da soma dos catetos quadrados para obter hipotenusa.
+
+1. O vetor é a resultante de N componentes dimensionais (((x),y),z)
+	 Comumente computa-se a resultante para duas ou três ou mais dimensões.
+	|V| = magnitude do vetor
+
+2. A magnitude do vetor pode ser, no âmbito da física dinâmica, velocidade, aceleração, arranque ...  
+
+RADIANOS - UTILIZAR GRAUS NÃO É CONVENIENTE COMPUTACIONALMENTE
+GRAUS			RADIANOS			RADIANOS_DECIMAIS
+0					0							0.0
+1					-							0.01745329252 ( útil para inc&dec, infinitesimalmente impreciso → FLOAT )
+90				PI/2					1.570796327
+180				PI						3.141592654
+270				(3*PI)/2			4.712388980
+360				PI·2					6.283185307
+
+Radianos é igual a graus vezes PI sobre 180
+Graus é igual a radianos vezes 180 sobre PI
+
+COMPUTAÇÃO DE COMPONENTES BIDIMENSIONAIS DADA UMA DIREÇÃO THETA-RADIANA (ORIGEM)
+	x = |V|*cos(thetaRadiano)
+	y = |V|*sen(thetaRadiano)
+
+COMPUTAÇÃO DE COMPONENTES BIDIMENSIONAIS UMA DIREÇÃO THETA-RADIANA (RELATIVAMENTE)
+	pontoRelativo = (x1,y1)
+	x = x1+|V| * cos(thetaRadiano)
+	y = y1+|V| * sen(thetaRadiano)
+
+	1. (x,y) permitem a computação da hipotenusa ou magnitude de vetor
+	assim como seu ângulo em radianos ou graus(requer conversão).
+	2. "pontoRelativo" pode ser um objeto cuja posição varia em função do tempo.
+
+COMPUTAÇÃO DAS COMPONENTES PARA UMA VELOCIDADE ARBITRARIA v
+	vx = v·cos(thetaRadiano)
+	vy = v·cos(thetaRadiano)
+
+	v - velocidade escalar
+	(vx,vy) - componentes
+
+	Para aceleração:
+	ax = a·cos(thetaRadiano)
+	ay = a·cos(thetaRadiano)
+
+	a - aceleração escalar
+	(ax,ay) - componentes
+
+
+ESTRUTURA DE DADOS DE UM OBJETO 2D MÓVEL
+	Posição→Velocidade→Aceleração quadrático→linear→constante
+	(px, py)
+	v (vx, vy) onde sqrt( vx² + vy² ) = hipotenusa = modulo do vetor velocidade
+	a (ax, ay) onde sqrt( vx² + vy² ) = hipotenusa = modulo do vetor aceleração
+
+DISTÂNCIA ENTRE DOIS PONTOS NO PLANO BIDIMENSIONAL (HIPOTENUSA)
   abs( sqrt( (x2-x1)² + (y2-y1)² ) )
 
-quadrante relativo a outro objeto
-  direção até outro objeto em graus atan2(y,x) quadrantes: 1,2 (3,4 requer correção)
-    Inversão-> direção do outro objeto até min
+DETERMINAÇÃO DE QUADRANTE RELATIVO DESTE PONTO RELATIVO PARA AQUELE PONTO RELATIVO
+	1.computar as diferenças por dimensão entre b=DESTINO RELATIVO e a=ORIGEM RELATIVA
+		DeltaX = Xb - Xa
+		DeltaY = Yb - Ya
+	2. Aplique função atan2(y,x)
+		thetaRadiano = atan2( DeltaY, DeltaX )
 
-SOH seno relativo a outro objeto (radiano->graus)
-
-CAH cosseno relativo a outro objeto (radiano->graus)
-
-Acelerar ou mover-se rumo a ...
+ACELERAR OU MOVER-SE RUMO A DETERMINADA DIREÇÃO
   vx e vy ax e ay: devem ser distribuidos com os sinais para ir à direção correta
-  -vx,vy    vx,vy
-  -vx,-vy   vx,-vy
+  -vx,vy |vx,vy
+  -vx,-vy|vx,-vy
 
-Constante da gravitação universal deve ser G=1
-para estabilidade númerica. Força gravitacional:
-(G · ma · mb)/distancia(a,b)
+CONSTANTE DA GRAVITAÇÃO UNIVERSAL
+	constante da gravitação universal deve ser G=1
+	para estabilidade númerica computacional.
 
-RADIANO PARA GRAU
-(rad*180/PI) = grau
+COMPUTANDO FORÇA GRAVITACIONAL
+	Força gravitacional = (G · ma · mb) / distancia( a, b )
 
-GRAU PARA RADIANO
-(grau*PI/180) = radiano
+	Força é igual constante da gravitação universal vezes massa do objeto 'a'
+	vezes a massa do objeto 'b' sobre a distancia entre ambos
 
-Mudar direcao corrente para direção arbitraria:
-  velocidade = sqrt( vx² + vy² )
-  novaDirecaoGraus = 125
-  novaDirecaoRadianos = 125*PI/180
-Distribuindo nova direção:
-  vx2 = velocidade * cosseno( novaDirecaoRadianos )
-  vy2 = velocidade * seno( novaDirecaoRadianos )
+MUDAR DIRECAO CORRENTE PARA DIREÇÃO ARBITRARIA EM GRAUS (evite graus)
+		velocidade = sqrt( vx² + vy² )
+		novaDirecaoGraus = 125
+		novaDirecaoRadianos = 125*PI/180
+	Distribuindo velocidade para nova direção arbitrária:
+		vx2 = velocidade * cosseno( novaDirecaoRadianos )
+		vy2 = velocidade * seno( novaDirecaoRadianos )
 
-INTEGRAÇÃO VERLET PARA ESTABILIDADE NUMÉRICA
-pxAnterior
-pyAnterior
-posicaoAnterior = {x,y}
-deltaTempo
+MÉTODOS NUMÉRICOS PARA ESTABILIDADE NUMÉRICA
+	deltaTempo = dt (dt menor que 1)
+
+	EULER - método instável, porém simples ! -----
+
+	nova_posicao = posicao_atual + ( velocidade_atual · dt )
+
+	VERLET----------------------------------------
+
+	Xn+1 = 2Xn - Xn-1 + a·dt²
+
+	X próximo é igual a duas vezes o X atual menos X anterior mais
+	aceleração vezes o quadrado do delta tempo.
+
+	I. defina aceleração
+	II. salve posições x,y ... atuais em temp_x, temp_y ...
+	III. compute nova posição EX: px = px + ( px - old_px ) + ax * (dt*dt)
+	IV. por fim, salve posições antigas EX: old_px = temp_x ..
+
+	VERLET VELOCIDADE (complexo)-------------------
+
+	Considere apenas a uma dimensão (neste caso x)
+	Computando nova posição usando velocidade e aceleração atuais:
+	x( t + dt ) = x(t) + v(t)·dt + 1/2·a(t)·dt²
+	
+	Velocidade de meio passo (intermediária):
+	v( t + 1/2·dt )	= v(t) = 1/2·a(t)·dt
+
+	Computar nova aceleração e velocidade final
+	v( t + dt ) = v( t + 1/2·dt ) + 1/2·a( t + dt )·dt
+
+
+	Em Computês:
+	px = vx * dt + 0.5 * ax * (dt*dt);	//obter posição usando aceleração atual
+	let v_half_x = vx + 0.5 * ax * dt;	//velocidade de meio passo
+	ax = 2;															//aceleração arbitrária ou gravidade ou outra força ...
+	vx = v_half_x + 0.5 * ax * dt;			//velocidade final (usando nova aceleração)
+
+	2D----------------
+	px = vx * dt + 0.5 * ax * (dt*dt);	//obter posição usando aceleração atual
+	py = vy * dt + 0.5 * ay * (dt*dt);	//obter posição usando aceleração atual
+
+	let v_half_x = vx + 0.5 * ax * dt;	//velocidade de meio passo
+	let v_half_y = vy + 0.5 * ay * dt;	//velocidade de meio passo
+
+	a -> (ax,ay)												//manipulação da aceleração
+
+	vx = v_half_x + 0.5 * ax * dt;			//velocidade final (usando nova aceleração)
+	vy = v_half_y + 0.5 * ay * dt;			//velocidade final (usando nova aceleração)
+	-------------------
+
