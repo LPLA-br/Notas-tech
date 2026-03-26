@@ -148,3 +148,17 @@ MÉTODOS NUMÉRICOS PARA ESTABILIDADE NUMÉRICA
 	vy = v_half_y + 0.5 * ay * dt;			//velocidade final (usando nova aceleração)
 	-------------------
 
+NORMALIZAÇÃO ("tradução") de [a,b] para [c,d]
+
+	f(x) = c+(x-a)*((d-c)/(b-a))
+
+	python
+	>>> a,b = 50,100
+	>>> c,d = 100,200
+	>>> def f(x,a,b,c,d):
+	...     return c+(x-a)*((d-c)/(b-a))
+	...     
+	>>> f(75,a,b,c,d)
+	150.0
+	>>> 
+
