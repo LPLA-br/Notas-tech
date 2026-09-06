@@ -1,0 +1,18 @@
+alias mplayer=m
+
+OPÇÕES DO PLAYER
+
+Saltar para hora:minuto:segundo especifico
+-ss 00:00:00
+
+Posição de encerramento da execução
+-endpos 00:00:00
+
+-speed <0.01 até 100>
+
+FILTROS DE AUDIO
+
+Equalização do audio
+m -af equalizer=0:0:0:0:0:0:0:0:0:0 MULTIMEDIA.FORMATO
+
+
