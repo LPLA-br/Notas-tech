@@ -381,6 +381,20 @@ Multicast addresses(
 )
 anycast - conjunto de interfaces
 ----------------------------------------------------------------
+Os três ipv6 de uma interface qualquer
+	GLOBAL TEMPORÁRIO
+		-saída para internet
+		-altera-se aleatoriamente de tempos em tempos -> privacidade
+	GLOBAL FIXO
+		-difere do global temporário por ser fixo
+		-muda apenas com mudança do prefixo do ISP
+		-parte do endereço e idêntica ao link-local
+	LINK-LOCAL
+		-como explicado anteriormente: roteável apenas
+		na rede local.
+		-exclusivo para redes locais.
+		-requer identificação de interface de rede no endereço
+----------------------------------------------------------------
 
 FONTES
 
