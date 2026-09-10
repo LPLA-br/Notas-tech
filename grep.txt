@@ -12,3 +12,7 @@ BUSCA POR MÚLTIPLOS PADRÕES
   Difere de sed(1)
   sed -E -e '^exemplo' -e 'alpha$' -e '^(A|a)lpha' arquivo.txt
 
+CAPTURAR TEXTO MULTILINHA ENTRE DUAS STRINGS ESPECIFICAS
+
+	grep -ozP '(?s)START_STRING\K.*?(?=END_STRING)' file.txt
+
